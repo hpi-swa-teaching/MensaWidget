@@ -1,0 +1,2 @@
+# MensaWidget
+Mensa Widget
