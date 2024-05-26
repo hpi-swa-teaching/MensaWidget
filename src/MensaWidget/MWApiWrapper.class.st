@@ -5,7 +5,7 @@ Class {
 }
 
 {
-	#category : #'as yet unclassified',
+	#category : #openMensa,
 	#'squeak_changestamp' : 'Oscar 5/24/2024 10:51'
 }
 MWApiWrapper class >> baseEndpoint [
@@ -13,7 +13,7 @@ MWApiWrapper class >> baseEndpoint [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #openMensa,
 	#'squeak_changestamp' : 'Oscar 5/26/2024 15:47'
 }
 MWApiWrapper class >> mealsPostfix [
