@@ -1,7 +1,14 @@
+"
+A MWFrame is the base block for the useer interface of the widget.
+
+Instance Variables
+
+"
 Class {
 	#name : #MWFrame,
 	#superclass : #PluggableSystemWindow,
-	#category : #MensaWidget
+	#category : #MensaWidget,
+	#'squeak_changestamp' : 'Louis Christ 5/27/2024 19:43'
 }
 
 {

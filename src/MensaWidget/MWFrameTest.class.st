@@ -1,10 +1,21 @@
+"
+A MWFrameTest is Test Case for the MWFrame.
+
+Instance Variables
+	widgetFrame:		<MWFrame>
+
+widgetFrame
+	- a instance of the MWFrame on which the tests will be done
+
+"
 Class {
 	#name : #MWFrameTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'widgetFrame'
 	],
-	#category : #'MensaWidget-Tests'
+	#category : #'MensaWidget-Tests',
+	#'squeak_changestamp' : 'Louis Christ 5/27/2024 19:44'
 }
 
 {
