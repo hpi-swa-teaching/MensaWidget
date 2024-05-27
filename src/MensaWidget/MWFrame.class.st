@@ -1,58 +1,47 @@
 Class {
 	#name : #MWFrame,
 	#superclass : #PluggableSystemWindow,
-	#instVars : [
-		'frame',
-		'text'
-	],
 	#category : #MensaWidget
 }
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'tmc 5/27/2024 16:02'
+	#'squeak_changestamp' : 'Louis Christ 5/27/2024 17:09'
 }
-MWFrame >> createFrame [
+MWFrame >> addText [
+
+	| textMorph |
 	
-	
-	|frame textMorph|
-	frame:= self frame: SystemWindow new.
 	textMorph := TextMorph new.
-		textMorph contents: 'Dinner Time ;)'.
+		textMorph contents: 'Are you a Munch? ;)'.
 		textMorph position:  135@100.
-	frame addMorph: textMorph.
-	
-	frame  setLabel:'Mensa Widget'.
-	frame openInWorld.
-	frame bounds: (400@400 extent: 400@600).	
-	
-	
-	
-
-	
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'tmc 5/25/2024 17:03'
-}
-MWFrame >> frame [
-	^ frame
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'tmc 5/25/2024 17:03'
-}
-MWFrame >> frame: anObject [
-	frame := anObject
+		
+	self addPaneMorph: textMorph.
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'tmc 5/25/2024 17:06'
+	#'squeak_changestamp' : 'Louis Christ 5/27/2024 17:00'
 }
-MWFrame >> openFrame [
+MWFrame >> createFrame [
+		
+	self setLabel:'Mensa Widget';
+		openInWorld;
+		extent: 400@600.	
 	
-	self createFrame.
+	
+	
+
+	
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Louis Christ 5/27/2024 17:00'
+}
+MWFrame >> initialize [
+	
+	super initialize.
+	self createFrame;
+		addText.
 ]

@@ -8,8 +8,8 @@ Class {
 }
 
 {
-	#category : #environment,
-	#'squeak_changestamp' : 'Louis Christ 5/23/2024 21:15'
+	#category : #tests,
+	#'squeak_changestamp' : 'Louis Christ 5/27/2024 17:12'
 }
 MWFrameTest >> setUp [
 
@@ -17,24 +17,56 @@ MWFrameTest >> setUp [
 ]
 
 {
-	#category : #environment,
-	#'squeak_changestamp' : 'Louis Christ 5/23/2024 21:15'
+	#category : #tests,
+	#'squeak_changestamp' : 'Louis Christ 5/27/2024 17:10'
 }
 MWFrameTest >> tearDown [
 
-	widgetFrame destroy
+	widgetFrame abandon
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 5/23/2024 21:34'
+	#'squeak_changestamp' : 'Louis Christ 5/27/2024 17:11'
 }
-MWFrameTest >> testInitialize [
+MWFrameTest >> testContent [
+	
+	self assert: (widgetFrame paneMorphs = #()) not
+]
 
-	self assert: widgetFrame superclass = PluggableSystemWindow;
-		assert: widgetFrame isInWorld; 
-		assert: widgetFrame isCollapsed = false;
-		assert: widgetFrame label = 'Untitled Window' not;
-		assert: widgetFrame extent < World extent;
-		assert: (widgetFrame paneMorphs = #()) not.
+{
+	#category : #tests,
+	#'squeak_changestamp' : 'Louis Christ 5/27/2024 17:11'
+}
+MWFrameTest >> testCorrectSuperclass [
+
+	self assert: widgetFrame class superclass = PluggableSystemWindow
+]
+
+{
+	#category : #tests,
+	#'squeak_changestamp' : 'Louis Christ 5/27/2024 17:11'
+}
+MWFrameTest >> testCorrectTitle [
+	
+	self assert: widgetFrame label = 'Mensa Widget'
+]
+
+{
+	#category : #tests,
+	#'squeak_changestamp' : 'Louis Christ 5/27/2024 17:11'
+}
+MWFrameTest >> testOpened [
+
+	self assert: widgetFrame isInWorld; 
+		assert: widgetFrame isCollapsed = false
+]
+
+{
+	#category : #tests,
+	#'squeak_changestamp' : 'Louis Christ 5/27/2024 17:11'
+}
+MWFrameTest >> testSize [
+
+	self assert: widgetFrame extent < World extent
 ]
