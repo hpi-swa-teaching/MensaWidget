@@ -1,4 +1,4 @@
 Package {
-	#'squeak_changestamp' : true,
-	#name : #MensaWidget
+	#name : #MensaWidget,
+	#'squeak_changestamp' : true
 }
