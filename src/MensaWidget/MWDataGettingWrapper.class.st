@@ -13,13 +13,13 @@ Class {
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Louis Christ 5/27/2024 19:27'
+	#'squeak_changestamp' : 'NK 5/28/2024 11:25'
 }
 MWDataGettingWrapper class >> canteenDict [
 
 	^ {'112' -> 'Ulfs Cafe'. 
 		'62' -> 'Mensa Griebnitzsee'.
-		'1222' -> 'Mensa Filmuni'. 
+		'1222' -> 'Mensa Babelsberg'. 
 		'1717' -> 'Campus Kitchen One'} asDictionary
 ]
 
