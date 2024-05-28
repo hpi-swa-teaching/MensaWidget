@@ -6,8 +6,12 @@ Class {
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Louis Christ 5/27/2024 19:18'
+	#'squeak_changestamp' : 'NK 5/29/2024 00:24'
 }
-MWParser >> put: someData in: aClass [
-
+MWParser class >> put: someData in: aClass [
+	| xyz |
+	
+	xyz := {1} asOrderedCollection.
+	
+	^ xyz
 ]
