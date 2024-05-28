@@ -6,12 +6,12 @@ Class {
 
 {
 	#category : #parsing,
-	#'squeak_changestamp' : 'Max 5/28/2024 18:04'
+	#'squeak_changestamp' : 'Max 5/28/2024 18:46'
 }
 MWParser class >> put: someData in: aClass [
 	| someDataJson classInstanceList classInstance |
 	someDataJson := Json readFromString: someData.
-	classInstanceList := Collection new.
+	classInstanceList := OrderedCollection new.
 	someDataJson collect: [:each | 
 		classInstance := aClass new.
 		aClass instVarNames collect: [:varName |
@@ -22,10 +22,10 @@ MWParser class >> put: someData in: aClass [
 
 {
 	#category : #parsing,
-	#'squeak_changestamp' : 'Max 5/28/2024 18:11'
+	#'squeak_changestamp' : 'Max 5/28/2024 18:34'
 }
 MWParser class >> set: someInstanceVariable on: aClassInstance from: someData [
 	| value |
-	value := someData at: someInstanceVariable ifAbsent: [nil].
+	value := someData at: someInstanceVariable.
 	 ^ aClassInstance instVarNamed: someInstanceVariable put: value
 ]
