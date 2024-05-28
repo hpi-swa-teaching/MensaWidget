@@ -1,5 +1,5 @@
 Class {
-	#name : #PleaseDeleteMe,
+	#name : #MWMeal,
 	#superclass : #Object,
 	#category : #MensaWidget
 }
