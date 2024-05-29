@@ -1,5 +1,28 @@
 "
-This class is a structure for saving meal information about a meal from the OpenMensa-API.
+A MWMeal2 is a structure to store information about a meal from the OpenMensa-API.
+
+Instance Variables
+	category:		<String>
+	id:		<Number>
+	name:		<String>
+	notes:		<OrderedCollection>
+	prices:		<JSONObject>
+
+category
+	- the category of the meal provided by OpenMensa-API
+
+id
+	- the provided id for the meal
+
+name
+	- the name of the meal
+
+notes
+	- additional info on the meal
+
+prices
+	- prices for students, employees, pupils and others
+
 "
 Class {
 	#name : #MWMeal,
@@ -12,7 +35,7 @@ Class {
 		'notes'
 	],
 	#category : #MensaWidget,
-	#'squeak_changestamp' : 'Max 5/29/2024 08:53'
+	#'squeak_changestamp' : 'Max 5/29/2024 19:49'
 }
 
 {

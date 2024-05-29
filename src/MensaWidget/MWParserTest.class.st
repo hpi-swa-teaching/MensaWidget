@@ -1,11 +1,14 @@
 "
-This class tests the MWParser for correct functionality.
+A MWParserTest2 is a testcase for the functionality of the MWParser.
+
+Instance Variables
+
 "
 Class {
 	#name : #MWParserTest,
 	#superclass : #TestCase,
 	#category : #'MensaWidget-Tests',
-	#'squeak_changestamp' : 'Max 5/29/2024 13:02'
+	#'squeak_changestamp' : 'Max 5/29/2024 19:52'
 }
 
 {

@@ -1,11 +1,13 @@
 "
-This class enables parsing data from a String directly into a given class instance.
+A MWParser2 is a Parser for JSON data as Strings to a class instance with the same attributes.
+
+Instance Variables
 "
 Class {
 	#name : #MWParser,
 	#superclass : #Object,
 	#category : #MensaWidget,
-	#'squeak_changestamp' : 'Max 5/29/2024 13:04'
+	#'squeak_changestamp' : 'Max 5/29/2024 19:51'
 }
 
 {

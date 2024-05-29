@@ -1,5 +1,16 @@
 "
-This class can be used as a mock object for the MWParser tests.
+A MWParserTestMockObject2 is a test object for the MWParserTest.
+
+Instance Variables
+	id:		<Number>
+	name:		<String>
+
+id
+	- the id provided by the data input
+
+name
+	- the name provided by the data input
+
 "
 Class {
 	#name : #MWParserTestMockObject,
@@ -9,7 +20,7 @@ Class {
 		'name'
 	],
 	#category : #'MensaWidget-Tests',
-	#'squeak_changestamp' : 'Max 5/29/2024 13:03'
+	#'squeak_changestamp' : 'Max 5/29/2024 19:53'
 }
 
 {
