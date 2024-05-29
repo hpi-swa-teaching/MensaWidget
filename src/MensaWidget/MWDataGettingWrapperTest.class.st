@@ -37,7 +37,7 @@ MWDataGettingWrapperTest >> dataGettingWrapper: anObject [
 ]
 
 {
-	#category : #testCases,
+	#category : #tests,
 	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:35'
 }
 MWDataGettingWrapperTest >> testCollectionClasses [
@@ -47,7 +47,7 @@ MWDataGettingWrapperTest >> testCollectionClasses [
 ]
 
 {
-	#category : #testCases,
+	#category : #tests,
 	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:35'
 }
 MWDataGettingWrapperTest >> testSize [

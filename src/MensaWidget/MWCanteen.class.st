@@ -34,7 +34,7 @@ Class {
 }
 
 {
-	#category : #'Constructor ',
+	#category : #'constructor ',
 	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:34'
 }
 MWCanteen class >> newWithId: anId Name: aName Date: aDate Meals: aMealList [
