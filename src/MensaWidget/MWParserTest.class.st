@@ -1,7 +1,11 @@
+"
+This class is the test class for the MWParser.
+"
 Class {
 	#name : #MWParserTest,
 	#superclass : #TestCase,
-	#category : #'MensaWidget-Tests'
+	#category : #'MensaWidget-Tests',
+	#'squeak_changestamp' : 'Max 5/29/2024 08:53'
 }
 
 {

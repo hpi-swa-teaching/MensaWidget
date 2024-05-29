@@ -1,3 +1,6 @@
+"
+This class is a mock object for the MWParser tests.
+"
 Class {
 	#name : #MWParserTestMockObject,
 	#superclass : #Object,
@@ -5,7 +8,8 @@ Class {
 		'id',
 		'name'
 	],
-	#category : #'MensaWidget-Tests'
+	#category : #'MensaWidget-Tests',
+	#'squeak_changestamp' : 'Max 5/29/2024 08:54'
 }
 
 {
