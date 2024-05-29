@@ -10,7 +10,7 @@ Class {
 
 {
 	#category : #parsing,
-	#'squeak_changestamp' : 'Max 5/29/2024 17:18'
+	#'squeak_changestamp' : 'Max 5/29/2024 18:16'
 }
 MWParser class >> put: aDataset in: aClass [
 
@@ -21,8 +21,8 @@ MWParser class >> put: aDataset in: aClass [
 	someDataJson collect: [:each | 
 		classInstance := aClass new.
 		aClass instVarNames collect: [:varName |
-			self set: varName on: classInstance from: each.].
-		classInstanceList add: classInstance.].
+			self set: varName on: classInstance from: each].
+		classInstanceList add: classInstance].
 	 ^ classInstanceList
 ]
 

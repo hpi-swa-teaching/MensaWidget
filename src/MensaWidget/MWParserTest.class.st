@@ -9,21 +9,6 @@ Class {
 }
 
 {
-	#category : #constants,
-	#'squeak_changestamp' : 'Max 5/28/2024 18:21'
-}
-MWParserTest class >> multipleJSONs [
-]
-
-{
-	#category : #constants,
-	#'squeak_changestamp' : 'Max 5/28/2024 18:42'
-}
-MWParserTest class >> simpleJSON [
-	^ '[{"id":19500904,"name":"testName"}]'
-]
-
-{
 	#category : #tests,
 	#'squeak_changestamp' : 'Max 5/29/2024 14:06'
 }
@@ -57,11 +42,11 @@ MWParserTest >> testMWParserSetOnFromValidData [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Max 5/29/2024 14:07'
+	#'squeak_changestamp' : 'Max 5/29/2024 18:15'
 }
 MWParserTest >> testMWParserSetOnFromValidExtensiveData [
 
-	| data  mockInstance|
+	| data  mockInstance |
 	
 	data := Json readFromString: '{"id":19500904,"name":"testName", "property3":42}'.
 	mockInstance := MWParserTestMockObject new.
