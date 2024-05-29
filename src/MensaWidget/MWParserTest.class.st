@@ -25,7 +25,7 @@ MWParserTest class >> simpleJSON [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Max 5/29/2024 12:59'
+	#'squeak_changestamp' : 'Max 5/29/2024 14:06'
 }
 MWParserTest >> testMWParserSetOnFromInvalidData [
 
@@ -33,15 +33,15 @@ MWParserTest >> testMWParserSetOnFromInvalidData [
 	
 	data := Json readFromString: '{"idx":19500904,"namep":"testName"}'.
 	mockInstance := MWParserTestMockObject new.
-	MWParser set: 'id' on: mockInstance from: data.
-	MWParser set: 'name' on: mockInstance from: data.
-	self assert: mockInstance id isNil.
-	self assert: mockInstance name isNil
+	MWParser set: 'id' on: mockInstance from: data;
+		set: 'name' on: mockInstance from: data.
+	self assert: mockInstance id isNil;
+		assert: mockInstance name isNil
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Max 5/29/2024 13:00'
+	#'squeak_changestamp' : 'Max 5/29/2024 14:06'
 }
 MWParserTest >> testMWParserSetOnFromValidData [
 
@@ -49,15 +49,15 @@ MWParserTest >> testMWParserSetOnFromValidData [
 	
 	data := Json readFromString: '{"id":19500904,"name":"testName"}'.
 	mockInstance := MWParserTestMockObject new.
-	MWParser set: 'id' on: mockInstance from: data.
-	MWParser set: 'name' on: mockInstance from: data.
-	self assert: mockInstance id = 19500904.
-	self assert: mockInstance name = 'testName'
+	MWParser set: 'id' on: mockInstance from: data;
+		set: 'name' on: mockInstance from: data.
+	self assert: mockInstance id = 19500904;
+		assert: mockInstance name = 'testName'
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Max 5/29/2024 13:00'
+	#'squeak_changestamp' : 'Max 5/29/2024 14:07'
 }
 MWParserTest >> testMWParserSetOnFromValidExtensiveData [
 
@@ -65,36 +65,36 @@ MWParserTest >> testMWParserSetOnFromValidExtensiveData [
 	
 	data := Json readFromString: '{"id":19500904,"name":"testName", "property3":42}'.
 	mockInstance := MWParserTestMockObject new.
-	MWParser set: 'id' on: mockInstance from: data.
-	MWParser set: 'name' on: mockInstance from: data.
-	self assert: mockInstance id = 19500904.
-	self assert: mockInstance name = 'testName'
+	MWParser set: 'id' on: mockInstance from: data;
+		set: 'name' on: mockInstance from: data.
+	self assert: mockInstance id = 19500904;
+		assert: mockInstance name = 'testName'
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Max 5/29/2024 13:00'
+	#'squeak_changestamp' : 'Max 5/29/2024 14:07'
 }
 MWParserTest >> testMWParserWithMultipleJSONObjects [
 
 	| instanceList |
 	
 	instanceList := MWParser put:  '[{"id":19500904,"name":"testName"}, {"id":25, "name": "anotherName", "property3":42}]' in: MWParserTestMockObject.
-	self assert: instanceList first id = 19500904.
-	self assert: instanceList first name = 'testName'.
-	self assert: (instanceList at: 2) id = 25.
-	self assert: (instanceList at: 2) name = 'anotherName'
+	self assert: instanceList first id = 19500904;
+		assert: instanceList first name = 'testName';
+		assert: (instanceList at: 2) id = 25;
+		assert: (instanceList at: 2) name = 'anotherName'
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Max 5/29/2024 13:00'
+	#'squeak_changestamp' : 'Max 5/29/2024 14:08'
 }
 MWParserTest >> testMWParserWithOneJSONObject [
 
 	| instanceList |
 	
 	instanceList := MWParser put:  '[{"id":19500904,"name":"testName"}]' in: MWParserTestMockObject.
-	self assert: instanceList first id = 19500904.
-	self assert: instanceList first name = 'testName'
+	self assert: instanceList first id = 19500904;
+		assert: instanceList first name = 'testName'
 ]
