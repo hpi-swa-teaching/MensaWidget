@@ -1,11 +1,11 @@
 "
-This class enables parsing data from a String that is convertable to a JSON objects directly into class instances.
+This class enables parsing data from a String directly into a given class instance.
 "
 Class {
 	#name : #MWParser,
 	#superclass : #Object,
 	#category : #MensaWidget,
-	#'squeak_changestamp' : 'Max 5/29/2024 08:52'
+	#'squeak_changestamp' : 'Max 5/29/2024 13:04'
 }
 
 {

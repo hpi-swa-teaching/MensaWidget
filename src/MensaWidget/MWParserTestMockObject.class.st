@@ -1,5 +1,5 @@
 "
-This class is a mock object for the MWParser tests.
+This class can be used as a mock object for the MWParser tests.
 "
 Class {
 	#name : #MWParserTestMockObject,
@@ -9,7 +9,7 @@ Class {
 		'name'
 	],
 	#category : #'MensaWidget-Tests',
-	#'squeak_changestamp' : 'Max 5/29/2024 08:54'
+	#'squeak_changestamp' : 'Max 5/29/2024 13:03'
 }
 
 {
