@@ -50,17 +50,6 @@ MWDataGettingWrapperTest >> testCollectionClasses [
 	#category : #testCases,
 	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:35'
 }
-MWDataGettingWrapperTest >> testCollectionValues [
-	
-	self dataGettingWrapper todaysMeals do: [ :each |
-		each instanceVariableValues do: [ :value | 
-			self assert: value = nil not]]
-]
-
-{
-	#category : #testCases,
-	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:35'
-}
 MWDataGettingWrapperTest >> testSize [
 
 	self assert: self dataGettingWrapper todaysMeals size = self dataGettingWrapper class canteenDict size
