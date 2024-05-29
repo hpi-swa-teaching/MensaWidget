@@ -10,13 +10,13 @@ Class {
 
 {
 	#category : #parsing,
-	#'squeak_changestamp' : 'Max 5/29/2024 12:58'
+	#'squeak_changestamp' : 'Max 5/29/2024 17:18'
 }
-MWParser class >> put: someData in: aClass [
+MWParser class >> put: aDataset in: aClass [
 
 	| someDataJson classInstanceList classInstance |
 	
-	someDataJson := Json readFromString: someData.
+	someDataJson := Json readFromString: aDataset.
 	classInstanceList := OrderedCollection new.
 	someDataJson collect: [:each | 
 		classInstance := aClass new.
@@ -28,12 +28,12 @@ MWParser class >> put: someData in: aClass [
 
 {
 	#category : #parsing,
-	#'squeak_changestamp' : 'Max 5/29/2024 12:59'
+	#'squeak_changestamp' : 'Max 5/29/2024 17:18'
 }
-MWParser class >> set: someInstanceVariable on: aClassInstance from: someData [
+MWParser class >> set: someInstanceVariable on: aClassInstance from: aDataset [
 
 	| value |
 	
-	value := someData at: someInstanceVariable.
+	value := aDataset at: someInstanceVariable.
 	 ^ aClassInstance instVarNamed: someInstanceVariable put: value
 ]
