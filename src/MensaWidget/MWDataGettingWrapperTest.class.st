@@ -11,46 +11,36 @@ dataGettingWrapper
 Class {
 	#name : #MWDataGettingWrapperTest,
 	#superclass : #TestCase,
-	#instVars : [
-		'dataGettingWrapper'
-	],
 	#category : #'MensaWidget-Tests',
 	#'squeak_changestamp' : 'Louis Christ 5/27/2024 19:35'
 }
 
 {
-	#category : #accessing,
-	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:35'
-}
-MWDataGettingWrapperTest >> dataGettingWrapper [
-
-	^ dataGettingWrapper
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:35'
-}
-MWDataGettingWrapperTest >> dataGettingWrapper: anObject [
-
-	dataGettingWrapper := anObject
-]
-
-{
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:35'
+	#'squeak_changestamp' : 'NK 5/29/2024 19:18'
 }
 MWDataGettingWrapperTest >> testCollectionClasses [
 	
-	self dataGettingWrapper todaysMeals do: [ :each |
-		self assert: each class = MWMeal ]
+	MWDataGettingWrapper new todaysMeals do: [ :each |
+		self assert: each class = MWCanteen ]
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:35'
+	#'squeak_changestamp' : 'NK 5/29/2024 19:17'
+}
+MWDataGettingWrapperTest >> testCollectionValues [
+	
+	MWDataGettingWrapper new todaysMeals do: [ :each |
+		each instanceVariableValues do: [ :value | 
+			self assert: (value = nil) not]]
+]
+
+{
+	#category : #tests,
+	#'squeak_changestamp' : 'NK 5/29/2024 19:16'
 }
 MWDataGettingWrapperTest >> testSize [
 
-	self assert: self dataGettingWrapper todaysMeals size = self dataGettingWrapper class canteenDict size
+	self assert: MWDataGettingWrapper new todaysMeals size = MWDataGettingWrapper new class canteenDict size
 ]
