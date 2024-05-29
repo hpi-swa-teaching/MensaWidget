@@ -35,7 +35,7 @@ Class {
 
 {
 	#category : #'Constructor ',
-	#'squeak_changestamp' : 'Louis Christ 5/27/2024 19:16'
+	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:34'
 }
 MWCanteen class >> newWithId: anId Name: aName Date: aDate Meals: aMealList [
 
@@ -43,72 +43,80 @@ MWCanteen class >> newWithId: anId Name: aName Date: aDate Meals: aMealList [
 	
 	newInstance := self new.
 	newInstance id: anId;
-				name: aName;
-				date: aDate;
-				meals: aMealList.
+		name: aName;
+		date: aDate;
+		meals: aMealList.
 	^ newInstance.
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Louis Christ 5/27/2024 19:11'
+	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:33'
 }
 MWCanteen >> date [
+
 	^ date
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Louis Christ 5/27/2024 19:11'
+	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:33'
 }
 MWCanteen >> date: anObject [
+
 	date := anObject
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Louis Christ 5/27/2024 19:11'
+	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:33'
 }
 MWCanteen >> id [
+
 	^ id
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Louis Christ 5/27/2024 19:11'
+	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:33'
 }
 MWCanteen >> id: anObject [
+
 	id := anObject
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Louis Christ 5/27/2024 19:11'
+	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:33'
 }
 MWCanteen >> meals [
+
 	^ meals
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Louis Christ 5/27/2024 19:11'
+	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:33'
 }
 MWCanteen >> meals: anObject [
+
 	meals := anObject
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Louis Christ 5/27/2024 19:11'
+	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:33'
 }
 MWCanteen >> name [
+
 	^ name
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Louis Christ 5/27/2024 19:11'
+	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:33'
 }
 MWCanteen >> name: anObject [
+
 	name := anObject
 ]
