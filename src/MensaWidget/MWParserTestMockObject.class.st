@@ -14,32 +14,36 @@ Class {
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Max 5/28/2024 18:29'
+	#'squeak_changestamp' : 'Max 5/29/2024 13:00'
 }
 MWParserTestMockObject >> id [
+
 	^ id
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Max 5/28/2024 18:29'
+	#'squeak_changestamp' : 'Max 5/29/2024 13:00'
 }
 MWParserTestMockObject >> id: anObject [
+
 	id := anObject
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Max 5/28/2024 18:29'
+	#'squeak_changestamp' : 'Max 5/29/2024 13:00'
 }
 MWParserTestMockObject >> name [
+
 	^ name
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Max 5/28/2024 18:29'
+	#'squeak_changestamp' : 'Max 5/29/2024 13:00'
 }
 MWParserTestMockObject >> name: anObject [
+
 	name := anObject
 ]

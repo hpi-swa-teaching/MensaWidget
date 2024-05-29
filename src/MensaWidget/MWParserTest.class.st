@@ -24,26 +24,13 @@ MWParserTest class >> simpleJSON [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Max 5/28/2024 18:16'
-}
-MWParserTest >> setUp [
-	
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Max 5/28/2024 18:16'
-}
-MWParserTest >> tearDown [
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Max 5/28/2024 18:38'
+	#category : #tests,
+	#'squeak_changestamp' : 'Max 5/29/2024 12:59'
 }
 MWParserTest >> testMWParserSetOnFromInvalidData [
-	| data  mockInstance|
+
+	| data  mockInstance |
+	
 	data := Json readFromString: '{"idx":19500904,"namep":"testName"}'.
 	mockInstance := MWParserTestMockObject new.
 	MWParser set: 'id' on: mockInstance from: data.
@@ -53,11 +40,13 @@ MWParserTest >> testMWParserSetOnFromInvalidData [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Max 5/28/2024 18:37'
+	#category : #tests,
+	#'squeak_changestamp' : 'Max 5/29/2024 13:00'
 }
 MWParserTest >> testMWParserSetOnFromValidData [
-	| data  mockInstance|
+
+	| data  mockInstance |
+	
 	data := Json readFromString: '{"id":19500904,"name":"testName"}'.
 	mockInstance := MWParserTestMockObject new.
 	MWParser set: 'id' on: mockInstance from: data.
@@ -67,11 +56,13 @@ MWParserTest >> testMWParserSetOnFromValidData [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Max 5/28/2024 18:51'
+	#category : #tests,
+	#'squeak_changestamp' : 'Max 5/29/2024 13:00'
 }
 MWParserTest >> testMWParserSetOnFromValidExtensiveData [
+
 	| data  mockInstance|
+	
 	data := Json readFromString: '{"id":19500904,"name":"testName", "property3":42}'.
 	mockInstance := MWParserTestMockObject new.
 	MWParser set: 'id' on: mockInstance from: data.
@@ -81,11 +72,13 @@ MWParserTest >> testMWParserSetOnFromValidExtensiveData [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Max 5/28/2024 18:51'
+	#category : #tests,
+	#'squeak_changestamp' : 'Max 5/29/2024 13:00'
 }
 MWParserTest >> testMWParserWithMultipleJSONObjects [
+
 	| instanceList |
+	
 	instanceList := MWParser put:  '[{"id":19500904,"name":"testName"}, {"id":25, "name": "anotherName", "property3":42}]' in: MWParserTestMockObject.
 	self assert: instanceList first id = 19500904.
 	self assert: instanceList first name = 'testName'.
@@ -94,11 +87,13 @@ MWParserTest >> testMWParserWithMultipleJSONObjects [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Max 5/28/2024 18:44'
+	#category : #tests,
+	#'squeak_changestamp' : 'Max 5/29/2024 13:00'
 }
 MWParserTest >> testMWParserWithOneJSONObject [
+
 	| instanceList |
+	
 	instanceList := MWParser put:  '[{"id":19500904,"name":"testName"}]' in: MWParserTestMockObject.
 	self assert: instanceList first id = 19500904.
 	self assert: instanceList first name = 'testName'
