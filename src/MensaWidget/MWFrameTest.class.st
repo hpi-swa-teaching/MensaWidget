@@ -19,7 +19,7 @@ Class {
 }
 
 {
-	#category : #tests,
+	#category : #environment,
 	#'squeak_changestamp' : 'Louis Christ 5/27/2024 17:12'
 }
 MWFrameTest >> setUp [
@@ -28,7 +28,7 @@ MWFrameTest >> setUp [
 ]
 
 {
-	#category : #tests,
+	#category : #environment,
 	#'squeak_changestamp' : 'Louis Christ 5/27/2024 17:10'
 }
 MWFrameTest >> tearDown [
@@ -38,46 +38,64 @@ MWFrameTest >> tearDown [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 5/27/2024 17:11'
+	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:42'
 }
 MWFrameTest >> testContent [
 	
-	self assert: (widgetFrame paneMorphs = #()) not
+	self assert: (self widgetFrame paneMorphs = #()) not
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 5/27/2024 17:11'
+	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:42'
 }
 MWFrameTest >> testCorrectSuperclass [
 
-	self assert: widgetFrame class superclass = PluggableSystemWindow
+	self assert: self widgetFrame class superclass = PluggableSystemWindow
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 5/27/2024 17:11'
+	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:42'
 }
 MWFrameTest >> testCorrectTitle [
 	
-	self assert: widgetFrame label = 'Mensa Widget'
+	self assert: self widgetFrame label = 'Mensa Widget'
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 5/27/2024 17:11'
+	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:42'
 }
 MWFrameTest >> testOpened [
 
-	self assert: widgetFrame isInWorld; 
-		assert: widgetFrame isCollapsed = false
+	self assert: self widgetFrame isInWorld; 
+		assert: self widgetFrame isCollapsed = false
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 5/27/2024 17:11'
+	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:42'
 }
 MWFrameTest >> testSize [
 
-	self assert: widgetFrame extent < World extent
+	self assert: self widgetFrame extent < World extent
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:41'
+}
+MWFrameTest >> widgetFrame [
+
+	^ widgetFrame
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:41'
+}
+MWFrameTest >> widgetFrame: anObject [
+
+	widgetFrame := anObject
 ]
