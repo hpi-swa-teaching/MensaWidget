@@ -24,10 +24,10 @@ MWDataGettingWrapper class >> canteenDict [
 ]
 
 {
-	#category : #today,
-	#'squeak_changestamp' : 'NK 5/30/2024 17:17'
+	#category : #dataPulling,
+	#'squeak_changestamp' : 'Louis Christ 5/31/2024 14:16'
 }
-MWDataGettingWrapper >> getMealsOnDate: aDate [
+MWDataGettingWrapper class >> getMealsOnDate: aDate [
 
 	| api canteens canteenDict json |
 	
@@ -41,15 +41,13 @@ MWDataGettingWrapper >> getMealsOnDate: aDate [
 ]
 
 {
-	#category : #today,
-	#'squeak_changestamp' : 'NK 5/30/2024 17:19'
+	#category : #dataPulling,
+	#'squeak_changestamp' : 'Louis Christ 5/31/2024 14:16'
 }
-MWDataGettingWrapper >> getTodaysMeals [
+MWDataGettingWrapper class >> getTodaysMeals [
 
 	| today |
 	
-
 	today := Date today yyyymmdd.
-	
 	^ MWDataGettingWrapper new getMealsOnDate: today
 ]
