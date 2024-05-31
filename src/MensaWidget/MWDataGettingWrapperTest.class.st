@@ -27,13 +27,13 @@ MWDataGettingWrapperTest >> testCollectionClasses [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'NK 5/29/2024 19:17'
+	#'squeak_changestamp' : 'Louis Christ 5/31/2024 15:30'
 }
 MWDataGettingWrapperTest >> testCollectionValues [
 	
 	MWDataGettingWrapper new todaysMeals do: [ :each |
 		each instanceVariableValues do: [ :value | 
-			self assert: (value = nil) not]]
+			self assert: (value = nil) not ] ]
 ]
 
 {
