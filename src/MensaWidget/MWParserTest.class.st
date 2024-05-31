@@ -1,5 +1,5 @@
 "
-A MWParserTest2 is a testcase for the functionality of the MWParser.
+A MWParserTest is a testcase for the functionality of the MWParser.
 
 Instance Variables
 
@@ -8,7 +8,7 @@ Class {
 	#name : #MWParserTest,
 	#superclass : #TestCase,
 	#category : #'MensaWidget-Tests',
-	#'squeak_changestamp' : 'Max 5/29/2024 19:52'
+	#'squeak_changestamp' : 'Max 5/31/2024 21:55'
 }
 
 {

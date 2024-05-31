@@ -1,5 +1,5 @@
 "
-A MWParser2 is a Parser for JSON data as Strings to a class instance with the same attributes.
+A MWParser is a Parser for JSON data as Strings to a class instance with the same attributes.
 
 Instance Variables
 "
@@ -7,7 +7,7 @@ Class {
 	#name : #MWParser,
 	#superclass : #Object,
 	#category : #MensaWidget,
-	#'squeak_changestamp' : 'Max 5/29/2024 19:51'
+	#'squeak_changestamp' : 'Max 5/31/2024 21:55'
 }
 
 {

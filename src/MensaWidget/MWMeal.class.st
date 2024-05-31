@@ -1,5 +1,5 @@
 "
-A MWMeal2 is a structure to store information about a meal from the OpenMensa-API.
+A MWMeal is a structure to store information about a meal from the OpenMensa-API.
 
 Instance Variables
 	category:		<String>
@@ -35,7 +35,7 @@ Class {
 		'notes'
 	],
 	#category : #MensaWidget,
-	#'squeak_changestamp' : 'Max 5/29/2024 19:49'
+	#'squeak_changestamp' : 'Max 5/31/2024 21:55'
 }
 
 {

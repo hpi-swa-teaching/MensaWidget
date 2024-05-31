@@ -1,5 +1,5 @@
 "
-A MWParserTestMockObject2 is a test object for the MWParserTest.
+A MWParserTestMockObject is a test object for the MWParserTest.
 
 Instance Variables
 	id:		<Number>
@@ -20,7 +20,7 @@ Class {
 		'name'
 	],
 	#category : #'MensaWidget-Tests',
-	#'squeak_changestamp' : 'Max 5/29/2024 19:53'
+	#'squeak_changestamp' : 'Max 5/31/2024 21:55'
 }
 
 {
