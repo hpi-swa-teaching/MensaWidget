@@ -8,7 +8,7 @@ Instance Variables
 	name:		<OrderedCollection>
 
 date
-	- the data the meals are available
+	- the date the meals are available
 
 id
 	- the id correlating to id at the api endpoint
@@ -30,7 +30,7 @@ Class {
 		'meals'
 	],
 	#category : #MensaWidget,
-	#'squeak_changestamp' : 'Louis Christ 5/27/2024 19:24'
+	#'squeak_changestamp' : 'Louis Christ 5/31/2024 14:42'
 }
 
 {
