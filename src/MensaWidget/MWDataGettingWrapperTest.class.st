@@ -17,30 +17,30 @@ Class {
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'NK 5/29/2024 19:18'
+	#'squeak_changestamp' : 'Max 6/1/2024 10:34'
 }
 MWDataGettingWrapperTest >> testCollectionClasses [
 	
-	MWDataGettingWrapper new todaysMeals do: [ :each |
+	MWDataGettingWrapper getTodaysMeals do: [ :each |
 		self assert: each class = MWCanteen ]
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 5/31/2024 15:30'
+	#'squeak_changestamp' : 'Max 6/1/2024 10:34'
 }
 MWDataGettingWrapperTest >> testCollectionValues [
 	
-	MWDataGettingWrapper new todaysMeals do: [ :each |
+	MWDataGettingWrapper getTodaysMeals do: [ :each |
 		each instanceVariableValues do: [ :value | 
 			self assert: (value = nil) not ] ]
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'NK 5/29/2024 19:16'
+	#'squeak_changestamp' : 'Max 6/1/2024 10:35'
 }
 MWDataGettingWrapperTest >> testSize [
 
-	self assert: MWDataGettingWrapper new todaysMeals size = MWDataGettingWrapper new class canteenDict size
+	self assert: MWDataGettingWrapper getTodaysMeals size = MWDataGettingWrapper new class canteenDict size
 ]
