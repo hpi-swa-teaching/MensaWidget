@@ -25,7 +25,7 @@ MWDataGettingWrapper class >> canteenDict [
 
 {
 	#category : #dataPulling,
-	#'squeak_changestamp' : 'Max 6/1/2024 10:36'
+	#'squeak_changestamp' : 'Max 6/1/2024 10:45'
 }
 MWDataGettingWrapper class >> getMealsOnDate: aDate [
 
