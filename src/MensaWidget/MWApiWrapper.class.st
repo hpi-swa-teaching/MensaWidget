@@ -6,11 +6,11 @@ Class {
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Max 6/1/2024 10:44'
+	#'squeak_changestamp' : 'Max 6/1/2024 10:52'
 }
 MWApiWrapper >> getMealsFrom: anOutlet on: aDate [
 	
-	^ '[]'
+	^ ''
 
 	
 ]

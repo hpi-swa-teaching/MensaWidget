@@ -12,12 +12,13 @@ Class {
 
 {
 	#category : #parsing,
-	#'squeak_changestamp' : 'Max 5/31/2024 15:37'
+	#'squeak_changestamp' : 'Max 6/1/2024 10:53'
 }
 MWParser class >> put: aDataset in: aClass [
 
 	| someDataJson classInstanceList classInstance |
 	
+	aDataset = '' ifTrue: [ ^ #() ].
 	someDataJson := Json readFromString: aDataset.
 	classInstanceList := OrderedCollection new.
 	someDataJson collect: [ :each | 
