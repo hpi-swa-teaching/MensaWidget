@@ -1,3 +1,13 @@
+"
+A MWApiWrapperTest is class that is used to test the functionality of the MWApiWrapper.
+
+Instance Variables
+	apiWrapper:		<MWApiWrapper>
+
+apiWrapper
+	- A MWApiWrapper intances that is used for testing purposes
+
+"
 Class {
 	#name : #MWApiWrapperTest,
 	#superclass : #TestCase,
@@ -7,7 +17,8 @@ Class {
 	#classInstVars : [
 		'apiWrapper'
 	],
-	#category : #'MensaWidget-Tests'
+	#category : #'MensaWidget-Tests',
+	#'squeak_changestamp' : 'Louis Christ 6/3/2024 09:06'
 }
 
 {
@@ -56,33 +67,51 @@ MWApiWrapperTest class >> validMensaId [
 ]
 
 {
-	#category : #environment,
-	#'squeak_changestamp' : 'Oscar 5/31/2024 19:55'
+	#category : #accessing,
+	#'squeak_changestamp' : 'Louis Christ 6/3/2024 09:05'
 }
-MWApiWrapperTest >> setUp [
+MWApiWrapperTest >> apiWrapper [
 
-	apiWrapper := MWApiWrapper new 
+	^ apiWrapper
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Louis Christ 6/3/2024 09:05'
+}
+MWApiWrapperTest >> apiWrapper: anObject [
+
+	apiWrapper := anObject
 ]
 
 {
 	#category : #environment,
-	#'squeak_changestamp' : 'Oscar 6/2/2024 12:58'
+	#'squeak_changestamp' : 'Louis Christ 6/3/2024 09:06'
+}
+MWApiWrapperTest >> setUp [
+
+	self apiWrapper: MWApiWrapper new 
+]
+
+{
+	#category : #environment,
+	#'squeak_changestamp' : 'Louis Christ 6/3/2024 09:06'
 }
 MWApiWrapperTest >> tearDown [
 
-	apiWrapper  := nil
+	self apiWrapper: nil
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Oscar 6/2/2024 15:39'
+	#'squeak_changestamp' : 'Louis Christ 6/3/2024 09:06'
 }
 MWApiWrapperTest >> testApiCallWithInvalidUrl [
 
     | responseWrapper errorOccurred |
 
     errorOccurred := false.
-    [ responseWrapper := apiWrapper getMealsFrom: self class invalidMensaId on: self class invalidDate.
+    [ responseWrapper := self apiWrapper getMealsFrom: self class invalidMensaId on: self class invalidDate.
     ] on: NetworkError do: [ :ex |
         errorOccurred := true ].
     self assert: (responseWrapper = '' or: errorOccurred).
@@ -91,14 +120,14 @@ MWApiWrapperTest >> testApiCallWithInvalidUrl [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Oscar 6/2/2024 15:44'
+	#'squeak_changestamp' : 'Louis Christ 6/3/2024 09:06'
 }
 MWApiWrapperTest >> testApiCallWithValidUrl [
 
     | responseWrapper responseApi errorOccurred |
 
     errorOccurred := false.
-    [ responseWrapper := apiWrapper getMealsFrom: self class validMensaId on: self class validDate.
+    [ responseWrapper := self apiWrapper getMealsFrom: self class validMensaId on: self class validDate.
     responseApi := WebClient httpGet: self class validApiUrl.
     ] on: NetworkError do: [ :ex |
         errorOccurred := true ].
