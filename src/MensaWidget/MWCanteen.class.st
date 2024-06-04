@@ -50,6 +50,36 @@ MWCanteen class >> newWithId: anId Name: aName Date: aDate Meals: aMealList [
 ]
 
 {
+	#category : #display,
+	#'squeak_changestamp' : 'Max 6/4/2024 21:22'
+}
+MWCanteen >> addMealsToCanteenMorph: aCanteenMorph at: aPosition [
+
+	| mealMorph position |
+	
+ 	position := aPosition.   	
+	self meals do: [ :each | 
+      	mealMorph := each getMealMorph.
+        	aCanteenMorph addMorph: mealMorph.
+        	mealMorph position: position.
+        	position := 0 @ (5 + mealMorph height) + position ]
+]
+
+{
+	#category : #display,
+	#'squeak_changestamp' : 'Max 6/4/2024 21:17'
+}
+MWCanteen >> createNameMorphAt: aPosition [
+
+	| nameMorph |
+	
+    	nameMorph := TextMorph new.
+    	nameMorph contents: self name.
+    	nameMorph position: aPosition.
+    	^ nameMorph
+]
+
+{
 	#category : #accessing,
 	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:33'
 }
@@ -69,27 +99,19 @@ MWCanteen >> date: anObject [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/4/2024 19:22'
+	#'squeak_changestamp' : 'Max 6/4/2024 21:24'
 }
 MWCanteen >> getCanteenMorph [
 
-	| canteenMorph position mealMorph namemorph |
+	| canteenMorph nameMorph position |
 	
-	canteenMorph := Morph new.
-	canteenMorph color: Color fern lighter.
-	namemorph := TextMorph new.
-	position := 5@5.
-	namemorph contents: self name;
-		position: position.
-	canteenMorph addMorph: namemorph.
-	position := 0 @ (5 +namemorph height) + position.
-	self meals do: [ :each | 
-		mealMorph := each getMealMorph.
-		canteenMorph addMorph: mealMorph.
-		mealMorph position: position.
-		position := 0 @ (5 +mealMorph height) + position].
+	canteenMorph := self initializeCanteenMorph.
+	nameMorph := self createNameMorphAt: 5@5.
+	canteenMorph addMorph: nameMorph.
+	position := 0 @ (5 +nameMorph height) + (5@5).
+	self addMealsToCanteenMorph: canteenMorph at: position.
 	canteenMorph extent: 410 @ position y.
-	^canteenMorph
+	^ canteenMorph
 ]
 
 {
@@ -108,6 +130,19 @@ MWCanteen >> id [
 MWCanteen >> id: anObject [
 
 	id := anObject
+]
+
+{
+	#category : #display,
+	#'squeak_changestamp' : 'Max 6/4/2024 21:15'
+}
+MWCanteen >> initializeCanteenMorph [
+
+	| morph |
+	
+    	morph := Morph new.
+   	morph color: Color fern lighter.
+    	^ morph
 ]
 
 {
