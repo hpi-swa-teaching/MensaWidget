@@ -68,6 +68,33 @@ MWCanteen >> date: anObject [
 ]
 
 {
+	#category : #display,
+	#'squeak_changestamp' : 'Louis Christ 6/4/2024 18:42'
+}
+MWCanteen >> getCanteenMorph [
+
+	| canteenMorph position mealMorph namemorph |
+	
+	canteenMorph := Morph new.
+	canteenMorph color: Color tangerine;
+		borderWidth: 1;
+		borderColor: Color white.
+	namemorph := TextMorph new.
+	position := 5@5.
+	namemorph contents: self name;
+		position: position.
+	canteenMorph addMorph: namemorph.
+	position := 0 @ (5 +namemorph height) + position.
+	self meals do: [ :each | 
+		mealMorph := each getMealMorph.
+		canteenMorph addMorph: mealMorph.
+		mealMorph position: position.
+		position := 0 @ (5 +mealMorph height) + position].
+	canteenMorph extent: 410 @ position y.
+	^canteenMorph
+]
+
+{
 	#category : #accessing,
 	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:33'
 }

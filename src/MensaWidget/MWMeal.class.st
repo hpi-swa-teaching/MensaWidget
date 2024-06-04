@@ -39,6 +39,22 @@ Class {
 }
 
 {
+	#category : #display,
+	#'squeak_changestamp' : 'Louis Christ 6/4/2024 18:29'
+}
+MWMeal >> calculateSize: aString [
+	
+	| namemorph size |
+	namemorph := TextMorph new.
+	namemorph contents: self name;
+				averageLineLength: 25;
+				openInWorld.
+	size := namemorph height.
+	namemorph abandon.
+	^ size.
+]
+
+{
 	#category : #accessing,
 	#'squeak_changestamp' : 'Max 5/29/2024 12:57'
 }
@@ -54,6 +70,29 @@ MWMeal >> category [
 MWMeal >> category: anObject [
 
 	category := anObject
+]
+
+{
+	#category : #display,
+	#'squeak_changestamp' : 'Louis Christ 6/4/2024 18:30'
+}
+MWMeal >> getMealMorph [
+
+	| morph namemorph priceMorph |
+
+	morph := Morph new.
+	morph 	color: Color bubblegum.
+	namemorph := TextMorph new.
+	namemorph contents: self name;
+				averageLineLength: 25.
+	morph addMorph: namemorph.
+	namemorph position: 10@10.
+	priceMorph := TextMorph new.
+	priceMorph contents: ((self prices at: 'students') ifNil: [0.00]) asString.
+	morph addMorph: priceMorph.
+	priceMorph position: (390@10)  - (priceMorph width @ 0).
+	morph extent: 400 @ ((self calculateSize: self name) + 20).
+	^ morph.
 ]
 
 {

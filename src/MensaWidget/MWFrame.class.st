@@ -13,6 +13,28 @@ Class {
 
 {
 	#category : #creation,
+	#'squeak_changestamp' : 'Louis Christ 6/4/2024 19:11'
+}
+MWFrame >> addAllCanteens [
+
+	| contentMorph position canteenMorph |
+	
+	contentMorph := ScrollPane new.
+	contentMorph color: Color eggplant.
+	position := 5@5.
+	MWDataGettingWrapper getTodaysMeals do: [ :each | 
+		canteenMorph := each getCanteenMorph.
+		contentMorph scroller addMorph: canteenMorph.
+		canteenMorph position: position.
+		position := 0 @ (5 +canteenMorph height) + position].
+	contentMorph scrollBarThickness: 20;
+		extent: (420 + contentMorph scrollBarThickness) @ 550;
+		position: 5@40.
+	self addMorph: contentMorph.
+]
+
+{
+	#category : #creation,
 	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:43'
 }
 MWFrame >> addText [
@@ -27,13 +49,11 @@ MWFrame >> addText [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 5/27/2024 17:00'
+	#'squeak_changestamp' : 'Louis Christ 6/4/2024 19:10'
 }
 MWFrame >> createFrame [
 		
-	self setLabel:'Mensa Widget';
-		openInWorld;
-		extent: 400@600.	
+	self setLabel:'Mensa Widget'.	
 	
 	
 	
@@ -43,11 +63,13 @@ MWFrame >> createFrame [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 5/27/2024 17:00'
+	#'squeak_changestamp' : 'Louis Christ 6/4/2024 19:10'
 }
 MWFrame >> initialize [
 	
 	super initialize.
 	self createFrame;
-		addText.
+		addAllCanteens;
+		openInWorld;
+		extent: 450@595.
 ]
