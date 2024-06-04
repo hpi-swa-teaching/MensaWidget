@@ -39,22 +39,6 @@ Class {
 }
 
 {
-	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/4/2024 18:29'
-}
-MWMeal >> calculateSize: aString [
-	
-	| namemorph size |
-	namemorph := TextMorph new.
-	namemorph contents: self name;
-				averageLineLength: 25;
-				openInWorld.
-	size := namemorph height.
-	namemorph abandon.
-	^ size.
-]
-
-{
 	#category : #accessing,
 	#'squeak_changestamp' : 'Max 5/29/2024 12:57'
 }
@@ -74,25 +58,66 @@ MWMeal >> category: anObject [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/4/2024 19:21'
+	#'squeak_changestamp' : 'Max 6/4/2024 21:02'
 }
 MWMeal >> getMealMorph [
 
-	| morph namemorph priceMorph |
+	| mealMorph nameMorph priceMorph |
+	
+	nameMorph := self getNameMorph.
+	priceMorph := self getPriceMorph.
+	mealMorph := Morph new.
+	mealMorph 	color: Color paleGreen darker darker;
+		extent: 400 @ ((self getNameMorphHeight: self name) + 20).
+	mealMorph addMorph: nameMorph;
+		addMorph: priceMorph.
+	nameMorph position: 10@10.
+	priceMorph position: (390@10)  - (priceMorph width @ 0).
+	^ mealMorph.
+]
 
-	morph := Morph new.
-	morph 	color: Color paleGreen darker darker.
+{
+	#category : #display,
+	#'squeak_changestamp' : 'Max 6/4/2024 20:59'
+}
+MWMeal >> getNameMorph [
+
+	| nameMorph |
+
+	nameMorph := TextMorph new.
+	nameMorph contents: self name;
+		averageLineLength: 25.
+	^ nameMorph
+	
+]
+
+{
+	#category : #display,
+	#'squeak_changestamp' : 'Max 6/4/2024 21:00'
+}
+MWMeal >> getNameMorphHeight: aString [
+	
+	| namemorph size |
 	namemorph := TextMorph new.
 	namemorph contents: self name;
-				averageLineLength: 25.
-	morph addMorph: namemorph.
-	namemorph position: 10@10.
+			averageLineLength: 25;
+			openInWorld.
+	size := namemorph height.
+	namemorph abandon.
+	^ size.
+]
+
+{
+	#category : #display,
+	#'squeak_changestamp' : 'Max 6/4/2024 20:59'
+}
+MWMeal >> getPriceMorph [
+
+	| priceMorph |
+	
 	priceMorph := TextMorph new.
 	priceMorph contents: ((self prices at: 'students') ifNil: [0.00]) asString.
-	morph addMorph: priceMorph.
-	priceMorph position: (390@10)  - (priceMorph width @ 0).
-	morph extent: 400 @ ((self calculateSize: self name) + 20).
-	^ morph.
+	^ priceMorph
 ]
 
 {
