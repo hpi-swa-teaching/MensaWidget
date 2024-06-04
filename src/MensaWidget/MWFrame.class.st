@@ -12,24 +12,79 @@ Class {
 }
 
 {
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Oscar 6/5/2024 00:55'
+}
+MWFrame class >> contentMorphColor [
+
+	^ Color paleTan darker
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Oscar 6/5/2024 00:54'
+}
+MWFrame class >> contentMorphInnerBorder [
+
+	^ 5
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Oscar 6/5/2024 01:14'
+}
+MWFrame class >> frameSize [
+
+	^ 450 @ 595
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Oscar 6/5/2024 01:01'
+}
+MWFrame class >> scrollBarThickness [
+
+	^ 20
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Oscar 6/5/2024 00:57'
+}
+MWFrame class >> spacingBetweenCanteenMorphs [
+
+	^ 5
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Oscar 6/5/2024 01:13'
+}
+MWFrame class >> windowHeaderSize [
+
+	^ 40 
+]
+
+{
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/4/2024 19:22'
+	#'squeak_changestamp' : 'Oscar 6/5/2024 01:13'
 }
 MWFrame >> addAllCanteens [
 
-	| contentMorph position canteenMorph |
+	| contentMorph position canteenMorph extent |
 	
 	contentMorph := ScrollPane new.
-	contentMorph color: Color paleTan darker.
-	position := 5@5.
+	contentMorph color: self class contentMorphColor.
+	position := self class contentMorphInnerBorder.
 	MWDataGettingWrapper getTodaysMeals do: [ :each | 
 		canteenMorph := each getCanteenMorph.
 		contentMorph scroller addMorph: canteenMorph.
 		canteenMorph position: position.
-		position := 0 @ (5 +canteenMorph height) + position].
-	contentMorph scrollBarThickness: 20;
-		extent: (420 + contentMorph scrollBarThickness) @ 550;
-		position: 5@40.
+		position := 0 @ (self class spacingBetweenCanteenMorphs + canteenMorph height) + position].
+	extent := (self class frameSize x -  (2 * self class contentMorphInnerBorder)) @ (self class frameSize y -   self class contentMorphInnerBorder -  self class windowHeaderSize ).
+	contentMorph scrollBarThickness: self class scrollBarThickness;
+		extent: extent;
+		position: self class contentMorphInnerBorder @ self class windowHeaderSize.
 	self addMorph: contentMorph.
 ]
 
@@ -63,7 +118,7 @@ MWFrame >> createFrame [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/4/2024 19:10'
+	#'squeak_changestamp' : 'Oscar 6/5/2024 01:00'
 }
 MWFrame >> initialize [
 	
@@ -71,5 +126,5 @@ MWFrame >> initialize [
 	self createFrame;
 		addAllCanteens;
 		openInWorld;
-		extent: 450@595.
+		extent: self class frameSize.
 ]

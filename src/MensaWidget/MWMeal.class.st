@@ -39,6 +39,42 @@ Class {
 }
 
 {
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Oscar 6/5/2024 00:04'
+}
+MWMeal class >> avgLineLenght [
+	
+	^ 25
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Oscar 6/5/2024 00:24'
+}
+MWMeal class >> mealMorphBorder [
+
+	^ 10
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Oscar 6/5/2024 00:07'
+}
+MWMeal class >> mealMorphColor [
+	
+	 ^ Color paleGreen darker darker
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Oscar 6/5/2024 00:10'
+}
+MWMeal class >> mealMorphWidth [
+
+	^ 400
+]
+
+{
 	#category : #accessing,
 	#'squeak_changestamp' : 'Max 5/29/2024 12:57'
 }
@@ -58,27 +94,28 @@ MWMeal >> category: anObject [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Max 6/4/2024 21:32'
+	#'squeak_changestamp' : 'Oscar 6/5/2024 00:22'
 }
 MWMeal >> getMealMorph [
 
-	| mealMorph nameMorph priceMorph |
+	| mealMorph nameMorph priceMorph priceMorphPosition |
 	
 	nameMorph := self getNameMorph.
 	priceMorph := self getPriceMorph.
 	mealMorph := Morph new.
-	mealMorph 	color: Color paleGreen darker darker;
-		extent: 400@((self getNameMorphHeight: self name) + 20).
+	mealMorph color: self class mealMorphColor;
+		extent: self class mealMorphWidth @((self getNameMorphHeight: self name) + (self class mealMorphBorder * 2)).
 	mealMorph addMorph: nameMorph;
 		addMorph: priceMorph.
-	nameMorph position: 10@10.
-	priceMorph position: (390@10)  - (priceMorph width@0).
+	nameMorph position: self class mealMorphBorder @ self class mealMorphBorder.
+	priceMorphPosition := (self class mealMorphWidth - self class mealMorphBorder @ self class mealMorphBorder) - (priceMorph width @ 0).
+	priceMorph position: priceMorphPosition.
 	^ mealMorph.
 ]
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Max 6/4/2024 20:59'
+	#'squeak_changestamp' : 'Oscar 6/5/2024 00:04'
 }
 MWMeal >> getNameMorph [
 
@@ -86,21 +123,21 @@ MWMeal >> getNameMorph [
 
 	nameMorph := TextMorph new.
 	nameMorph contents: self name;
-		averageLineLength: 25.
+		averageLineLength: self class avgLineLenght.
 	^ nameMorph
 	
 ]
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Max 6/4/2024 21:00'
+	#'squeak_changestamp' : 'Oscar 6/5/2024 00:04'
 }
 MWMeal >> getNameMorphHeight: aString [
 	
 	| namemorph size |
 	namemorph := TextMorph new.
 	namemorph contents: self name;
-			averageLineLength: 25;
+			averageLineLength: self class avgLineLenght;
 			openInWorld.
 	size := namemorph height.
 	namemorph abandon.
