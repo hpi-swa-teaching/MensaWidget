@@ -51,7 +51,7 @@ MWCanteen class >> newWithId: anId Name: aName Date: aDate Meals: aMealList [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Max 6/4/2024 21:22'
+	#'squeak_changestamp' : 'Max 6/4/2024 21:41'
 }
 MWCanteen >> addMealsToCanteenMorph: aCanteenMorph at: aPosition [
 
@@ -62,7 +62,7 @@ MWCanteen >> addMealsToCanteenMorph: aCanteenMorph at: aPosition [
       	mealMorph := each getMealMorph.
         	aCanteenMorph addMorph: mealMorph.
         	mealMorph position: position.
-        	position := 0 @ (5 + mealMorph height) + position ]
+        	position := 0@(5 + mealMorph height) + position ]
 ]
 
 {
@@ -99,18 +99,23 @@ MWCanteen >> date: anObject [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Max 6/4/2024 21:24'
+	#'squeak_changestamp' : 'Max 6/4/2024 21:40'
 }
 MWCanteen >> getCanteenMorph [
 
-	| canteenMorph nameMorph position |
+	| canteenMorph mealMorph nameMorph position |
 	
 	canteenMorph := self initializeCanteenMorph.
 	nameMorph := self createNameMorphAt: 5@5.
 	canteenMorph addMorph: nameMorph.
-	position := 0 @ (5 +nameMorph height) + (5@5).
-	self addMealsToCanteenMorph: canteenMorph at: position.
-	canteenMorph extent: 410 @ position y.
+	position := 0@(5 + nameMorph height) + (5@5).
+	"self addMealsToCanteenMorph: canteenMorph at: position."
+	self meals do: [ :each | 
+      	mealMorph := each getMealMorph.
+        	canteenMorph addMorph: mealMorph.
+        	mealMorph position: position.
+        	position := 0 @ (5 + mealMorph height) + position ].
+	canteenMorph extent: 410@position y.
 	^ canteenMorph
 ]
 

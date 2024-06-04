@@ -58,7 +58,7 @@ MWMeal >> category: anObject [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Max 6/4/2024 21:02'
+	#'squeak_changestamp' : 'Max 6/4/2024 21:32'
 }
 MWMeal >> getMealMorph [
 
@@ -68,11 +68,11 @@ MWMeal >> getMealMorph [
 	priceMorph := self getPriceMorph.
 	mealMorph := Morph new.
 	mealMorph 	color: Color paleGreen darker darker;
-		extent: 400 @ ((self getNameMorphHeight: self name) + 20).
+		extent: 400@((self getNameMorphHeight: self name) + 20).
 	mealMorph addMorph: nameMorph;
 		addMorph: priceMorph.
 	nameMorph position: 10@10.
-	priceMorph position: (390@10)  - (priceMorph width @ 0).
+	priceMorph position: (390@10)  - (priceMorph width@0).
 	^ mealMorph.
 ]
 
