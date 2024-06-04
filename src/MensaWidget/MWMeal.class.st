@@ -74,14 +74,14 @@ MWMeal >> category: anObject [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/4/2024 18:30'
+	#'squeak_changestamp' : 'Louis Christ 6/4/2024 19:21'
 }
 MWMeal >> getMealMorph [
 
 	| morph namemorph priceMorph |
 
 	morph := Morph new.
-	morph 	color: Color bubblegum.
+	morph 	color: Color paleGreen darker darker.
 	namemorph := TextMorph new.
 	namemorph contents: self name;
 				averageLineLength: 25.

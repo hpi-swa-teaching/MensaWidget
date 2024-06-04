@@ -13,14 +13,14 @@ Class {
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/4/2024 19:11'
+	#'squeak_changestamp' : 'Louis Christ 6/4/2024 19:22'
 }
 MWFrame >> addAllCanteens [
 
 	| contentMorph position canteenMorph |
 	
 	contentMorph := ScrollPane new.
-	contentMorph color: Color eggplant.
+	contentMorph color: Color paleTan darker.
 	position := 5@5.
 	MWDataGettingWrapper getTodaysMeals do: [ :each | 
 		canteenMorph := each getCanteenMorph.

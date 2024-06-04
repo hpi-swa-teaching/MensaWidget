@@ -69,16 +69,14 @@ MWCanteen >> date: anObject [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/4/2024 18:42'
+	#'squeak_changestamp' : 'Louis Christ 6/4/2024 19:22'
 }
 MWCanteen >> getCanteenMorph [
 
 	| canteenMorph position mealMorph namemorph |
 	
 	canteenMorph := Morph new.
-	canteenMorph color: Color tangerine;
-		borderWidth: 1;
-		borderColor: Color white.
+	canteenMorph color: Color fern lighter.
 	namemorph := TextMorph new.
 	position := 5@5.
 	namemorph contents: self name;
