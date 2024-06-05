@@ -79,7 +79,7 @@ MWCanteen class >> newWithId: anId Name: aName Date: aDate Meals: aMealList [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Oscar 6/5/2024 12:54'
+	#'squeak_changestamp' : 'Oscar 6/5/2024 13:46'
 }
 MWCanteen >> addMealsToCanteenMorph: aCanteenMorph at: aPosition [
 
@@ -90,7 +90,7 @@ MWCanteen >> addMealsToCanteenMorph: aCanteenMorph at: aPosition [
       	mealMorph := each getMealMorph
 			 position: position.
         	aCanteenMorph addMorph: mealMorph.
-        	position := 0@(self class canteenMorphBorder + mealMorph height) + position ].
+        	position := 0 @ (self class canteenMorphBorder + mealMorph height) + position ].
 	^ position
 ]
 
