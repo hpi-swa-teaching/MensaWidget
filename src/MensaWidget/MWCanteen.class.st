@@ -34,7 +34,7 @@ Class {
 }
 
 {
-	#category : #'as yet unclassified',
+	#category : #constants,
 	#'squeak_changestamp' : 'Oscar 6/5/2024 00:26'
 }
 MWCanteen class >> canteenMorphBorder [
@@ -52,7 +52,7 @@ MWCanteen class >> canteenMorphColor [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #constants,
 	#'squeak_changestamp' : 'Oscar 6/5/2024 00:32'
 }
 MWCanteen class >> canteenMorphWidth [
@@ -63,7 +63,7 @@ MWCanteen class >> canteenMorphWidth [
 
 {
 	#category : #'constructor ',
-	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:34'
+	#'squeak_changestamp' : 'Max 6/5/2024 09:07'
 }
 MWCanteen class >> newWithId: anId Name: aName Date: aDate Meals: aMealList [
 
@@ -74,12 +74,12 @@ MWCanteen class >> newWithId: anId Name: aName Date: aDate Meals: aMealList [
 		name: aName;
 		date: aDate;
 		meals: aMealList.
-	^ newInstance.
+	^ newInstance
 ]
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Oscar 6/5/2024 12:41'
+	#'squeak_changestamp' : 'Oscar 6/5/2024 12:54'
 }
 MWCanteen >> addMealsToCanteenMorph: aCanteenMorph at: aPosition [
 

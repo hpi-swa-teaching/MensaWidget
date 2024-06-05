@@ -39,7 +39,7 @@ Class {
 }
 
 {
-	#category : #'as yet unclassified',
+	#category : #constants,
 	#'squeak_changestamp' : 'Oscar 6/5/2024 00:04'
 }
 MWMeal class >> avgLineLenght [
@@ -48,7 +48,7 @@ MWMeal class >> avgLineLenght [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #constants,
 	#'squeak_changestamp' : 'Oscar 6/5/2024 00:24'
 }
 MWMeal class >> mealMorphBorder [
@@ -57,7 +57,7 @@ MWMeal class >> mealMorphBorder [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #constants,
 	#'squeak_changestamp' : 'Oscar 6/5/2024 00:07'
 }
 MWMeal class >> mealMorphColor [
@@ -66,7 +66,7 @@ MWMeal class >> mealMorphColor [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #constants,
 	#'squeak_changestamp' : 'Oscar 6/5/2024 00:10'
 }
 MWMeal class >> mealMorphWidth [
@@ -127,7 +127,7 @@ MWMeal >> getNameMorph [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Oscar 6/5/2024 12:38'
+	#'squeak_changestamp' : 'Oscar 6/5/2024 12:54'
 }
 MWMeal >> getNameMorphHeight: aString [
 	
@@ -139,7 +139,7 @@ MWMeal >> getNameMorphHeight: aString [
 		openInWorld.
 	size := namemorph height.
 	namemorph abandon.
-	^ size.
+	^ size
 ]
 
 {
