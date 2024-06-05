@@ -67,64 +67,57 @@ MWFrame class >> windowHeaderSize [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Oscar 6/5/2024 01:13'
+	#'squeak_changestamp' : 'Oscar 6/5/2024 12:24'
 }
-MWFrame >> addAllCanteens [
+MWFrame >> buildFrameContent [
 
-	| contentMorph position canteenMorph extent |
+	| contentMorph |
 	
 	contentMorph := ScrollPane new.
-	contentMorph color: self class contentMorphColor.
-	position := self class contentMorphInnerBorder.
-	MWDataGettingWrapper getTodaysMeals do: [ :each | 
-		canteenMorph := each getCanteenMorph.
-		contentMorph scroller addMorph: canteenMorph.
-		canteenMorph position: position.
-		position := 0 @ (self class spacingBetweenCanteenMorphs + canteenMorph height) + position].
-	extent := (self class frameSize x -  (2 * self class contentMorphInnerBorder)) @ (self class frameSize y -   self class contentMorphInnerBorder -  self class windowHeaderSize ).
+	self fillContentMorph: contentMorph.
 	contentMorph scrollBarThickness: self class scrollBarThickness;
-		extent: extent;
+		extent: self calculateContentMorphExtend;
+		color: self class contentMorphColor;
 		position: self class contentMorphInnerBorder @ self class windowHeaderSize.
 	self addMorph: contentMorph.
 ]
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:43'
+	#'squeak_changestamp' : 'Oscar 6/5/2024 12:47'
 }
-MWFrame >> addText [
+MWFrame >> calculateContentMorphExtend [
 
-	| textMorph |
-	
-	textMorph := TextMorph new.
-	textMorph contents: 'Are you a hungry?';
-		position:  135@100.
-	self addPaneMorph: textMorph.
+	^ (self class frameSize x - (2 * self class contentMorphInnerBorder)) @ (self class frameSize y - self class contentMorphInnerBorder - self class windowHeaderSize)
 ]
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/4/2024 19:10'
+	#'squeak_changestamp' : 'Oscar 6/5/2024 12:46'
 }
-MWFrame >> createFrame [
-		
-	self setLabel:'Mensa Widget'.	
+MWFrame >> fillContentMorph: aContentMorph [
 	
+	| canteenMorph position |
 	
+	position := self class contentMorphInnerBorder.
 	
-
+	MWDataGettingWrapper getTodaysMeals do: [ :each | 
+		canteenMorph := each getCanteenMorph
+			position: position.
+		aContentMorph scroller addMorph: canteenMorph.
+		position := 0 @ (self class spacingBetweenCanteenMorphs + canteenMorph height) + position].
 	
 ]
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Oscar 6/5/2024 01:00'
+	#'squeak_changestamp' : 'Oscar 6/5/2024 12:49'
 }
 MWFrame >> initialize [
 	
 	super initialize.
-	self createFrame;
-		addAllCanteens;
+	self setLabel:'Mensa Widget';
+		buildFrameContent;
 		openInWorld;
 		extent: self class frameSize.
 ]
