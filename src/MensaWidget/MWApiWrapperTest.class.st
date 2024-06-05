@@ -11,9 +11,6 @@ apiWrapper
 Class {
 	#name : #MWApiWrapperTest,
 	#superclass : #TestCase,
-	#instVars : [
-		'apiWrapper'
-	],
 	#classInstVars : [
 		'apiWrapper'
 	],
@@ -64,24 +61,6 @@ MWApiWrapperTest class >> validDate [
 MWApiWrapperTest class >> validMensaId [
 
 	^ '62' 
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'Louis Christ 6/3/2024 09:05'
-}
-MWApiWrapperTest >> apiWrapper [
-
-	^ apiWrapper
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'Louis Christ 6/3/2024 09:05'
-}
-MWApiWrapperTest >> apiWrapper: anObject [
-
-	apiWrapper := anObject
 ]
 
 {
