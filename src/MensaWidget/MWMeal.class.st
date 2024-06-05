@@ -39,7 +39,7 @@ Class {
 }
 
 {
-	#category : #'as yet unclassified',
+	#category : #constants,
 	#'squeak_changestamp' : 'Oscar 6/5/2024 00:04'
 }
 MWMeal class >> avgLineLenght [
@@ -48,7 +48,7 @@ MWMeal class >> avgLineLenght [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #constants,
 	#'squeak_changestamp' : 'Oscar 6/5/2024 00:24'
 }
 MWMeal class >> mealMorphBorder [
@@ -57,7 +57,7 @@ MWMeal class >> mealMorphBorder [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #constants,
 	#'squeak_changestamp' : 'Oscar 6/5/2024 00:07'
 }
 MWMeal class >> mealMorphColor [
@@ -66,7 +66,7 @@ MWMeal class >> mealMorphColor [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #constants,
 	#'squeak_changestamp' : 'Oscar 6/5/2024 00:10'
 }
 MWMeal class >> mealMorphWidth [
@@ -94,7 +94,7 @@ MWMeal >> category: anObject [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Oscar 6/5/2024 00:22'
+	#'squeak_changestamp' : 'Max 6/5/2024 09:06'
 }
 MWMeal >> getMealMorph [
 
@@ -107,10 +107,10 @@ MWMeal >> getMealMorph [
 		extent: self class mealMorphWidth @((self getNameMorphHeight: self name) + (self class mealMorphBorder * 2)).
 	mealMorph addMorph: nameMorph;
 		addMorph: priceMorph.
-	nameMorph position: self class mealMorphBorder @ self class mealMorphBorder.
-	priceMorphPosition := (self class mealMorphWidth - self class mealMorphBorder @ self class mealMorphBorder) - (priceMorph width @ 0).
+	nameMorph position: self class mealMorphBorder@self class mealMorphBorder.
+	priceMorphPosition := (self class mealMorphWidth - self class mealMorphBorder@self class mealMorphBorder) - (priceMorph width@0).
 	priceMorph position: priceMorphPosition.
-	^ mealMorph.
+	^ mealMorph
 ]
 
 {
@@ -130,7 +130,7 @@ MWMeal >> getNameMorph [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Oscar 6/5/2024 00:04'
+	#'squeak_changestamp' : 'Max 6/5/2024 09:07'
 }
 MWMeal >> getNameMorphHeight: aString [
 	
@@ -141,7 +141,7 @@ MWMeal >> getNameMorphHeight: aString [
 			openInWorld.
 	size := namemorph height.
 	namemorph abandon.
-	^ size.
+	^ size
 ]
 
 {

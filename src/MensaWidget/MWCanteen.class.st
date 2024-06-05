@@ -34,7 +34,7 @@ Class {
 }
 
 {
-	#category : #'as yet unclassified',
+	#category : #constants,
 	#'squeak_changestamp' : 'Oscar 6/5/2024 00:26'
 }
 MWCanteen class >> canteenMorphBorder [
@@ -43,7 +43,7 @@ MWCanteen class >> canteenMorphBorder [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #constants,
 	#'squeak_changestamp' : 'Oscar 6/5/2024 00:32'
 }
 MWCanteen class >> canteenMorphWidth [
@@ -54,7 +54,7 @@ MWCanteen class >> canteenMorphWidth [
 
 {
 	#category : #'constructor ',
-	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:34'
+	#'squeak_changestamp' : 'Max 6/5/2024 09:07'
 }
 MWCanteen class >> newWithId: anId Name: aName Date: aDate Meals: aMealList [
 
@@ -65,12 +65,12 @@ MWCanteen class >> newWithId: anId Name: aName Date: aDate Meals: aMealList [
 		name: aName;
 		date: aDate;
 		meals: aMealList.
-	^ newInstance.
+	^ newInstance
 ]
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Oscar 6/5/2024 01:20'
+	#'squeak_changestamp' : 'Max 6/5/2024 09:05'
 }
 MWCanteen >> addMealsToCanteenMorph: aCanteenMorph at: aPosition [
 
@@ -82,7 +82,6 @@ MWCanteen >> addMealsToCanteenMorph: aCanteenMorph at: aPosition [
         	aCanteenMorph addMorph: mealMorph.
         	mealMorph position: position.
         	position := 0@(self class canteenMorphBorder + mealMorph height) + position ].
-	
 	^ position
 ]
 
@@ -120,19 +119,18 @@ MWCanteen >> date: anObject [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Oscar 6/5/2024 00:49'
+	#'squeak_changestamp' : 'Max 6/5/2024 09:05'
 }
 MWCanteen >> getCanteenMorph [
 
 	| canteenMorph nameMorph position |
 	
 	canteenMorph := self initializeCanteenMorph.
-	nameMorph := self createNameMorphAt: self class canteenMorphBorder @ self class canteenMorphBorder .
+	nameMorph := self createNameMorphAt: self class canteenMorphBorder@self class canteenMorphBorder .
 	canteenMorph addMorph: nameMorph.
-	
-	position := 0@(self class canteenMorphBorder  + nameMorph height) + (self class canteenMorphBorder @ self class canteenMorphBorder ).
+	position := 0@(self class canteenMorphBorder  + nameMorph height) + (self class canteenMorphBorder@self class canteenMorphBorder).
 	position := self addMealsToCanteenMorph: canteenMorph at: position.
-	canteenMorph extent: self class canteenMorphWidth @ position y.
+	canteenMorph extent: self class canteenMorphWidth@position y.
 	^ canteenMorph
 ]
 
