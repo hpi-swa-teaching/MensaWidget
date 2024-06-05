@@ -187,6 +187,20 @@ MWCanteen >> lowestSubmorphBoundOF: aCanteenMorph [
 ]
 
 {
+	#category : #display,
+	#'squeak_changestamp' : 'Max 6/5/2024 14:11'
+}
+MWCanteen >> lowestSubmorphBoundOf: aCanteenMorph [
+
+	| bound |
+	
+	bound := 0.
+	aCanteenMorph submorphsDo: [ :each |
+		each bottomLeft y > bound ifTrue: [ bound := each bottomLeft y ] ].
+	^ bound
+]
+
+{
 	#category : #accessing,
 	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:33'
 }
