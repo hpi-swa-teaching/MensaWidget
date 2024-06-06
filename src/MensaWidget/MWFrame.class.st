@@ -12,7 +12,7 @@ Class {
 }
 
 {
-	#category : #'as yet unclassified',
+	#category : #constants,
 	#'squeak_changestamp' : 'tmc 6/6/2024 21:40'
 }
 MWFrame class >> cellSpacing [
@@ -21,7 +21,7 @@ MWFrame class >> cellSpacing [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #constants,
 	#'squeak_changestamp' : 'tmc 6/6/2024 21:36'
 }
 MWFrame class >> contentExtent [
@@ -30,7 +30,7 @@ MWFrame class >> contentExtent [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #constants,
 	#'squeak_changestamp' : 'tmc 6/6/2024 21:03'
 }
 MWFrame class >> contentMorphColor [
@@ -39,7 +39,7 @@ MWFrame class >> contentMorphColor [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #constants,
 	#'squeak_changestamp' : 'Oscar 6/5/2024 00:54'
 }
 MWFrame class >> contentMorphInnerBorder [
@@ -48,7 +48,7 @@ MWFrame class >> contentMorphInnerBorder [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #constants,
 	#'squeak_changestamp' : 'tmc 6/6/2024 21:50'
 }
 MWFrame class >> contentPosition [
@@ -57,7 +57,7 @@ MWFrame class >> contentPosition [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #constants,
 	#'squeak_changestamp' : 'Louis Christ 6/6/2024 19:50'
 }
 MWFrame class >> frameSize [
@@ -66,7 +66,7 @@ MWFrame class >> frameSize [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #constants,
 	#'squeak_changestamp' : 'Oscar 6/5/2024 01:01'
 }
 MWFrame class >> scrollBarThickness [
@@ -75,7 +75,7 @@ MWFrame class >> scrollBarThickness [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #constants,
 	#'squeak_changestamp' : 'Oscar 6/5/2024 00:57'
 }
 MWFrame class >> spacingBetweenCanteenMorphs [
@@ -84,7 +84,7 @@ MWFrame class >> spacingBetweenCanteenMorphs [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #constants,
 	#'squeak_changestamp' : 'Oscar 6/5/2024 01:13'
 }
 MWFrame class >> windowHeaderSize [

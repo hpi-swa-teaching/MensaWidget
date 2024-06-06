@@ -43,7 +43,7 @@ MWCanteen class >> canteenMorphBorder [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #constants,
 	#'squeak_changestamp' : 'Oscar 6/5/2024 12:44'
 }
 MWCanteen class >> canteenMorphColor [ 
@@ -58,6 +58,15 @@ MWCanteen class >> canteenMorphColor [
 MWCanteen class >> canteenMorphWidth [
 	
 	^ 410
+]
+
+{
+	#category : #constants,
+	#'squeak_changestamp' : 'tmc 6/6/2024 21:57'
+}
+MWCanteen class >> cellGap [
+
+	^ 5
 ]
 
 {
@@ -148,18 +157,16 @@ MWCanteen >> id: anObject [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'tmc 6/6/2024 21:31'
+	#'squeak_changestamp' : 'tmc 6/6/2024 21:57'
 }
 MWCanteen >> initializeCanteenMorph [
 
-	| canteenMorph |
-	
-    	canteenMorph := AlignmentMorph newColumn
+	^ AlignmentMorph newColumn
 		color: self class canteenMorphColor;
-		cellGap: 5;
+		cellGap: self class cellGap;
 		hResizing: #shrinkWrap;
-		vResizing: #shrinkWrap.
-    ^ canteenMorph
+		vResizing: #shrinkWrap
+    
 ]
 
 {

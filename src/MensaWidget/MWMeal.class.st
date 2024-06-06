@@ -129,7 +129,7 @@ MWMeal >> getPriceMorph [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'tmc 6/6/2024 21:48'
+	#'squeak_changestamp' : 'tmc 6/6/2024 21:57'
 }
 MWMeal >> getSpacerMorph [
 
@@ -137,7 +137,7 @@ MWMeal >> getSpacerMorph [
 		color: Color transparent;
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
-		yourself.
+		yourself
 ]
 
 {
