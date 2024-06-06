@@ -129,7 +129,7 @@ MWFrame >> fillContentMorph: aContentMorph [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'tmc 6/6/2024 21:00'
+	#'squeak_changestamp' : 'tmc 6/6/2024 22:45'
 }
 MWFrame >> initialize [
 	
@@ -137,5 +137,34 @@ MWFrame >> initialize [
 	self setLabel:'Mensa Widget';
 		buildFrameContent;
 		openInWorld;
-		extent: self class frameSize.
+		extent: self class frameSize;
+		removeMaximize;
+		removeScalability
+		 "Cascade expected ->"
+]
+
+{
+	#category : #creation,
+	#'squeak_changestamp' : 'tmc 6/6/2024 22:53'
+}
+MWFrame >> removeMaximize [
+	
+	self submorphsDo: [ :each | 
+	each class = AlignmentMorph ifTrue: [
+		each submorphsDo: [ :each2 |
+			( each2 class = SystemWindowButton and:
+				[ each2 actionSelector = #expandBoxHit ]) 
+					ifTrue: [ each2 abandon ]]]]
+]
+
+{
+	#category : #creation,
+	#'squeak_changestamp' : 'tmc 6/6/2024 22:52'
+}
+MWFrame >> removeScalability [
+
+	self submorphsDo: [ :each |
+		(each class superclass = BorderGripMorph or: 
+			[ each class superclass = CornerGripMorph ]) 
+				ifTrue:[ each abandon ]]
 ]
