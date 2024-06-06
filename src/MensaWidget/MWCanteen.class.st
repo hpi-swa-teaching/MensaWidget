@@ -88,11 +88,14 @@ MWCanteen >> addMealsTo: aCanteenMorph [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/6/2024 19:38'
+	#'squeak_changestamp' : 'Louis Christ 6/6/2024 20:05'
 }
 MWCanteen >> createNameMorph [
 
-	^ TextMorph new contents: self name.
+	^ TextMorph new 
+		contents: self name;
+		readOnly: true; 
+		yourself.
 ]
 
 {
