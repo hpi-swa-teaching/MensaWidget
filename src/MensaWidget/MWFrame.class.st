@@ -13,11 +13,29 @@ Class {
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Oscar 6/5/2024 00:55'
+	#'squeak_changestamp' : 'tmc 6/6/2024 21:40'
+}
+MWFrame class >> cellSpacing [
+
+	^ 10
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'tmc 6/6/2024 21:36'
+}
+MWFrame class >> contentExtent [
+
+	^ 450 @ 550
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'tmc 6/6/2024 21:03'
 }
 MWFrame class >> contentMorphColor [
 
-	^ Color paleTan darker
+	^ Color darkGray
 ]
 
 {
@@ -27,6 +45,15 @@ MWFrame class >> contentMorphColor [
 MWFrame class >> contentMorphInnerBorder [
 
 	^ 5
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'tmc 6/6/2024 21:50'
+}
+MWFrame class >> contentPosition [
+
+	^ 5 @ 40
 ]
 
 {
@@ -67,7 +94,7 @@ MWFrame class >> windowHeaderSize [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/6/2024 19:48'
+	#'squeak_changestamp' : 'tmc 6/6/2024 21:37'
 }
 MWFrame >> buildFrameContent [
 
@@ -77,32 +104,32 @@ MWFrame >> buildFrameContent [
 	self fillContentMorph: contentMorph.
 	contentMorph scrollBarThickness: self class scrollBarThickness;
 		color: self class contentMorphColor;
-		position: self class contentMorphInnerBorder @ self class windowHeaderSize;
-		extent: 450@550.
-	self addMorph: contentMorph.
+		position: self class contentPosition;
+		extent: self class contentExtent.
+	self addPaneMorph: contentMorph
 ]
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/6/2024 19:45'
+	#'squeak_changestamp' : 'tmc 6/6/2024 21:42'
 }
 MWFrame >> fillContentMorph: aContentMorph [
 	
-	| alignmentMorph |
+	| contentMorph |
 	
-	alignmentMorph := AlignmentMorph newColumn.
-	alignmentMorph cellInset: 10;
+	contentMorph := AlignmentMorph newColumn.
+	contentMorph cellInset: self class cellSpacing;
 		hResizing: #shrinkWrap;
 		vResizing: #shrinkWrap.
-	
-	MWDataGettingWrapper getTodaysMeals do: [ :each | alignmentMorph addMorph: each getCanteenMorph.].
-	aContentMorph scroller addMorph: alignmentMorph.
+	MWDataGettingWrapper getTodaysMeals do: [ :each | 
+		contentMorph addMorph: each getCanteenMorph].
+	aContentMorph scroller addMorph: contentMorph
 	
 ]
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Oscar 6/5/2024 12:49'
+	#'squeak_changestamp' : 'tmc 6/6/2024 21:00'
 }
 MWFrame >> initialize [
 	

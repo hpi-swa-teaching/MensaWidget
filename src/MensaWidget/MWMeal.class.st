@@ -40,11 +40,11 @@ Class {
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Oscar 6/5/2024 00:04'
+	#'squeak_changestamp' : 'tmc 6/6/2024 21:51'
 }
 MWMeal class >> avgLineLenght [
 	
-	^ 25
+	^ 50
 ]
 
 {
@@ -85,13 +85,11 @@ MWMeal >> category: anObject [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/6/2024 20:00'
+	#'squeak_changestamp' : 'tmc 6/6/2024 21:46'
 }
 MWMeal >> getMealMorph [
 
-	| alignmentMorph |
-	
-	^ alignmentMorph := AlignmentMorph newRow
+	^ AlignmentMorph newRow
 		color: self class mealMorphColor;
 		width: self class mealMorphWidth;
 		vResizing: #shrinkWrap;
@@ -99,51 +97,44 @@ MWMeal >> getMealMorph [
 		addMorph: self getPriceMorph;
 		addMorph: self getSpacerMorph;
 		addMorph: self getNameMorph;
-		yourself.
+		yourself
 ]
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/6/2024 20:03'
+	#'squeak_changestamp' : 'tmc 6/6/2024 21:47'
 }
 MWMeal >> getNameMorph [
 
-	| nameMorph |
-
-	^ nameMorph := TextMorph new
+	^ TextMorph new
 		contents: self name;
 		averageLineLength: self class avgLineLenght;
 		readOnly: true;
-		yourself.
+		yourself 
 
 	
 ]
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/6/2024 20:04'
+	#'squeak_changestamp' : 'tmc 6/6/2024 21:47'
 }
 MWMeal >> getPriceMorph [
 
-	| priceMorph |
-	
-	^ priceMorph := TextMorph new
+	^TextMorph new
 		contents: ((self prices at: 'students') ifNil: [0.00]) asString;
 		readOnly: true;
-		yourself.
+		yourself
 ]
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/6/2024 19:58'
+	#'squeak_changestamp' : 'tmc 6/6/2024 21:48'
 }
 MWMeal >> getSpacerMorph [
 
-	| spacerMorph |
-	
-	^ spacerMorph := Morph new 
-		color: Color transparent; 
-		extent: 1@1;
+	^ Morph new 
+		color: Color transparent;
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
 		yourself.

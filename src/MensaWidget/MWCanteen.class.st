@@ -53,28 +53,26 @@ MWCanteen class >> canteenMorphColor [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Oscar 6/5/2024 00:32'
+	#'squeak_changestamp' : 'tmc 6/6/2024 21:26'
 }
 MWCanteen class >> canteenMorphWidth [
-	" = 2 * canteenMorphBorder + MWMeal class canteenMorphBorder "
 	
 	^ 410
 ]
 
 {
 	#category : #'constructor ',
-	#'squeak_changestamp' : 'Max 6/5/2024 09:07'
+	#'squeak_changestamp' : 'tmc 6/6/2024 21:28'
 }
 MWCanteen class >> newWithId: anId Name: aName Date: aDate Meals: aMealList [
 
-	| newInstance | 
-	
-	newInstance := self new.
-	newInstance id: anId;
+	^ self new
+		id: anId;
 		name: aName;
 		date: aDate;
-		meals: aMealList.
-	^ newInstance
+		meals: aMealList;
+		yourself
+	
 ]
 
 {
@@ -88,14 +86,14 @@ MWCanteen >> addMealsTo: aCanteenMorph [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/6/2024 20:05'
+	#'squeak_changestamp' : 'tmc 6/6/2024 21:30'
 }
 MWCanteen >> createNameMorph [
 
 	^ TextMorph new 
 		contents: self name;
 		readOnly: true; 
-		yourself.
+		yourself
 ]
 
 {
@@ -150,18 +148,18 @@ MWCanteen >> id: anObject [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/6/2024 19:34'
+	#'squeak_changestamp' : 'tmc 6/6/2024 21:31'
 }
 MWCanteen >> initializeCanteenMorph [
 
-	| morph |
+	| canteenMorph |
 	
-    	morph := AlignmentMorph newColumn
+    	canteenMorph := AlignmentMorph newColumn
 		color: self class canteenMorphColor;
 		cellGap: 5;
 		hResizing: #shrinkWrap;
 		vResizing: #shrinkWrap.
-    ^ morph
+    ^ canteenMorph
 ]
 
 {
