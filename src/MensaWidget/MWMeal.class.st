@@ -40,11 +40,11 @@ Class {
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'tmc 6/6/2024 21:51'
+	#'squeak_changestamp' : 'Louis Christ 6/6/2024 22:10'
 }
 MWMeal class >> avgLineLenght [
 	
-	^ 50
+	^ 30
 ]
 
 {
