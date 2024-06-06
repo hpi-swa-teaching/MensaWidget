@@ -104,7 +104,7 @@ MWMeal >> getMealMorph [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/6/2024 19:41'
+	#'squeak_changestamp' : 'Louis Christ 6/6/2024 20:03'
 }
 MWMeal >> getNameMorph [
 
@@ -113,13 +113,15 @@ MWMeal >> getNameMorph [
 	^ nameMorph := TextMorph new
 		contents: self name;
 		averageLineLength: self class avgLineLenght;
+		readOnly: true;
 		yourself.
+
 	
 ]
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/6/2024 19:41'
+	#'squeak_changestamp' : 'Louis Christ 6/6/2024 20:04'
 }
 MWMeal >> getPriceMorph [
 
@@ -127,6 +129,7 @@ MWMeal >> getPriceMorph [
 	
 	^ priceMorph := TextMorph new
 		contents: ((self prices at: 'students') ifNil: [0.00]) asString;
+		readOnly: true;
 		yourself.
 ]
 
