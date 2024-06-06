@@ -111,7 +111,7 @@ MWMeal >> getMealMorph [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Oscar 6/5/2024 12:29'
+	#'squeak_changestamp' : 'tmc 6/6/2024 18:55'
 }
 MWMeal >> getNameMorph [
 
@@ -120,7 +120,8 @@ MWMeal >> getNameMorph [
 	nameMorph := TextMorph new
 		contents: self name;
 		averageLineLength: self class avgLineLenght;
-		position: self class mealMorphBorder @ self class mealMorphBorder.
+		position: self class mealMorphBorder @ self class mealMorphBorder;
+		readOnly: true.
 	^ nameMorph
 	
 ]
@@ -144,7 +145,7 @@ MWMeal >> getNameMorphHeight: aString [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Oscar 6/5/2024 12:37'
+	#'squeak_changestamp' : 'tmc 6/6/2024 18:56'
 }
 MWMeal >> getPriceMorph [
 
@@ -152,7 +153,8 @@ MWMeal >> getPriceMorph [
 	
 	priceMorph := TextMorph new
 		contents: ((self prices at: 'students') ifNil: [0.00]) asString;
-		position: (self class mealMorphWidth - self class mealMorphBorder @ self class mealMorphBorder).
+		position: (self class mealMorphWidth - self class mealMorphBorder @ self class mealMorphBorder);
+		readOnly: true.
 		
 	"offset needs to be calculated after creation" 
 	priceMorph position: priceMorph position - (priceMorph width @ 0).
