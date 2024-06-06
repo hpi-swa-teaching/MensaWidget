@@ -31,11 +31,11 @@ MWFrame class >> contentMorphInnerBorder [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Oscar 6/5/2024 01:14'
+	#'squeak_changestamp' : 'Louis Christ 6/6/2024 19:50'
 }
 MWFrame class >> frameSize [
 
-	^ 450 @ 595
+	^ 460 @ 595
 ]
 
 {
@@ -67,7 +67,7 @@ MWFrame class >> windowHeaderSize [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Oscar 6/5/2024 12:24'
+	#'squeak_changestamp' : 'Louis Christ 6/6/2024 19:48'
 }
 MWFrame >> buildFrameContent [
 
@@ -76,36 +76,27 @@ MWFrame >> buildFrameContent [
 	contentMorph := ScrollPane new.
 	self fillContentMorph: contentMorph.
 	contentMorph scrollBarThickness: self class scrollBarThickness;
-		extent: self calculateContentMorphExtend;
 		color: self class contentMorphColor;
-		position: self class contentMorphInnerBorder @ self class windowHeaderSize.
+		position: self class contentMorphInnerBorder @ self class windowHeaderSize;
+		extent: 450@550.
 	self addMorph: contentMorph.
 ]
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Oscar 6/5/2024 12:47'
-}
-MWFrame >> calculateContentMorphExtend [
-
-	^ (self class frameSize x - (2 * self class contentMorphInnerBorder)) @ (self class frameSize y - self class contentMorphInnerBorder - self class windowHeaderSize)
-]
-
-{
-	#category : #creation,
-	#'squeak_changestamp' : 'Oscar 6/5/2024 12:46'
+	#'squeak_changestamp' : 'Louis Christ 6/6/2024 19:45'
 }
 MWFrame >> fillContentMorph: aContentMorph [
 	
-	| canteenMorph position |
+	| alignmentMorph |
 	
-	position := self class contentMorphInnerBorder.
+	alignmentMorph := AlignmentMorph newColumn.
+	alignmentMorph cellInset: 10;
+		hResizing: #shrinkWrap;
+		vResizing: #shrinkWrap.
 	
-	MWDataGettingWrapper getTodaysMeals do: [ :each | 
-		canteenMorph := each getCanteenMorph
-			position: position.
-		aContentMorph scroller addMorph: canteenMorph.
-		position := 0 @ (self class spacingBetweenCanteenMorphs + canteenMorph height) + position].
+	MWDataGettingWrapper getTodaysMeals do: [ :each | alignmentMorph addMorph: each getCanteenMorph.].
+	aContentMorph scroller addMorph: alignmentMorph.
 	
 ]
 

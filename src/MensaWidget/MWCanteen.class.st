@@ -79,32 +79,20 @@ MWCanteen class >> newWithId: anId Name: aName Date: aDate Meals: aMealList [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Max 6/6/2024 08:45'
+	#'squeak_changestamp' : 'Louis Christ 6/6/2024 19:38'
 }
-MWCanteen >> addMealsTo: aCanteenMorph at: aPosition [
+MWCanteen >> addMealsTo: aCanteenMorph [
 
-	| mealMorph position |
-	
- 	position := aPosition.   	
-	self meals do: [ :each | 
-      	mealMorph := each getMealMorph
-			 position: position.
-        	aCanteenMorph addMorph: mealMorph.
-        	position := 0 @ (self class canteenMorphBorder + mealMorph height) + position ].
+	self meals do: [ :each | aCanteenMorph addMorph: each getMealMorph]
 ]
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Oscar 6/5/2024 12:41'
+	#'squeak_changestamp' : 'Louis Christ 6/6/2024 19:38'
 }
-MWCanteen >> createNameMorphAt: aPosition [
+MWCanteen >> createNameMorph [
 
-	| nameMorph |
-	
-    	nameMorph := TextMorph new 
-		contents: self name;
-		position: aPosition.
-    	^ nameMorph
+	^ TextMorph new contents: self name.
 ]
 
 {
@@ -127,17 +115,15 @@ MWCanteen >> date: anObject [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Max 6/6/2024 08:45'
+	#'squeak_changestamp' : 'Louis Christ 6/6/2024 19:39'
 }
 MWCanteen >> getCanteenMorph [
 
-	| canteenMorph nameMorph position |
+	| canteenMorph |
 	
-	nameMorph := self createNameMorphAt: self class canteenMorphBorder @ self class canteenMorphBorder.
-	canteenMorph := self initializeCanteenMorph addMorph: nameMorph.
-	position := 0 @ (self class canteenMorphBorder  + nameMorph height) + (self class canteenMorphBorder @ self class canteenMorphBorder).
-	self addMealsTo: canteenMorph at: position.
-	canteenMorph extent: self class canteenMorphWidth @ ((self lowestSubmorphBoundOF: canteenMorph) + self class canteenMorphBorder).
+	canteenMorph := self initializeCanteenMorph.
+	self addMealsTo: canteenMorph.
+	canteenMorph addMorph: self createNameMorph.
 	^ canteenMorph
 ]
 
@@ -161,43 +147,18 @@ MWCanteen >> id: anObject [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Oscar 6/5/2024 12:44'
+	#'squeak_changestamp' : 'Louis Christ 6/6/2024 19:34'
 }
 MWCanteen >> initializeCanteenMorph [
 
 	| morph |
 	
-    	morph := Morph new
-		color: self class canteenMorphColor.
-    	^ morph
-]
-
-{
-	#category : #display,
-	#'squeak_changestamp' : 'Max 6/5/2024 14:05'
-}
-MWCanteen >> lowestSubmorphBoundOF: aCanteenMorph [
-
-	| bound |
-	
-	bound := 0.
-	aCanteenMorph submorphsDo: [ :each |
-		each bottomLeft y > bound ifTrue: [ bound := each bottomLeft y ] ].
-	^ bound
-]
-
-{
-	#category : #display,
-	#'squeak_changestamp' : 'Max 6/5/2024 14:11'
-}
-MWCanteen >> lowestSubmorphBoundOf: aCanteenMorph [
-
-	| bound |
-	
-	bound := 0.
-	aCanteenMorph submorphsDo: [ :each |
-		each bottomLeft y > bound ifTrue: [ bound := each bottomLeft y ] ].
-	^ bound
+    	morph := AlignmentMorph newColumn
+		color: self class canteenMorphColor;
+		cellGap: 5;
+		hResizing: #shrinkWrap;
+		vResizing: #shrinkWrap.
+    ^ morph
 ]
 
 {
