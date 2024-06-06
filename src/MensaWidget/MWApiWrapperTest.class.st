@@ -11,9 +11,6 @@ apiWrapper
 Class {
 	#name : #MWApiWrapperTest,
 	#superclass : #TestCase,
-	#instVars : [
-		'apiWrapper'
-	],
 	#classInstVars : [
 		'apiWrapper'
 	],
@@ -67,51 +64,15 @@ MWApiWrapperTest class >> validMensaId [
 ]
 
 {
-	#category : #accessing,
-	#'squeak_changestamp' : 'Louis Christ 6/3/2024 09:05'
-}
-MWApiWrapperTest >> apiWrapper [
-
-	^ apiWrapper
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'Louis Christ 6/3/2024 09:05'
-}
-MWApiWrapperTest >> apiWrapper: anObject [
-
-	apiWrapper := anObject
-]
-
-{
-	#category : #environment,
-	#'squeak_changestamp' : 'Louis Christ 6/3/2024 09:06'
-}
-MWApiWrapperTest >> setUp [
-
-	self apiWrapper: MWApiWrapper new 
-]
-
-{
-	#category : #environment,
-	#'squeak_changestamp' : 'Louis Christ 6/3/2024 09:06'
-}
-MWApiWrapperTest >> tearDown [
-
-	self apiWrapper: nil
-]
-
-{
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 6/3/2024 09:06'
+	#'squeak_changestamp' : 'Louis Christ 6/4/2024 17:22'
 }
 MWApiWrapperTest >> testApiCallWithInvalidUrl [
 
     | responseWrapper errorOccurred |
 
     errorOccurred := false.
-    [ responseWrapper := self apiWrapper getMealsFrom: self class invalidMensaId on: self class invalidDate.
+    [ responseWrapper := MWApiWrapper getMealsFrom: self class invalidMensaId on: self class invalidDate.
     ] on: NetworkError do: [ :ex |
         errorOccurred := true ].
     self assert: (responseWrapper = '' or: errorOccurred).
@@ -120,14 +81,14 @@ MWApiWrapperTest >> testApiCallWithInvalidUrl [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 6/3/2024 09:06'
+	#'squeak_changestamp' : 'Louis Christ 6/4/2024 17:22'
 }
 MWApiWrapperTest >> testApiCallWithValidUrl [
 
     | responseWrapper responseApi errorOccurred |
 
     errorOccurred := false.
-    [ responseWrapper := self apiWrapper getMealsFrom: self class validMensaId on: self class validDate.
+    [ responseWrapper := MWApiWrapper getMealsFrom: self class validMensaId on: self class validDate.
     responseApi := WebClient httpGet: self class validApiUrl.
     ] on: NetworkError do: [ :ex |
         errorOccurred := true ].
