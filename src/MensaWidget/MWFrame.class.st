@@ -131,12 +131,12 @@ MWFrame >> removeMaximize [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 11:01'
+	#'squeak_changestamp' : 'Louis Christ 6/7/2024 11:07'
 }
 MWFrame >> removeScalability [
 
 	self submorphsDo: [:each |
 		(each class superclass = BorderGripMorph or: 
 			[each class superclass = CornerGripMorph]) 
-				ifTrue:[each abandon]]
+				ifTrue: [each abandon]]
 ]
