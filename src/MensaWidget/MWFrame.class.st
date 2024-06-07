@@ -196,12 +196,12 @@ MWFrame >> removeScalability [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 15:14'
+	#'squeak_changestamp' : 'Louis Christ 6/7/2024 15:36'
 }
 MWFrame >> showMealsFor: aDate On: aMorph [
 	
 	aMorph submorphsDo: [:each | each abandon].
 	(MWDataGettingWrapper getMealsOnDate: aDate) do: [:each | 
 		aMorph addMorph: each getCanteenMorph].
-	self alignmentMorph addMorph: (MWDatePicker new date: aDate) updateDate
+	self alignmentMorph addMorph: (MWDatePicker new date: aDate asDate) updateDate
 ]
