@@ -1,9 +1,10 @@
 Class {
-	#name : #MWDatePicker,
+	#name : #MWMenuBar,
 	#superclass : #AlignmentMorph,
 	#instVars : [
 		'date',
-		'dateDisplay'
+		'dateDisplay',
+		'target'
 	],
 	#category : #MensaWidget
 }
@@ -12,7 +13,7 @@ Class {
 	#category : #constants,
 	#'squeak_changestamp' : 'Louis Christ 6/7/2024 14:22'
 }
-MWDatePicker class >> getArrowButton [
+MWMenuBar class >> getArrowButton [
 
 	^ Morph new extent: 40@15;
 			color: Color fern lighter
@@ -22,7 +23,7 @@ MWDatePicker class >> getArrowButton [
 	#category : #creation,
 	#'squeak_changestamp' : 'Louis Christ 6/7/2024 14:00'
 }
-MWDatePicker >> createDateDisplay [
+MWMenuBar >> createDateDisplay [
 	
 	self dateDisplay: 
 		(TextMorph new 
@@ -36,7 +37,7 @@ MWDatePicker >> createDateDisplay [
 	#category : #creation,
 	#'squeak_changestamp' : 'Louis Christ 6/7/2024 14:09'
 }
-MWDatePicker >> createNextButton [
+MWMenuBar >> createNextButton [
 
 	self addMorph: 
 			(self class getArrowButton
@@ -47,7 +48,7 @@ MWDatePicker >> createNextButton [
 	#category : #creation,
 	#'squeak_changestamp' : 'Louis Christ 6/7/2024 14:14'
 }
-MWDatePicker >> createPrevButton [
+MWMenuBar >> createPrevButton [
 	
 	self addMorph: 
 			(self class getArrowButton
@@ -59,7 +60,7 @@ MWDatePicker >> createPrevButton [
 	#category : #creation,
 	#'squeak_changestamp' : 'Louis Christ 6/7/2024 14:29'
 }
-MWDatePicker >> createSpacer [
+MWMenuBar >> createSpacer [
 	
 	self addMorph: (
 			AlignmentMorph new hResizing: #spaceFill; vResizing: #spaceFill; color: Color transparent)
@@ -70,7 +71,7 @@ MWDatePicker >> createSpacer [
 	#category : #accessing,
 	#'squeak_changestamp' : 'Louis Christ 6/7/2024 13:46'
 }
-MWDatePicker >> date [
+MWMenuBar >> date [
 	
 	^ date
 ]
@@ -79,7 +80,7 @@ MWDatePicker >> date [
 	#category : #accessing,
 	#'squeak_changestamp' : 'Louis Christ 6/7/2024 13:46'
 }
-MWDatePicker >> date: anObject [
+MWMenuBar >> date: anObject [
 	
 	date := anObject
 ]
@@ -88,7 +89,7 @@ MWDatePicker >> date: anObject [
 	#category : #accessing,
 	#'squeak_changestamp' : 'Louis Christ 6/7/2024 13:48'
 }
-MWDatePicker >> dateDisplay [
+MWMenuBar >> dateDisplay [
 
 	^ dateDisplay
 ]
@@ -97,7 +98,7 @@ MWDatePicker >> dateDisplay [
 	#category : #accessing,
 	#'squeak_changestamp' : 'Louis Christ 6/7/2024 13:48'
 }
-MWDatePicker >> dateDisplay: anObject [
+MWMenuBar >> dateDisplay: anObject [
 
 	dateDisplay := anObject
 ]
@@ -106,7 +107,7 @@ MWDatePicker >> dateDisplay: anObject [
 	#category : #dateManipulation,
 	#'squeak_changestamp' : 'Louis Christ 6/7/2024 13:59'
 }
-MWDatePicker >> decreaseDate [
+MWMenuBar >> decreaseDate [
 
 	self date: (self date addDays: -1).
 	self updateDate
@@ -116,7 +117,7 @@ MWDatePicker >> decreaseDate [
 	#category : #dateManipulation,
 	#'squeak_changestamp' : 'Louis Christ 6/7/2024 13:59'
 }
-MWDatePicker >> increaseDate [
+MWMenuBar >> increaseDate [
 
 	self date: (self date addDays: 1).
 	self updateDate
@@ -126,7 +127,7 @@ MWDatePicker >> increaseDate [
 	#category : #creation,
 	#'squeak_changestamp' : 'Louis Christ 6/7/2024 14:29'
 }
-MWDatePicker >> initialize [
+MWMenuBar >> initialize [
 	
 	super initialize.
 	self date: Date today;
@@ -144,10 +145,28 @@ MWDatePicker >> initialize [
 ]
 
 {
-	#category : #dateManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 15:14'
+	#category : #accessing,
+	#'squeak_changestamp' : 'Louis Christ 6/7/2024 21:02'
 }
-MWDatePicker >> updateDate [
+MWMenuBar >> target [
+	^ target
+]
 
-	self dateDisplay contents: self date asDate yyyymmdd
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Louis Christ 6/7/2024 21:02'
+}
+MWMenuBar >> target: anObject [
+	target := anObject
+]
+
+{
+	#category : #dateManipulation,
+	#'squeak_changestamp' : 'Louis Christ 6/7/2024 21:01'
+}
+MWMenuBar >> updateDate [
+
+	self dateDisplay contents: self date asDate yyyymmdd.
+	self target ifNotNil: [self target displayDay]
+	
 ]
