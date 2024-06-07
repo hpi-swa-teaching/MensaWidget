@@ -145,9 +145,9 @@ MWDatePicker >> initialize [
 
 {
 	#category : #dateManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 13:58'
+	#'squeak_changestamp' : 'Louis Christ 6/7/2024 15:14'
 }
 MWDatePicker >> updateDate [
 
-	self dateDisplay contents: self date yyyymmdd
+	self dateDisplay contents: self date asDate yyyymmdd
 ]
