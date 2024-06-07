@@ -7,6 +7,9 @@ Instance Variables
 Class {
 	#name : #MWFrame,
 	#superclass : #PluggableSystemWindow,
+	#instVars : [
+		'morph'
+	],
 	#category : #MensaWidget,
 	#'squeak_changestamp' : 'Louis Christ 5/27/2024 19:43'
 }
@@ -84,7 +87,7 @@ MWFrame >> buildFrameContent [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 11:05'
+	#'squeak_changestamp' : 'Louis Christ 6/7/2024 14:38'
 }
 MWFrame >> fillContentMorph: aContentMorph [
 	
@@ -94,8 +97,8 @@ MWFrame >> fillContentMorph: aContentMorph [
 		cellInset: self class cellSpacing;
 		hResizing: #shrinkWrap;
 		vResizing: #shrinkWrap.
-	MWDataGettingWrapper getTodaysMeals do: [:each | 
-		contentMorph addMorph: each getCanteenMorph].
+	self showMealsFor: Date today yyyymmdd On: contentMorph.
+	contentMorph addMorph: MWDatePicker new.
 	aContentMorph scroller addMorph: contentMorph
 	
 ]
@@ -139,4 +142,14 @@ MWFrame >> removeScalability [
 		(each class superclass = BorderGripMorph or: 
 			[each class superclass = CornerGripMorph]) 
 				ifTrue: [each abandon]]
+]
+
+{
+	#category : #creation,
+	#'squeak_changestamp' : 'Louis Christ 6/7/2024 14:38'
+}
+MWFrame >> showMealsFor: aDate On: aMorph [
+
+	(MWDataGettingWrapper getMealsOnDate: aDate) do: [:each | 
+		aMorph addMorph: each getCanteenMorph].
 ]
