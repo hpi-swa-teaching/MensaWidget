@@ -194,7 +194,7 @@ MWFrame >> displayDay [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 20:51'
+	#'squeak_changestamp' : 'Louis Christ 6/7/2024 21:08'
 }
 MWFrame >> initialize [
 	

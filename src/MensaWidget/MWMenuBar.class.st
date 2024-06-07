@@ -21,13 +21,13 @@ MWMenuBar class >> getArrowButton [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 14:00'
+	#'squeak_changestamp' : 'Louis Christ 6/7/2024 21:08'
 }
 MWMenuBar >> createDateDisplay [
 	
 	self dateDisplay: 
 		(TextMorph new 
-		contents: self date yyyymmdd;
+		contents: self date asString;
 		readOnly: true).
 	self addMorph: self dateDisplay
 	
@@ -125,7 +125,7 @@ MWMenuBar >> increaseDate [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 14:29'
+	#'squeak_changestamp' : 'Louis Christ 6/7/2024 21:07'
 }
 MWMenuBar >> initialize [
 	
@@ -162,11 +162,11 @@ MWMenuBar >> target: anObject [
 
 {
 	#category : #dateManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 21:01'
+	#'squeak_changestamp' : 'Louis Christ 6/7/2024 21:06'
 }
 MWMenuBar >> updateDate [
 
-	self dateDisplay contents: self date asDate yyyymmdd.
+	self dateDisplay contents: self date asString.
 	self target ifNotNil: [self target displayDay]
 	
 ]
