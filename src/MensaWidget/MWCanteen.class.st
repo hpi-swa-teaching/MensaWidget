@@ -44,6 +44,15 @@ MWCanteen class >> canteenMorphBorder [
 
 {
 	#category : #constants,
+	#'squeak_changestamp' : 'Louis Christ 6/7/2024 11:04'
+}
+MWCanteen class >> canteenMorphCellGap [
+
+	^ 5
+]
+
+{
+	#category : #constants,
 	#'squeak_changestamp' : 'Oscar 6/5/2024 12:44'
 }
 MWCanteen class >> canteenMorphColor [ 
@@ -58,15 +67,6 @@ MWCanteen class >> canteenMorphColor [
 MWCanteen class >> canteenMorphWidth [
 	
 	^ 410
-]
-
-{
-	#category : #constants,
-	#'squeak_changestamp' : 'tmc 6/6/2024 21:57'
-}
-MWCanteen class >> cellGap [
-
-	^ 5
 ]
 
 {
@@ -86,11 +86,11 @@ MWCanteen class >> newWithId: anId Name: aName Date: aDate Meals: aMealList [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/6/2024 19:38'
+	#'squeak_changestamp' : 'Louis Christ 6/7/2024 11:02'
 }
 MWCanteen >> addMealsTo: aCanteenMorph [
 
-	self meals do: [ :each | aCanteenMorph addMorph: each getMealMorph]
+	self meals do: [:each | aCanteenMorph addMorph: each getMealMorph]
 ]
 
 {
@@ -157,13 +157,13 @@ MWCanteen >> id: anObject [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'tmc 6/6/2024 21:57'
+	#'squeak_changestamp' : 'Louis Christ 6/7/2024 11:04'
 }
 MWCanteen >> initializeCanteenMorph [
 
 	^ AlignmentMorph newColumn
 		color: self class canteenMorphColor;
-		cellGap: self class cellGap;
+		cellGap: self class canteenMorphCellGap;
 		hResizing: #shrinkWrap;
 		vResizing: #shrinkWrap
     

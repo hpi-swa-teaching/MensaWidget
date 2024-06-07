@@ -40,15 +40,6 @@ MWFrame class >> contentMorphColor [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Oscar 6/5/2024 00:54'
-}
-MWFrame class >> contentMorphInnerBorder [
-
-	^ 5
-]
-
-{
-	#category : #constants,
 	#'squeak_changestamp' : 'tmc 6/6/2024 21:50'
 }
 MWFrame class >> contentPosition [
@@ -75,24 +66,6 @@ MWFrame class >> scrollBarThickness [
 ]
 
 {
-	#category : #constants,
-	#'squeak_changestamp' : 'Oscar 6/5/2024 00:57'
-}
-MWFrame class >> spacingBetweenCanteenMorphs [
-
-	^ 5
-]
-
-{
-	#category : #constants,
-	#'squeak_changestamp' : 'Oscar 6/5/2024 01:13'
-}
-MWFrame class >> windowHeaderSize [
-
-	^ 40 
-]
-
-{
 	#category : #creation,
 	#'squeak_changestamp' : 'tmc 6/6/2024 21:37'
 }
@@ -111,17 +84,17 @@ MWFrame >> buildFrameContent [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'tmc 6/6/2024 21:42'
+	#'squeak_changestamp' : 'Louis Christ 6/7/2024 11:05'
 }
 MWFrame >> fillContentMorph: aContentMorph [
 	
 	| contentMorph |
 	
-	contentMorph := AlignmentMorph newColumn.
-	contentMorph cellInset: self class cellSpacing;
+	contentMorph := AlignmentMorph newColumn
+		cellInset: self class cellSpacing;
 		hResizing: #shrinkWrap;
 		vResizing: #shrinkWrap.
-	MWDataGettingWrapper getTodaysMeals do: [ :each | 
+	MWDataGettingWrapper getTodaysMeals do: [:each | 
 		contentMorph addMorph: each getCanteenMorph].
 	aContentMorph scroller addMorph: contentMorph
 	
@@ -129,7 +102,7 @@ MWFrame >> fillContentMorph: aContentMorph [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'tmc 6/6/2024 22:45'
+	#'squeak_changestamp' : 'Louis Christ 6/7/2024 10:59'
 }
 MWFrame >> initialize [
 	
@@ -140,31 +113,30 @@ MWFrame >> initialize [
 		extent: self class frameSize;
 		removeMaximize;
 		removeScalability
-		 "Cascade expected ->"
 ]
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'tmc 6/6/2024 22:53'
+	#'squeak_changestamp' : 'Louis Christ 6/7/2024 11:00'
 }
 MWFrame >> removeMaximize [
 	
-	self submorphsDo: [ :each | 
-	each class = AlignmentMorph ifTrue: [
-		each submorphsDo: [ :each2 |
-			( each2 class = SystemWindowButton and:
-				[ each2 actionSelector = #expandBoxHit ]) 
-					ifTrue: [ each2 abandon ]]]]
+	self submorphsDo: [:each | 
+	each class = AlignmentMorph ifTrue: 
+		[each submorphsDo: [:each2 |
+			(each2 class = SystemWindowButton and:
+				[each2 actionSelector = #expandBoxHit]) 
+					ifTrue: [each2 abandon]]]]
 ]
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'tmc 6/6/2024 22:52'
+	#'squeak_changestamp' : 'Louis Christ 6/7/2024 11:01'
 }
 MWFrame >> removeScalability [
 
-	self submorphsDo: [ :each |
+	self submorphsDo: [:each |
 		(each class superclass = BorderGripMorph or: 
-			[ each class superclass = CornerGripMorph ]) 
-				ifTrue:[ each abandon ]]
+			[each class superclass = CornerGripMorph]) 
+				ifTrue:[each abandon]]
 ]
