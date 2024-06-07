@@ -38,6 +38,24 @@ MWFrameTest >> tearDown [
 
 {
 	#category : #tests,
+	#'squeak_changestamp' : 'tmc 6/6/2024 22:21'
+}
+MWFrameTest >> testCantineCount [
+
+	self widgetFrame submorphsDo: [ :each | 
+		each class = ScrollPane ifTrue: 
+			[ each submorphsDo: [ :each2 |
+				each2 class = TransformationMorph ifTrue: 
+					[ each2 submorphsDo: [ :each3 |
+						each3 class = AlignmentMorph ifTrue: [
+							self assert: each3 subclasses size = 
+								MWDataGettingWrapper canteenDict size]]]]]]
+				 
+			  
+]
+
+{
+	#category : #tests,
 	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:42'
 }
 MWFrameTest >> testContent [

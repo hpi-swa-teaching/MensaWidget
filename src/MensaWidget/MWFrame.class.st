@@ -12,42 +12,131 @@ Class {
 }
 
 {
-	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:43'
+	#category : #constants,
+	#'squeak_changestamp' : 'tmc 6/6/2024 21:40'
 }
-MWFrame >> addText [
+MWFrame class >> cellSpacing [
 
-	| textMorph |
-	
-	textMorph := TextMorph new.
-	textMorph contents: 'Are you a hungry?';
-		position:  135@100.
-	self addPaneMorph: textMorph.
+	^ 10
+]
+
+{
+	#category : #constants,
+	#'squeak_changestamp' : 'tmc 6/6/2024 21:36'
+}
+MWFrame class >> contentExtent [
+
+	^ 450 @ 550
+]
+
+{
+	#category : #constants,
+	#'squeak_changestamp' : 'tmc 6/6/2024 21:03'
+}
+MWFrame class >> contentMorphColor [
+
+	^ Color darkGray
+]
+
+{
+	#category : #constants,
+	#'squeak_changestamp' : 'tmc 6/6/2024 21:50'
+}
+MWFrame class >> contentPosition [
+
+	^ 5 @ 40
+]
+
+{
+	#category : #constants,
+	#'squeak_changestamp' : 'Louis Christ 6/6/2024 19:50'
+}
+MWFrame class >> frameSize [
+
+	^ 460 @ 595
+]
+
+{
+	#category : #constants,
+	#'squeak_changestamp' : 'Oscar 6/5/2024 01:01'
+}
+MWFrame class >> scrollBarThickness [
+
+	^ 20
 ]
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 5/27/2024 17:00'
+	#'squeak_changestamp' : 'tmc 6/6/2024 21:37'
 }
-MWFrame >> createFrame [
-		
-	self setLabel:'Mensa Widget';
-		openInWorld;
-		extent: 400@600.	
-	
-	
-	
+MWFrame >> buildFrameContent [
 
+	| contentMorph |
+	
+	contentMorph := ScrollPane new.
+	self fillContentMorph: contentMorph.
+	contentMorph scrollBarThickness: self class scrollBarThickness;
+		color: self class contentMorphColor;
+		position: self class contentPosition;
+		extent: self class contentExtent.
+	self addPaneMorph: contentMorph
+]
+
+{
+	#category : #creation,
+	#'squeak_changestamp' : 'Louis Christ 6/7/2024 11:05'
+}
+MWFrame >> fillContentMorph: aContentMorph [
+	
+	| contentMorph |
+	
+	contentMorph := AlignmentMorph newColumn
+		cellInset: self class cellSpacing;
+		hResizing: #shrinkWrap;
+		vResizing: #shrinkWrap.
+	MWDataGettingWrapper getTodaysMeals do: [:each | 
+		contentMorph addMorph: each getCanteenMorph].
+	aContentMorph scroller addMorph: contentMorph
 	
 ]
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 5/27/2024 17:00'
+	#'squeak_changestamp' : 'Louis Christ 6/7/2024 10:59'
 }
 MWFrame >> initialize [
 	
 	super initialize.
-	self createFrame;
-		addText.
+	self setLabel:'Mensa Widget';
+		buildFrameContent;
+		openInWorld;
+		extent: self class frameSize;
+		removeMaximize;
+		removeScalability
+]
+
+{
+	#category : #creation,
+	#'squeak_changestamp' : 'Louis Christ 6/7/2024 11:00'
+}
+MWFrame >> removeMaximize [
+	
+	self submorphsDo: [:each | 
+	each class = AlignmentMorph ifTrue: 
+		[each submorphsDo: [:each2 |
+			(each2 class = SystemWindowButton and:
+				[each2 actionSelector = #expandBoxHit]) 
+					ifTrue: [each2 abandon]]]]
+]
+
+{
+	#category : #creation,
+	#'squeak_changestamp' : 'Louis Christ 6/7/2024 11:07'
+}
+MWFrame >> removeScalability [
+
+	self submorphsDo: [:each |
+		(each class superclass = BorderGripMorph or: 
+			[each class superclass = CornerGripMorph]) 
+				ifTrue: [each abandon]]
 ]
