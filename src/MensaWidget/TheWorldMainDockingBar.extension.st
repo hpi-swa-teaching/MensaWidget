@@ -2,10 +2,10 @@ Extension { #name : #TheWorldMainDockingBar }
 
 {
 	#category : #'*MensaWidget-override',
-	#'squeak_changestamp' : 'Louis Christ 6/4/2024 15:20'
+	#'squeak_changestamp' : 'Louis Christ 6/8/2024 14:08'
 }
 TheWorldMainDockingBar >> mensaMenuOn: aDockingBar [
-	"Create a menu with the registered apps"
+	"Create a menu with the options for MensaWidget"
 
 	aDockingBar addItem: [ :item |
 		item
@@ -22,14 +22,12 @@ TheWorldMainDockingBar >> mensaMenuOn: aDockingBar [
 						itemy
 							contents: 'Other citys' translated;
 							help: 'open mensa widget location picker' translated;
-							target: self";
-							selector: #openMensaWidget"].
+							target: self].
 				menu addItem: [:itemy |
 						itemy
 							contents: 'Setting' translated;
 							help: 'open mensa widget settings' translated;
-							target: self";
-							selector: #openMensaWidget"]]]
+							target: self]]]
 
 ]
 
