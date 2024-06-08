@@ -2,30 +2,25 @@ Extension { #name : #TheWorldMainDockingBar }
 
 {
 	#category : #'*MensaWidget-override',
-	#'squeak_changestamp' : 'Louis Christ 6/8/2024 14:08'
+	#'squeak_changestamp' : 'Louis Christ 6/8/2024 14:17'
 }
 TheWorldMainDockingBar >> mensaMenuOn: aDockingBar [
 	"Create a menu with the options for MensaWidget"
 
-	aDockingBar addItem: [ :item |
-		item
-			contents: '';
-			icon: ((GitAssetLoader for: 'MensaWidget') loadForm: '/icons/mensa_icon.png');
-			addSubMenu: [ :menu | 
-				menu addItem: [:itemy |
-						itemy
-							contents: 'Potsdam' translated;
+	aDockingBar addItem: [:item |
+		item icon: ((GitAssetLoader for: 'MensaWidget') loadForm: '/icons/mensa_icon.png');
+			addSubMenu: [:menu | 
+				menu addItem: [:item1 |
+						item1 contents: 'Potsdam' translated;
 							help: 'open mensa widget' translated;
 							target: self;
 							selector: #openMensaWidget].
-				menu addItem: [:itemy |
-						itemy
-							contents: 'Other citys' translated;
+				menu addItem: [:item2 |
+						item2 contents: 'Other citys' translated;
 							help: 'open mensa widget location picker' translated;
 							target: self].
-				menu addItem: [:itemy |
-						itemy
-							contents: 'Setting' translated;
+				menu addItem: [:item3 |
+						item3 contents: 'Settings' translated;
 							help: 'open mensa widget settings' translated;
 							target: self]]]
 
