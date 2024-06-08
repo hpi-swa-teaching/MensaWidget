@@ -40,11 +40,11 @@ Class {
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Louis Christ 6/6/2024 22:10'
+	#'squeak_changestamp' : 'Oscar 6/8/2024 18:48'
 }
 MWMeal class >> avgLineLenght [
 	
-	^ 30
+	^ 40 / RealEstateAgent scaleFactor
 ]
 
 {

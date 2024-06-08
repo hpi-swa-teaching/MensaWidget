@@ -84,7 +84,7 @@ MWFrame >> buildFrameContent [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 11:05'
+	#'squeak_changestamp' : 'Oscar 6/8/2024 18:45'
 }
 MWFrame >> fillContentMorph: aContentMorph [
 	
@@ -94,7 +94,7 @@ MWFrame >> fillContentMorph: aContentMorph [
 		cellInset: self class cellSpacing;
 		hResizing: #shrinkWrap;
 		vResizing: #shrinkWrap.
-	MWDataGettingWrapper getTodaysMeals do: [:each | 
+	(MWDataGettingWrapper getMealsOnDate: '2024-06-07') do: [:each | 
 		contentMorph addMorph: each getCanteenMorph].
 	aContentMorph scroller addMorph: contentMorph
 	
