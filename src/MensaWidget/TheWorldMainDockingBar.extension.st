@@ -70,3 +70,29 @@ TheWorldMainDockingBar >> openMensaWidget [
 	MWFrame new openInWorld.
 
 ]
+
+{
+	#category : #'*MensaWidget-override',
+	#'squeak_changestamp' : 'Louis Christ 6/4/2024 15:24'
+}
+TheWorldMainDockingBar class >> showMensaMenuInWorldMainDockingBar [
+	
+	<preference: 'Show ''Mensa'' menu in world main docking bar'
+		category: 'docking bars'
+		description: 'Whether world''s main docking bar should show the ''Mensa'' menu.'
+		type: #Boolean>
+	^ self getMenuPreference: #showMensaMenuInWorldMainDockingBar ifAbsent: [true]
+
+]
+
+{
+	#category : #'*MensaWidget-override',
+	#'squeak_changestamp' : 'Louis Christ 6/4/2024 14:13'
+}
+TheWorldMainDockingBar class >> showMensaMenuInWorldMainDockingBar: aBoolean [
+	
+	self
+		setMenuPreference: #showMensaMenuInWorldMainDockingBar
+		to: aBoolean.
+
+]
