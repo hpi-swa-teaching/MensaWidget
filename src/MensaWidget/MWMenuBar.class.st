@@ -71,25 +71,25 @@ MWMenuBar >> createLayout [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:49'
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 16:06'
 }
 MWMenuBar >> createNextButton [
 
 	self addMorph: 
 		(self class getArrowButton
-			on: #mouseDown send: #increaseDate to: self)
+			on: #mouseDown send: #increaseDate: to: self)
 ]
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:49'
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 16:13'
 }
 MWMenuBar >> createPrevButton [
 	
 	self addMorph: 
 		(self class getArrowButton
 			rotationDegrees: 180;
-			on: #mouseDown send: #decreaseDate to: self)
+			on: #mouseDown send: #decreaseDate: to: self)
 	
 ]
 
@@ -155,12 +155,36 @@ MWMenuBar >> decreaseDate [
 
 {
 	#category : #dateManipulation,
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 16:13'
+}
+MWMenuBar >> decreaseDate: aEvent [
+	
+	aEvent handler color: Color darkGray.
+	World doOneCycle.
+	self decreaseDate.
+	aEvent handler color: Color fern lighter
+]
+
+{
+	#category : #dateManipulation,
 	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:50'
 }
 MWMenuBar >> increaseDate [
 
 	self date: (self date addDays: 1);
 		updateDate
+]
+
+{
+	#category : #dateManipulation,
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 16:13'
+}
+MWMenuBar >> increaseDate: aEvent [
+	
+	aEvent handler color: Color darkGray.
+	World doOneCycle.
+	self increaseDate.
+	aEvent handler color: Color fern lighter
 ]
 
 {
