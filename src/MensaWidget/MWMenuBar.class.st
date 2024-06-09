@@ -30,13 +30,13 @@ Class {
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:46'
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 16:22'
 }
 MWMenuBar class >> getArrowButton [
 
 	^ PolygonMorph new
 		setVertices: { 0@0. 0@20. 20@10 };
-		color: Color fern lighter;
+		color: MWColorTheme secondaryColor;
 		addFlexShellIfNecessary; 
 		yourself
 ]
@@ -155,14 +155,14 @@ MWMenuBar >> decreaseDate [
 
 {
 	#category : #dateManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 16:13'
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 16:22'
 }
 MWMenuBar >> decreaseDate: aEvent [
 	
-	aEvent handler color: Color darkGray.
+	aEvent handler color: MWColorTheme backgroundColor.
 	World doOneCycle.
 	self decreaseDate.
-	aEvent handler color: Color fern lighter
+	aEvent handler color: MWColorTheme secondaryColor
 ]
 
 {
@@ -177,14 +177,14 @@ MWMenuBar >> increaseDate [
 
 {
 	#category : #dateManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 16:13'
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 16:22'
 }
 MWMenuBar >> increaseDate: aEvent [
 	
-	aEvent handler color: Color darkGray.
+	aEvent handler color: MWColorTheme backgroundColor.
 	World doOneCycle.
 	self increaseDate.
-	aEvent handler color: Color fern lighter
+	aEvent handler color: MWColorTheme secondaryColor
 ]
 
 {

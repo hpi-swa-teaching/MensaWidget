@@ -49,15 +49,6 @@ MWMeal class >> avgLineLenght [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Oscar 6/5/2024 00:07'
-}
-MWMeal class >> mealMorphColor [
-	
-	 ^ Color paleGreen darker darker
-]
-
-{
-	#category : #constants,
 	#'squeak_changestamp' : 'Oscar 6/5/2024 00:10'
 }
 MWMeal class >> mealMorphWidth [
@@ -85,12 +76,12 @@ MWMeal >> category: anObject [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'tmc 6/6/2024 21:46'
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 16:22'
 }
 MWMeal >> getMealMorph [
 
 	^ AlignmentMorph newRow
-		color: self class mealMorphColor;
+		color: MWColorTheme primaryColor;
 		width: self class mealMorphWidth;
 		vResizing: #shrinkWrap;
 		hResizing: #rigid;

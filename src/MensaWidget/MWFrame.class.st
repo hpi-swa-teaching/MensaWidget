@@ -35,15 +35,6 @@ MWFrame class >> contentExtent [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'tmc 6/6/2024 21:03'
-}
-MWFrame class >> contentMorphColor [
-
-	^ Color darkGray
-]
-
-{
-	#category : #constants,
 	#'squeak_changestamp' : 'Louis Christ 6/7/2024 21:05'
 }
 MWFrame class >> contentPosition [
@@ -83,7 +74,7 @@ MWFrame >> buildContentMorph [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:55'
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 16:21'
 }
 MWFrame >> buildLayout [
 
@@ -92,7 +83,7 @@ MWFrame >> buildLayout [
 		vResizing: #spaceFill;
 		position: self class contentPosition;
 		extent: self class contentExtent;
-		color: self class contentMorphColor;
+		color: MWColorTheme backgroundColor;
 		addMorph: self buildScrollPane;
 		addMorph: self buildMenuBar;
 		yourself
@@ -110,14 +101,14 @@ MWFrame >> buildMenuBar [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:56'
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 16:21'
 }
 MWFrame >> buildScrollPane [
 
 	^ self contentMorph: 
 		(ScrollPane new 
 			scrollBarThickness: self class scrollBarThickness;
-			color: self class contentMorphColor;
+			color: MWColorTheme backgroundColor;
 			extent: self class contentExtent;
 			yourself);
 		contentMorph
