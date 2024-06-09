@@ -180,7 +180,7 @@ MWFrame >> displayDay [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:54'
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 16:02'
 }
 MWFrame >> initialize [
 	
@@ -188,8 +188,8 @@ MWFrame >> initialize [
 	self setLabel:'Mensa Widget';
 		addPaneMorph: self buildLayout;
 		showMealsFor: Date today yyyymmdd;
-		extent: self class frameSize;
 		openInWorld;
+		extent: self class frameSize;
 		removeMaximize;
 		removeScalability
 ]
