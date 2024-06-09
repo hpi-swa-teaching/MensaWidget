@@ -15,18 +15,18 @@ MWColorTheme class >> backgroundColor [
 
 {
 	#category : #colors,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 16:20'
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 16:26'
 }
 MWColorTheme class >> primaryColor [
 
-	^ Color fern lighter
+	^ Color paleGreen darker darker
 ]
 
 {
 	#category : #colors,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 16:20'
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 16:26'
 }
 MWColorTheme class >> secondaryColor [
 
-	^ Color paleGreen darker darker
+	^  Color fern lighter
 ]

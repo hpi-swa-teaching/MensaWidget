@@ -30,7 +30,7 @@ Class {
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 16:22'
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 16:26'
 }
 MWMenuBar class >> getArrowButton [
 
