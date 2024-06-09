@@ -1,3 +1,21 @@
+"
+A MWMenuBar is a Menubar for navigation though the days and opening settings and filters.
+
+Instance Variables
+	date:		<Date>
+	dateDisplay:		<Morph>
+	target:		<MWFrame>
+
+date
+	- a Date variable that stores the date for the meals that are shown
+
+dateDisplay
+	- a variable that refers to the Morph that displays the Date
+
+target
+	- the target on which the menubar actions will be called
+
+"
 Class {
 	#name : #MWMenuBar,
 	#superclass : #AlignmentMorph,
@@ -6,64 +24,86 @@ Class {
 		'dateDisplay',
 		'target'
 	],
-	#category : #MensaWidget
+	#category : #MensaWidget,
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:59'
 }
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 14:22'
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:46'
 }
 MWMenuBar class >> getArrowButton [
 
-	^ Morph new extent: 40@15;
-			color: Color fern lighter
+	^ PolygonMorph new
+		setVertices: { 0@0. 0@20. 20@10 };
+		color: Color fern lighter;
+		addFlexShellIfNecessary; 
+		yourself
 ]
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 21:08'
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:49'
 }
 MWMenuBar >> createDateDisplay [
 	
 	self dateDisplay: 
 		(TextMorph new 
-		contents: self date asString;
-		readOnly: true).
+			contents: self date asString;
+			readOnly: true).
 	self addMorph: self dateDisplay
 	
 ]
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 14:09'
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:52'
+}
+MWMenuBar >> createLayout [
+	
+	self createSpacer;
+		createNextButton;
+		createDateDisplay;
+		createPrevButton;
+		createSpacer
+	
+]
+
+{
+	#category : #creation,
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:49'
 }
 MWMenuBar >> createNextButton [
 
 	self addMorph: 
-			(self class getArrowButton
+		(self class getArrowButton
 			on: #mouseDown send: #increaseDate to: self)
 ]
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 14:14'
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:49'
 }
 MWMenuBar >> createPrevButton [
 	
 	self addMorph: 
-			(self class getArrowButton
+		(self class getArrowButton
+			rotationDegrees: 180;
 			on: #mouseDown send: #decreaseDate to: self)
 	
 ]
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 14:29'
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:50'
 }
 MWMenuBar >> createSpacer [
 	
-	self addMorph: (
-			AlignmentMorph new hResizing: #spaceFill; vResizing: #spaceFill; color: Color transparent)
+	self addMorph: 
+		(AlignmentMorph new 
+			hResizing: #spaceFill; 
+			vResizing: #spaceFill; 
+			color: Color transparent)
 	
 ]
 
@@ -105,27 +145,27 @@ MWMenuBar >> dateDisplay: anObject [
 
 {
 	#category : #dateManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 13:59'
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:50'
 }
 MWMenuBar >> decreaseDate [
 
-	self date: (self date addDays: -1).
-	self updateDate
+	self date: (self date addDays: -1);
+		updateDate
 ]
 
 {
 	#category : #dateManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 13:59'
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:50'
 }
 MWMenuBar >> increaseDate [
 
-	self date: (self date addDays: 1).
-	self updateDate
+	self date: (self date addDays: 1);
+		updateDate
 ]
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 21:07'
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:52'
 }
 MWMenuBar >> initialize [
 	
@@ -136,27 +176,25 @@ MWMenuBar >> initialize [
 		cellPositioning: #center;
 		color: Color paleGreen darker darker;
 		cellGap: 30;
-		createSpacer;
-		createNextButton;
-		createDateDisplay;
-		createPrevButton;
-		createSpacer
+		createLayout
 
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 21:02'
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:50'
 }
 MWMenuBar >> target [
+
 	^ target
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 21:02'
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:50'
 }
 MWMenuBar >> target: anObject [
+
 	target := anObject
 ]
 

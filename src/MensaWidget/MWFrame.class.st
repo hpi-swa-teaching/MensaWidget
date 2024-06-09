@@ -70,24 +70,6 @@ MWFrame class >> scrollBarThickness [
 ]
 
 {
-	#category : #accessing,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 15:03'
-}
-MWFrame >> alignmentMorph [
-	
-	^ alignmentMorph
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 15:03'
-}
-MWFrame >> alignmentMorph: anObject [
-	
-	alignmentMorph := anObject
-]
-
-{
 	#category : #creation,
 	#'squeak_changestamp' : 'Louis Christ 6/7/2024 20:55'
 }
@@ -101,7 +83,7 @@ MWFrame >> buildContentMorph [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 21:04'
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:55'
 }
 MWFrame >> buildLayout [
 
@@ -109,9 +91,8 @@ MWFrame >> buildLayout [
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
 		position: self class contentPosition;
-		name: 'Layout';
 		extent: self class contentExtent;
-		color: Color darkGray;
+		color: self class contentMorphColor;
 		addMorph: self buildScrollPane;
 		addMorph: self buildMenuBar;
 		yourself
@@ -119,25 +100,26 @@ MWFrame >> buildLayout [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 21:02'
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:51'
 }
 MWFrame >> buildMenuBar [
 	
 	^ self dayPicker: (MWMenuBar new target: self);
-		dayPicker.
+		dayPicker
 ]
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 20:55'
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:56'
 }
 MWFrame >> buildScrollPane [
 
-	^ self contentMorph: (ScrollPane new 
-		scrollBarThickness: self class scrollBarThickness;
-		color: self class contentMorphColor;
-		extent: self class contentExtent;
-		yourself);
+	^ self contentMorph: 
+		(ScrollPane new 
+			scrollBarThickness: self class scrollBarThickness;
+			color: self class contentMorphColor;
+			extent: self class contentExtent;
+			yourself);
 		contentMorph
 ]
 
@@ -161,29 +143,33 @@ MWFrame >> contentMorph: anObject [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 20:58'
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:54'
 }
 MWFrame >> dayPicker [
+
 	^ dayPicker
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 20:58'
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:54'
 }
 MWFrame >> dayPicker: anObject [
+
 	dayPicker := anObject
 ]
 
 {
 	#category : #dayManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 21:02'
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:53'
 }
 MWFrame >> displayDay [
 
 	| contentMorph |
 	
+	"delete old content"
 	self contentMorph scroller submorphsDo: [:each | each abandon].
+	"create new content"
 	contentMorph := self buildContentMorph.
 	(MWDataGettingWrapper getMealsOnDate: self dayPicker date yyyymmdd) do: 
 		[:each | contentMorph addMorph: each getCanteenMorph].
@@ -194,7 +180,7 @@ MWFrame >> displayDay [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 21:08'
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:54'
 }
 MWFrame >> initialize [
 	
@@ -202,8 +188,8 @@ MWFrame >> initialize [
 	self setLabel:'Mensa Widget';
 		addPaneMorph: self buildLayout;
 		showMealsFor: Date today yyyymmdd;
-		openInWorld;
 		extent: self class frameSize;
+		openInWorld;
 		removeMaximize;
 		removeScalability
 ]
