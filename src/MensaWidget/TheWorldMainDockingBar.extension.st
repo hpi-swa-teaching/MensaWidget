@@ -2,7 +2,7 @@ Extension { #name : #TheWorldMainDockingBar }
 
 {
 	#category : #'*MensaWidget-override',
-	#'squeak_changestamp' : 'Louis Christ 6/8/2024 14:17'
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:10'
 }
 TheWorldMainDockingBar >> mensaMenuOn: aDockingBar [
 	"Create a menu with the options for MensaWidget"
@@ -10,17 +10,17 @@ TheWorldMainDockingBar >> mensaMenuOn: aDockingBar [
 	aDockingBar addItem: [:item |
 		item icon: ((GitAssetLoader for: 'MensaWidget') loadForm: '/icons/mensa_icon.png');
 			addSubMenu: [:menu | 
-				menu addItem: [:item1 |
-						item1 contents: 'Potsdam' translated;
+				menu addItem: [:menuItem |
+						menuItem contents: 'Potsdam' translated;
 							help: 'open mensa widget' translated;
 							target: self;
 							selector: #openMensaWidget].
-				menu addItem: [:item2 |
-						item2 contents: 'Other citys' translated;
+				menu addItem: [:menuItem |
+						menuItem contents: 'Other citys' translated;
 							help: 'open mensa widget location picker' translated;
 							target: self].
-				menu addItem: [:item3 |
-						item3 contents: 'Settings' translated;
+				menu addItem: [:menuItem |
+						menuItem contents: 'Settings' translated;
 							help: 'open mensa widget settings' translated;
 							target: self]]]
 
@@ -62,10 +62,10 @@ TheWorldMainDockingBar >> menusOn: aDockingBar [
 
 {
 	#category : #'*MensaWidget-override',
-	#'squeak_changestamp' : 'Louis Christ 6/4/2024 14:28'
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:09'
 }
 TheWorldMainDockingBar >> openMensaWidget [
-	"Update the apps list in the menu"
+	"Open the mensa widget"
 
 	MWFrame new openInWorld.
 
@@ -73,7 +73,7 @@ TheWorldMainDockingBar >> openMensaWidget [
 
 {
 	#category : #'*MensaWidget-override',
-	#'squeak_changestamp' : 'Louis Christ 6/4/2024 15:24'
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:12'
 }
 TheWorldMainDockingBar class >> showMensaMenuInWorldMainDockingBar [
 	
@@ -81,7 +81,7 @@ TheWorldMainDockingBar class >> showMensaMenuInWorldMainDockingBar [
 		category: 'docking bars'
 		description: 'Whether world''s main docking bar should show the ''Mensa'' menu.'
 		type: #Boolean>
-	^ self getMenuPreference: #showMensaMenuInWorldMainDockingBar ifAbsent: [true]
+	^ self getMenuPreference: #showMensaMenuInWorldMainDockingBar ifAbsent: [false]
 
 ]
 
