@@ -54,7 +54,7 @@ MWMealCleaner class >> fixMeal: aMeal [
 
 {
 	#category : #cleaning,
-	#'squeak_changestamp' : 'Max 6/10/2024 21:01'
+	#'squeak_changestamp' : 'Max 6/10/2024 21:23'
 }
 MWMealCleaner class >> fixPrices: aMeal [
 	
@@ -71,7 +71,8 @@ MWMealCleaner class >> fixPrices: aMeal [
 	price pupils: (aMeal prices at: 'pupils').
 	price students ifNil: [price students: price others].
 	price employees ifNil: [price employees: price others].
-	price pupils ifNil: [price pupils: price students]
+	price pupils ifNil: [price pupils: price students].
+	aMeal prices: price
 	
 	
 	
