@@ -1,10 +1,21 @@
+"
+A MWMenuBarTest is a Tests class that test if the menu bar works as expected.
+
+Instance Variables
+	mensaWidget:		<MWFrame>
+
+mensaWidget
+	- a Mensa widget instance on which the testing will be done
+
+"
 Class {
 	#name : #MWMenuBarTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'mensaWidget'
 	],
-	#category : #'MensaWidget-Tests'
+	#category : #'MensaWidget-Tests',
+	#'squeak_changestamp' : 'Louis Christ 6/11/2024 01:02'
 }
 
 {
