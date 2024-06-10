@@ -67,11 +67,11 @@ MWFrame class >> scrollBarThickness [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'tmc 6/10/2024 15:36'
+	#'squeak_changestamp' : 'tmc 6/10/2024 18:13'
 }
 MWFrame >> addExpandBox [
 
-	^0
+	^nil
  	
 
 
@@ -79,11 +79,11 @@ MWFrame >> addExpandBox [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'tmc 6/10/2024 15:24'
+	#'squeak_changestamp' : 'tmc 6/10/2024 18:12'
 }
 MWFrame >> addGrips [
 
-	^0.
+	^nil
 
 
 ]
@@ -107,22 +107,11 @@ MWFrame >> buildFrameContent [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'tmc 6/10/2024 15:35'
-}
-MWFrame >> createExpandBox [
-
- 	
-
-
-]
-
-{
-	#category : #creation,
-	#'squeak_changestamp' : 'tmc 6/10/2024 15:37'
+	#'squeak_changestamp' : 'tmc 6/10/2024 18:12'
 }
 MWFrame >> expandToFullScreen [
 
-	^0
+	^nil
  	
 
 
