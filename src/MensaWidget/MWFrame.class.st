@@ -22,7 +22,7 @@ MWFrame class >> cellSpacing [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'tmc 6/6/2024 21:36'
+	#'squeak_changestamp' : 'Oscar 6/10/2024 02:06'
 }
 MWFrame class >> contentExtent [
 
@@ -40,20 +40,20 @@ MWFrame class >> contentMorphColor [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'tmc 6/6/2024 21:50'
+	#'squeak_changestamp' : 'Oscar 6/10/2024 02:00'
 }
 MWFrame class >> contentPosition [
 
-	^ 5 @ 40
+	^ 5 @ (25 * RealEstateAgent scaleFactor)
 ]
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Louis Christ 6/6/2024 19:50'
+	#'squeak_changestamp' : 'Oscar 6/10/2024 02:10'
 }
 MWFrame class >> frameSize [
 
-	^ 460 @ 595
+	^ 460 @ (555 +( 25 * RealEstateAgent scaleFactor))
 ]
 
 {
