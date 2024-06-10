@@ -159,6 +159,24 @@ MWMeal >> id: anObject [
 ]
 
 {
+	#category : #display,
+	#'squeak_changestamp' : 'Max 6/10/2024 19:30'
+}
+MWMeal >> isHotCounter [
+
+	^ self name beginsWith: 'Preis pro 100 g'
+]
+
+{
+	#category : #display,
+	#'squeak_changestamp' : 'Max 6/10/2024 19:30'
+}
+MWMeal >> isSaladBar [
+
+	^ self name beginsWith: 'große Schale'
+]
+
+{
 	#category : #accessing,
 	#'squeak_changestamp' : 'Max 5/29/2024 12:58'
 }
