@@ -54,7 +54,7 @@ MWMealCleaner class >> fixMeal: aMeal [
 
 {
 	#category : #cleaning,
-	#'squeak_changestamp' : 'Max 6/10/2024 21:23'
+	#'squeak_changestamp' : 'Max 6/10/2024 21:59'
 }
 MWMealCleaner class >> fixPrices: aMeal [
 	
@@ -63,12 +63,7 @@ MWMealCleaner class >> fixPrices: aMeal [
 	aMeal prices ifNil: [aMeal prices: MWPrice emptyPrice. 
 		^ nil].
 	aMeal prices class = MWPrice ifTrue: [^ nil].
-	"price := aMeal prices: (MWParser put: aMeal prices transform to string in: MWPrice) first."
-	price := MWPrice new.
-	price students: (aMeal prices at: 'students').
-	price employees: (aMeal prices at: 'employees').
-	price others: (aMeal prices at: 'others').
-	price pupils: (aMeal prices at: 'pupils').
+	price := (MWParser put: '[', aMeal prices asJsonString, ']' in: MWPrice) first.
 	price students ifNil: [price students: price others].
 	price employees ifNil: [price employees: price others].
 	price pupils ifNil: [price pupils: price students].
