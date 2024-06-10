@@ -30,3 +30,12 @@ MWColorTheme class >> secondaryColor [
 
 	^  Color fern lighter
 ]
+
+{
+	#category : #colors,
+	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:41'
+}
+MWColorTheme class >> transparentColor [
+
+	^  Color transparent
+]

@@ -61,15 +61,30 @@ MWFrame class >> scrollBarThickness [
 ]
 
 {
+	#category : #dayManipulation,
+	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:43'
+}
+MWFrame >> addMeals: aDate [
+
+	| contentMorph |
+	
+	contentMorph := self buildContentMorph.
+	(MWDataGettingWrapper getMealsOnDate: aDate yyyymmdd) do: 
+		[:each | contentMorph addMorph: each getCanteenMorph].
+	self contentMorph scroller addMorph: contentMorph
+
+	
+]
+
+{
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 20:55'
+	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:38'
 }
 MWFrame >> buildContentMorph [
 
-	^ AlignmentMorph newColumn
-		cellInset: self class cellSpacing;
-		hResizing: #shrinkWrap;
-		vResizing: #shrinkWrap
+	^ AlignmentMorph newColumn cellInset: self class cellSpacing;
+		 hResizing: #shrinkWrap;
+		 vResizing: #shrinkWrap
 ]
 
 {
@@ -152,19 +167,12 @@ MWFrame >> dayPicker: anObject [
 
 {
 	#category : #dayManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:53'
+	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:44'
 }
 MWFrame >> displayDay [
 
-	| contentMorph |
-	
-	"delete old content"
-	self contentMorph scroller submorphsDo: [:each | each abandon].
-	"create new content"
-	contentMorph := self buildContentMorph.
-	(MWDataGettingWrapper getMealsOnDate: self dayPicker date yyyymmdd) do: 
-		[:each | contentMorph addMorph: each getCanteenMorph].
-	self contentMorph scroller addMorph: contentMorph.
+	self removeMeals;
+		addMeals: self dayPicker date
 
 	
 ]
@@ -200,6 +208,17 @@ MWFrame >> removeMaximize [
 ]
 
 {
+	#category : #dayManipulation,
+	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:43'
+}
+MWFrame >> removeMeals [
+
+	
+	self contentMorph scroller submorphsDo: [:each | each abandon]
+	
+]
+
+{
 	#category : #creation,
 	#'squeak_changestamp' : 'Louis Christ 6/7/2024 11:07'
 }
@@ -213,7 +232,7 @@ MWFrame >> removeScalability [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 20:55'
+	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:38'
 }
 MWFrame >> showMealsFor: aDate [
 	
@@ -222,5 +241,5 @@ MWFrame >> showMealsFor: aDate [
 	contentMorph := self buildContentMorph.
 	(MWDataGettingWrapper getMealsOnDate: aDate) do: 
 		[:each | contentMorph addMorph: each getCanteenMorph].
-	self contentMorph scroller addMorph: contentMorph.
+	self contentMorph scroller addMorph: contentMorph
 ]

@@ -30,12 +30,12 @@ Class {
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 16:26'
+	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:41'
 }
 MWMenuBar class >> getArrowButton [
 
 	^ PolygonMorph new
-		setVertices: { 0@0. 0@20. 20@10 };
+		setVertices: {0 @ 0. 0 @ 20. 20 @ 10};
 		color: MWColorTheme secondaryColor;
 		addFlexShellIfNecessary; 
 		yourself
@@ -189,7 +189,7 @@ MWMenuBar >> increaseDate: aEvent [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:52'
+	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:42'
 }
 MWMenuBar >> initialize [
 	
@@ -198,7 +198,7 @@ MWMenuBar >> initialize [
 		hResizing: #spaceFill;
 		vResizing: #shrinkWrap;
 		cellPositioning: #center;
-		color: Color paleGreen darker darker;
+		color: MWColorTheme primaryColor;
 		cellGap: 30;
 		createLayout
 
