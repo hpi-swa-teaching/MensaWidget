@@ -66,24 +66,24 @@ MWFrame class >> scrollBarThickness [
 ]
 
 {
-	#category : #creation,
-	#'squeak_changestamp' : 'tmc 6/10/2024 18:13'
+	#category : #scalablity,
+	#'squeak_changestamp' : 'tmc 6/10/2024 20:31'
 }
 MWFrame >> addExpandBox [
 
-	^nil
+	^ nil
  	
 
 
 ]
 
 {
-	#category : #creation,
-	#'squeak_changestamp' : 'tmc 6/10/2024 18:12'
+	#category : #scalablity,
+	#'squeak_changestamp' : 'tmc 6/10/2024 20:31'
 }
 MWFrame >> addGrips [
 
-	^nil
+	^ nil
 
 
 ]
@@ -106,12 +106,12 @@ MWFrame >> buildFrameContent [
 ]
 
 {
-	#category : #creation,
-	#'squeak_changestamp' : 'tmc 6/10/2024 18:12'
+	#category : #scalablity,
+	#'squeak_changestamp' : 'tmc 6/10/2024 20:31'
 }
 MWFrame >> expandToFullScreen [
 
-	^nil
+	^ nil
  	
 
 
@@ -137,7 +137,7 @@ MWFrame >> fillContentMorph: aContentMorph [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'tmc 6/10/2024 15:25'
+	#'squeak_changestamp' : 'tmc 6/10/2024 20:42'
 }
 MWFrame >> initialize [
 	
@@ -145,33 +145,6 @@ MWFrame >> initialize [
 	self setLabel:'Mensa Widget';
 		buildFrameContent;
 		openInWorld;
-		extent: self class frameSize;
-		"removeMaximize;"
-		removeScalability
-]
-
-{
-	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 11:00'
-}
-MWFrame >> removeMaximize [
+		extent: self class frameSize.
 	
-	self submorphsDo: [:each | 
-	each class = AlignmentMorph ifTrue: 
-		[each submorphsDo: [:each2 |
-			(each2 class = SystemWindowButton and:
-				[each2 actionSelector = #expandBoxHit]) 
-					ifTrue: [each2 abandon]]]]
-]
-
-{
-	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 11:07'
-}
-MWFrame >> removeScalability [
-
-	self submorphsDo: [:each |
-		(each class superclass = BorderGripMorph or: 
-			[each class superclass = CornerGripMorph]) 
-				ifTrue: [each abandon]]
 ]
