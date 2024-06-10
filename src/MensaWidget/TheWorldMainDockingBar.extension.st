@@ -2,13 +2,14 @@ Extension { #name : #TheWorldMainDockingBar }
 
 {
 	#category : #'*MensaWidget-override',
-	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:36'
+	#'squeak_changestamp' : 'Louis Christ 6/10/2024 23:33'
 }
 TheWorldMainDockingBar >> mensaMenuOn: aDockingBar [
 	"Create a menu with the options for MensaWidget"
 
 	aDockingBar addItem: [:item |
 		item icon: ((GitAssetLoader for: 'MensaWidget') loadForm: '/icons/mensa_icon.png');
+			name: 'MensaMenu';
 			addSubMenu: [:menu | 
 				menu addItem: [:menuItem |
 					menuItem contents: 'Potsdam' translated;
@@ -62,12 +63,12 @@ TheWorldMainDockingBar >> menusOn: aDockingBar [
 
 {
 	#category : #'*MensaWidget-override',
-	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:32'
+	#'squeak_changestamp' : 'Louis Christ 6/11/2024 00:17'
 }
 TheWorldMainDockingBar >> openMensaWidget [
 	"Open the mensa widget"
 
-	MWFrame new openInWorld
+	^ MWFrame new openInWorld
 
 ]
 
