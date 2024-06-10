@@ -1,18 +1,21 @@
 "
-A MWFrame is the base block for the useer interface of the widget.
+A MWFrame is the base block for the user interface of the widget.
 
 Instance Variables
+	contentMorph:		<AlignmentMorph>
+
+contentMorph
+	- Morph that has all meals als submorphs
 
 "
 Class {
 	#name : #MWFrame,
 	#superclass : #PluggableSystemWindow,
 	#instVars : [
-		'contentMorph',
-		'dayPicker'
+		'contentMorph'
 	],
 	#category : #MensaWidget,
-	#'squeak_changestamp' : 'Louis Christ 5/27/2024 19:43'
+	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:59'
 }
 
 {
@@ -106,12 +109,11 @@ MWFrame >> buildLayout [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:51'
+	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:59'
 }
 MWFrame >> buildMenuBar [
 	
-	^ self dayPicker: (MWMenuBar new target: self);
-		dayPicker
+	^ MWMenuBar new target: self
 ]
 
 {
@@ -148,31 +150,13 @@ MWFrame >> contentMorph: anObject [
 ]
 
 {
-	#category : #accessing,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:54'
-}
-MWFrame >> dayPicker [
-
-	^ dayPicker
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:54'
-}
-MWFrame >> dayPicker: anObject [
-
-	dayPicker := anObject
-]
-
-{
 	#category : #dayManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:44'
+	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:58'
 }
-MWFrame >> displayDay [
+MWFrame >> displayDay: aDate [
 
 	self removeMeals;
-		addMeals: self dayPicker date
+		addMeals: aDate
 
 	
 ]
@@ -209,11 +193,10 @@ MWFrame >> removeMaximize [
 
 {
 	#category : #dayManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:43'
+	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:57'
 }
 MWFrame >> removeMeals [
 
-	
 	self contentMorph scroller submorphsDo: [:each | each abandon]
 	
 ]

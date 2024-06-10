@@ -224,11 +224,11 @@ MWMenuBar >> target: anObject [
 
 {
 	#category : #dateManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 21:06'
+	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:59'
 }
 MWMenuBar >> updateDate [
 
 	self dateDisplay contents: self date asString.
-	self target ifNotNil: [self target displayDay]
+	self target ifNotNil: [self target displayDay: self date]
 	
 ]
