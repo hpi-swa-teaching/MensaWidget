@@ -1,7 +1,14 @@
+"
+A MWColorTheme is a class that stores the colors for the widget centrally.
+
+Instance Variables
+
+"
 Class {
 	#name : #MWColorTheme,
 	#superclass : #Object,
-	#category : #MensaWidget
+	#category : #MensaWidget,
+	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:47'
 }
 
 {
