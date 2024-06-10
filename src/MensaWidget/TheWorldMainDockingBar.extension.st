@@ -2,7 +2,7 @@ Extension { #name : #TheWorldMainDockingBar }
 
 {
 	#category : #'*MensaWidget-override',
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:10'
+	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:36'
 }
 TheWorldMainDockingBar >> mensaMenuOn: aDockingBar [
 	"Create a menu with the options for MensaWidget"
@@ -11,18 +11,18 @@ TheWorldMainDockingBar >> mensaMenuOn: aDockingBar [
 		item icon: ((GitAssetLoader for: 'MensaWidget') loadForm: '/icons/mensa_icon.png');
 			addSubMenu: [:menu | 
 				menu addItem: [:menuItem |
-						menuItem contents: 'Potsdam' translated;
-							help: 'open mensa widget' translated;
-							target: self;
-							selector: #openMensaWidget].
+					menuItem contents: 'Potsdam' translated;
+						help: 'open mensa widget' translated;
+						target: self;
+						selector: #openMensaWidget].
 				menu addItem: [:menuItem |
-						menuItem contents: 'Other citys' translated;
-							help: 'open mensa widget location picker' translated;
-							target: self].
+					menuItem contents: 'Other citys' translated;
+						help: 'open mensa widget location picker' translated;
+						target: self].
 				menu addItem: [:menuItem |
-						menuItem contents: 'Settings' translated;
-							help: 'open mensa widget settings' translated;
-							target: self]]]
+					menuItem contents: 'Settings' translated;
+						help: 'open mensa widget settings' translated;
+						target: self]]]
 
 ]
 
@@ -62,12 +62,12 @@ TheWorldMainDockingBar >> menusOn: aDockingBar [
 
 {
 	#category : #'*MensaWidget-override',
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:09'
+	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:32'
 }
 TheWorldMainDockingBar >> openMensaWidget [
 	"Open the mensa widget"
 
-	MWFrame new openInWorld.
+	MWFrame new openInWorld
 
 ]
 
