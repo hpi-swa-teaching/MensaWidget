@@ -48,6 +48,33 @@ MWMeal class >> avgLineLenght [
 ]
 
 {
+	#category : #meals,
+	#'squeak_changestamp' : 'Max 6/10/2024 20:04'
+}
+MWMeal class >> emptyMeal [
+
+	^ MWMeal new id: nil;
+		name: 'Heute gibt es kein Essen.' translated;
+		category: nil;
+		notes: nil;
+		prices: MWPrice emptyPrice
+		
+]
+
+{
+	#category : #meals,
+	#'squeak_changestamp' : 'Max 6/10/2024 20:04'
+}
+MWMeal class >> hotCounter [
+
+	^ MWMeal new id: nil;
+		name: 'Heiße Theke 100 g' translated;
+		category: 'lunch';
+		notes: nil;
+		prices: MWPrice hotCounterPrice
+]
+
+{
 	#category : #constants,
 	#'squeak_changestamp' : 'Oscar 6/5/2024 00:07'
 }
@@ -63,6 +90,19 @@ MWMeal class >> mealMorphColor [
 MWMeal class >> mealMorphWidth [
 
 	^ 400
+]
+
+{
+	#category : #meals,
+	#'squeak_changestamp' : 'Max 6/10/2024 20:04'
+}
+MWMeal class >> saladBar [
+
+	^ MWMeal new id: nil;
+		name: 'Salatbar 100 g' translated;
+		category: 'lunch';
+		notes: nil;
+		prices: MWPrice saladBarPrice
 ]
 
 {
@@ -117,12 +157,12 @@ MWMeal >> getNameMorph [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 11:00'
+	#'squeak_changestamp' : 'Max 6/10/2024 21:09'
 }
 MWMeal >> getPriceMorph [
 
 	^ TextMorph new
-		contents: ((self prices at: 'students') ifNil: [0.00]) asString;
+		contents: ((self prices students) ifNil: [0.00]) asString;
 		readOnly: true;
 		yourself
 ]
@@ -159,21 +199,21 @@ MWMeal >> id: anObject [
 ]
 
 {
-	#category : #display,
-	#'squeak_changestamp' : 'Max 6/10/2024 19:30'
+	#category : #checks,
+	#'squeak_changestamp' : 'Max 6/10/2024 20:12'
 }
 MWMeal >> isHotCounter [
 
-	^ self name beginsWith: 'Preis pro 100 g'
+	^ self category = 'Heiße Theke'
 ]
 
 {
-	#category : #display,
-	#'squeak_changestamp' : 'Max 6/10/2024 19:30'
+	#category : #checks,
+	#'squeak_changestamp' : 'Max 6/10/2024 20:13'
 }
 MWMeal >> isSaladBar [
 
-	^ self name beginsWith: 'große Schale'
+	^ self category = 'Salattheke'
 ]
 
 {

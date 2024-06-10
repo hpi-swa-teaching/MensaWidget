@@ -5,68 +5,30 @@ Class {
 }
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Max 6/10/2024 19:12'
+	#category : #cleaning,
+	#'squeak_changestamp' : 'Max 6/10/2024 20:22'
 }
 MWMealCleaner class >> clean: aMealList [
 	
-	| newMealList meal |
+	| newMealList |
 	
 	newMealList := OrderedCollection new.
-	aMealList empty ifTrue: [^ newMealList add: self emptyMeal].
+	aMealList isEmpty ifTrue: [^ newMealList add: MWMeal emptyMeal].
 	aMealList do: [:each |
-		meal := each.
-		each isSaladBar ifTrue: [meal := self saladBar].
-		each isHotCounter ifTrue: [meal := self hotCounter].
-		self fixPrices: meal.
-		self fixCategories: meal.
-		newMealList add: meal].
+		newMealList add: (self fixMeal: each)].
 	^ newMealList
 		
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Max 6/10/2024 19:45'
-}
-MWMealCleaner class >> emptyMeal [
-
-	^ MWMeal new id: nil;
-		name: 'Heute gibt es kein Essen.' translated;
-		category: nil;
-		notes: nil;
-		prices: self emptyPrice
-		
-		
-		
-		
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Max 6/10/2024 19:45'
-}
-MWMealCleaner class >> emptyPrice [
-
-	^ MWPrice new students: nil;
-		employees: nil;
-		others: nil;
-		pupils: nil
-	
-	
-	
-		
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Max 6/10/2024 19:49'
+	#category : #cleaning,
+	#'squeak_changestamp' : 'Max 6/10/2024 20:02'
 }
 MWMealCleaner class >> fixCategories: aMeal [
 
 	aMeal category ifNil: [^ nil].
-	(aMeal category beginsWith: 'Abend') ifTrue: [aMeal category: 'dinner'. ^ nil].
-	aMeal category: 'lunch'
+	(aMeal category beginsWith: 'Abend') ifTrue: [aMeal category: 'dinner'].
+	aMeal category = 'dinner' ifFalse: [aMeal category: 'lunch']
 	
 	
 	
@@ -74,88 +36,43 @@ MWMealCleaner class >> fixCategories: aMeal [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Max 6/10/2024 19:45'
+	#category : #cleaning,
+	#'squeak_changestamp' : 'Max 6/10/2024 20:47'
+}
+MWMealCleaner class >> fixMeal: aMeal [
+
+	| meal |
+	
+	meal := aMeal.
+	meal isSaladBar ifTrue: [meal := MWMeal saladBar].
+	meal isHotCounter ifTrue: [meal := MWMeal hotCounter].
+	self fixPrices: meal.
+	self fixCategories: meal.
+	^ meal
+		
+]
+
+{
+	#category : #cleaning,
+	#'squeak_changestamp' : 'Max 6/10/2024 21:01'
 }
 MWMealCleaner class >> fixPrices: aMeal [
 	
 	| price |
 	
-	aMeal prices ifNil: [aMeal prices: self emptyPrice. ^ nil].
-	price := aMeal prices: (MWParser put: aMeal prices in: MWPrice) first.
+	aMeal prices ifNil: [aMeal prices: MWPrice emptyPrice. 
+		^ nil].
+	aMeal prices class = MWPrice ifTrue: [^ nil].
+	"price := aMeal prices: (MWParser put: aMeal prices transform to string in: MWPrice) first."
+	price := MWPrice new.
+	price students: (aMeal prices at: 'students').
+	price employees: (aMeal prices at: 'employees').
+	price others: (aMeal prices at: 'others').
+	price pupils: (aMeal prices at: 'pupils').
 	price students ifNil: [price students: price others].
-	price students = 0.0 ifTrue: [price students: price others].
 	price employees ifNil: [price employees: price others].
-	price employees = 0.0 ifTrue: [price employees: price others].
-	price pupils: price students.
+	price pupils ifNil: [price pupils: price students]
 	
 	
 	
-		
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Max 6/10/2024 19:25'
-}
-MWMealCleaner class >> hotCounter [
-
-	^ MWMeal new id: nil;
-		name: 'Heiße Theke 100 g' translated;
-		category: 'lunch';
-		notes: nil;
-		prices: self hotCounterPrice
-		
-		
-		
-		
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Max 6/10/2024 19:34'
-}
-MWMealCleaner class >> hotCounterPrice [
-
-	^ MWPrice new students: 0.60;
-		employees: 0.60;
-		others: 1.10;
-		pupils: 0.60
-		
-		
-		
-		
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Max 6/10/2024 19:25'
-}
-MWMealCleaner class >> saladBar [
-
-	^ MWMeal new id: nil;
-		name: 'Salatbar 100 g' translated;
-		category: 'lunch';
-		notes: nil;
-		prices: self saladBarPrice
-		
-		
-		
-		
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Max 6/10/2024 19:35'
-}
-MWMealCleaner class >> saladBarPrice [
-
-	^ MWPrice new students: 1.10;
-		employees: 1.10;
-		others: 1.60;
-		pupils: 1.10
-		
-		
-		
-		
 ]

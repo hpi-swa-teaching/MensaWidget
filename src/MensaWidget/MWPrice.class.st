@@ -11,6 +11,42 @@ Class {
 }
 
 {
+	#category : #prices,
+	#'squeak_changestamp' : 'Max 6/10/2024 20:00'
+}
+MWPrice class >> emptyPrice [
+
+	^ MWPrice new students: nil;
+		employees: nil;
+		others: nil;
+		pupils: nil
+]
+
+{
+	#category : #prices,
+	#'squeak_changestamp' : 'Max 6/10/2024 20:00'
+}
+MWPrice class >> hotCounterPrice [
+
+	^ MWPrice new students: 0.60;
+		employees: 0.60;
+		others: 1.10;
+		pupils: 0.60
+]
+
+{
+	#category : #prices,
+	#'squeak_changestamp' : 'Max 6/10/2024 20:00'
+}
+MWPrice class >> saladBarPrice [
+
+	^ MWPrice new students: 1.10;
+		employees: 1.10;
+		others: 1.60;
+		pupils: 1.10
+]
+
+{
 	#category : #accessing,
 	#'squeak_changestamp' : 'Max 6/10/2024 18:47'
 }
@@ -36,10 +72,10 @@ MWPrice >> others [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Max 6/10/2024 18:47'
+	#'squeak_changestamp' : 'Max 6/10/2024 21:03'
 }
 MWPrice >> others: anObject [
-	others := anObject
+	others := anObject.
 ]
 
 {
