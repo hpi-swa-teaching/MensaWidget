@@ -1,4 +1,11 @@
 [
+	SquotBlobMapper {
+		#path : FSAbsolutePath [
+			'fonts',
+			'eurosign-fallback.ttf'
+		],
+		#encoding : 'bin'
+	},
 	SquotTonelMapper {
 		#package : MCPackage {
 			#name : 'MensaWidget'
