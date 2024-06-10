@@ -67,6 +67,29 @@ MWFrame class >> scrollBarThickness [
 
 {
 	#category : #creation,
+	#'squeak_changestamp' : 'tmc 6/10/2024 15:36'
+}
+MWFrame >> addExpandBox [
+
+	^0
+ 	
+
+
+]
+
+{
+	#category : #creation,
+	#'squeak_changestamp' : 'tmc 6/10/2024 15:24'
+}
+MWFrame >> addGrips [
+
+	^0.
+
+
+]
+
+{
+	#category : #creation,
 	#'squeak_changestamp' : 'tmc 6/6/2024 21:37'
 }
 MWFrame >> buildFrameContent [
@@ -80,6 +103,29 @@ MWFrame >> buildFrameContent [
 		position: self class contentPosition;
 		extent: self class contentExtent.
 	self addPaneMorph: contentMorph
+]
+
+{
+	#category : #creation,
+	#'squeak_changestamp' : 'tmc 6/10/2024 15:35'
+}
+MWFrame >> createExpandBox [
+
+ 	
+
+
+]
+
+{
+	#category : #creation,
+	#'squeak_changestamp' : 'tmc 6/10/2024 15:37'
+}
+MWFrame >> expandToFullScreen [
+
+	^0
+ 	
+
+
 ]
 
 {
@@ -102,7 +148,7 @@ MWFrame >> fillContentMorph: aContentMorph [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 10:59'
+	#'squeak_changestamp' : 'tmc 6/10/2024 15:25'
 }
 MWFrame >> initialize [
 	
@@ -111,7 +157,7 @@ MWFrame >> initialize [
 		buildFrameContent;
 		openInWorld;
 		extent: self class frameSize;
-		removeMaximize;
+		"removeMaximize;"
 		removeScalability
 ]
 
