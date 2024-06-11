@@ -157,14 +157,29 @@ MWMeal >> getNameMorph [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Max 6/11/2024 11:56'
+	#'squeak_changestamp' : 'Max 6/11/2024 21:13'
 }
 MWMeal >> getPriceMorph [
 
 	^ TextMorph new
-		contents: ((self prices students) ifNil: [' ']) asString;
+		contents: self getPriceStream contents;
 		readOnly: true;
 		yourself
+]
+
+{
+	#category : #display,
+	#'squeak_changestamp' : 'Max 6/11/2024 21:13'
+}
+MWMeal >> getPriceStream [
+
+	| priceStream |
+	
+	priceStream := WriteStream on: String new.
+    	(self prices students) 
+		ifNil: [' '] 
+		ifNotNil: [:price | price printOn: priceStream showingDecimalPlaces: 2].
+	^ priceStream
 ]
 
 {
