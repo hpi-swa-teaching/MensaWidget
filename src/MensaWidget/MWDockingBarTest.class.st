@@ -62,13 +62,12 @@ MWDockingBarTest >> testOpenWidget [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 6/11/2024 00:03'
+	#'squeak_changestamp' : 'Louis Christ 6/11/2024 11:35'
 }
 MWDockingBarTest >> testPreferenceExists [
 
-	self assert: 
-		((TheWorldMainDockingBar respondsTo: #showMensaMenuInWorldMainDockingBar) and: 
-		[TheWorldMainDockingBar respondsTo: #showMensaMenuInWorldMainDockingBar:])
+	self assert: (TheWorldMainDockingBar respondsTo: #showMensaMenuInWorldMainDockingBar);
+		assert: (TheWorldMainDockingBar respondsTo: #showMensaMenuInWorldMainDockingBar:)
 ]
 
 {
