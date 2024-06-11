@@ -151,7 +151,7 @@ MWFrame >> contentMorph: anObject [
 
 {
 	#category : #dayManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:58'
+	#'squeak_changestamp' : 'Louis Christ 6/11/2024 11:54'
 }
 MWFrame >> displayDay: aDate [
 
@@ -163,7 +163,7 @@ MWFrame >> displayDay: aDate [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 16:02'
+	#'squeak_changestamp' : 'Louis Christ 6/11/2024 11:54'
 }
 MWFrame >> initialize [
 	
