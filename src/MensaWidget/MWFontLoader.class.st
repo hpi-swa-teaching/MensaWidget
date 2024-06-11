@@ -1,7 +1,14 @@
+"
+A MWFontLoader is a tool for loading a fallback font that includes Unicode character U+20AC, the eurosign.
+
+Instance Variables
+
+"
 Class {
 	#name : #MWFontLoader,
 	#superclass : #Object,
-	#category : #MensaWidget
+	#category : #MensaWidget,
+	#'squeak_changestamp' : 'Max 6/11/2024 20:42'
 }
 
 {
