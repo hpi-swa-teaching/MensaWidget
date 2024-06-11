@@ -1,19 +1,27 @@
+"
+A MWMealCleaner is a FIlter for Meal lists provided by the parsing after processing the JSON Strring.
+
+Instance Variables
+
+"
 Class {
 	#name : #MWMealCleaner,
 	#superclass : #Object,
-	#category : #MensaWidget
+	#category : #MensaWidget,
+	#'squeak_changestamp' : 'Max 6/11/2024 10:40'
 }
 
 {
 	#category : #cleaning,
-	#'squeak_changestamp' : 'Max 6/10/2024 20:22'
+	#'squeak_changestamp' : 'Max 6/11/2024 10:33'
 }
 MWMealCleaner class >> clean: aMealList [
 	
 	| newMealList |
 	
 	newMealList := OrderedCollection new.
-	aMealList isEmpty ifTrue: [^ newMealList add: MWMeal emptyMeal].
+	aMealList isEmpty ifTrue: [^ newMealList add: MWMeal emptyMeal; 
+		yourself].
 	aMealList do: [:each |
 		newMealList add: (self fixMeal: each)].
 	^ newMealList

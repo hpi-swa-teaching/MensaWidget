@@ -49,12 +49,12 @@ MWMeal class >> avgLineLenght [
 
 {
 	#category : #meals,
-	#'squeak_changestamp' : 'Max 6/10/2024 20:04'
+	#'squeak_changestamp' : 'Max 6/11/2024 10:37'
 }
 MWMeal class >> emptyMeal [
 
 	^ MWMeal new id: nil;
-		name: 'Heute gibt es kein Essen.' translated;
+		name: 'Hier gibt es nichts zu sehen.' translated;
 		category: nil;
 		notes: nil;
 		prices: MWPrice emptyPrice
