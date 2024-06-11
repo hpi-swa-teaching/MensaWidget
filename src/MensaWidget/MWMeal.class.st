@@ -157,12 +157,12 @@ MWMeal >> getNameMorph [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Max 6/10/2024 21:25'
+	#'squeak_changestamp' : 'Max 6/11/2024 11:56'
 }
 MWMeal >> getPriceMorph [
 
 	^ TextMorph new
-		contents: ((self prices students) ifNil: ['none']) asString;
+		contents: ((self prices students) ifNil: [' ']) asString;
 		readOnly: true;
 		yourself
 ]

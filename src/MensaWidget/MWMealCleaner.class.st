@@ -13,7 +13,7 @@ Class {
 
 {
 	#category : #cleaning,
-	#'squeak_changestamp' : 'Max 6/11/2024 10:33'
+	#'squeak_changestamp' : 'Max 6/11/2024 18:25'
 }
 MWMealCleaner class >> clean: aMealList [
 	
@@ -22,8 +22,7 @@ MWMealCleaner class >> clean: aMealList [
 	newMealList := OrderedCollection new.
 	aMealList isEmpty ifTrue: [^ newMealList add: MWMeal emptyMeal; 
 		yourself].
-	aMealList do: [:each |
-		newMealList add: (self fixMeal: each)].
+	aMealList do: [:each | newMealList add: (self fixMeal: each)].
 	^ newMealList
 		
 ]
