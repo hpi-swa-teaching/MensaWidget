@@ -90,6 +90,15 @@ MWFrame >> addGrips [
 
 {
 	#category : #creation,
+	#'squeak_changestamp' : 'tmc 6/11/2024 10:50'
+}
+MWFrame >> bound [
+
+	^ nil
+]
+
+{
+	#category : #creation,
 	#'squeak_changestamp' : 'tmc 6/6/2024 21:37'
 }
 MWFrame >> buildFrameContent [
@@ -137,7 +146,7 @@ MWFrame >> fillContentMorph: aContentMorph [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'tmc 6/10/2024 20:42'
+	#'squeak_changestamp' : 'tmc 6/11/2024 10:50'
 }
 MWFrame >> initialize [
 	
@@ -146,5 +155,15 @@ MWFrame >> initialize [
 		buildFrameContent;
 		openInWorld;
 		extent: self class frameSize.
+
 	
+]
+
+{
+	#category : #creation,
+	#'squeak_changestamp' : 'tmc 6/11/2024 11:32'
+}
+MWFrame >> setExtentFromHalo: anExtent [
+
+	^ nil
 ]
