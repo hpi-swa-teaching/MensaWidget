@@ -1,5 +1,5 @@
 "
-A MWMealCleaner is a FIlter for Meal lists provided by the parsing after processing the JSON Strring.
+A MWMealCleaner is a FIlter for Meal lists provided by the parsing after processing the JSON String.
 
 Instance Variables
 
@@ -8,7 +8,7 @@ Class {
 	#name : #MWMealCleaner,
 	#superclass : #Object,
 	#category : #MensaWidget,
-	#'squeak_changestamp' : 'Max 6/11/2024 10:40'
+	#'squeak_changestamp' : 'Max 6/11/2024 20:46'
 }
 
 {
@@ -44,7 +44,7 @@ MWMealCleaner class >> fixCategories: aMeal [
 
 {
 	#category : #cleaning,
-	#'squeak_changestamp' : 'Max 6/10/2024 20:47'
+	#'squeak_changestamp' : 'Max 6/11/2024 20:45'
 }
 MWMealCleaner class >> fixMeal: aMeal [
 
@@ -53,8 +53,8 @@ MWMealCleaner class >> fixMeal: aMeal [
 	meal := aMeal.
 	meal isSaladBar ifTrue: [meal := MWMeal saladBar].
 	meal isHotCounter ifTrue: [meal := MWMeal hotCounter].
-	self fixPrices: meal.
-	self fixCategories: meal.
+	self fixPrices: meal;
+	 	fixCategories: meal.
 	^ meal
 		
 ]
