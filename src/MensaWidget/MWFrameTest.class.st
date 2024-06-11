@@ -83,6 +83,70 @@ MWFrameTest >> testCorrectTitle [
 
 {
 	#category : #tests,
+	#'squeak_changestamp' : 'tmc 6/11/2024 18:17'
+}
+MWFrameTest >> testForButton [
+
+	| bool |
+	
+	bool := true.
+	self widgetFrame submorphsDo: [:each |
+		each submorphsDo: [:each2 |
+			(each2 respondsTo: #actionSelector) ifTrue: [
+				(each2 actionSelector = #expandBoxHit) ifTrue: [bool:= false]]]].	
+	self assert: bool
+
+]
+
+{
+	#category : #tests,
+	#'squeak_changestamp' : 'tmc 6/11/2024 18:17'
+}
+MWFrameTest >> testFullScreen [
+	
+	| bool size | 
+	
+	size := 1 @ 1.
+	bool := false.
+	self widgetFrame extent: size.
+	self widgetFrame expandToFullScreen.
+	(self widgetFrame extent = size) ifTrue: [bool := true].
+	self assert: bool
+]
+
+{
+	#category : #tests,
+	#'squeak_changestamp' : 'tmc 6/11/2024 17:07'
+}
+MWFrameTest >> testGripMorphs [
+
+	| bool |
+	
+	bool := true.
+	self widgetFrame submorphsDo: [:each | 
+		(each class  inheritsFrom:CornerGripMorph) ifTrue:
+		[bool := false]].
+	self assert: bool
+]
+
+{
+	#category : #tests,
+	#'squeak_changestamp' : 'tmc 6/11/2024 18:18'
+}
+MWFrameTest >> testHalo [
+	
+	| bool size | 
+	
+	size := 1 @ 1.
+	bool := false.
+	self widgetFrame extent: size.
+	self widgetFrame setExtentFromHalo: 5 @ 5.
+	(self widgetFrame extent = size) ifTrue: [bool := true].
+	self assert: bool
+]
+
+{
+	#category : #tests,
 	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:42'
 }
 MWFrameTest >> testOpened [

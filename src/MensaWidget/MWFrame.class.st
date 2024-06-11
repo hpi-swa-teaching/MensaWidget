@@ -67,13 +67,11 @@ MWFrame class >> scrollBarThickness [
 
 {
 	#category : #scalablity,
-	#'squeak_changestamp' : 'tmc 6/10/2024 20:31'
+	#'squeak_changestamp' : 'tmc 6/11/2024 18:16'
 }
 MWFrame >> addExpandBox [
 
 	^ nil
- 	
-
 
 ]
 
