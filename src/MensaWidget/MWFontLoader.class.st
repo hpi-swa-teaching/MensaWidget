@@ -22,7 +22,7 @@ MWFontLoader class >> fontAsset [
 
 {
 	#category : #'font loading',
-	#'squeak_changestamp' : 'Max 6/11/2024 18:58'
+	#'squeak_changestamp' : 'Max 6/11/2024 20:42'
 }
 MWFontLoader class >> loadFallbackFont [
 	
@@ -30,6 +30,6 @@ MWFontLoader class >> loadFallbackFont [
 	
 	fontReader := TTFontReader readFrom: self fontAsset readStream.
 	font := TTCFont newTextStyleFromTT: fontReader first.
-	TextStyle setDefaultFallback: font.	
-	TextStyle installDefaultFallbackTextStyle
+	TextStyle setDefaultFallback: font;
+		installDefaultFallbackTextStyle
 ]
