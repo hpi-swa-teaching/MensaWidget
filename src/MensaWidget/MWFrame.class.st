@@ -156,12 +156,3 @@ MWFrame >> initialize [
 
 	
 ]
-
-{
-	#category : #creation,
-	#'squeak_changestamp' : 'tmc 6/11/2024 11:32'
-}
-MWFrame >> setExtentFromHalo: anExtent [
-
-	^ nil
-]

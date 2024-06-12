@@ -100,14 +100,13 @@ MWFrameTest >> testForButton [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'tmc 6/12/2024 12:01'
+	#'squeak_changestamp' : 'tmc 6/12/2024 16:58'
 }
 MWFrameTest >> testFullScreen [
 	
 	| size | 
 	
 	size := 1 @ 1.
-
 	self widgetFrame extent: size;
 		assert: (self widgetFrame extent = size).
 	self widgetFrame expandToFullScreen;
@@ -128,23 +127,6 @@ MWFrameTest >> testGripMorphs [
 		(each class inheritsFrom:CornerGripMorph) ifTrue:
 			[bool := false]].
 	self assert: bool
-]
-
-{
-	#category : #tests,
-	#'squeak_changestamp' : 'tmc 6/12/2024 12:03'
-}
-MWFrameTest >> testHalo [
-	
-	| size | 
-	
-	size := 1 @ 1.
-
-	self widgetFrame extent: size;
-		assert: (self widgetFrame extent = size).
-	self widgetFrame setExtentFromHalo: 5 @ 5;
-		assert: (self widgetFrame extent = size).
-	
 ]
 
 {
