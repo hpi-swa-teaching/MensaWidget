@@ -65,7 +65,7 @@ MWMealCleanerTest >> brokenSaladBar [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Max 6/11/2024 18:42'
+	#'squeak_changestamp' : 'Max 6/12/2024 13:52'
 }
 MWMealCleanerTest >> testEmptyMealList [
 	
@@ -74,13 +74,12 @@ MWMealCleanerTest >> testEmptyMealList [
 	self assert: mealList size = 1;
 		assert: mealList first name = 'Hier gibt es nichts zu sehen.';
 		assert: mealList first category isNil;
-		assert: mealList first notes isNil;
-		assert: mealList first prices class = MWPrice
+		assert: mealList first notes isNil
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Max 6/11/2024 18:35'
+	#'squeak_changestamp' : 'Max 6/12/2024 13:55'
 }
 MWMealCleanerTest >> testFixPrice [
 
@@ -88,14 +87,14 @@ MWMealCleanerTest >> testFixPrice [
 	
 	mealList := MWMealCleaner clean: (OrderedCollection new add: self brokenPriceMeal;
 		yourself).
-	self assert: mealList first prices students = 7.5;
-		assert: mealList first prices employees = 7.5;
-		assert: mealList first prices pupils = 7.5
+	self assert: (mealList first prices at: 'students') = 7.5;
+		assert: (mealList first prices at: 'employees') = 7.5;
+		assert: (mealList first prices at: 'pupils') = 7.5
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Max 6/11/2024 18:36'
+	#'squeak_changestamp' : 'Max 6/12/2024 13:53'
 }
 MWMealCleanerTest >> testHotCounterList [
 
@@ -105,13 +104,12 @@ MWMealCleanerTest >> testHotCounterList [
 		yourself).
 	self assert: mealList first name = 'Heiße Theke 100 g';
 		assert: mealList first category = 'lunch';
-		assert: mealList first notes isNil;
-		assert: mealList first prices class = MWPrice
+		assert: mealList first notes isNil
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Max 6/11/2024 18:36'
+	#'squeak_changestamp' : 'Max 6/12/2024 13:53'
 }
 MWMealCleanerTest >> testSaladBarList [
 
@@ -121,8 +119,7 @@ MWMealCleanerTest >> testSaladBarList [
 		yourself).
 	self assert: mealList first name = 'Salatbar 100 g';
 		assert: mealList first category = 'lunch';
-		assert: mealList first notes isNil;
-		assert: mealList first prices class = MWPrice
+		assert: mealList first notes isNil
 ]
 
 {

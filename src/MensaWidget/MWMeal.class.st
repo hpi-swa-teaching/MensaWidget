@@ -48,33 +48,6 @@ MWMeal class >> avgLineLenght [
 ]
 
 {
-	#category : #meals,
-	#'squeak_changestamp' : 'Max 6/11/2024 10:37'
-}
-MWMeal class >> emptyMeal [
-
-	^ MWMeal new id: nil;
-		name: 'Hier gibt es nichts zu sehen.' translated;
-		category: nil;
-		notes: nil;
-		prices: MWPrice emptyPrice
-		
-]
-
-{
-	#category : #meals,
-	#'squeak_changestamp' : 'Max 6/10/2024 20:04'
-}
-MWMeal class >> hotCounter [
-
-	^ MWMeal new id: nil;
-		name: 'Heiße Theke 100 g' translated;
-		category: 'lunch';
-		notes: nil;
-		prices: MWPrice hotCounterPrice
-]
-
-{
 	#category : #constants,
 	#'squeak_changestamp' : 'Oscar 6/5/2024 00:07'
 }
@@ -90,19 +63,6 @@ MWMeal class >> mealMorphColor [
 MWMeal class >> mealMorphWidth [
 
 	^ 400
-]
-
-{
-	#category : #meals,
-	#'squeak_changestamp' : 'Max 6/10/2024 20:04'
-}
-MWMeal class >> saladBar [
-
-	^ MWMeal new id: nil;
-		name: 'Salatbar 100 g' translated;
-		category: 'lunch';
-		notes: nil;
-		prices: MWPrice saladBarPrice
 ]
 
 {
@@ -169,14 +129,14 @@ MWMeal >> getPriceMorph [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Max 6/11/2024 21:13'
+	#'squeak_changestamp' : 'Max 6/12/2024 13:51'
 }
 MWMeal >> getPriceStream [
 
 	| priceStream |
 	
 	priceStream := WriteStream on: String new.
-    	(self prices students) 
+    	(self prices at: 'students') 
 		ifNil: [' '] 
 		ifNotNil: [:price | price printOn: priceStream showingDecimalPlaces: 2].
 	^ priceStream
