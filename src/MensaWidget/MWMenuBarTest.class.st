@@ -77,11 +77,11 @@ MWMenuBarTest >> setUp [
 
 {
 	#category : #environment,
-	#'squeak_changestamp' : 'Louis Christ 6/11/2024 00:20'
+	#'squeak_changestamp' : 'Louis Christ 6/12/2024 15:27'
 }
 MWMenuBarTest >> tearDown [
 
-	self mensaWidget abandon.
+	self mensaWidget abandon
 ]
 
 {
