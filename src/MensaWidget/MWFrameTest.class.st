@@ -83,40 +83,41 @@ MWFrameTest >> testCorrectTitle [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'tmc 6/11/2024 18:17'
+	#'squeak_changestamp' : 'tmc 6/12/2024 12:07'
 }
 MWFrameTest >> testForButton [
 
 	| bool |
 	
 	bool := true.
-	self widgetFrame submorphsDo: [:each |
-		each submorphsDo: [:each2 |
-			(each2 respondsTo: #actionSelector) ifTrue: [
-				(each2 actionSelector = #expandBoxHit) ifTrue: [bool:= false]]]].	
+	self widgetFrame allMorphsDo: [:each |
+		((each respondsTo: #actionSelector) and: 
+		[each actionSelector = #expandBoxHit]) ifTrue: 
+			[bool := false]].	
 	self assert: bool
 
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'tmc 6/11/2024 18:17'
+	#'squeak_changestamp' : 'tmc 6/12/2024 12:01'
 }
 MWFrameTest >> testFullScreen [
 	
-	| bool size | 
+	| size | 
 	
 	size := 1 @ 1.
-	bool := false.
-	self widgetFrame extent: size.
-	self widgetFrame expandToFullScreen.
-	(self widgetFrame extent = size) ifTrue: [bool := true].
-	self assert: bool
+
+	self widgetFrame extent: size;
+		assert: (self widgetFrame extent = size).
+	self widgetFrame expandToFullScreen;
+		assert: (self widgetFrame extent = size)
+	
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'tmc 6/11/2024 17:07'
+	#'squeak_changestamp' : 'tmc 6/12/2024 12:11'
 }
 MWFrameTest >> testGripMorphs [
 
@@ -124,25 +125,26 @@ MWFrameTest >> testGripMorphs [
 	
 	bool := true.
 	self widgetFrame submorphsDo: [:each | 
-		(each class  inheritsFrom:CornerGripMorph) ifTrue:
-		[bool := false]].
+		(each class inheritsFrom:CornerGripMorph) ifTrue:
+			[bool := false]].
 	self assert: bool
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'tmc 6/11/2024 18:18'
+	#'squeak_changestamp' : 'tmc 6/12/2024 12:03'
 }
 MWFrameTest >> testHalo [
 	
-	| bool size | 
+	| size | 
 	
 	size := 1 @ 1.
-	bool := false.
-	self widgetFrame extent: size.
-	self widgetFrame setExtentFromHalo: 5 @ 5.
-	(self widgetFrame extent = size) ifTrue: [bool := true].
-	self assert: bool
+
+	self widgetFrame extent: size;
+		assert: (self widgetFrame extent = size).
+	self widgetFrame setExtentFromHalo: 5 @ 5;
+		assert: (self widgetFrame extent = size).
+	
 ]
 
 {
