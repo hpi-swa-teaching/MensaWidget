@@ -58,11 +58,11 @@ MWFrame class >> frameSize [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'NK 6/13/2024 09:55'
+	#'squeak_changestamp' : 'NK 6/13/2024 10:15'
 }
 MWFrame class >> register [ 
 	
-	TheWorldMenu registerOpenCommand: {'Mensa Widget'. {MWFrame new. #openMensaWidget}}
+	TheWorldMenu registerOpenCommand: {'Mensa Widget'. {MWFrame new. #initialize}}
 ]
 
 {
@@ -111,9 +111,9 @@ MWFrame >> fillContentMorph: aContentMorph [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'NK 6/13/2024 09:55'
+	#'squeak_changestamp' : 'NK 6/13/2024 10:13'
 }
-MWFrame >> openMensaWidget [
+MWFrame >> initialize [
 	
 	super initialize.
 	self setLabel:'Mensa Widget';
