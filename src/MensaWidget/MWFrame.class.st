@@ -58,6 +58,15 @@ MWFrame class >> frameSize [
 
 {
 	#category : #constants,
+	#'squeak_changestamp' : 'NK 6/13/2024 09:55'
+}
+MWFrame class >> register [ 
+	
+	TheWorldMenu registerOpenCommand: {'Mensa Widget'. {MWFrame new. #openMensaWidget}}
+]
+
+{
+	#category : #constants,
 	#'squeak_changestamp' : 'Oscar 6/5/2024 01:01'
 }
 MWFrame class >> scrollBarThickness [
@@ -102,9 +111,9 @@ MWFrame >> fillContentMorph: aContentMorph [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 10:59'
+	#'squeak_changestamp' : 'NK 6/13/2024 09:55'
 }
-MWFrame >> initialize [
+MWFrame >> openMensaWidget [
 	
 	super initialize.
 	self setLabel:'Mensa Widget';
