@@ -53,15 +53,6 @@ MWCanteen class >> canteenMorphCellGap [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Oscar 6/5/2024 12:44'
-}
-MWCanteen class >> canteenMorphColor [ 
-
-	^ Color fern lighter
-]
-
-{
-	#category : #constants,
 	#'squeak_changestamp' : 'tmc 6/6/2024 21:26'
 }
 MWCanteen class >> canteenMorphWidth [
@@ -157,12 +148,12 @@ MWCanteen >> id: anObject [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 11:04'
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 16:21'
 }
 MWCanteen >> initializeCanteenMorph [
 
 	^ AlignmentMorph newColumn
-		color: self class canteenMorphColor;
+		color: MWColorTheme secondaryColor;
 		cellGap: self class canteenMorphCellGap;
 		hResizing: #shrinkWrap;
 		vResizing: #shrinkWrap
