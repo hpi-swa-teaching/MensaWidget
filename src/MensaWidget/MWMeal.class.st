@@ -66,6 +66,14 @@ MWMeal class >> mealMorphWidth [
 ]
 
 {
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Oscar 6/14/2024 09:22'
+}
+MWMeal class >> spacerMorphWidth [
+	^ 20
+]
+
+{
 	#category : #accessing,
 	#'squeak_changestamp' : 'Max 5/29/2024 12:57'
 }
@@ -85,15 +93,14 @@ MWMeal >> category: anObject [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'tmc 6/6/2024 21:46'
+	#'squeak_changestamp' : 'Oscar 6/13/2024 10:45'
 }
 MWMeal >> getMealMorph [
 
 	^ AlignmentMorph newRow
 		color: self class mealMorphColor;
-		width: self class mealMorphWidth;
 		vResizing: #shrinkWrap;
-		hResizing: #rigid;
+		hResizing: #spaceFill;
 		addMorph: self getPriceMorph;
 		addMorph: self getSpacerMorph;
 		addMorph: self getNameMorph;
@@ -102,40 +109,40 @@ MWMeal >> getMealMorph [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'tmc 6/6/2024 21:47'
+	#'squeak_changestamp' : 'Oscar 6/14/2024 09:02'
 }
 MWMeal >> getNameMorph [
 
-	^ TextMorph new
-		contents: self name;
-		averageLineLength: self class avgLineLenght;
-		readOnly: true;
-		yourself 
-
-	
-]
-
-{
-	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 11:00'
-}
-MWMeal >> getPriceMorph [
-
-	^ TextMorph new
-		contents: ((self prices at: 'students') ifNil: [0.00]) asString;
-		readOnly: true;
+	^ self name asText asMorph
+		hResizing: #spaceFill;
+		lock; 
+		textStyle: TextStyle default;
 		yourself
 ]
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'tmc 6/6/2024 21:57'
+	#'squeak_changestamp' : 'Oscar 6/14/2024 09:02'
+}
+MWMeal >> getPriceMorph [
+	"as text as Morph mit , padded to with" 
+	^ TextMorph new
+		contents: ((self prices at: 'students') ifNil: [0.00]) asString;
+		readOnly: true;
+		textStyle: TextStyle default;
+		yourself
+]
+
+{
+	#category : #display,
+	#'squeak_changestamp' : 'Oscar 6/14/2024 09:22'
 }
 MWMeal >> getSpacerMorph [
 
 	^ Morph new 
-		color: Color transparent;
-		hResizing: #spaceFill;
+		color: Color green;
+		hResizing: #rigid;
+		width: 30px;
 		vResizing: #spaceFill;
 		yourself
 ]

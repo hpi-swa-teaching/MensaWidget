@@ -6,7 +6,10 @@ Instance Variables
 "
 Class {
 	#name : #MWFrame,
-	#superclass : #PluggableSystemWindow,
+	#superclass : #Object,
+	#instVars : [
+		'windowMorph'
+	],
 	#category : #MensaWidget,
 	#'squeak_changestamp' : 'Louis Christ 5/27/2024 19:43'
 }
@@ -22,11 +25,11 @@ MWFrame class >> cellSpacing [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Oscar 6/10/2024 02:06'
+	#'squeak_changestamp' : 'Oscar 6/14/2024 09:21'
 }
 MWFrame class >> contentExtent [
 
-	^ 450 @ 550
+	^ 350 px  @ 550 px
 ]
 
 {
@@ -49,11 +52,12 @@ MWFrame class >> contentPosition [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Oscar 6/10/2024 02:10'
+	#'squeak_changestamp' : 'Oscar 6/14/2024 09:20'
 }
 MWFrame class >> frameSize [
 
-	^ 460 @ (555 +( 25 * RealEstateAgent scaleFactor))
+	^ 300@600
+	"460 @ (555 +( 25 * RealEstateAgent scaleFactor))"
 ]
 
 {
@@ -66,8 +70,16 @@ MWFrame class >> scrollBarThickness [
 ]
 
 {
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Oscar 6/13/2024 11:09'
+}
+MWFrame class >> themeProperties [
+	^ super themeProperties
+]
+
+{
 	#category : #creation,
-	#'squeak_changestamp' : 'tmc 6/6/2024 21:37'
+	#'squeak_changestamp' : 'Oscar 6/13/2024 23:47'
 }
 MWFrame >> buildFrameContent [
 
@@ -79,12 +91,13 @@ MWFrame >> buildFrameContent [
 		color: self class contentMorphColor;
 		position: self class contentPosition;
 		extent: self class contentExtent.
-	self addPaneMorph: contentMorph
+	^ contentMorph
+	"self addPaneMorph: contentMorph"
 ]
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Oscar 6/10/2024 02:13'
+	#'squeak_changestamp' : 'Oscar 6/14/2024 09:44'
 }
 MWFrame >> fillContentMorph: aContentMorph [
 	
@@ -92,27 +105,30 @@ MWFrame >> fillContentMorph: aContentMorph [
 	
 	contentMorph := AlignmentMorph newColumn
 		cellInset: self class cellSpacing;
-		hResizing: #shrinkWrap;
-		vResizing: #shrinkWrap.
+		extent: self class frameSize;
+		hResizing: #spaceFill;
+		vResizing: #spaceFill.
 	MWDataGettingWrapper getTodaysMeals do: [:each | 
 		contentMorph addMorph: each getCanteenMorph].
-	aContentMorph scroller addMorph: contentMorph
+	aContentMorph scroller 
+		layoutPolicy: TableLayout new;
+		addMorph: contentMorph
 	
 ]
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 10:59'
+	#'squeak_changestamp' : 'Oscar 6/14/2024 09:41'
 }
 MWFrame >> initialize [
-	
 	super initialize.
-	self setLabel:'Mensa Widget';
+	self windowMorph: self buildFrameContent openInWindow.
+	"self setLabel:'Mensa Widget';
 		buildFrameContent;
 		openInWorld;
 		extent: self class frameSize;
 		removeMaximize;
-		removeScalability
+		removeScalability"
 ]
 
 {
@@ -139,4 +155,20 @@ MWFrame >> removeScalability [
 		(each class superclass = BorderGripMorph or: 
 			[each class superclass = CornerGripMorph]) 
 				ifTrue: [each abandon]]
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Oscar 6/13/2024 23:53'
+}
+MWFrame >> windowMorph [
+	^ windowMorph
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Oscar 6/13/2024 23:53'
+}
+MWFrame >> windowMorph: anObject [
+	windowMorph := anObject
 ]
