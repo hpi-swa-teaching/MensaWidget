@@ -8,7 +8,7 @@ Class {
 	#name : #MWFrame,
 	#superclass : #Object,
 	#instVars : [
-		'windowMorph'
+		'scrollBar'
 	],
 	#category : #MensaWidget,
 	#'squeak_changestamp' : 'Louis Christ 5/27/2024 19:43'
@@ -25,11 +25,11 @@ MWFrame class >> cellSpacing [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Oscar 6/14/2024 09:21'
+	#'squeak_changestamp' : 'Oscar 6/14/2024 12:54'
 }
 MWFrame class >> contentExtent [
 
-	^ 350 px  @ 550 px
+	^ 350 px @ 550 px 
 ]
 
 {
@@ -43,25 +43,6 @@ MWFrame class >> contentMorphColor [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Oscar 6/10/2024 02:00'
-}
-MWFrame class >> contentPosition [
-
-	^ 5 @ (25 * RealEstateAgent scaleFactor)
-]
-
-{
-	#category : #constants,
-	#'squeak_changestamp' : 'Oscar 6/14/2024 09:20'
-}
-MWFrame class >> frameSize [
-
-	^ 300@600
-	"460 @ (555 +( 25 * RealEstateAgent scaleFactor))"
-]
-
-{
-	#category : #constants,
 	#'squeak_changestamp' : 'Oscar 6/5/2024 01:01'
 }
 MWFrame class >> scrollBarThickness [
@@ -70,16 +51,8 @@ MWFrame class >> scrollBarThickness [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Oscar 6/13/2024 11:09'
-}
-MWFrame class >> themeProperties [
-	^ super themeProperties
-]
-
-{
 	#category : #creation,
-	#'squeak_changestamp' : 'Oscar 6/13/2024 23:47'
+	#'squeak_changestamp' : 'Oscar 6/14/2024 14:15'
 }
 MWFrame >> buildFrameContent [
 
@@ -89,15 +62,13 @@ MWFrame >> buildFrameContent [
 	self fillContentMorph: contentMorph.
 	contentMorph scrollBarThickness: self class scrollBarThickness;
 		color: self class contentMorphColor;
-		position: self class contentPosition;
 		extent: self class contentExtent.
 	^ contentMorph
-	"self addPaneMorph: contentMorph"
 ]
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Oscar 6/14/2024 09:44'
+	#'squeak_changestamp' : 'Oscar 6/14/2024 12:49'
 }
 MWFrame >> fillContentMorph: aContentMorph [
 	
@@ -105,7 +76,7 @@ MWFrame >> fillContentMorph: aContentMorph [
 	
 	contentMorph := AlignmentMorph newColumn
 		cellInset: self class cellSpacing;
-		extent: self class frameSize;
+		extent: self class contentExtent;
 		hResizing: #spaceFill;
 		vResizing: #spaceFill.
 	MWDataGettingWrapper getTodaysMeals do: [:each | 
@@ -118,57 +89,25 @@ MWFrame >> fillContentMorph: aContentMorph [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Oscar 6/14/2024 09:41'
+	#'squeak_changestamp' : 'Oscar 6/14/2024 15:18'
 }
 MWFrame >> initialize [
 	super initialize.
-	self windowMorph: self buildFrameContent openInWindow.
-	"self setLabel:'Mensa Widget';
-		buildFrameContent;
-		openInWorld;
-		extent: self class frameSize;
-		removeMaximize;
-		removeScalability"
-]
-
-{
-	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 11:00'
-}
-MWFrame >> removeMaximize [
-	
-	self submorphsDo: [:each | 
-	each class = AlignmentMorph ifTrue: 
-		[each submorphsDo: [:each2 |
-			(each2 class = SystemWindowButton and:
-				[each2 actionSelector = #expandBoxHit]) 
-					ifTrue: [each2 abandon]]]]
-]
-
-{
-	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 11:07'
-}
-MWFrame >> removeScalability [
-
-	self submorphsDo: [:each |
-		(each class superclass = BorderGripMorph or: 
-			[each class superclass = CornerGripMorph]) 
-				ifTrue: [each abandon]]
+	self scrollBar: ((self buildFrameContent) openInWindowLabeled: 'Mensa Widget')
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Oscar 6/13/2024 23:53'
+	#'squeak_changestamp' : 'Oscar 6/14/2024 14:48'
 }
-MWFrame >> windowMorph [
-	^ windowMorph
+MWFrame >> scrollBar [
+	^ scrollBar
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Oscar 6/13/2024 23:53'
+	#'squeak_changestamp' : 'Oscar 6/14/2024 14:48'
 }
-MWFrame >> windowMorph: anObject [
-	windowMorph := anObject
+MWFrame >> scrollBar: anObject [
+	scrollBar := anObject
 ]

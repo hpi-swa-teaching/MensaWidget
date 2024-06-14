@@ -20,11 +20,11 @@ Class {
 
 {
 	#category : #environment,
-	#'squeak_changestamp' : 'Louis Christ 5/27/2024 17:12'
+	#'squeak_changestamp' : 'Oscar 6/14/2024 14:48'
 }
 MWFrameTest >> setUp [
 
-	widgetFrame := MWFrame new
+	widgetFrame := ((MWFrame new) scrollBar)
 ]
 
 {
@@ -65,11 +65,11 @@ MWFrameTest >> testContent [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:42'
+	#'squeak_changestamp' : 'Oscar 6/14/2024 15:29'
 }
 MWFrameTest >> testCorrectSuperclass [
 
-	self assert: self widgetFrame class superclass = PluggableSystemWindow
+	self assert: self widgetFrame class superclass = MorphicModel
 ]
 
 {

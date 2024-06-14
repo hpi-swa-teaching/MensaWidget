@@ -35,15 +35,6 @@ Class {
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Oscar 6/5/2024 00:26'
-}
-MWCanteen class >> canteenMorphBorder [
-
-	^ 5
-]
-
-{
-	#category : #constants,
 	#'squeak_changestamp' : 'Louis Christ 6/7/2024 11:04'
 }
 MWCanteen class >> canteenMorphCellGap [
@@ -58,15 +49,6 @@ MWCanteen class >> canteenMorphCellGap [
 MWCanteen class >> canteenMorphColor [ 
 
 	^ Color fern lighter
-]
-
-{
-	#category : #constants,
-	#'squeak_changestamp' : 'tmc 6/6/2024 21:26'
-}
-MWCanteen class >> canteenMorphWidth [
-	
-	^ 410
 ]
 
 {

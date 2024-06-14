@@ -40,15 +40,6 @@ Class {
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Oscar 6/8/2024 18:48'
-}
-MWMeal class >> avgLineLenght [
-	
-	^ 40 / RealEstateAgent scaleFactor
-]
-
-{
-	#category : #constants,
 	#'squeak_changestamp' : 'Oscar 6/5/2024 00:07'
 }
 MWMeal class >> mealMorphColor [
@@ -58,19 +49,10 @@ MWMeal class >> mealMorphColor [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Oscar 6/5/2024 00:10'
-}
-MWMeal class >> mealMorphWidth [
-
-	^ 400
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Oscar 6/14/2024 09:22'
+	#'squeak_changestamp' : 'Oscar 6/14/2024 12:58'
 }
 MWMeal class >> spacerMorphWidth [
-	^ 20
+	^ 50 px 
 ]
 
 {
@@ -109,23 +91,23 @@ MWMeal >> getMealMorph [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Oscar 6/14/2024 09:02'
+	#'squeak_changestamp' : 'Oscar 6/14/2024 13:17'
 }
 MWMeal >> getNameMorph [
 
 	^ self name asText asMorph
 		hResizing: #spaceFill;
 		lock; 
-		textStyle: TextStyle default;
+		textStyle: TextStyle default copy;
 		yourself
 ]
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Oscar 6/14/2024 09:02'
+	#'squeak_changestamp' : 'Oscar 6/14/2024 14:17'
 }
 MWMeal >> getPriceMorph [
-	"as text as Morph mit , padded to with" 
+	
 	^ TextMorph new
 		contents: ((self prices at: 'students') ifNil: [0.00]) asString;
 		readOnly: true;
@@ -135,15 +117,15 @@ MWMeal >> getPriceMorph [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Oscar 6/14/2024 09:22'
+	#'squeak_changestamp' : 'Oscar 6/14/2024 15:32'
 }
 MWMeal >> getSpacerMorph [
 
 	^ Morph new 
-		color: Color green;
+		color: Color transparent;
 		hResizing: #rigid;
-		width: 30px;
 		vResizing: #spaceFill;
+		width: self class spacerMorphWidth;
 		yourself
 ]
 
