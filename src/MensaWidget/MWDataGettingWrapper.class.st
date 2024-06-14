@@ -26,7 +26,7 @@ MWDataGettingWrapper class >> canteenDict [
 
 {
 	#category : #dataPulling,
-	#'squeak_changestamp' : 'Louis Christ 6/4/2024 17:20'
+	#'squeak_changestamp' : 'Max 6/10/2024 20:50'
 }
 MWDataGettingWrapper class >> getMealsOnDate: aDate [
 
@@ -36,7 +36,7 @@ MWDataGettingWrapper class >> getMealsOnDate: aDate [
 	canteenDict := self canteenDict.
 	canteenDict keys do: [ :id |
 		json := MWApiWrapper getMealsFrom: id on: aDate.
-		canteens add: (MWCanteen newWithId: id  Name: (canteenDict at: id) Date: aDate Meals: (MWParser put: json in: MWMeal)) ].
+		canteens add: (MWCanteen newWithId: id  Name: (canteenDict at: id) Date: aDate Meals: (MWMealCleaner clean: (MWParser put: json in: MWMeal))) ].
 	^ canteens
 ]
 

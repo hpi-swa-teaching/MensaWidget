@@ -108,14 +108,29 @@ MWMeal >> getNameMorph [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 11:00'
+	#'squeak_changestamp' : 'Max 6/11/2024 21:13'
 }
 MWMeal >> getPriceMorph [
 
 	^ TextMorph new
-		contents: ((self prices at: 'students') ifNil: [0.00]) asString;
+		contents: self getPriceStream contents;
 		readOnly: true;
 		yourself
+]
+
+{
+	#category : #display,
+	#'squeak_changestamp' : 'Max 6/12/2024 13:51'
+}
+MWMeal >> getPriceStream [
+
+	| priceStream |
+	
+	priceStream := WriteStream on: String new.
+    	(self prices at: 'students') 
+		ifNil: [' '] 
+		ifNotNil: [:price | price printOn: priceStream showingDecimalPlaces: 2].
+	^ priceStream
 ]
 
 {
@@ -147,6 +162,24 @@ MWMeal >> id [
 MWMeal >> id: anObject [
 
 	id := anObject
+]
+
+{
+	#category : #checks,
+	#'squeak_changestamp' : 'Max 6/10/2024 20:12'
+}
+MWMeal >> isHotCounter [
+
+	^ self category = 'Heiße Theke'
+]
+
+{
+	#category : #checks,
+	#'squeak_changestamp' : 'Max 6/10/2024 20:13'
+}
+MWMeal >> isSaladBar [
+
+	^ self category = 'Salattheke'
 ]
 
 {

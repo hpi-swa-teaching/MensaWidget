@@ -12,7 +12,7 @@ Class {
 
 {
 	#category : #parsing,
-	#'squeak_changestamp' : 'Max 6/1/2024 10:53'
+	#'squeak_changestamp' : 'Max 6/10/2024 20:25'
 }
 MWParser class >> put: aDataset in: aClass [
 
