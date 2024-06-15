@@ -52,6 +52,19 @@ MWFrame class >> scrollBarThickness [
 
 {
 	#category : #creation,
+	#'squeak_changestamp' : 'Oscar 6/15/2024 19:30'
+}
+MWFrame >> buildAlignmentMorph [
+
+	^ AlignmentMorph newColumn
+			cellInset: self class cellSpacing;
+			extent: self class contentExtent;
+			hResizing: #spaceFill;
+			vResizing: #spaceFill.
+]
+
+{
+	#category : #creation,
 	#'squeak_changestamp' : 'Oscar 6/14/2024 14:15'
 }
 MWFrame >> buildFrameContent [
@@ -68,17 +81,13 @@ MWFrame >> buildFrameContent [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Oscar 6/14/2024 12:49'
+	#'squeak_changestamp' : 'Oscar 6/15/2024 19:31'
 }
 MWFrame >> fillContentMorph: aContentMorph [
 	
 	| contentMorph |
 	
-	contentMorph := AlignmentMorph newColumn
-		cellInset: self class cellSpacing;
-		extent: self class contentExtent;
-		hResizing: #spaceFill;
-		vResizing: #spaceFill.
+	contentMorph := self buildAlignmentMorph.
 	MWDataGettingWrapper getTodaysMeals do: [:each | 
 		contentMorph addMorph: each getCanteenMorph].
 	aContentMorph scroller 
@@ -89,12 +98,12 @@ MWFrame >> fillContentMorph: aContentMorph [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Oscar 6/15/2024 14:03'
+	#'squeak_changestamp' : 'Oscar 6/15/2024 19:27'
 }
 MWFrame >> initialize [
 
 	super initialize.
-	self window: ((self buildFrameContent) openInWindowLabeled: 'Mensa Widget')
+	self window: (self buildFrameContent openInWindowLabeled: 'Mensa Widget')
 ]
 
 {

@@ -93,11 +93,14 @@ MWFrameTest >> testOpened [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:42'
+	#'squeak_changestamp' : 'Oscar 6/15/2024 19:26'
 }
 MWFrameTest >> testSize [
+	
+	self assert: self widgetFrame extent = ((MWFrame contentExtent)  + (10@30))	
 
-	self assert: self widgetFrame extent < World extent
+
+
 ]
 
 {
