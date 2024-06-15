@@ -8,7 +8,7 @@ Class {
 	#name : #MWFrame,
 	#superclass : #Object,
 	#instVars : [
-		'scrollBar'
+		'window'
 	],
 	#category : #MensaWidget,
 	#'squeak_changestamp' : 'Louis Christ 5/27/2024 19:43'
@@ -89,25 +89,28 @@ MWFrame >> fillContentMorph: aContentMorph [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Oscar 6/14/2024 15:18'
+	#'squeak_changestamp' : 'Oscar 6/15/2024 14:03'
 }
 MWFrame >> initialize [
+
 	super initialize.
-	self scrollBar: ((self buildFrameContent) openInWindowLabeled: 'Mensa Widget')
+	self window: ((self buildFrameContent) openInWindowLabeled: 'Mensa Widget')
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Oscar 6/14/2024 14:48'
+	#'squeak_changestamp' : 'Oscar 6/15/2024 14:01'
 }
-MWFrame >> scrollBar [
-	^ scrollBar
+MWFrame >> window [
+
+	^ window
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Oscar 6/14/2024 14:48'
+	#'squeak_changestamp' : 'Oscar 6/15/2024 14:01'
 }
-MWFrame >> scrollBar: anObject [
-	scrollBar := anObject
+MWFrame >> window: anObject [
+
+	window := anObject
 ]

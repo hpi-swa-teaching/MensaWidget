@@ -20,11 +20,11 @@ Class {
 
 {
 	#category : #environment,
-	#'squeak_changestamp' : 'Oscar 6/14/2024 14:48'
+	#'squeak_changestamp' : 'Oscar 6/15/2024 14:05'
 }
 MWFrameTest >> setUp [
 
-	widgetFrame := ((MWFrame new) scrollBar)
+	widgetFrame := MWFrame new window
 ]
 
 {

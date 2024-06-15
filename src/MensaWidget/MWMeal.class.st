@@ -49,9 +49,10 @@ MWMeal class >> mealMorphColor [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Oscar 6/14/2024 12:58'
+	#'squeak_changestamp' : 'Oscar 6/15/2024 13:57'
 }
 MWMeal class >> spacerMorphWidth [
+
 	^ 50 px 
 ]
 
