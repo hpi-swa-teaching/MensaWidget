@@ -40,15 +40,6 @@ Class {
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Oscar 6/5/2024 00:07'
-}
-MWMeal class >> mealMorphColor [
-	
-	 ^ Color paleGreen darker darker
-]
-
-{
-	#category : #constants,
 	#'squeak_changestamp' : 'Oscar 6/15/2024 13:57'
 }
 MWMeal class >> spacerMorphWidth [
@@ -76,12 +67,12 @@ MWMeal >> category: anObject [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Oscar 6/13/2024 10:45'
+	#'squeak_changestamp' : 'Oscar 6/16/2024 20:32'
 }
 MWMeal >> getMealMorph [
 
 	^ AlignmentMorph newRow
-		color: self class mealMorphColor;
+		color: MWColorTheme primaryColor;
 		vResizing: #shrinkWrap;
 		hResizing: #spaceFill;
 		addMorph: self getPriceMorph;
@@ -105,15 +96,30 @@ MWMeal >> getNameMorph [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Oscar 6/14/2024 14:17'
+	#'squeak_changestamp' : 'Oscar 6/16/2024 20:28'
 }
 MWMeal >> getPriceMorph [
 	
 	^ TextMorph new
-		contents: ((self prices at: 'students') ifNil: [0.00]) asString;
+		contents: self getPriceStream contents;
 		readOnly: true;
 		textStyle: TextStyle default;
 		yourself
+]
+
+{
+	#category : #display,
+	#'squeak_changestamp' : 'Max 6/12/2024 13:51'
+}
+MWMeal >> getPriceStream [
+
+	| priceStream |
+	
+	priceStream := WriteStream on: String new.
+    	(self prices at: 'students') 
+		ifNil: [' '] 
+		ifNotNil: [:price | price printOn: priceStream showingDecimalPlaces: 2].
+	^ priceStream
 ]
 
 {
@@ -146,6 +152,24 @@ MWMeal >> id [
 MWMeal >> id: anObject [
 
 	id := anObject
+]
+
+{
+	#category : #checks,
+	#'squeak_changestamp' : 'Max 6/10/2024 20:12'
+}
+MWMeal >> isHotCounter [
+
+	^ self category = 'Heiße Theke'
+]
+
+{
+	#category : #checks,
+	#'squeak_changestamp' : 'Max 6/10/2024 20:13'
+}
+MWMeal >> isSaladBar [
+
+	^ self category = 'Salattheke'
 ]
 
 {

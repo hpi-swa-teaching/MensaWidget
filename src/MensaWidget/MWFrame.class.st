@@ -37,20 +37,27 @@ MWFrame class >> contentExtent [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'tmc 6/6/2024 21:03'
-}
-MWFrame class >> contentMorphColor [
-
-	^ Color darkGray
-]
-
-{
-	#category : #constants,
 	#'squeak_changestamp' : 'Oscar 6/5/2024 01:01'
 }
 MWFrame class >> scrollBarThickness [
 
 	^ 20
+]
+
+{
+	#category : #dayManipulation,
+	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:43'
+}
+MWFrame >> addMeals: aDate [
+
+	| contentMorph |
+	
+	contentMorph := self buildContentMorph.
+	(MWDataGettingWrapper getMealsOnDate: aDate yyyymmdd) do: 
+		[:each | contentMorph addMorph: each getCanteenMorph].
+	self contentMorph scroller addMorph: contentMorph
+
+	
 ]
 
 {
@@ -68,6 +75,17 @@ MWFrame >> buildAlignmentMorph [
 
 {
 	#category : #creation,
+	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:38'
+}
+MWFrame >> buildContentMorph [
+
+	^ AlignmentMorph newColumn cellInset: self class cellSpacing;
+		 hResizing: #shrinkWrap;
+		 vResizing: #shrinkWrap
+]
+
+{
+	#category : #creation,
 	#'squeak_changestamp' : 'Oscar 6/14/2024 14:15'
 }
 MWFrame >> buildFrameContent [
@@ -80,6 +98,77 @@ MWFrame >> buildFrameContent [
 		color: self class contentMorphColor;
 		extent: self class contentExtent.
 	^ contentMorph
+]
+
+{
+	#category : #creation,
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 16:21'
+}
+MWFrame >> buildLayout [
+
+	^ AlignmentMorph newColumn
+		hResizing: #spaceFill;
+		vResizing: #spaceFill;
+		position: self class contentPosition;
+		extent: self class contentExtent;
+		color: MWColorTheme backgroundColor;
+		addMorph: self buildScrollPane;
+		addMorph: self buildMenuBar;
+		yourself
+]
+
+{
+	#category : #creation,
+	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:59'
+}
+MWFrame >> buildMenuBar [
+	
+	^ MWMenuBar new target: self
+]
+
+{
+	#category : #creation,
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 16:21'
+}
+MWFrame >> buildScrollPane [
+
+	^ self contentMorph: 
+		(ScrollPane new 
+			scrollBarThickness: self class scrollBarThickness;
+			color: MWColorTheme backgroundColor;
+			extent: self class contentExtent;
+			yourself);
+		contentMorph
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Louis Christ 6/7/2024 14:52'
+}
+MWFrame >> contentMorph [
+
+	^ contentMorph
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Louis Christ 6/7/2024 14:52'
+}
+MWFrame >> contentMorph: anObject [
+
+	contentMorph := anObject
+]
+
+{
+	#category : #dayManipulation,
+	#'squeak_changestamp' : 'Louis Christ 6/11/2024 11:54'
+}
+MWFrame >> displayDay: aDate [
+
+	self removeMeals;
+		addMeals: aDate
+
+	
 ]
 
 {
@@ -107,6 +196,30 @@ MWFrame >> initialize [
 
 	super initialize.
 	self window: (self buildFrameContent openInWindowLabeled: 'Mensa Widget')
+]
+
+{
+	#category : #dayManipulation,
+	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:57'
+}
+MWFrame >> removeMeals [
+
+	self contentMorph scroller submorphsDo: [:each | each abandon]
+	
+]
+
+{
+	#category : #creation,
+	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:38'
+}
+MWFrame >> showMealsFor: aDate [
+	
+	| contentMorph |
+	
+	contentMorph := self buildContentMorph.
+	(MWDataGettingWrapper getMealsOnDate: aDate) do: 
+		[:each | contentMorph addMorph: each getCanteenMorph].
+	self contentMorph scroller addMorph: contentMorph
 ]
 
 {
