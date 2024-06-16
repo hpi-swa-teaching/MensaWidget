@@ -2,7 +2,10 @@
 A MWFrame is the base block for the useer interface of the widget.
 
 Instance Variables
-
+	window:		<SystemWindow>
+			
+window
+	- The window in which the content morphs is opened
 "
 Class {
 	#name : #MWFrame,
@@ -11,7 +14,7 @@ Class {
 		'window'
 	],
 	#category : #MensaWidget,
-	#'squeak_changestamp' : 'Louis Christ 5/27/2024 19:43'
+	#'squeak_changestamp' : 'Oscar 6/16/2024 19:59'
 }
 
 {
