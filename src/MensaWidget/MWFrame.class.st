@@ -3,18 +3,22 @@ A MWFrame is the base block for the useer interface of the widget.
 
 Instance Variables
 	window:		<SystemWindow>
+	contentMorph:		<AlignmentMorph>
 			
 window
 	- The window in which the content morphs is opened
+contentMorph
+	- Morph that has all meals als submorphs
 "
 Class {
 	#name : #MWFrame,
 	#superclass : #Object,
 	#instVars : [
-		'window'
+		'window',
+		'contentMorph'
 	],
 	#category : #MensaWidget,
-	#'squeak_changestamp' : 'Oscar 6/16/2024 19:59'
+	#'squeak_changestamp' : 'Oscar 6/17/2024 00:04'
 }
 
 {
@@ -55,7 +59,7 @@ MWFrame class >> scrollBarThickness [
 
 {
 	#category : #dayManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:43'
+	#'squeak_changestamp' : 'Oscar 6/16/2024 23:56'
 }
 MWFrame >> addMeals: aDate [
 
@@ -64,61 +68,35 @@ MWFrame >> addMeals: aDate [
 	contentMorph := self buildContentMorph.
 	(MWDataGettingWrapper getMealsOnDate: aDate yyyymmdd) do: 
 		[:each | contentMorph addMorph: each getCanteenMorph].
-	self contentMorph scroller addMorph: contentMorph
+	self contentMorph scroller 
+		layoutPolicy: TableLayout new;
+		addMorph: contentMorph
 
 	
 ]
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Oscar 6/15/2024 19:30'
-}
-MWFrame >> buildAlignmentMorph [
-
-	^ AlignmentMorph newColumn
-			cellInset: self class cellSpacing;
-			extent: self class contentExtent;
-			hResizing: #spaceFill;
-			vResizing: #spaceFill.
-]
-
-{
-	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:38'
+	#'squeak_changestamp' : 'Oscar 6/16/2024 23:52'
 }
 MWFrame >> buildContentMorph [
 
-	^ AlignmentMorph newColumn cellInset: self class cellSpacing;
-		 hResizing: #shrinkWrap;
-		 vResizing: #shrinkWrap
+	^ AlignmentMorph newColumn 
+		 cellInset: self class cellSpacing;
+		 extent: self class contentExtent;
+		 hResizing: #spaceFill;
+		 vResizing: #spaceFill
 ]
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Oscar 6/16/2024 20:37'
-}
-MWFrame >> buildFrameContent [
-
-	| contentMorph |
-	
-	contentMorph := ScrollPane new.
-	self fillContentMorph: contentMorph.
-	contentMorph scrollBarThickness: self class scrollBarThickness;
-		color: MWColorTheme backgroundColor;
-		extent: self class contentExtent.
-	^ contentMorph
-]
-
-{
-	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 16:21'
+	#'squeak_changestamp' : 'Oscar 6/16/2024 23:51'
 }
 MWFrame >> buildLayout [
 
 	^ AlignmentMorph newColumn
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
-		position: self class contentPosition;
 		extent: self class contentExtent;
 		color: MWColorTheme backgroundColor;
 		addMorph: self buildScrollPane;
@@ -137,7 +115,7 @@ MWFrame >> buildMenuBar [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 16:21'
+	#'squeak_changestamp' : 'Oscar 6/16/2024 23:58'
 }
 MWFrame >> buildScrollPane [
 
@@ -146,6 +124,8 @@ MWFrame >> buildScrollPane [
 			scrollBarThickness: self class scrollBarThickness;
 			color: MWColorTheme backgroundColor;
 			extent: self class contentExtent;
+			hResizing: #spaceFill;
+			vResizing: #spaceFill;
 			yourself);
 		contentMorph
 ]
@@ -182,29 +162,13 @@ MWFrame >> displayDay: aDate [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Oscar 6/15/2024 19:31'
-}
-MWFrame >> fillContentMorph: aContentMorph [
-	
-	| contentMorph |
-	
-	contentMorph := self buildAlignmentMorph.
-	MWDataGettingWrapper getTodaysMeals do: [:each | 
-		contentMorph addMorph: each getCanteenMorph].
-	aContentMorph scroller 
-		layoutPolicy: TableLayout new;
-		addMorph: contentMorph
-	
-]
-
-{
-	#category : #creation,
-	#'squeak_changestamp' : 'Oscar 6/15/2024 19:27'
+	#'squeak_changestamp' : 'Oscar 6/17/2024 00:00'
 }
 MWFrame >> initialize [
 
 	super initialize.
-	self window: (self buildFrameContent openInWindowLabeled: 'Mensa Widget')
+	self window: (self buildLayout openInWindowLabeled: 'Mensa Widget').
+	self addMeals: Date today
 ]
 
 {
@@ -215,20 +179,6 @@ MWFrame >> removeMeals [
 
 	self contentMorph scroller submorphsDo: [:each | each abandon]
 	
-]
-
-{
-	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:38'
-}
-MWFrame >> showMealsFor: aDate [
-	
-	| contentMorph |
-	
-	contentMorph := self buildContentMorph.
-	(MWDataGettingWrapper getMealsOnDate: aDate) do: 
-		[:each | contentMorph addMorph: each getCanteenMorph].
-	self contentMorph scroller addMorph: contentMorph
 ]
 
 {

@@ -43,14 +43,15 @@ MWMenuBar class >> getArrowButton [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:49'
+	#'squeak_changestamp' : 'Oscar 6/16/2024 23:48'
 }
 MWMenuBar >> createDateDisplay [
 	
 	self dateDisplay: 
 		(TextMorph new 
 			contents: self date asString;
-			readOnly: true).
+			textStyle: TextStyle default;
+			lock).	
 	self addMorph: self dateDisplay
 	
 ]
