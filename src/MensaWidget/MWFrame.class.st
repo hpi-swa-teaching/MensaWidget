@@ -36,6 +36,15 @@ MWFrame class >> contentExtent [
 ]
 
 {
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Oscar 6/16/2024 20:44'
+}
+MWFrame class >> contentPosition [
+
+	^ 5 @ 30
+]
+
+{
 	#category : #constants,
 	#'squeak_changestamp' : 'Oscar 6/5/2024 01:01'
 }
@@ -86,7 +95,7 @@ MWFrame >> buildContentMorph [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Oscar 6/14/2024 14:15'
+	#'squeak_changestamp' : 'Oscar 6/16/2024 20:37'
 }
 MWFrame >> buildFrameContent [
 
@@ -95,7 +104,7 @@ MWFrame >> buildFrameContent [
 	contentMorph := ScrollPane new.
 	self fillContentMorph: contentMorph.
 	contentMorph scrollBarThickness: self class scrollBarThickness;
-		color: self class contentMorphColor;
+		color: MWColorTheme backgroundColor;
 		extent: self class contentExtent.
 	^ contentMorph
 ]
