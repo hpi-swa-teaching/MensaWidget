@@ -68,7 +68,7 @@ MWMenuBarTest >> mensaWidget: anObject [
 
 {
 	#category : #environment,
-	#'squeak_changestamp' : 'Louis Christ 6/11/2024 00:20'
+	#'squeak_changestamp' : 'Oscar 6/17/2024 00:14'
 }
 MWMenuBarTest >> setUp [
 
@@ -77,22 +77,22 @@ MWMenuBarTest >> setUp [
 
 {
 	#category : #environment,
-	#'squeak_changestamp' : 'Louis Christ 6/12/2024 15:27'
+	#'squeak_changestamp' : 'Oscar 6/17/2024 00:14'
 }
 MWMenuBarTest >> tearDown [
 
-	self mensaWidget abandon
+	self mensaWidget window abandon
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 6/11/2024 00:34'
+	#'squeak_changestamp' : 'Oscar 6/17/2024 00:15'
 }
 MWMenuBarTest >> testCanteensChange [
 
 	| menuBar oldCanteens |
 	
-	self mensaWidget allMorphsDo: [:each | each class = MWMenuBar ifTrue: [menuBar :=each]].
+	self mensaWidget window allMorphsDo: [:each | each class = MWMenuBar ifTrue: [menuBar :=each]].
 	oldCanteens := self getAllCanteens.
 	menuBar increaseDate.
 	self assert: oldCanteens = self getAllCanteens.
@@ -102,13 +102,13 @@ MWMenuBarTest >> testCanteensChange [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 6/11/2024 12:06'
+	#'squeak_changestamp' : 'Oscar 6/17/2024 00:15'
 }
 MWMenuBarTest >> testMealsChange [
 
 	| menuBar oldMeals |
 	
-	self mensaWidget allMorphsDo: [:each | each class = MWMenuBar ifTrue: [menuBar :=each]].
+	self mensaWidget window allMorphsDo: [:each | each class = MWMenuBar ifTrue: [menuBar :=each]].
 	({#Saturday. #Sunday} includes: menuBar date weekday) ifTrue:
 		[menuBar addDays: 2].
 	oldMeals := self getAllMeals.
@@ -120,13 +120,13 @@ MWMenuBarTest >> testMealsChange [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 6/11/2024 00:26'
+	#'squeak_changestamp' : 'Oscar 6/17/2024 00:15'
 }
 MWMenuBarTest >> testNavigateNextDay [
 
 	| menuBar oldDate |
 	
-	self mensaWidget allMorphsDo: [:each | each class = MWMenuBar ifTrue: [menuBar := each]].
+	self mensaWidget window allMorphsDo: [:each | each class = MWMenuBar ifTrue: [menuBar := each]].
 	oldDate := menuBar date.
 	menuBar increaseDate.
 	self assert: (oldDate addDays: 1) = menuBar date
@@ -134,13 +134,13 @@ MWMenuBarTest >> testNavigateNextDay [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 6/11/2024 00:26'
+	#'squeak_changestamp' : 'Oscar 6/17/2024 00:15'
 }
 MWMenuBarTest >> testNavigatePreviousDay [
 
 	| menuBar oldDate |
 	
-	self mensaWidget allMorphsDo: [:each | each class = MWMenuBar ifTrue: [menuBar := each]].
+	self mensaWidget window allMorphsDo: [:each | each class = MWMenuBar ifTrue: [menuBar := each]].
 	oldDate := menuBar date.
 	menuBar decreaseDate.
 	self assert: (oldDate addDays: -1) = menuBar date
@@ -148,13 +148,13 @@ MWMenuBarTest >> testNavigatePreviousDay [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 6/11/2024 00:36'
+	#'squeak_changestamp' : 'Oscar 6/17/2024 00:15'
 }
 MWMenuBarTest >> testOneMenuBarExists [
 
 	| menuBars |
 	
 	menuBars := OrderedCollection new.
-	self mensaWidget allMorphsDo: [:each | each class = MWMenuBar ifTrue: [menuBars add: each]].
+	self mensaWidget window allMorphsDo: [:each | each class = MWMenuBar ifTrue: [menuBars add: each]].
 	self assert: menuBars size = 1
 ]

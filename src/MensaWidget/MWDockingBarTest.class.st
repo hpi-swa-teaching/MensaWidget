@@ -45,7 +45,7 @@ MWDockingBarTest >> tearDown [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 6/11/2024 00:16'
+	#'squeak_changestamp' : 'Oscar 6/17/2024 00:06'
 }
 MWDockingBarTest >> testOpenWidget [
 	
@@ -56,7 +56,7 @@ MWDockingBarTest >> testOpenWidget [
 	menu subMenu submorphsDo: [:each | each contents = 'Potsdam' ifTrue: [submenu := each]].
 	widget := submenu target perform: submenu selector.
 	self assert: widget class = MWFrame.
-	widget abandon
+	widget window abandon
 	
 ]
 

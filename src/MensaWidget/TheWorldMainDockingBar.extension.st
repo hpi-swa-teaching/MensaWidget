@@ -63,12 +63,12 @@ TheWorldMainDockingBar >> menusOn: aDockingBar [
 
 {
 	#category : #'*MensaWidget-override',
-	#'squeak_changestamp' : 'Louis Christ 6/11/2024 00:17'
+	#'squeak_changestamp' : 'Oscar 6/17/2024 00:03'
 }
 TheWorldMainDockingBar >> openMensaWidget [
 	"Open the mensa widget"
 
-	^ MWFrame new openInWorld
+	^ MWFrame new
 
 ]
 

@@ -35,29 +35,11 @@ Class {
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Oscar 6/5/2024 00:26'
-}
-MWCanteen class >> canteenMorphBorder [
-
-	^ 5
-]
-
-{
-	#category : #constants,
 	#'squeak_changestamp' : 'Louis Christ 6/7/2024 11:04'
 }
 MWCanteen class >> canteenMorphCellGap [
 
 	^ 5
-]
-
-{
-	#category : #constants,
-	#'squeak_changestamp' : 'tmc 6/6/2024 21:26'
-}
-MWCanteen class >> canteenMorphWidth [
-	
-	^ 410
 ]
 
 {
@@ -86,13 +68,14 @@ MWCanteen >> addMealsTo: aCanteenMorph [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'tmc 6/6/2024 21:30'
+	#'squeak_changestamp' : 'Oscar 6/14/2024 09:01'
 }
 MWCanteen >> createNameMorph [
 
 	^ TextMorph new 
 		contents: self name;
 		readOnly: true; 
+		textStyle: TextStyle default;
 		yourself
 ]
 
@@ -148,14 +131,14 @@ MWCanteen >> id: anObject [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 16:21'
+	#'squeak_changestamp' : 'Oscar 6/16/2024 20:28'
 }
 MWCanteen >> initializeCanteenMorph [
 
 	^ AlignmentMorph newColumn
 		color: MWColorTheme secondaryColor;
 		cellGap: self class canteenMorphCellGap;
-		hResizing: #shrinkWrap;
+		hResizing: #spaceFill;
 		vResizing: #shrinkWrap
     
 ]
