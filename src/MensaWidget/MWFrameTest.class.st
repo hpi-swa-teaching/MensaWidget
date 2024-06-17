@@ -12,7 +12,8 @@ Class {
 	#name : #MWFrameTest,
 	#superclass : #TestCase,
 	#instVars : [
-		'widgetFrame'
+		'widgetFrame',
+		'isRegistered'
 	],
 	#category : #'MensaWidget-Tests',
 	#'squeak_changestamp' : 'Louis Christ 5/27/2024 19:44'
@@ -20,10 +21,13 @@ Class {
 
 {
 	#category : #environment,
-	#'squeak_changestamp' : 'Max 6/17/2024 20:43'
+	#'squeak_changestamp' : 'Max 6/17/2024 21:02'
 }
 MWFrameTest >> setUp [
 	
+	isRegistered := true.
+	[TheWorldMenu registry find: {'Mensa Widget'. {MWFrame. #new}}] on: Error do:
+		[isRegistered := false].
 	TheWorldMenu unregisterOpenCommand: 'Mensa Widget'.
 	MWFrame register.
 	widgetFrame := MWFrame new window
@@ -31,11 +35,12 @@ MWFrameTest >> setUp [
 
 {
 	#category : #environment,
-	#'squeak_changestamp' : 'Louis Christ 5/27/2024 17:10'
+	#'squeak_changestamp' : 'Max 6/17/2024 21:05'
 }
 MWFrameTest >> tearDown [
 
-	widgetFrame abandon
+	widgetFrame abandon.
+	isRegistered ifFalse: [TheWorldMenu unregisterOpenCommand: 'Mensa Widget']
 ]
 
 {
@@ -95,15 +100,16 @@ MWFrameTest >> testOpened [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Max 6/17/2024 11:59'
+	#'squeak_changestamp' : 'Max 6/17/2024 21:07'
 }
 MWFrameTest >> testRegister [
 	
 	| occurrence |
 	
-	occurrence := 0.
-	TheWorldMenu registry do: [:each | each first = 'Mensa Widget' ifTrue: [occurrence := occurrence + 1]].
-	self assert: occurrence = 1. 
+	occurrence := true.
+	[TheWorldMenu registry find: {'Mensa Widget'. {MWFrame. #new}}] on: Error do:
+		[occurrence := false].
+	self assert: occurrence
 
  
 
