@@ -41,11 +41,11 @@ MWFrame class >> contentExtent [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'NK 6/13/2024 10:15'
+	#'squeak_changestamp' : 'Max 6/17/2024 20:42'
 }
 MWFrame class >> register [ 
 	
-	TheWorldMenu registerOpenCommand: {'Mensa Widget'. {MWFrame new. #initialize}}
+	TheWorldMenu registerOpenCommand: {'Mensa Widget'. {MWFrame. #new}}
 ]
 
 {

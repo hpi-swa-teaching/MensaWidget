@@ -20,10 +20,12 @@ Class {
 
 {
 	#category : #environment,
-	#'squeak_changestamp' : 'Oscar 6/15/2024 14:05'
+	#'squeak_changestamp' : 'Max 6/17/2024 20:43'
 }
 MWFrameTest >> setUp [
-
+	
+	TheWorldMenu unregisterOpenCommand: 'Mensa Widget'.
+	MWFrame register.
 	widgetFrame := MWFrame new window
 ]
 
