@@ -40,15 +40,6 @@ MWFrame class >> contentExtent [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Oscar 6/16/2024 20:44'
-}
-MWFrame class >> contentPosition [
-
-	^ 5 @ 30
-]
-
-{
 	#category : #constants,
 	#'squeak_changestamp' : 'NK 6/13/2024 10:15'
 }
