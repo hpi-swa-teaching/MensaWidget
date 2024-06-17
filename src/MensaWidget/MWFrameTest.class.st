@@ -93,6 +93,22 @@ MWFrameTest >> testOpened [
 
 {
 	#category : #tests,
+	#'squeak_changestamp' : 'Max 6/17/2024 11:58'
+}
+MWFrameTest >> testRegister [
+	
+	| occurrence |
+	
+	occurrence := 0.
+	TheWorldMenu registry do: [:each | each first = 'Mensa Widget' ifTrue: [occurrence := occurrence + 1]].
+	self assert: occurrence >= 1. 
+
+ 
+
+]
+
+{
+	#category : #tests,
 	#'squeak_changestamp' : 'Oscar 6/16/2024 18:37'
 }
 MWFrameTest >> testSize [
