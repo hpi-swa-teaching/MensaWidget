@@ -22,7 +22,9 @@ Class {
 	#instVars : [
 		'date',
 		'dateDisplay',
-		'target'
+		'target',
+		'time',
+		'timeToggle'
 	],
 	#category : #MensaWidget,
 	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:59'
@@ -109,6 +111,21 @@ MWMenuBar >> createSpacer [
 ]
 
 {
+	#category : #creation,
+	#'squeak_changestamp' : 'Louis Christ 6/17/2024 16:12'
+}
+MWMenuBar >> createTimeToggle [
+	
+	self timeToggle: 
+		(TextMorph new 
+			contents: self date asString;
+			textStyle: TextStyle default;
+			lock).	
+	self addMorph: self timeToggle 
+	
+]
+
+{
 	#category : #accessing,
 	#'squeak_changestamp' : 'Louis Christ 6/7/2024 13:46'
 }
@@ -146,12 +163,12 @@ MWMenuBar >> dateDisplay: anObject [
 
 {
 	#category : #dateManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:50'
+	#'squeak_changestamp' : 'Louis Christ 6/17/2024 16:21'
 }
 MWMenuBar >> decreaseDate [
 
 	self date: (self date addDays: -1);
-		updateDate
+		update
 ]
 
 {
@@ -168,12 +185,12 @@ MWMenuBar >> decreaseDate: aEvent [
 
 {
 	#category : #dateManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:50'
+	#'squeak_changestamp' : 'Louis Christ 6/17/2024 16:21'
 }
 MWMenuBar >> increaseDate [
 
 	self date: (self date addDays: 1);
-		updateDate
+		update
 ]
 
 {
@@ -224,12 +241,78 @@ MWMenuBar >> target: anObject [
 ]
 
 {
-	#category : #dateManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:59'
+	#category : #accessing,
+	#'squeak_changestamp' : 'Louis Christ 6/17/2024 15:20'
+}
+MWMenuBar >> time [
+
+	^ time
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Louis Christ 6/17/2024 15:20'
+}
+MWMenuBar >> time: anObject [
+
+	time := anObject
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Louis Christ 6/17/2024 15:20'
+}
+MWMenuBar >> timeToggle [
+
+	^ timeToggle
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Louis Christ 6/17/2024 15:20'
+}
+MWMenuBar >> timeToggle: anObject [
+
+	timeToggle := anObject
+]
+
+{
+	#category : #timeManipulation,
+	#'squeak_changestamp' : 'Louis Christ 6/17/2024 16:16'
+}
+MWMenuBar >> toggleTime [
+
+	self time = 'lunch' ifTrue:
+		[self time: 'dinner'] ifFalse:
+		[self time: 'lunch']
+]
+
+{
+	#category : #updating,
+	#'squeak_changestamp' : 'Louis Christ 6/17/2024 16:26'
+}
+MWMenuBar >> update [
+
+	self updateDate";
+		updateTime".
+	self target ifNotNil: [self target displayDay: self date andTime: 'dinner']
+	
+]
+
+{
+	#category : #updating,
+	#'squeak_changestamp' : 'Louis Christ 6/17/2024 15:19'
 }
 MWMenuBar >> updateDate [
 
-	self dateDisplay contents: self date asString.
-	self target ifNotNil: [self target displayDay: self date]
+	self dateDisplay contents: self date asString
 	
+]
+
+{
+	#category : #updating,
+	#'squeak_changestamp' : 'Louis Christ 6/17/2024 16:17'
+}
+MWMenuBar >> updateTime [
+
 ]

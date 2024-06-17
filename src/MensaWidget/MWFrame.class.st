@@ -76,6 +76,24 @@ MWFrame >> addMeals: aDate [
 ]
 
 {
+	#category : #dayManipulation,
+	#'squeak_changestamp' : 'Louis Christ 6/17/2024 16:25'
+}
+MWFrame >> addMeals: aDate forTime: aTime [
+
+	| contentMorph |
+	
+	contentMorph := self buildContentMorph.
+	(MWDataGettingWrapper getMealsOnDate: aDate yyyymmdd) do: 
+		[:each | contentMorph addMorph: (each getCanteenMorphTime: aTime)].
+	self contentMorph scroller 
+		layoutPolicy: TableLayout new;
+		addMorph: contentMorph
+
+	
+]
+
+{
 	#category : #creation,
 	#'squeak_changestamp' : 'Oscar 6/16/2024 23:52'
 }
@@ -156,6 +174,18 @@ MWFrame >> displayDay: aDate [
 
 	self removeMeals;
 		addMeals: aDate
+
+	
+]
+
+{
+	#category : #dayManipulation,
+	#'squeak_changestamp' : 'Louis Christ 6/17/2024 16:18'
+}
+MWFrame >> displayDay: aDate andTime: aTime [
+
+	self removeMeals;
+		addMeals: aDate forTime: aTime
 
 	
 ]

@@ -59,11 +59,24 @@ MWCanteen class >> newWithId: anId Name: aName Date: aDate Meals: aMealList [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 11:02'
+	#'squeak_changestamp' : 'Louis Christ 6/17/2024 16:15'
 }
 MWCanteen >> addMealsTo: aCanteenMorph [
 
-	self meals do: [:each | aCanteenMorph addMorph: each getMealMorph]
+	self meals do: [:each | each category = 'lunch' ifTrue: 
+		[aCanteenMorph addMorph: each getMealMorph]]
+]
+
+{
+	#category : #display,
+	#'squeak_changestamp' : 'Louis Christ 6/17/2024 16:20'
+}
+MWCanteen >> addMealsTo: aCanteenMorph forTime: aTime [
+
+	self meals do: [:each | each category = aTime ifTrue: 
+		[aCanteenMorph addMorph: each getMealMorph]].
+	aCanteenMorph submorphs size = 0 ifTrue:
+		[aCanteenMorph addMorph: MWMealCleaner emptyMeal getMealMorph]
 ]
 
 {
@@ -107,6 +120,20 @@ MWCanteen >> getCanteenMorph [
 	
 	canteenMorph := self initializeCanteenMorph.
 	self addMealsTo: canteenMorph.
+	canteenMorph addMorph: self createNameMorph.
+	^ canteenMorph
+]
+
+{
+	#category : #display,
+	#'squeak_changestamp' : 'Louis Christ 6/17/2024 16:24'
+}
+MWCanteen >> getCanteenMorphTime: aTime [
+
+	| canteenMorph |
+	
+	canteenMorph := self initializeCanteenMorph.
+	self addMealsTo: canteenMorph forTime: aTime.
 	canteenMorph addMorph: self createNameMorph.
 	^ canteenMorph
 ]
