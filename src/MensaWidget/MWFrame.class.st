@@ -59,24 +59,6 @@ MWFrame class >> scrollBarThickness [
 
 {
 	#category : #dayManipulation,
-	#'squeak_changestamp' : 'Oscar 6/16/2024 23:56'
-}
-MWFrame >> addMeals: aDate [
-
-	| contentMorph |
-	
-	contentMorph := self buildContentMorph.
-	(MWDataGettingWrapper getMealsOnDate: aDate yyyymmdd) do: 
-		[:each | contentMorph addMorph: each getCanteenMorph].
-	self contentMorph scroller 
-		layoutPolicy: TableLayout new;
-		addMorph: contentMorph
-
-	
-]
-
-{
-	#category : #dayManipulation,
 	#'squeak_changestamp' : 'Louis Christ 6/17/2024 16:25'
 }
 MWFrame >> addMeals: aDate forTime: aTime [
@@ -168,18 +150,6 @@ MWFrame >> contentMorph: anObject [
 
 {
 	#category : #dayManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/11/2024 11:54'
-}
-MWFrame >> displayDay: aDate [
-
-	self removeMeals;
-		addMeals: aDate
-
-	
-]
-
-{
-	#category : #dayManipulation,
 	#'squeak_changestamp' : 'Louis Christ 6/17/2024 16:18'
 }
 MWFrame >> displayDay: aDate andTime: aTime [
@@ -192,13 +162,13 @@ MWFrame >> displayDay: aDate andTime: aTime [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Oscar 6/17/2024 00:00'
+	#'squeak_changestamp' : 'Louis Christ 6/17/2024 22:17'
 }
 MWFrame >> initialize [
 
 	super initialize.
 	self window: (self buildLayout openInWindowLabeled: 'Mensa Widget').
-	self addMeals: Date today
+	self addMeals: Date today forTime: 'lunch'
 ]
 
 {
