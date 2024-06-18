@@ -49,13 +49,13 @@ MWMeal class >> avgLineLenght [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 20:05'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 20:41'
 }
 MWMeal class >> getStarMorph [
 	
 	^ PolygonMorph new 
 		color: Color transparent;
-		borderColor: Color paleGreen;
+		borderColor: Color fern lighter;
 		borderWidth: 3;
 		setVertices: self getStarVertices;
 		yourself
@@ -63,12 +63,28 @@ MWMeal class >> getStarMorph [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 19:48'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 20:48'
+}
+MWMeal class >> getStarMorphCover [
+	
+	^ AlignmentMorph newRow
+		addMorph: self getStarMorph;
+		hResizing: #shrinkWrap;
+		vResizing: #shrinkWrap;
+		on: #mouseDown send: #toggleLike: to: MWFavorites;
+		cellPositioning: #center;
+		color: Color transparent;
+		yourself
+]
+
+{
+	#category : #constants,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 20:40'
 }
 MWMeal class >> getStarVertices [
 	
 	^ RealEstateAgent scaleFactor * 
-		{12.5@0. 15@10. 25@10. 17.5@16.25. 20@25. 12.5@20. 5@25. 7.5@16.25. 0@10. 10@10}
+		{6@0. 7@5. 12@5. 8@8. 10@12. 6@10. 2@12. 3@8. 0@5. 5@5}
 
 ]
 
@@ -110,7 +126,7 @@ MWMeal >> category: anObject [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'tmc 6/6/2024 21:46'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 20:43'
 }
 MWMeal >> getMealMorph [
 
@@ -120,6 +136,7 @@ MWMeal >> getMealMorph [
 		vResizing: #shrinkWrap;
 		hResizing: #rigid;
 		addMorph: self getPriceMorph;
+		addMorph: self class getStarMorphCover;
 		addMorph: self getSpacerMorph;
 		addMorph: self getNameMorph;
 		yourself
@@ -154,7 +171,7 @@ MWMeal >> getPriceMorph [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 20:05'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 20:43'
 }
 MWMeal >> getSpacerMorph [
 
@@ -162,8 +179,6 @@ MWMeal >> getSpacerMorph [
 		color: Color transparent;
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
-		on: #mouseDown send: #toggleLike: to: MWFavorites;
-		addMorphCentered: self class getStarMorph;
 		yourself
 ]
 

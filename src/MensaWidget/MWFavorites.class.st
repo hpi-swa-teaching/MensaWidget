@@ -8,7 +8,7 @@ Class {
 }
 
 {
-	#category : #'as yet unclassified',
+	#category : #liking,
 	#'squeak_changestamp' : 'Louis Christ 6/18/2024 20:35'
 }
 MWFavorites class >> emptyFavourites [
@@ -37,7 +37,7 @@ MWFavorites class >> favouriteFoods: anObject [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #liking,
 	#'squeak_changestamp' : 'Louis Christ 6/18/2024 20:25'
 }
 MWFavorites class >> insertFood: aFood [
@@ -46,7 +46,7 @@ MWFavorites class >> insertFood: aFood [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #liking,
 	#'squeak_changestamp' : 'Louis Christ 6/18/2024 20:28'
 }
 MWFavorites class >> removeFood: aFood [
@@ -55,13 +55,13 @@ MWFavorites class >> removeFood: aFood [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 20:36'
+	#category : #liking,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 20:39'
 }
 MWFavorites class >> toggleLike: anEvent [
 
 	anEvent handler submorphs first color = Color transparent ifTrue: 
-		[anEvent handler submorphs first color: Color red.
+		[anEvent handler submorphs first color: Color fern lighter.
 		self insertFood: anEvent handler owner submorphs first text string] ifFalse: 
 		[anEvent handler submorphs first color: Color transparent.
 		self removeFood: anEvent handler owner submorphs first text string]
