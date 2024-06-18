@@ -20,11 +20,11 @@ Class {
 
 {
 	#category : #environment,
-	#'squeak_changestamp' : 'Oscar 6/15/2024 14:05'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:58'
 }
 MWFrameTest >> setUp [
 
-	widgetFrame := MWFrame new window
+	widgetFrame := MWFrame new owner
 ]
 
 {

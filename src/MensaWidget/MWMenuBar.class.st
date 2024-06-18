@@ -310,12 +310,12 @@ MWMenuBar >> toggleTime [
 
 {
 	#category : #updating,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:38'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 16:05'
 }
 MWMenuBar >> updateDate [
 
 	self dateDisplay contents: self date asString.
-	self target ifNotNil: [self target updateDay: self date]
+	self target ifNotNil: [self target updateDay: self date withTime: self time]
 	
 ]
 

@@ -88,23 +88,23 @@ MWMenuBarTest >> menuBar: anObject [
 
 {
 	#category : #environment,
-	#'squeak_changestamp' : 'Louis Christ 6/17/2024 22:34'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:59'
 }
 MWMenuBarTest >> setUp [
 
 	self mensaWidget: MWFrame new.
-	self mensaWidget window allMorphsDo: [:each | each class = MWMenuBar ifTrue: [self menuBar: each]].
+	self mensaWidget owner allMorphsDo: [:each | each class = MWMenuBar ifTrue: [self menuBar: each]].
 	
 ]
 
 {
 	#category : #environment,
-	#'squeak_changestamp' : 'Louis Christ 6/17/2024 22:35'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:59'
 }
 MWMenuBarTest >> tearDown [
 	
 	self menuBar: nil.
-	self mensaWidget window abandon
+	self mensaWidget owner abandon
 ]
 
 {
@@ -184,14 +184,14 @@ MWMenuBarTest >> testNavigatePreviousDay [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Oscar 6/17/2024 00:15'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:59'
 }
 MWMenuBarTest >> testOneMenuBarExists [
 
 	| menuBars |
 	
 	menuBars := OrderedCollection new.
-	self mensaWidget window allMorphsDo: [:each | each class = MWMenuBar ifTrue: [menuBars add: each]].
+	self mensaWidget owner allMorphsDo: [:each | each class = MWMenuBar ifTrue: [menuBars add: each]].
 	self assert: menuBars size = 1
 ]
 
