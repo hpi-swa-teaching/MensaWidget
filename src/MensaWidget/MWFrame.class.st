@@ -111,32 +111,32 @@ MWFrame >> addMenuBar [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 17:41'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 17:48'
 }
 MWFrame >> addScrollPane [
 
 	self scroller: 
 		(ScrollPane new 
 			scrollBarThickness: self class scrollBarThickness;
-			color: MWColorTheme backgroundColor;
+			color: MWColorTheme defaultColor;
 			hResizing: #spaceFill;
 			vResizing: #spaceFill;
 			scroller);
 		addMorph: self scroller owner.
 	self scroller layoutPolicy: TableLayout new.
-	self scroller owner submorphs last color: (Color r: 0.8 g: 1 b: 0.8).
+	self scroller owner submorphs last color: MWColorTheme backgroundColor
 ]
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:05'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 17:48'
 }
 MWFrame >> buildLayout [
 
 	self hResizing: #spaceFill;
 		vResizing: #spaceFill;
 		extent: self class contentExtent;
-		color: MWColorTheme backgroundColor;
+		color: MWColorTheme defaultColor;
 		addScrollPane;
 		addContentMorph;
 		addMenuBar

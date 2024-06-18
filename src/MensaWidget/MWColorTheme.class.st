@@ -13,19 +13,28 @@ Class {
 
 {
 	#category : #colors,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 16:19'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 17:47'
 }
 MWColorTheme class >> backgroundColor [
+
+	^ Color r: 0.8 g: 1 b: 0.8
+]
+
+{
+	#category : #colors,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 17:45'
+}
+MWColorTheme class >> defaultColor [
 
 	^ Color darkGray
 ]
 
 {
 	#category : #colors,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 16:26'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 17:46'
 }
 MWColorTheme class >> primaryColor [
-
+	
 	^ Color paleGreen darker darker
 ]
 

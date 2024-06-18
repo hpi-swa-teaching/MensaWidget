@@ -192,11 +192,11 @@ MWMenuBar >> decreaseDate [
 
 {
 	#category : #dateManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/17/2024 21:49'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 17:48'
 }
 MWMenuBar >> decreaseDate: aEvent [
 	
-	aEvent handler color: MWColorTheme backgroundColor.
+	aEvent handler color: MWColorTheme defaultColor.
 	World doOneCycle.
 	self decreaseDate.
 	aEvent handler color: MWColorTheme secondaryColor
@@ -214,11 +214,11 @@ MWMenuBar >> increaseDate [
 
 {
 	#category : #dateManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 16:22'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 17:48'
 }
 MWMenuBar >> increaseDate: aEvent [
 	
-	aEvent handler color: MWColorTheme backgroundColor.
+	aEvent handler color: MWColorTheme defaultColor.
 	World doOneCycle.
 	self increaseDate.
 	aEvent handler color: MWColorTheme secondaryColor
