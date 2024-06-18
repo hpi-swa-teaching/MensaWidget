@@ -49,12 +49,12 @@ MWMeal class >> avgLineLenght [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 20:58'
+	#'squeak_changestamp' : 'tmc 6/18/2024 21:29'
 }
-MWMeal class >> getStarMorph [
+MWMeal class >> getStarMorph: aMeal [
 	
 	^ PolygonMorph new 
-		color: Color transparent;
+		color: (self getStarMorphColor: aMeal);
 		borderColor: Color fern lighter;
 		borderWidth: self starBoarderWidth;
 		setVertices: self getStarVertices;
@@ -63,12 +63,23 @@ MWMeal class >> getStarMorph [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 20:55'
+	#'squeak_changestamp' : 'tmc 6/18/2024 21:27'
 }
-MWMeal class >> getStarMorphCover [
+MWMeal class >> getStarMorphColor: aMeal [
+
+	(MWFavorites favouriteFoods includes: aMeal) ifTrue: [^ Color fern lighter] 
+		 ifFalse:[^ Color transparent]
+	
+]
+
+{
+	#category : #constants,
+	#'squeak_changestamp' : 'tmc 6/18/2024 21:32'
+}
+MWMeal class >> getStarMorphCover: aMeal [
 	
 	^ AlignmentMorph new
-		addMorph: self getStarMorph;
+		addMorph: (self getStarMorph: aMeal);
 		hResizing: #shrinkWrap;
 		vResizing: #shrinkWrap;
 		on: #mouseDown send: #toggleLike: to: MWFavorites;
@@ -80,7 +91,7 @@ MWMeal class >> getStarMorphCover [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 20:40'
+	#'squeak_changestamp' : 'tmc 6/18/2024 21:19'
 }
 MWMeal class >> getStarVertices [
 	
@@ -145,7 +156,7 @@ MWMeal >> category: anObject [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 20:43'
+	#'squeak_changestamp' : 'tmc 6/18/2024 21:33'
 }
 MWMeal >> getMealMorph [
 
@@ -155,7 +166,7 @@ MWMeal >> getMealMorph [
 		vResizing: #shrinkWrap;
 		hResizing: #rigid;
 		addMorph: self getPriceMorph;
-		addMorph: self class getStarMorphCover;
+		addMorph: (self class getStarMorphCover: self name);
 		addMorph: self getSpacerMorph;
 		addMorph: self getNameMorph;
 		yourself
