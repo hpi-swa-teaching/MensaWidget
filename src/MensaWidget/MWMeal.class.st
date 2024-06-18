@@ -49,14 +49,14 @@ MWMeal class >> avgLineLenght [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 20:41'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 20:58'
 }
 MWMeal class >> getStarMorph [
 	
 	^ PolygonMorph new 
 		color: Color transparent;
 		borderColor: Color fern lighter;
-		borderWidth: 3;
+		borderWidth: self starBoarderWidth;
 		setVertices: self getStarVertices;
 		yourself
 ]
@@ -105,6 +105,15 @@ MWMeal class >> mealMorphColor [
 MWMeal class >> mealMorphWidth [
 
 	^ 400
+]
+
+{
+	#category : #constants,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 20:58'
+}
+MWMeal class >> starBoarderWidth [
+
+	^ 2 * RealEstateAgent scaleFactor
 ]
 
 {
