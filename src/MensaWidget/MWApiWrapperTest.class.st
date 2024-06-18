@@ -79,18 +79,16 @@ MWApiWrapperTest >> testApiCallWithInvalidUrl [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Max 6/18/2024 18:29'
+	#'squeak_changestamp' : 'Max 6/18/2024 22:10'
 }
 MWApiWrapperTest >> testApiCallWithValidUrl [
 
     | responseWrapper responseApi errorOccurred |
 
     errorOccurred := false.
-    [ responseWrapper := MWApiWrapper getMealsFrom: self class validMensaId on: self class validDate using: WebClient.
-    responseApi := WebClient httpGet: self class validApiUrl.
-    ] on: NetworkError do: [ :ex |
-        errorOccurred := true ].
-    self assert: ( errorOccurred or: [responseApi content = responseWrapper]).
+    [responseWrapper := MWApiWrapper getMealsFrom: self class validMensaId on: self class validDate using: WebClient.
+    responseApi := WebClient httpGet: self class validApiUrl] on: NetworkError do: [:ex | errorOccurred := true].
+    self assert: (errorOccurred or: [responseApi content = responseWrapper]).
 
 	
 	
