@@ -31,17 +31,16 @@ MWApiWrapper class >> baseEndpoint [
 
 {
 	#category : #call,
-	#'squeak_changestamp' : 'Max 6/18/2024 10:34'
+	#'squeak_changestamp' : 'Max 6/18/2024 18:28'
 }
-MWApiWrapper class >> getMealsFrom: anOutletId on: aDate [
+MWApiWrapper class >> getMealsFrom: anOutletId on: aDate using: anApi [
 	"The two attributes need to be a string"
 	
 	| url response |
 	
 	url := self baseEndpoint, self mealsPostfix.
 	url := url format: {anOutletId. aDate}.
-	[response := WebClient httpGet: url] on: NetworkError do: [
-		^ self NetworkErrorResponse]. 
+	[response := anApi httpGet: url] on: NetworkError do: [^ self NetworkErrorResponse].
 	^ response content
 	
 ]
