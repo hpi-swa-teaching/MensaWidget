@@ -63,17 +63,18 @@ MWMeal class >> getStarMorph [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 20:48'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 20:55'
 }
 MWMeal class >> getStarMorphCover [
 	
-	^ AlignmentMorph newRow
+	^ AlignmentMorph new
 		addMorph: self getStarMorph;
 		hResizing: #shrinkWrap;
 		vResizing: #shrinkWrap;
 		on: #mouseDown send: #toggleLike: to: MWFavorites;
 		cellPositioning: #center;
 		color: Color transparent;
+		cellInset: self starInset;
 		yourself
 ]
 
@@ -104,6 +105,15 @@ MWMeal class >> mealMorphColor [
 MWMeal class >> mealMorphWidth [
 
 	^ 400
+]
+
+{
+	#category : #constants,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 20:55'
+}
+MWMeal class >> starInset [
+
+	^ 3 * RealEstateAgent scaleFactor
 ]
 
 {
