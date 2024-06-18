@@ -20,7 +20,7 @@ Class {
 
 {
 	#category : #helpers,
-	#'squeak_changestamp' : 'Louis Christ 6/11/2024 00:59'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 12:13'
 }
 MWMenuBarTest >> getAllCanteens [
 	
@@ -29,7 +29,7 @@ MWMenuBarTest >> getAllCanteens [
 	canteens := OrderedCollection new.
 	self mensaWidget contentMorph allMorphsDo: [:each | 
 		each color = MWColorTheme secondaryColor ifTrue: 
-			[canteens add: (each submorphs at: 1) contents string]].
+			[canteens add: (each submorphs at: 1) submorphs second contents string]].
 	^ canteens
 ]
 
@@ -86,7 +86,7 @@ MWMenuBarTest >> tearDown [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Oscar 6/17/2024 00:15'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 11:56'
 }
 MWMenuBarTest >> testCanteensChange [
 

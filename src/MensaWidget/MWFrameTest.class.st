@@ -19,6 +19,22 @@ Class {
 }
 
 {
+	#category : #helper,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 12:22'
+}
+MWFrameTest >> getAllCurrencies [
+
+	| currencies |
+	
+	currencies := OrderedCollection new.
+	self widgetFrame allMorphsDo: [:each | 
+		(each class = AlignmentMorph and: [each color = MWColorTheme secondaryColor]) ifTrue: 
+		[currencies add: (each submorphs at: 1) submorphs last contents]].
+	^ currencies
+	
+]
+
+{
 	#category : #environment,
 	#'squeak_changestamp' : 'Oscar 6/15/2024 14:05'
 }
@@ -61,6 +77,26 @@ MWFrameTest >> testCantineCount [
 MWFrameTest >> testContent [
 	
 	self assert: (self widgetFrame paneMorphs = #()) not
+]
+
+{
+	#category : #tests,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 12:07'
+}
+MWFrameTest >> testCorrectCurrency [
+
+	self getAllCurrencies do: [:each | self assert: each = MWCanteen currency]
+		
+]
+
+{
+	#category : #tests,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 12:08'
+}
+MWFrameTest >> testCorrectCurrencyAmount [
+
+	self assert: self getAllCurrencies size = MWDataGettingWrapper canteenDict size
+		
 ]
 
 {
