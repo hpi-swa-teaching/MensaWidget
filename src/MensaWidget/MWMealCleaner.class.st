@@ -62,7 +62,7 @@ MWMealCleaner class >> fixCategories: aMeal [
 
 {
 	#category : #cleaning,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 13:58'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:44'
 }
 MWMealCleaner class >> fixMeal: aMeal [
 
@@ -73,7 +73,7 @@ MWMealCleaner class >> fixMeal: aMeal [
 	meal isHotCounter ifTrue: [meal := MWMeal hotCounterMeal].
 	self fixPrices: meal;
 	 	fixCategories: meal.
-	^ meal
+	^ meal build
 		
 ]
 

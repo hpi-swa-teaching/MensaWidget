@@ -40,7 +40,7 @@ Class {
 
 {
 	#category : #meals,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:12'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:49'
 }
 MWMeal class >> emptyMeal [
 
@@ -48,7 +48,8 @@ MWMeal class >> emptyMeal [
 		name: 'Hier gibt es nichts zu sehen.' translated;
 		category: nil;
 		notes: nil;
-		prices: MWMealCleaner emptyPrice
+		prices: MWMealCleaner emptyPrice;
+		build
 ]
 
 {

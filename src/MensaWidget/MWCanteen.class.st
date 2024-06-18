@@ -58,25 +58,25 @@ MWCanteen class >> newWithId: anId Name: aName Date: aDate Meals: aMealList [
 ]
 
 {
-	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:16'
+	#category : #updating,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:54'
 }
 MWCanteen >> addMealsForTime: aTime [
 
-	self meals do: [:each | (each category = aTime) ifTrue:
-		[self addMorph: each build]].
-	self submorphs size = 0 ifTrue:
-		[self addMorph: MWMeal emptyMeal build]
+	self meals do: [:each | (
+		each category = aTime or: [each category = nil]) ifTrue: 
+		[self addMorphBack: each]].
+	self submorphs size = 1 ifTrue: [self addMorphBack: MWMeal emptyMeal]
 ]
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:23'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:55'
 }
 MWCanteen >> buildForTime: aTime [
 
-	self addMealsForTime: aTime;
-		addMorph: self createNameMorph
+	self addMorph: self createNameMorph;
+		addMealsForTime: aTime
 ]
 
 {
@@ -104,6 +104,15 @@ MWCanteen >> date [
 MWCanteen >> date: anObject [
 
 	date := anObject
+]
+
+{
+	#category : #updating,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:27'
+}
+MWCanteen >> deleteMeals [
+
+	self submorphs from: 2 to: self submorphs size do: [:each | each abandon]
 ]
 
 {
@@ -173,4 +182,14 @@ MWCanteen >> name [
 MWCanteen >> name: anObject [
 
 	name := anObject
+]
+
+{
+	#category : #updating,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:27'
+}
+MWCanteen >> updateForTime: aTime [
+
+	self deleteMeals;
+		addMealsForTime: aTime
 ]

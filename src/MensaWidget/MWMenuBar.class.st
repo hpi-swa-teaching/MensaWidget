@@ -310,31 +310,31 @@ MWMenuBar >> toggleTime [
 
 {
 	#category : #updating,
-	#'squeak_changestamp' : 'Louis Christ 6/17/2024 22:15'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:38'
 }
 MWMenuBar >> updateDate [
 
 	self dateDisplay contents: self date asString.
-	self updateMeals
+	self target ifNotNil: [self target updateDay: self date]
 	
 ]
 
 {
 	#category : #updating,
-	#'squeak_changestamp' : 'Louis Christ 6/17/2024 22:14'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:33'
 }
 MWMenuBar >> updateMeals [
 
-	self target ifNotNil: [self target displayDay: self date andTime: self time]
+	self target ifNotNil: [self target updateTime: self time]
 	
 ]
 
 {
 	#category : #updating,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:19'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:37'
 }
 MWMenuBar >> updateTime [
 	
 	self timeToggle submorphs first contents: self time capitalized.
-	self updateMeals
+	self target ifNotNil: [self target updateTime: self time]
 ]
