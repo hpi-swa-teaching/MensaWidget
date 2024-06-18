@@ -22,7 +22,7 @@ MWApiWrapper class >> baseEndpoint [
 
 {
 	#category : #call,
-	#'squeak_changestamp' : 'Louis Christ 6/4/2024 17:23'
+	#'squeak_changestamp' : 'NK 6/18/2024 21:27'
 }
 MWApiWrapper class >> getMealsFrom: anOutletId on: aDate [
 	"The two attributes need to be a string"

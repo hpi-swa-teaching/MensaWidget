@@ -102,7 +102,7 @@ MWMenuBarTest >> testCanteensChange [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Oscar 6/17/2024 00:15'
+	#'squeak_changestamp' : 'NK 6/18/2024 21:48'
 }
 MWMenuBarTest >> testMealsChange [
 
