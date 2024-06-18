@@ -40,12 +40,12 @@ MWFrame class >> contentExtent [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Oscar 6/16/2024 20:44'
+	#category : #constants,
+	#'squeak_changestamp' : 'Max 6/17/2024 20:42'
 }
-MWFrame class >> contentPosition [
-
-	^ 5 @ 30
+MWFrame class >> register [ 
+	
+	TheWorldMenu registerOpenCommand: {'Mensa Widget'. {MWFrame. #new}}
 ]
 
 {
@@ -162,7 +162,7 @@ MWFrame >> displayDay: aDate [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Oscar 6/17/2024 00:00'
+	#'squeak_changestamp' : 'Max 6/17/2024 11:19'
 }
 MWFrame >> initialize [
 
