@@ -42,11 +42,11 @@ MWFrame class >> contentExtent [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Oscar 6/5/2024 01:01'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 19:24'
 }
 MWFrame class >> scrollBarThickness [
 
-	^ 20
+	^ 14 * RealEstateAgent scaleFactor 
 ]
 
 {

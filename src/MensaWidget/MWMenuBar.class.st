@@ -40,15 +40,33 @@ Class {
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Louis Christ 6/17/2024 18:09'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 19:24'
+}
+MWMenuBar class >> cellGap [
+
+	^ 20 * RealEstateAgent scaleFactor
+]
+
+{
+	#category : #constants,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 19:21'
 }
 MWMenuBar class >> getArrowButton [
 
 	^ PolygonMorph new
-		setVertices: {0 @ 0. 0 @ 20. 20 @ 10};
+		setVertices: self getArrowVertices;
 		color: MWColorTheme secondaryColor;
 		addFlexShellIfNecessary; 
 		yourself
+]
+
+{
+	#category : #constants,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 19:22'
+}
+MWMenuBar class >> getArrowVertices [
+
+	^ RealEstateAgent scaleFactor  * {0 @ 0. 0 @ 14. 14 @ 7}
 ]
 
 {
@@ -226,7 +244,7 @@ MWMenuBar >> increaseDate: aEvent [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/17/2024 18:10'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 19:25'
 }
 MWMenuBar >> initialize [
 	
@@ -237,7 +255,7 @@ MWMenuBar >> initialize [
 		vResizing: #shrinkWrap;
 		cellPositioning: #center;
 		color: MWColorTheme primaryColor;
-		cellGap: 30;
+		cellGap: self class cellGap;
 		createLayout
 
 ]
