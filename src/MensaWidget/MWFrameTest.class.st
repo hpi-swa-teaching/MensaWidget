@@ -38,18 +38,11 @@ MWFrameTest >> tearDown [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'tmc 6/6/2024 22:21'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 17:30'
 }
 MWFrameTest >> testCantineCount [
 
-	self widgetFrame submorphsDo: [ :each | 
-		each class = ScrollPane ifTrue: 
-			[ each submorphsDo: [ :each2 |
-				each2 class = TransformationMorph ifTrue: 
-					[ each2 submorphsDo: [ :each3 |
-						each3 class = AlignmentMorph ifTrue: [
-							self assert: each3 subclasses size = 
-								MWDataGettingWrapper canteenDict size]]]]]]
+	self assert: self widgetFrame submorphs first contentMorph submorphs size = MWDataGettingWrapper canteenDict size
 				 
 			  
 ]
@@ -65,20 +58,20 @@ MWFrameTest >> testContent [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Oscar 6/14/2024 15:29'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 16:21'
 }
-MWFrameTest >> testCorrectSuperclass [
+MWFrameTest >> testCorrectClass [
 
-	self assert: self widgetFrame class superclass = MorphicModel
+	self assert: self widgetFrame class = SystemWindow
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:42'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 16:14'
 }
 MWFrameTest >> testCorrectTitle [
 	
-	self assert: self widgetFrame label = 'Mensa Widget'
+	self assert: self widgetFrame label = MWFrame windowName
 ]
 
 {
