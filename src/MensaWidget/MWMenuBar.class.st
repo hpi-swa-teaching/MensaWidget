@@ -53,15 +53,15 @@ MWMenuBar class >> getArrowButton [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Louis Christ 6/17/2024 22:05'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:19'
 }
 MWMenuBar class >> getTimeToggle [
 
-	^ SugarRoundedField new 
-		color: MWColorTheme secondaryColor;
-		extent: 80@30;
-		backgroundColor: MWColorTheme primaryColor;
-		addMorphCentered: (StringMorph contents: 'Lunch')
+	^ AlignmentMorph new 
+		addMorph: (StringMorph contents: 'Lunch'); 
+		vResizing: #shrinkWrap; 
+		hResizing: #shrinkWrap;
+		color: MWColorTheme secondaryColor
 ]
 
 {
@@ -331,11 +331,10 @@ MWMenuBar >> updateMeals [
 
 {
 	#category : #updating,
-	#'squeak_changestamp' : 'Louis Christ 6/17/2024 22:15'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:19'
 }
 MWMenuBar >> updateTime [
 	
-	(self timeToggle submorphs at: 1) abandon.
-	self timeToggle addMorphCentered: (StringMorph contents: self time capitalized).
+	self timeToggle submorphs first contents: self time capitalized.
 	self updateMeals
 ]
