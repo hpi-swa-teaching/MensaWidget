@@ -34,9 +34,39 @@ Class {
 		'prices',
 		'notes'
 	],
+	#classVars : [
+		'PriceGroup'
+	],
 	#category : #MensaWidget,
 	#'squeak_changestamp' : 'Max 5/31/2024 21:55'
 }
+
+{
+	#category : #constants,
+	#'squeak_changestamp' : 'tmc 6/18/2024 22:14'
+}
+MWMeal class >> defaultGroup [
+
+	^ 'others'
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'tmc 6/18/2024 22:02'
+}
+MWMeal class >> priceGroup [
+	
+	^ PriceGroup
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'tmc 6/18/2024 22:01'
+}
+MWMeal class >> priceGroup: anObject [
+
+	PriceGroup := anObject
+]
 
 {
 	#category : #constants,
@@ -109,14 +139,14 @@ MWMeal >> getPriceMorph [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Max 6/12/2024 13:51'
+	#'squeak_changestamp' : 'tmc 6/18/2024 22:13'
 }
 MWMeal >> getPriceStream [
 
 	| priceStream |
 	
 	priceStream := WriteStream on: String new.
-    	(self prices at: 'students') 
+    	(self prices at: self class priceGroup ifAbsent: [self prices at: 'others']) 
 		ifNil: [' '] 
 		ifNotNil: [:price | price printOn: priceStream showingDecimalPlaces: 2].
 	^ priceStream
