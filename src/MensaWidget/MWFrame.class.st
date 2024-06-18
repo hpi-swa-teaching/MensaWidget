@@ -71,13 +71,14 @@ MWFrame >> abandonContent [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:54'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 17:40'
 }
 MWFrame >> addContentMorph [
 
 	self contentMorph: (AlignmentMorph newColumn 
 		 cellInset: self class cellSpacing;
 		 extent: self class contentExtent;
+		vResizing: #shrinkWrap;
 		yourself).
 	self scroller addMorph: self contentMorph
 ]
@@ -110,7 +111,7 @@ MWFrame >> addMenuBar [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:57'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 17:41'
 }
 MWFrame >> addScrollPane [
 
@@ -122,7 +123,8 @@ MWFrame >> addScrollPane [
 			vResizing: #spaceFill;
 			scroller);
 		addMorph: self scroller owner.
-	self scroller layoutPolicy: TableLayout new
+	self scroller layoutPolicy: TableLayout new.
+	self scroller owner submorphs last color: (Color r: 0.8 g: 1 b: 0.8).
 ]
 
 {
