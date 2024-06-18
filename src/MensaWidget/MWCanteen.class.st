@@ -35,20 +35,20 @@ Class {
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 11:04'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:14'
 }
-MWCanteen class >> canteenMorphCellGap [
+MWCanteen class >> cellGap [
 
 	^ 5
 ]
 
 {
 	#category : #'constructor ',
-	#'squeak_changestamp' : 'tmc 6/6/2024 21:28'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:30'
 }
 MWCanteen class >> newWithId: anId Name: aName Date: aDate Meals: aMealList [
 
-	^ self new
+	^ self newColumn
 		id: anId;
 		name: aName;
 		date: aDate;
@@ -59,27 +59,33 @@ MWCanteen class >> newWithId: anId Name: aName Date: aDate Meals: aMealList [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:04'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:16'
 }
-MWCanteen >> addMealsTo: aCanteenMorph forTime: aTime [
+MWCanteen >> addMealsForTime: aTime [
 
-	self meals do: [:each | each category = aTime ifTrue: 
-		[aCanteenMorph addMorph: each build]].
-	aCanteenMorph submorphs size = 0 ifTrue:
-		[aCanteenMorph addMorph: MWMeal emptyMeal]
+	self meals do: [:each | (each category = aTime) ifTrue:
+		[self addMorph: each build]].
+	self submorphs size = 0 ifTrue:
+		[self addMorph: MWMeal emptyMeal build]
 ]
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Oscar 6/14/2024 09:01'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:23'
+}
+MWCanteen >> buildForTime: aTime [
+
+	self addMealsForTime: aTime;
+		addMorph: self createNameMorph
+]
+
+{
+	#category : #display,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:21'
 }
 MWCanteen >> createNameMorph [
 
-	^ TextMorph new 
-		contents: self name;
-		readOnly: true; 
-		textStyle: TextStyle default;
-		yourself
+	^ StringMorph contents: self name
 ]
 
 {
@@ -98,20 +104,6 @@ MWCanteen >> date [
 MWCanteen >> date: anObject [
 
 	date := anObject
-]
-
-{
-	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/17/2024 16:24'
-}
-MWCanteen >> getCanteenMorphTime: aTime [
-
-	| canteenMorph |
-	
-	canteenMorph := self initializeCanteenMorph.
-	self addMealsTo: canteenMorph forTime: aTime.
-	canteenMorph addMorph: self createNameMorph.
-	^ canteenMorph
 ]
 
 {
@@ -134,15 +126,16 @@ MWCanteen >> id: anObject [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Oscar 6/16/2024 20:28'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:27'
 }
-MWCanteen >> initializeCanteenMorph [
-
-	^ AlignmentMorph newColumn
-		color: MWColorTheme secondaryColor;
-		cellGap: self class canteenMorphCellGap;
+MWCanteen >> initialize [
+	
+	super initialize.
+	^ self color: MWColorTheme secondaryColor;
+		cellGap: self class cellGap;
 		hResizing: #spaceFill;
-		vResizing: #shrinkWrap
+		vResizing: #shrinkWrap;
+		yourself
     
 ]
 

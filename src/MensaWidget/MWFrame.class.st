@@ -12,10 +12,11 @@ contentMorph
 "
 Class {
 	#name : #MWFrame,
-	#superclass : #Object,
+	#superclass : #AlignmentMorph,
 	#instVars : [
-		'window',
-		'contentMorph'
+		'contentMorph',
+		'menuBar',
+		'scroller'
 	],
 	#category : #MensaWidget,
 	#'squeak_changestamp' : 'Oscar 6/17/2024 00:04'
@@ -58,76 +59,94 @@ MWFrame class >> scrollBarThickness [
 ]
 
 {
+	#category : #constants,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:45'
+}
+MWFrame class >> windowName [
+
+	^ 'Mensa Widget'
+]
+
+{
 	#category : #dayManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/17/2024 16:25'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:14'
+}
+MWFrame >> abandonContent [
+	
+	self contentMorph submorphs do: [:each | each abandon]
+
+	
+]
+
+{
+	#category : #creation,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:54'
+}
+MWFrame >> addContentMorph [
+
+	self contentMorph: (AlignmentMorph newColumn 
+		 cellInset: self class cellSpacing;
+		 extent: self class contentExtent;
+		yourself).
+	self scroller addMorph: self contentMorph
+]
+
+{
+	#category : #dayManipulation,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:13'
 }
 MWFrame >> addMeals: aDate forTime: aTime [
 
-	| contentMorph |
+	| morph |
 	
-	contentMorph := self buildContentMorph.
 	(MWDataGettingWrapper getMealsOnDate: aDate yyyymmdd) do: 
-		[:each | contentMorph addMorph: (each getCanteenMorphTime: aTime)].
-	self contentMorph scroller 
-		layoutPolicy: TableLayout new;
-		addMorph: contentMorph
+		[:each | morph := (each buildForTime: aTime).
+		self contentMorph addMorph: morph.
+		morph vResizing: #shrinkWrap].
 
 	
 ]
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Oscar 6/16/2024 23:52'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:53'
 }
-MWFrame >> buildContentMorph [
-
-	^ AlignmentMorph newColumn 
-		 cellInset: self class cellSpacing;
-		 extent: self class contentExtent;
-		 hResizing: #spaceFill;
-		 vResizing: #spaceFill
-]
-
-{
-	#category : #creation,
-	#'squeak_changestamp' : 'Oscar 6/16/2024 23:51'
-}
-MWFrame >> buildLayout [
-
-	^ AlignmentMorph newColumn
-		hResizing: #spaceFill;
-		vResizing: #spaceFill;
-		extent: self class contentExtent;
-		color: MWColorTheme backgroundColor;
-		addMorph: self buildScrollPane;
-		addMorph: self buildMenuBar;
-		yourself
-]
-
-{
-	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:59'
-}
-MWFrame >> buildMenuBar [
+MWFrame >> addMenuBar [
 	
-	^ MWMenuBar new target: self
+	self menuBar: (MWMenuBar new target: self);
+		addMorph: self menuBar
 ]
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Oscar 6/16/2024 23:58'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:57'
 }
-MWFrame >> buildScrollPane [
+MWFrame >> addScrollPane [
 
-	^ self contentMorph: 
+	self scroller: 
 		(ScrollPane new 
 			scrollBarThickness: self class scrollBarThickness;
 			color: MWColorTheme backgroundColor;
-			extent: self class contentExtent;
 			hResizing: #spaceFill;
 			vResizing: #spaceFill;
-			yourself);
-		contentMorph
+			scroller);
+		addMorph: self scroller owner.
+	self scroller layoutPolicy: TableLayout new
+]
+
+{
+	#category : #creation,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:05'
+}
+MWFrame >> buildLayout [
+
+	self hResizing: #spaceFill;
+		vResizing: #spaceFill;
+		extent: self class contentExtent;
+		color: MWColorTheme backgroundColor;
+		addScrollPane;
+		addContentMorph;
+		addMenuBar
 ]
 
 {
@@ -150,11 +169,11 @@ MWFrame >> contentMorph: anObject [
 
 {
 	#category : #dayManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/17/2024 16:18'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:13'
 }
 MWFrame >> displayDay: aDate andTime: aTime [
 
-	self removeMeals;
+	self abandonContent;
 		addMeals: aDate forTime: aTime
 
 	
@@ -162,39 +181,49 @@ MWFrame >> displayDay: aDate andTime: aTime [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/17/2024 22:17'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:04'
 }
 MWFrame >> initialize [
 
 	super initialize.
-	self window: (self buildLayout openInWindowLabeled: 'Mensa Widget').
-	self addMeals: Date today forTime: 'lunch'
+	self listDirection: #topToBottom;
+		buildLayout;
+		addMeals: Date today forTime: MWMealCleaner lunchCategory;
+		openInWindowLabeled: self class windowName.
 ]
 
 {
-	#category : #dayManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:57'
+	#category : #accessing,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:47'
 }
-MWFrame >> removeMeals [
+MWFrame >> menuBar [
 
-	self contentMorph scroller submorphsDo: [:each | each abandon]
+	^ menuBar
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:47'
+}
+MWFrame >> menuBar: anObject [
+
+	menuBar := anObject
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:49'
+}
+MWFrame >> scroller [
 	
+	^ scroller
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Oscar 6/15/2024 14:01'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:49'
 }
-MWFrame >> window [
+MWFrame >> scroller: anObject [
 
-	^ window
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'Oscar 6/15/2024 14:01'
-}
-MWFrame >> window: anObject [
-
-	window := anObject
+	scroller := anObject
 ]
