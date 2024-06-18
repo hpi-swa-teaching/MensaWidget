@@ -71,13 +71,13 @@ MWFrame >> abandonContent [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 17:40'
+	#'squeak_changestamp' : 'Louis Christ 6/19/2024 00:59'
 }
 MWFrame >> addContentMorph [
 
 	self contentMorph: (AlignmentMorph newColumn 
-		 cellInset: self class cellSpacing;
-		 extent: self class contentExtent;
+		cellInset: self class cellSpacing;
+		extent: self class contentExtent;
 		vResizing: #shrinkWrap;
 		yourself).
 	self scroller addMorph: self contentMorph
@@ -85,16 +85,16 @@ MWFrame >> addContentMorph [
 
 {
 	#category : #dayManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 16:05'
+	#'squeak_changestamp' : 'Louis Christ 6/19/2024 01:00'
 }
-MWFrame >> addMeals: aDate forTime: aTime [
+MWFrame >> addMealsOn: aDate forTime: aTime [
 
 	| morph |
 	
 	(MWDataGettingWrapper getMealsOnDate: aDate yyyymmdd) do: 
-		[:each | morph := (each buildForTime: aTime).
+		[:each | morph := each buildForTime: aTime.
 		self contentMorph addMorph: morph.
-		morph vResizing: #shrinkWrap].
+		morph vResizing: #shrinkWrap]
 
 	
 ]
@@ -162,15 +162,15 @@ MWFrame >> contentMorph: anObject [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 16:06'
+	#'squeak_changestamp' : 'Louis Christ 6/19/2024 01:01'
 }
 MWFrame >> initialize [
 
 	super initialize.
 	self listDirection: #topToBottom;
 		buildLayout;
-		addMeals: Date today forTime: MWMealCleaner lunchCategory;
-		openInWindowLabeled: self class windowName.
+		addMealsOn: Date today forTime: MWMealCleaner lunchCategory;
+		openInWindowLabeled: self class windowName
 ]
 
 {
@@ -222,12 +222,12 @@ MWFrame >> updateContent: aTime [
 
 {
 	#category : #dayManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 16:06'
+	#'squeak_changestamp' : 'Louis Christ 6/19/2024 01:00'
 }
 MWFrame >> updateDay: aDate withTime: aTime [
  	
 	self abandonContent;
-		addMeals: aDate forTime: aTime
+		addMealsOn: aDate forTime: aTime
 ]
 
 {

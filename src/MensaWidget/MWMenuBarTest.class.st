@@ -139,7 +139,7 @@ MWMenuBarTest >> testCanteensChange [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 16:24'
+	#'squeak_changestamp' : 'Louis Christ 6/19/2024 01:06'
 }
 MWMenuBarTest >> testLunchMealCategory [
 
@@ -151,7 +151,7 @@ MWMenuBarTest >> testLunchMealCategory [
 	self assert: (oldTime = self menuBar time) not.
 	self getAllCategories do: [:each | self assert: (each = oldTime) not].
 	self menuBar toggleTime.
-	self assert: oldTime = self menuBar time.
+	self assert: oldTime = self menuBar time
 ]
 
 {

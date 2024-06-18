@@ -40,9 +40,9 @@ MWColorTheme class >> primaryColor [
 
 {
 	#category : #colors,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 16:26'
+	#'squeak_changestamp' : 'Louis Christ 6/19/2024 01:06'
 }
 MWColorTheme class >> secondaryColor [
 
-	^  Color fern lighter
+	^ Color fern lighter
 ]

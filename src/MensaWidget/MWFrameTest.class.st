@@ -12,7 +12,8 @@ Class {
 	#name : #MWFrameTest,
 	#superclass : #TestCase,
 	#instVars : [
-		'widgetFrame'
+		'widgetFrame',
+		'widget'
 	],
 	#category : #'MensaWidget-Tests',
 	#'squeak_changestamp' : 'Louis Christ 5/27/2024 19:44'
@@ -20,40 +21,42 @@ Class {
 
 {
 	#category : #environment,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:58'
+	#'squeak_changestamp' : 'Louis Christ 6/19/2024 01:09'
 }
 MWFrameTest >> setUp [
-
-	widgetFrame := MWFrame new owner
+	
+	self widget: MWFrame new.
+	self widgetFrame: self widget owner
 ]
 
 {
 	#category : #environment,
-	#'squeak_changestamp' : 'Louis Christ 5/27/2024 17:10'
+	#'squeak_changestamp' : 'Louis Christ 6/19/2024 01:10'
 }
 MWFrameTest >> tearDown [
-
-	widgetFrame abandon
+	
+	self widget: nil.
+	self widgetFrame abandon
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 17:30'
+	#'squeak_changestamp' : 'Louis Christ 6/19/2024 01:10'
 }
 MWFrameTest >> testCantineCount [
 
-	self assert: self widgetFrame submorphs first contentMorph submorphs size = MWDataGettingWrapper canteenDict size
+	self assert: self widget contentMorph submorphs size = MWDataGettingWrapper canteenDict size
 				 
 			  
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:42'
+	#'squeak_changestamp' : 'Louis Christ 6/19/2024 01:10'
 }
 MWFrameTest >> testContent [
 	
-	self assert: (self widgetFrame paneMorphs = #()) not
+	self assert: (self widget paneMorphs = #()) not
 ]
 
 {
@@ -94,6 +97,24 @@ MWFrameTest >> testSize [
 
 
 
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Louis Christ 6/19/2024 01:09'
+}
+MWFrameTest >> widget [
+
+	^ widget
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Louis Christ 6/19/2024 01:09'
+}
+MWFrameTest >> widget: anObject [
+
+	widget := anObject
 ]
 
 {

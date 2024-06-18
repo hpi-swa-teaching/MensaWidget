@@ -59,12 +59,12 @@ MWCanteen class >> newWithId: anId Name: aName Date: aDate Meals: aMealList [
 
 {
 	#category : #updating,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:54'
+	#'squeak_changestamp' : 'Louis Christ 6/19/2024 00:57'
 }
 MWCanteen >> addMealsForTime: aTime [
 
-	self meals do: [:each | (
-		each category = aTime or: [each category = nil]) ifTrue: 
+	self meals do: [:each | 
+		(each category = aTime or: [each category = nil]) ifTrue: 
 		[self addMorphBack: each]].
 	self submorphs size = 1 ifTrue: [self addMorphBack: MWMeal emptyMeal]
 ]

@@ -316,13 +316,13 @@ MWMenuBar >> timeToggle: anObject [
 
 {
 	#category : #timeManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/17/2024 21:51'
+	#'squeak_changestamp' : 'Louis Christ 6/19/2024 01:05'
 }
 MWMenuBar >> toggleTime [
 
-	self time = 'lunch' ifTrue:
-		[self time: 'dinner'] ifFalse:
-		[self time: 'lunch'].
+	self time = 'lunch' 
+		ifTrue: [self time: 'dinner'] 
+		ifFalse: [self time: 'lunch'].
 	self updateTime
 ]
 
