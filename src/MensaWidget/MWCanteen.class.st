@@ -22,7 +22,7 @@ name
 "
 Class {
 	#name : #MWCanteen,
-	#superclass : #Object,
+	#superclass : #AlignmentMorph,
 	#instVars : [
 		'id',
 		'name',
@@ -59,14 +59,14 @@ MWCanteen class >> newWithId: anId Name: aName Date: aDate Meals: aMealList [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/17/2024 16:20'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:04'
 }
 MWCanteen >> addMealsTo: aCanteenMorph forTime: aTime [
 
 	self meals do: [:each | each category = aTime ifTrue: 
-		[aCanteenMorph addMorph: each getMealMorph]].
+		[aCanteenMorph addMorph: each build]].
 	aCanteenMorph submorphs size = 0 ifTrue:
-		[aCanteenMorph addMorph: MWMealCleaner emptyMeal getMealMorph]
+		[aCanteenMorph addMorph: MWMeal emptyMeal]
 ]
 
 {
