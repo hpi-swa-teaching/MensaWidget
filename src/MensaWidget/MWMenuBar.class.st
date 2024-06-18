@@ -5,6 +5,8 @@ Instance Variables
 	date:		<Date>
 	dateDisplay:		<Morph>
 	target:		<MWFrame>
+	time:		<String>
+	timeToggle:		<SugarRoundedField>
 
 date
 	- a Date variable that stores the date for the meals that are shown
@@ -14,6 +16,12 @@ dateDisplay
 
 target
 	- the target on which the menubar actions will be called
+	
+time
+	- a String variable that stores the time for the meals that are shown
+
+timeToggle
+	- a variable that refers to the Morph that displays the Time and acts as a button to toggle it
 
 "
 Class {
@@ -27,7 +35,7 @@ Class {
 		'timeToggle'
 	],
 	#category : #MensaWidget,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:59'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 11:28'
 }
 
 {
