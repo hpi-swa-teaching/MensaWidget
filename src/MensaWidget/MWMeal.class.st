@@ -139,14 +139,14 @@ MWMeal >> getPriceMorph [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'tmc 6/18/2024 22:13'
+	#'squeak_changestamp' : 'Max 6/19/2024 09:10'
 }
 MWMeal >> getPriceStream [
 
 	| priceStream |
 	
 	priceStream := WriteStream on: String new.
-    	(self prices at: self class priceGroup ifAbsent: [self prices at: 'others']) 
+    	(self prices at: (self class priceGroup ifNil: [self class defaultGroup])) 
 		ifNil: [' '] 
 		ifNotNil: [:price | price printOn: priceStream showingDecimalPlaces: 2].
 	^ priceStream
