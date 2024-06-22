@@ -38,7 +38,7 @@ MWFavorites class >> favouriteFoods: anObject [
 
 {
 	#category : #liking,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 20:25'
+	#'squeak_changestamp' : 'Louis Christ 6/22/2024 15:54'
 }
 MWFavorites class >> insertFood: aFood [
 	

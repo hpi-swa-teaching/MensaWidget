@@ -102,7 +102,7 @@ MWMenuBarTest >> testCanteensChange [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Oscar 6/17/2024 00:15'
+	#'squeak_changestamp' : 'Louis Christ 6/22/2024 16:06'
 }
 MWMenuBarTest >> testMealsChange [
 
@@ -110,7 +110,8 @@ MWMenuBarTest >> testMealsChange [
 	
 	self mensaWidget window allMorphsDo: [:each | each class = MWMenuBar ifTrue: [menuBar :=each]].
 	({#Saturday. #Sunday} includes: menuBar date weekday) ifTrue:
-		[menuBar addDays: 2].
+		[menuBar decreaseDate;
+			decreaseDate].
 	oldMeals := self getAllMeals.
 	menuBar increaseDate.
 	self assert: (oldMeals = self getAllMeals) not.
