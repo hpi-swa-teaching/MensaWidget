@@ -1,10 +1,17 @@
+"
+A MWFavorites is a class that stores all liked foods and also handle the liking process.
+
+Instance Variables
+
+"
 Class {
 	#name : #MWFavorites,
 	#superclass : #Object,
 	#classVars : [
 		'FavouriteFoods'
 	],
-	#category : #MensaWidget
+	#category : #MensaWidget,
+	#'squeak_changestamp' : 'Louis Christ 6/22/2024 16:21'
 }
 
 {

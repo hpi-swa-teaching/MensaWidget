@@ -1,5 +1,5 @@
 "
-A MWMenuBarTest is a Tests class that test if the menu bar works as expected.
+A MWFavoritesTest is a Tests class that test if the liking of food works as expected.
 
 Instance Variables
 	mensaWidget:		<MWFrame>
@@ -9,20 +9,20 @@ mensaWidget
 
 "
 Class {
-	#name : #MWFavouritesTest,
+	#name : #MWFavoritesTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'mensaWidget'
 	],
 	#category : #'MensaWidget-Tests',
-	#'squeak_changestamp' : '<historical>'
+	#'squeak_changestamp' : 'Louis Christ 6/22/2024 16:21'
 }
 
 {
 	#category : #helpers,
 	#'squeak_changestamp' : 'Louis Christ 6/22/2024 15:30'
 }
-MWFavouritesTest >> getAllMeals [
+MWFavoritesTest >> getAllMeals [
 	
 	| meals |
 	
@@ -37,7 +37,7 @@ MWFavouritesTest >> getAllMeals [
 	#category : #helpers,
 	#'squeak_changestamp' : 'Louis Christ 6/22/2024 15:37'
 }
-MWFavouritesTest >> getNameFor: aMeal [
+MWFavoritesTest >> getNameFor: aMeal [
 	
 	^ (aMeal submorphs at: 1) contents string
 ]
@@ -46,7 +46,7 @@ MWFavouritesTest >> getNameFor: aMeal [
 	#category : #helpers,
 	#'squeak_changestamp' : 'Louis Christ 6/22/2024 16:19'
 }
-MWFavouritesTest >> getStarColorFor: aMeal [
+MWFavoritesTest >> getStarColorFor: aMeal [
 	
 	^ ((self getStarFor: aMeal) submorphs at: 1) color
 ]
@@ -55,7 +55,7 @@ MWFavouritesTest >> getStarColorFor: aMeal [
 	#category : #helpers,
 	#'squeak_changestamp' : 'Louis Christ 6/22/2024 16:09'
 }
-MWFavouritesTest >> getStarFor: aMeal [
+MWFavoritesTest >> getStarFor: aMeal [
 	
 	^ aMeal submorphs at: 3
 ]
@@ -64,7 +64,7 @@ MWFavouritesTest >> getStarFor: aMeal [
 	#category : #accessing,
 	#'squeak_changestamp' : 'Louis Christ 6/11/2024 00:19'
 }
-MWFavouritesTest >> mensaWidget [
+MWFavoritesTest >> mensaWidget [
 
 	^ mensaWidget
 ]
@@ -73,7 +73,7 @@ MWFavouritesTest >> mensaWidget [
 	#category : #accessing,
 	#'squeak_changestamp' : 'Louis Christ 6/11/2024 00:19'
 }
-MWFavouritesTest >> mensaWidget: anObject [
+MWFavoritesTest >> mensaWidget: anObject [
 
 	mensaWidget := anObject
 ]
@@ -82,7 +82,7 @@ MWFavouritesTest >> mensaWidget: anObject [
 	#category : #environment,
 	#'squeak_changestamp' : 'Oscar 6/17/2024 00:14'
 }
-MWFavouritesTest >> setUp [
+MWFavoritesTest >> setUp [
 
 	self mensaWidget: MWFrame new
 ]
@@ -91,7 +91,7 @@ MWFavouritesTest >> setUp [
 	#category : #helpers,
 	#'squeak_changestamp' : 'Louis Christ 6/22/2024 16:02'
 }
-MWFavouritesTest >> simulateButtonClick: aStar [
+MWFavoritesTest >> simulateButtonClick: aStar [
 
 	aStar handleMouseDown: 
 		((MouseButtonEvent new setType: #mouseDown position: aStar center buttons: 4 hand: World currentHand) handler: aStar)
@@ -101,7 +101,7 @@ MWFavouritesTest >> simulateButtonClick: aStar [
 	#category : #environment,
 	#'squeak_changestamp' : 'Oscar 6/17/2024 00:14'
 }
-MWFavouritesTest >> tearDown [
+MWFavoritesTest >> tearDown [
 
 	self mensaWidget window abandon
 ]
@@ -110,7 +110,7 @@ MWFavouritesTest >> tearDown [
 	#category : #tests,
 	#'squeak_changestamp' : 'Louis Christ 6/22/2024 15:26'
 }
-MWFavouritesTest >> testFavouritesIsSet [
+MWFavoritesTest >> testFavouritesIsSet [
 
 	self assert: MWFavorites favouriteFoods class = Set
 ]
@@ -119,7 +119,7 @@ MWFavouritesTest >> testFavouritesIsSet [
 	#category : #tests,
 	#'squeak_changestamp' : 'Louis Christ 6/22/2024 16:15'
 }
-MWFavouritesTest >> testFavouritesRenderCorrectly [
+MWFavoritesTest >> testFavouritesRenderCorrectly [
 	
 	self tearDown;
 		setUp.
@@ -133,7 +133,7 @@ MWFavouritesTest >> testFavouritesRenderCorrectly [
 	#category : #tests,
 	#'squeak_changestamp' : 'Louis Christ 6/22/2024 15:27'
 }
-MWFavouritesTest >> testFavouritesSetExists [
+MWFavoritesTest >> testFavouritesSetExists [
 
 	self assert: (MWFavorites respondsTo: #favouriteFoods)
 ]
@@ -142,7 +142,7 @@ MWFavouritesTest >> testFavouritesSetExists [
 	#category : #tests,
 	#'squeak_changestamp' : 'Louis Christ 6/22/2024 16:17'
 }
-MWFavouritesTest >> testMealIsLikable [
+MWFavoritesTest >> testMealIsLikable [
 
 	self getAllMeals do: [:each |
 		(MWFavorites favouriteFoods includes: (self getNameFor: each))
@@ -156,7 +156,7 @@ MWFavouritesTest >> testMealIsLikable [
 	#category : #tests,
 	#'squeak_changestamp' : 'Louis Christ 6/22/2024 16:17'
 }
-MWFavouritesTest >> testMealIsUnlikable [
+MWFavoritesTest >> testMealIsUnlikable [
 
 	self getAllMeals do: [:each |
 		(MWFavorites favouriteFoods includes: (self getNameFor: each))
