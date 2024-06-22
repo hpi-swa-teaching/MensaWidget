@@ -40,15 +40,6 @@ Class {
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Louis Christ 6/6/2024 22:10'
-}
-MWMeal class >> avgLineLenght [
-	
-	^ 30
-]
-
-{
-	#category : #constants,
 	#'squeak_changestamp' : 'tmc 6/18/2024 21:29'
 }
 MWMeal class >> getStarMorph: aMeal [
@@ -102,20 +93,11 @@ MWMeal class >> getStarVertices [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Oscar 6/5/2024 00:07'
+	#'squeak_changestamp' : 'Oscar 6/15/2024 13:57'
 }
-MWMeal class >> mealMorphColor [
-	
-	 ^ Color paleGreen darker darker
-]
+MWMeal class >> spacerMorphWidth [
 
-{
-	#category : #constants,
-	#'squeak_changestamp' : 'Oscar 6/5/2024 00:10'
-}
-MWMeal class >> mealMorphWidth [
-
-	^ 400
+	^ 50 px 
 ]
 
 {
@@ -156,15 +138,14 @@ MWMeal >> category: anObject [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'tmc 6/18/2024 21:33'
+	#'squeak_changestamp' : 'Louis Christ 6/22/2024 14:57'
 }
 MWMeal >> getMealMorph [
 
 	^ AlignmentMorph newRow
-		color: self class mealMorphColor;
-		width: self class mealMorphWidth;
+		color: MWColorTheme primaryColor;
 		vResizing: #shrinkWrap;
-		hResizing: #rigid;
+		hResizing: #spaceFill;
 		addMorph: self getPriceMorph;
 		addMorph: (self class getStarMorphCover: self name);
 		addMorph: self getSpacerMorph;
@@ -174,41 +155,56 @@ MWMeal >> getMealMorph [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'tmc 6/6/2024 21:47'
+	#'squeak_changestamp' : 'Oscar 6/14/2024 13:17'
 }
 MWMeal >> getNameMorph [
 
-	^ TextMorph new
-		contents: self name;
-		averageLineLength: self class avgLineLenght;
-		readOnly: true;
-		yourself 
-
-	
-]
-
-{
-	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/7/2024 11:00'
-}
-MWMeal >> getPriceMorph [
-
-	^ TextMorph new
-		contents: ((self prices at: 'students') ifNil: [0.00]) asString;
-		readOnly: true;
+	^ self name asText asMorph
+		hResizing: #spaceFill;
+		lock; 
+		textStyle: TextStyle default copy;
 		yourself
 ]
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 20:43'
+	#'squeak_changestamp' : 'Oscar 6/16/2024 20:28'
+}
+MWMeal >> getPriceMorph [
+	
+	^ TextMorph new
+		contents: self getPriceStream contents;
+		readOnly: true;
+		textStyle: TextStyle default;
+		yourself
+]
+
+{
+	#category : #display,
+	#'squeak_changestamp' : 'Max 6/12/2024 13:51'
+}
+MWMeal >> getPriceStream [
+
+	| priceStream |
+	
+	priceStream := WriteStream on: String new.
+    	(self prices at: 'students') 
+		ifNil: [' '] 
+		ifNotNil: [:price | price printOn: priceStream showingDecimalPlaces: 2].
+	^ priceStream
+]
+
+{
+	#category : #display,
+	#'squeak_changestamp' : 'Louis Christ 6/22/2024 14:57'
 }
 MWMeal >> getSpacerMorph [
 
 	^ Morph new 
 		color: Color transparent;
-		hResizing: #spaceFill;
+		hResizing: #rigid;
 		vResizing: #spaceFill;
+		width: self class spacerMorphWidth;
 		yourself
 ]
 
@@ -228,6 +224,24 @@ MWMeal >> id [
 MWMeal >> id: anObject [
 
 	id := anObject
+]
+
+{
+	#category : #checks,
+	#'squeak_changestamp' : 'Max 6/10/2024 20:12'
+}
+MWMeal >> isHotCounter [
+
+	^ self category = 'Heiße Theke'
+]
+
+{
+	#category : #checks,
+	#'squeak_changestamp' : 'Max 6/10/2024 20:13'
+}
+MWMeal >> isSaladBar [
+
+	^ self category = 'Salattheke'
 ]
 
 {

@@ -12,7 +12,8 @@ Class {
 	#name : #MWFrameTest,
 	#superclass : #TestCase,
 	#instVars : [
-		'widgetFrame'
+		'widgetFrame',
+		'isRegistered'
 	],
 	#category : #'MensaWidget-Tests',
 	#'squeak_changestamp' : 'Louis Christ 5/27/2024 19:44'
@@ -20,20 +21,26 @@ Class {
 
 {
 	#category : #environment,
-	#'squeak_changestamp' : 'Louis Christ 5/27/2024 17:12'
+	#'squeak_changestamp' : 'Max 6/17/2024 21:02'
 }
 MWFrameTest >> setUp [
-
-	widgetFrame := MWFrame new
+	
+	isRegistered := true.
+	[TheWorldMenu registry find: {'Mensa Widget'. {MWFrame. #new}}] on: Error do:
+		[isRegistered := false].
+	TheWorldMenu unregisterOpenCommand: 'Mensa Widget'.
+	MWFrame register.
+	widgetFrame := MWFrame new window
 ]
 
 {
 	#category : #environment,
-	#'squeak_changestamp' : 'Louis Christ 5/27/2024 17:10'
+	#'squeak_changestamp' : 'Max 6/17/2024 21:05'
 }
 MWFrameTest >> tearDown [
 
-	widgetFrame abandon
+	widgetFrame abandon.
+	isRegistered ifFalse: [TheWorldMenu unregisterOpenCommand: 'Mensa Widget']
 ]
 
 {
@@ -65,11 +72,11 @@ MWFrameTest >> testContent [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:42'
+	#'squeak_changestamp' : 'Oscar 6/14/2024 15:29'
 }
 MWFrameTest >> testCorrectSuperclass [
 
-	self assert: self widgetFrame class superclass = PluggableSystemWindow
+	self assert: self widgetFrame class superclass = MorphicModel
 ]
 
 {
@@ -93,11 +100,31 @@ MWFrameTest >> testOpened [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:42'
+	#'squeak_changestamp' : 'Max 6/17/2024 21:07'
+}
+MWFrameTest >> testRegister [
+	
+	| occurrence |
+	
+	occurrence := true.
+	[TheWorldMenu registry find: {'Mensa Widget'. {MWFrame. #new}}] on: Error do:
+		[occurrence := false].
+	self assert: occurrence
+
+ 
+
+]
+
+{
+	#category : #tests,
+	#'squeak_changestamp' : 'Oscar 6/16/2024 18:37'
 }
 MWFrameTest >> testSize [
+	
+	self assert: self widgetFrame extent >= MWFrame contentExtent
 
-	self assert: self widgetFrame extent < World extent
+
+
 ]
 
 {
