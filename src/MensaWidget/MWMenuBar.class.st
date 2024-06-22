@@ -30,12 +30,12 @@ Class {
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'NK 6/18/2024 21:34'
+	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:41'
 }
 MWMenuBar class >> getArrowButton [
 
 	^ PolygonMorph new
-		setVertices: {0 @ 0. 0 @ 20. 20 @ 10} ;
+		setVertices: {0 @ 0. 0 @ 20. 20 @ 10};
 		color: MWColorTheme secondaryColor;
 		addFlexShellIfNecessary; 
 		yourself
@@ -146,11 +146,11 @@ MWMenuBar >> dateDisplay: anObject [
 
 {
 	#category : #dateManipulation,
-	#'squeak_changestamp' : 'NK 6/18/2024 21:33'
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:50'
 }
 MWMenuBar >> decreaseDate [
 
-	self date: (self date addDays: -1) ;
+	self date: (self date addDays: -1);
 		updateDate
 ]
 
@@ -168,11 +168,11 @@ MWMenuBar >> decreaseDate: aEvent [
 
 {
 	#category : #dateManipulation,
-	#'squeak_changestamp' : 'NK 6/18/2024 21:33'
+	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:50'
 }
 MWMenuBar >> increaseDate [
 
-	self date: (self date addDays: 1) ;
+	self date: (self date addDays: 1);
 		updateDate
 ]
 

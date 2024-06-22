@@ -115,7 +115,7 @@ MWFrame >> buildMenuBar [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'NK 6/18/2024 21:30'
+	#'squeak_changestamp' : 'Oscar 6/16/2024 23:58'
 }
 MWFrame >> buildScrollPane [
 
@@ -126,7 +126,7 @@ MWFrame >> buildScrollPane [
 			extent: self class contentExtent;
 			hResizing: #spaceFill;
 			vResizing: #spaceFill;
-			yourself) ;
+			yourself);
 		contentMorph
 ]
 
