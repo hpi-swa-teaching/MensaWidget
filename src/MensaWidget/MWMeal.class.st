@@ -54,54 +54,12 @@ MWMeal class >> emptyMeal [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'tmc 6/18/2024 21:29'
-}
-MWMeal class >> getStarMorph: aMeal [
-	
-	^ PolygonMorph new 
-		color: (self getStarMorphColor: aMeal);
-		borderColor: Color fern lighter;
-		borderWidth: self starBoarderWidth;
-		setVertices: self getStarVertices;
-		yourself
-]
-
-{
-	#category : #constants,
-	#'squeak_changestamp' : 'tmc 6/18/2024 21:27'
-}
-MWMeal class >> getStarMorphColor: aMeal [
-
-	(MWFavorites favouriteFoods includes: aMeal) ifTrue: [^ Color fern lighter] 
-		 ifFalse:[^ Color transparent]
-	
-]
-
-{
-	#category : #constants,
-	#'squeak_changestamp' : 'tmc 6/18/2024 21:32'
-}
-MWMeal class >> getStarMorphCover: aMeal [
-	
-	^ AlignmentMorph new
-		addMorph: (self getStarMorph: aMeal);
-		hResizing: #shrinkWrap;
-		vResizing: #shrinkWrap;
-		on: #mouseDown send: #toggleLike: to: MWFavorites;
-		cellPositioning: #center;
-		color: Color transparent;
-		cellInset: self starInset;
-		yourself
-]
-
-{
-	#category : #constants,
-	#'squeak_changestamp' : 'tmc 6/18/2024 21:19'
+	#'squeak_changestamp' : 'LC 6/23/2024 19:02'
 }
 MWMeal class >> getStarVertices [
 	
 	^ RealEstateAgent scaleFactor * 
-		{6@0. 7@5. 12@5. 8@8. 10@12. 6@10. 2@12. 3@8. 0@5. 5@5}
+		{6 @ 0. 7 @ 5. 12 @ 5. 8 @ 8. 10 @ 12. 6 @ 10. 2 @ 12. 3 @ 8. 0 @ 5. 5 @ 5}
 
 ]
 
@@ -133,11 +91,11 @@ MWMeal class >> saladBarMeal [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Oscar 6/15/2024 13:57'
+	#'squeak_changestamp' : 'LC 6/23/2024 19:12'
 }
 MWMeal class >> spacerMorphWidth [
 
-	^ 50 px 
+	^ 25 px 
 ]
 
 {
@@ -160,14 +118,16 @@ MWMeal class >> starInset [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:04'
+	#'squeak_changestamp' : 'LC 6/23/2024 19:12'
 }
 MWMeal >> build [
 	
 	^ self color: MWColorTheme primaryColor;
 		vResizing: #shrinkWrap;
 		hResizing: #spaceFill;
-		addMorph: self getPriceMorph;
+		addMorph: self getPriceMorph;		
+		addMorph: self getSpacerMorph;
+		addMorph: self getStarMorph;
 		addMorph: self getSpacerMorph;
 		addMorph: self getNameMorph;
 		yourself
@@ -240,6 +200,33 @@ MWMeal >> getSpacerMorph [
 		vResizing: #spaceFill;
 		width: self class spacerMorphWidth;
 		yourself
+]
+
+{
+	#category : #star,
+	#'squeak_changestamp' : 'LC 6/23/2024 19:13'
+}
+MWMeal >> getStarMorph [
+	
+	^ PolygonMorph new 
+		color: self getStarMorphColor;
+		borderColor: Color fern lighter;
+		borderWidth: self class starBoarderWidth;
+		setVertices: self class getStarVertices;
+		on: #mouseDown send: #toggleLike: to: MWFavorites;
+		yourself
+]
+
+{
+	#category : #star,
+	#'squeak_changestamp' : 'LC 6/23/2024 19:05'
+}
+MWMeal >> getStarMorphColor [
+
+	(MWFavorites favouriteFoods includes: self name) 
+		ifTrue: [^ MWColorTheme secondaryColor] 
+		ifFalse:[^ Color transparent]
+	
 ]
 
 {
