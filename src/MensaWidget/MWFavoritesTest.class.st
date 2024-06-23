@@ -44,11 +44,11 @@ MWFavoritesTest >> getNameFor: aMeal [
 
 {
 	#category : #helpers,
-	#'squeak_changestamp' : 'Louis Christ 6/22/2024 16:19'
+	#'squeak_changestamp' : 'LC 6/23/2024 19:18'
 }
 MWFavoritesTest >> getStarColorFor: aMeal [
 	
-	^ ((self getStarFor: aMeal) submorphs at: 1) color
+	^ (self getStarFor: aMeal)  color
 ]
 
 {
@@ -99,11 +99,11 @@ MWFavoritesTest >> simulateButtonClick: aStar [
 
 {
 	#category : #environment,
-	#'squeak_changestamp' : 'Oscar 6/17/2024 00:14'
+	#'squeak_changestamp' : 'LC 6/23/2024 19:21'
 }
 MWFavoritesTest >> tearDown [
 
-	self mensaWidget window abandon
+	self mensaWidget owner abandon
 ]
 
 {

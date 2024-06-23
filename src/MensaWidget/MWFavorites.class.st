@@ -15,15 +15,6 @@ Class {
 }
 
 {
-	#category : #liking,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 20:35'
-}
-MWFavorites class >> emptyFavourites [
-
-	self favouriteFoods removeAll
-]
-
-{
 	#category : #accessing,
 	#'squeak_changestamp' : 'Louis Christ 6/18/2024 20:27'
 }
