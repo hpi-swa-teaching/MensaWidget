@@ -5,6 +5,8 @@ Instance Variables
 	date:		<Date>
 	dateDisplay:		<Morph>
 	target:		<MWFrame>
+	time:		<String>
+	timeToggle:		<SugarRoundedField>
 
 date
 	- a Date variable that stores the date for the meals that are shown
@@ -14,6 +16,12 @@ dateDisplay
 
 target
 	- the target on which the menubar actions will be called
+	
+time
+	- a String variable that stores the time for the meals that are shown
+
+timeToggle
+	- a variable that refers to the Morph that displays the Time and acts as a button to toggle it
 
 "
 Class {
@@ -22,23 +30,56 @@ Class {
 	#instVars : [
 		'date',
 		'dateDisplay',
-		'target'
+		'target',
+		'time',
+		'timeToggle'
 	],
 	#category : #MensaWidget,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:59'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 11:28'
 }
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:41'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 19:24'
+}
+MWMenuBar class >> cellGap [
+
+	^ 20 * RealEstateAgent scaleFactor
+]
+
+{
+	#category : #constants,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 19:21'
 }
 MWMenuBar class >> getArrowButton [
 
 	^ PolygonMorph new
-		setVertices: {0 @ 0. 0 @ 20. 20 @ 10};
+		setVertices: self getArrowVertices;
 		color: MWColorTheme secondaryColor;
 		addFlexShellIfNecessary; 
 		yourself
+]
+
+{
+	#category : #constants,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 19:22'
+}
+MWMenuBar class >> getArrowVertices [
+
+	^ RealEstateAgent scaleFactor  * {0 @ 0. 0 @ 14. 14 @ 7}
+]
+
+{
+	#category : #constants,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:19'
+}
+MWMenuBar class >> getTimeToggle [
+
+	^ AlignmentMorph new 
+		addMorph: (StringMorph contents: 'Lunch'); 
+		vResizing: #shrinkWrap; 
+		hResizing: #shrinkWrap;
+		color: MWColorTheme secondaryColor
 ]
 
 {
@@ -58,11 +99,12 @@ MWMenuBar >> createDateDisplay [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:52'
+	#'squeak_changestamp' : 'Louis Christ 6/17/2024 22:09'
 }
 MWMenuBar >> createLayout [
 	
-	self createSpacer;
+	self createTimeToggle;
+		createSpacer;
 		createNextButton;
 		createDateDisplay;
 		createPrevButton;
@@ -96,7 +138,7 @@ MWMenuBar >> createPrevButton [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:50'
+	#'squeak_changestamp' : 'Louis Christ 6/17/2024 21:22'
 }
 MWMenuBar >> createSpacer [
 	
@@ -106,6 +148,18 @@ MWMenuBar >> createSpacer [
 			vResizing: #spaceFill; 
 			color: Color transparent)
 	
+]
+
+{
+	#category : #creation,
+	#'squeak_changestamp' : 'Louis Christ 6/17/2024 22:12'
+}
+MWMenuBar >> createTimeToggle [
+
+	self timeToggle: (self class getTimeToggle 
+		on: #mouseDown send: #toggleTime to: self;
+		yourself);
+		addMorph: self timeToggle
 ]
 
 {
@@ -146,7 +200,7 @@ MWMenuBar >> dateDisplay: anObject [
 
 {
 	#category : #dateManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:50'
+	#'squeak_changestamp' : 'Louis Christ 6/17/2024 18:23'
 }
 MWMenuBar >> decreaseDate [
 
@@ -156,11 +210,11 @@ MWMenuBar >> decreaseDate [
 
 {
 	#category : #dateManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 16:22'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 17:48'
 }
 MWMenuBar >> decreaseDate: aEvent [
 	
-	aEvent handler color: MWColorTheme backgroundColor.
+	aEvent handler color: MWColorTheme defaultColor.
 	World doOneCycle.
 	self decreaseDate.
 	aEvent handler color: MWColorTheme secondaryColor
@@ -168,7 +222,7 @@ MWMenuBar >> decreaseDate: aEvent [
 
 {
 	#category : #dateManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:50'
+	#'squeak_changestamp' : 'Louis Christ 6/17/2024 18:23'
 }
 MWMenuBar >> increaseDate [
 
@@ -178,11 +232,11 @@ MWMenuBar >> increaseDate [
 
 {
 	#category : #dateManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 16:22'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 17:48'
 }
 MWMenuBar >> increaseDate: aEvent [
 	
-	aEvent handler color: MWColorTheme backgroundColor.
+	aEvent handler color: MWColorTheme defaultColor.
 	World doOneCycle.
 	self increaseDate.
 	aEvent handler color: MWColorTheme secondaryColor
@@ -190,17 +244,18 @@ MWMenuBar >> increaseDate: aEvent [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:42'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 19:25'
 }
 MWMenuBar >> initialize [
 	
 	super initialize.
 	self date: Date today;
+		time: 'lunch';
 		hResizing: #spaceFill;
 		vResizing: #shrinkWrap;
 		cellPositioning: #center;
 		color: MWColorTheme primaryColor;
-		cellGap: 30;
+		cellGap: self class cellGap;
 		createLayout
 
 ]
@@ -224,12 +279,70 @@ MWMenuBar >> target: anObject [
 ]
 
 {
-	#category : #dateManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:59'
+	#category : #accessing,
+	#'squeak_changestamp' : 'Louis Christ 6/17/2024 15:20'
+}
+MWMenuBar >> time [
+
+	^ time
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Louis Christ 6/17/2024 15:20'
+}
+MWMenuBar >> time: anObject [
+
+	time := anObject
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Louis Christ 6/17/2024 15:20'
+}
+MWMenuBar >> timeToggle [
+
+	^ timeToggle
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Louis Christ 6/17/2024 15:20'
+}
+MWMenuBar >> timeToggle: anObject [
+
+	timeToggle := anObject
+]
+
+{
+	#category : #timeManipulation,
+	#'squeak_changestamp' : 'Louis Christ 6/19/2024 01:05'
+}
+MWMenuBar >> toggleTime [
+
+	self time = 'lunch' 
+		ifTrue: [self time: 'dinner'] 
+		ifFalse: [self time: 'lunch'].
+	self updateTime
+]
+
+{
+	#category : #updating,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 16:05'
 }
 MWMenuBar >> updateDate [
 
 	self dateDisplay contents: self date asString.
-	self target ifNotNil: [self target displayDay: self date]
+	self target ifNotNil: [self target updateDay: self date withTime: self time]
 	
+]
+
+{
+	#category : #updating,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:37'
+}
+MWMenuBar >> updateTime [
+	
+	self timeToggle submorphs first contents: self time capitalized.
+	self target ifNotNil: [self target updateTime: self time]
 ]

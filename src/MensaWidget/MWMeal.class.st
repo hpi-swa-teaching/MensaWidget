@@ -26,7 +26,7 @@ prices
 "
 Class {
 	#name : #MWMeal,
-	#superclass : #Object,
+	#superclass : #AlignmentMorph,
 	#instVars : [
 		'id',
 		'name',
@@ -39,12 +39,67 @@ Class {
 }
 
 {
+	#category : #meals,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:49'
+}
+MWMeal class >> emptyMeal [
+
+	^ self newRow id: nil;
+		name: 'Hier gibt es nichts zu sehen.' translated;
+		category: nil;
+		notes: nil;
+		prices: MWMealCleaner emptyPrice;
+		build
+]
+
+{
+	#category : #meals,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:07'
+}
+MWMeal class >> hotCounterMeal [
+
+	^ MWMeal newRow id: nil;
+		name: 'Heiße Theke 100 g' translated;
+		category: MWMealCleaner lunchCategory;
+		notes: nil;
+		prices: MWMealCleaner hotCounterPrice
+]
+
+{
+	#category : #meals,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:07'
+}
+MWMeal class >> saladBarMeal [
+
+	^ MWMeal newRow id: nil;
+		name: 'Salatbar 100 g' translated;
+		category: MWMealCleaner lunchCategory;
+		notes: nil;
+		prices: MWMealCleaner saladBarPrice
+]
+
+{
 	#category : #constants,
 	#'squeak_changestamp' : 'Oscar 6/15/2024 13:57'
 }
 MWMeal class >> spacerMorphWidth [
 
 	^ 50 px 
+]
+
+{
+	#category : #display,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:04'
+}
+MWMeal >> build [
+	
+	^ self color: MWColorTheme primaryColor;
+		vResizing: #shrinkWrap;
+		hResizing: #spaceFill;
+		addMorph: self getPriceMorph;
+		addMorph: self getSpacerMorph;
+		addMorph: self getNameMorph;
+		yourself
 ]
 
 {
@@ -67,22 +122,6 @@ MWMeal >> category: anObject [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Oscar 6/16/2024 20:32'
-}
-MWMeal >> getMealMorph [
-
-	^ AlignmentMorph newRow
-		color: MWColorTheme primaryColor;
-		vResizing: #shrinkWrap;
-		hResizing: #spaceFill;
-		addMorph: self getPriceMorph;
-		addMorph: self getSpacerMorph;
-		addMorph: self getNameMorph;
-		yourself
-]
-
-{
-	#category : #display,
 	#'squeak_changestamp' : 'Oscar 6/14/2024 13:17'
 }
 MWMeal >> getNameMorph [
@@ -96,20 +135,16 @@ MWMeal >> getNameMorph [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Oscar 6/16/2024 20:28'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 19:12'
 }
 MWMeal >> getPriceMorph [
 	
-	^ TextMorph new
-		contents: self getPriceStream contents;
-		readOnly: true;
-		textStyle: TextStyle default;
-		yourself
+	^ StringMorph contents: self getPriceStream contents
 ]
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Max 6/12/2024 13:51'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:02'
 }
 MWMeal >> getPriceStream [
 
@@ -117,7 +152,7 @@ MWMeal >> getPriceStream [
 	
 	priceStream := WriteStream on: String new.
     	(self prices at: 'students') 
-		ifNil: [' '] 
+		ifNil: [''] 
 		ifNotNil: [:price | price printOn: priceStream showingDecimalPlaces: 2].
 	^ priceStream
 ]

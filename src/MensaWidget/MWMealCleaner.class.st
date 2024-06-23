@@ -13,14 +13,14 @@ Class {
 
 {
 	#category : #cleaning,
-	#'squeak_changestamp' : 'Max 6/12/2024 13:56'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 13:54'
 }
 MWMealCleaner class >> clean: aMealList [
 	
 	| newMealList |
 	
 	newMealList := OrderedCollection new.
-	aMealList isEmpty ifTrue: [^ newMealList add: self emptyMeal; 
+	aMealList isEmpty ifTrue: [^ newMealList add: MWMeal emptyMeal; 
 		yourself].
 	aMealList do: [:each | newMealList add: (self fixMeal: each)].
 	^ newMealList
@@ -29,15 +29,11 @@ MWMealCleaner class >> clean: aMealList [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Max 6/12/2024 13:50'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 13:58'
 }
-MWMealCleaner class >> emptyMeal [
+MWMealCleaner class >> dinnerCategory [
 
-	^ MWMeal new id: nil;
-		name: 'Hier gibt es nichts zu sehen.' translated;
-		category: nil;
-		notes: nil;
-		prices: self emptyPrice
+	^ 'dinner'
 ]
 
 {
@@ -51,13 +47,13 @@ MWMealCleaner class >> emptyPrice [
 
 {
 	#category : #cleaning,
-	#'squeak_changestamp' : 'Max 6/10/2024 20:02'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:01'
 }
 MWMealCleaner class >> fixCategories: aMeal [
 
 	aMeal category ifNil: [^ nil].
-	(aMeal category beginsWith: 'Abend') ifTrue: [aMeal category: 'dinner'].
-	aMeal category = 'dinner' ifFalse: [aMeal category: 'lunch']
+	(aMeal category beginsWith: 'Abend') ifTrue: [aMeal category: self dinnerCategory].
+	aMeal category = self dinnerCategory ifFalse: [aMeal category: self lunchCategory]
 	
 	
 	
@@ -66,18 +62,18 @@ MWMealCleaner class >> fixCategories: aMeal [
 
 {
 	#category : #cleaning,
-	#'squeak_changestamp' : 'Max 6/12/2024 13:51'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:44'
 }
 MWMealCleaner class >> fixMeal: aMeal [
 
 	| meal |
 	
 	meal := aMeal.
-	meal isSaladBar ifTrue: [meal := self saladBar].
-	meal isHotCounter ifTrue: [meal := self hotCounter].
+	meal isSaladBar ifTrue: [meal := MWMeal saladBarMeal].
+	meal isHotCounter ifTrue: [meal := MWMeal hotCounterMeal].
 	self fixPrices: meal;
 	 	fixCategories: meal.
-	^ meal
+	^ meal build
 		
 ]
 
@@ -103,19 +99,6 @@ MWMealCleaner class >> fixPrices: aMeal [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Max 6/12/2024 13:50'
-}
-MWMealCleaner class >> hotCounter [
-
-	^ MWMeal new id: nil;
-		name: 'Heiße Theke 100 g' translated;
-		category: 'lunch';
-		notes: nil;
-		prices: self hotCounterPrice
-]
-
-{
-	#category : #constants,
 	#'squeak_changestamp' : 'Max 6/12/2024 13:49'
 }
 MWMealCleaner class >> hotCounterPrice [
@@ -125,15 +108,11 @@ MWMealCleaner class >> hotCounterPrice [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Max 6/12/2024 13:50'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 13:58'
 }
-MWMealCleaner class >> saladBar [
+MWMealCleaner class >> lunchCategory [
 
-	^ MWMeal new id: nil;
-		name: 'Salatbar 100 g' translated;
-		category: 'lunch';
-		notes: nil;
-		prices: self saladBarPrice
+	^ 'lunch'
 ]
 
 {
