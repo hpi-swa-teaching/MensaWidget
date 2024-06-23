@@ -20,6 +20,24 @@ Class {
 }
 
 {
+	#category : #accessing,
+	#'squeak_changestamp' : 'LC 6/23/2024 18:35'
+}
+MWFrameTest >> isRegistered [
+
+	^ isRegistered
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'LC 6/23/2024 18:35'
+}
+MWFrameTest >> isRegistered: anObject [
+
+	isRegistered := anObject
+]
+
+{
 	#category : #environment,
 	#'squeak_changestamp' : 'LC 6/23/2024 18:30'
 }

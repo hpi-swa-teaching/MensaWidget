@@ -339,16 +339,6 @@ MWMenuBar >> updateDate [
 
 {
 	#category : #updating,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:33'
-}
-MWMenuBar >> updateMeals [
-
-	self target ifNotNil: [self target updateTime: self time]
-	
-]
-
-{
-	#category : #updating,
 	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:37'
 }
 MWMenuBar >> updateTime [

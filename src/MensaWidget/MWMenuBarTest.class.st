@@ -37,22 +37,22 @@ MWMenuBarTest >> getAllCanteens [
 
 {
 	#category : #helpers,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 16:22'
+	#'squeak_changestamp' : 'LC 6/23/2024 18:44'
 }
 MWMenuBarTest >> getAllCategories [
 	
-	| canteens |
+	| categories |
 	
-	canteens := OrderedCollection new.
+	categories := OrderedCollection new.
 	self mensaWidget contentMorph allMorphsDo: [:each | 
 		each class = MWMeal ifTrue: 
-			[canteens add: each category]].
-	^ canteens
+			[categories add: each category]].
+	^ categories
 ]
 
 {
 	#category : #helpers,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 16:16'
+	#'squeak_changestamp' : 'LC 6/23/2024 18:44'
 }
 MWMenuBarTest >> getAllMeals [
 	
@@ -156,13 +156,13 @@ MWMenuBarTest >> testLunchMealCategory [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Max 6/23/2024 17:54'
+	#'squeak_changestamp' : 'LC 6/23/2024 18:36'
 }
 MWMenuBarTest >> testMealsChange [
 
 	| menuBar oldMeals |
 	
-	self mensaWidget window allMorphsDo: [:each | each class = MWMenuBar ifTrue: [menuBar :=each]].
+	self mensaWidget owner allMorphsDo: [:each | each class = MWMenuBar ifTrue: [menuBar :=each]].
 	({#Saturday. #Sunday} includes: menuBar date weekday) ifTrue:
 		[menuBar date addDays: -2].
 	oldMeals := self getAllMeals.
@@ -174,19 +174,15 @@ MWMenuBarTest >> testMealsChange [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 6/17/2024 22:39'
+	#'squeak_changestamp' : 'LC 6/23/2024 18:45'
 }
 MWMenuBarTest >> testMealsFitTime [
 
-	| oldMeals |
-	
-	({#Saturday. #Sunday} includes: self menuBar date weekday) ifTrue:
-		[self menuBar addDays: 2].
-	oldMeals := self getAllMeals.
+	self getAllCategories do: [:each | 
+		each ifNotNil: [self assert: each = MWMealCleaner lunchCategory]].
 	self menuBar toggleTime.
-	self assert: (oldMeals = self getAllMeals) not.
-	self menuBar toggleTime.
-	self assert: oldMeals = self getAllMeals
+	self getAllCategories do: [:each | 
+		each ifNotNil: [self assert: each = MWMealCleaner dinnerCategory]]
 ]
 
 {
