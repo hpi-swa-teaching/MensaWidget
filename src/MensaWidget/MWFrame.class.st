@@ -42,6 +42,15 @@ MWFrame class >> contentExtent [
 
 {
 	#category : #constants,
+	#'squeak_changestamp' : 'Max 6/17/2024 20:42'
+}
+MWFrame class >> register [ 
+	
+	TheWorldMenu registerOpenCommand: {'Mensa Widget'. {MWFrame. #new}}
+]
+
+{
+	#category : #constants,
 	#'squeak_changestamp' : 'Louis Christ 6/18/2024 19:24'
 }
 MWFrame class >> scrollBarThickness [
@@ -162,7 +171,7 @@ MWFrame >> contentMorph: anObject [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/19/2024 01:01'
+	#'squeak_changestamp' : 'LC 6/23/2024 18:28'
 }
 MWFrame >> initialize [
 
