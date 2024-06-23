@@ -12,6 +12,15 @@ Class {
 }
 
 {
+	#category : #constants,
+	#'squeak_changestamp' : 'Max 6/18/2024 10:35'
+}
+MWApiWrapper class >> NetworkErrorResponse [
+
+	^ '[{"name":"Es ist ein Netzwerkfehler aufgetreten"}]'
+]
+
+{
 	#category : #openMensa,
 	#'squeak_changestamp' : 'Oscar 5/31/2024 19:55'
 }
@@ -22,16 +31,16 @@ MWApiWrapper class >> baseEndpoint [
 
 {
 	#category : #call,
-	#'squeak_changestamp' : 'NK 6/18/2024 21:27'
+	#'squeak_changestamp' : 'Max 6/18/2024 22:08'
 }
-MWApiWrapper class >> getMealsFrom: anOutletId on: aDate [
+MWApiWrapper class >> getMealsFrom: anOutletId on: aDate using: aWebClient [
 	"The two attributes need to be a string"
 	
 	| url response |
 	
 	url := self baseEndpoint, self mealsPostfix.
 	url := url format: {anOutletId. aDate}.
-	response := WebClient httpGet: url.
+	[response := aWebClient httpGet: url] on: NetworkError do: [^ self NetworkErrorResponse].
 	^ response content
 	
 ]

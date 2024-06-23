@@ -12,7 +12,8 @@ Class {
 	#name : #MWFrameTest,
 	#superclass : #TestCase,
 	#instVars : [
-		'widgetFrame'
+		'widgetFrame',
+		'isRegistered'
 	],
 	#category : #'MensaWidget-Tests',
 	#'squeak_changestamp' : 'Louis Christ 5/27/2024 19:44'
@@ -20,20 +21,26 @@ Class {
 
 {
 	#category : #environment,
-	#'squeak_changestamp' : 'Oscar 6/15/2024 14:05'
+	#'squeak_changestamp' : 'Max 6/17/2024 21:02'
 }
 MWFrameTest >> setUp [
-
+	
+	isRegistered := true.
+	[TheWorldMenu registry find: {'Mensa Widget'. {MWFrame. #new}}] on: Error do:
+		[isRegistered := false].
+	TheWorldMenu unregisterOpenCommand: 'Mensa Widget'.
+	MWFrame register.
 	widgetFrame := MWFrame new window
 ]
 
 {
 	#category : #environment,
-	#'squeak_changestamp' : 'Louis Christ 5/27/2024 17:10'
+	#'squeak_changestamp' : 'Max 6/17/2024 21:05'
 }
 MWFrameTest >> tearDown [
 
-	widgetFrame abandon
+	widgetFrame abandon.
+	isRegistered ifFalse: [TheWorldMenu unregisterOpenCommand: 'Mensa Widget']
 ]
 
 {
@@ -89,6 +96,23 @@ MWFrameTest >> testOpened [
 
 	self assert: self widgetFrame isInWorld; 
 		assert: self widgetFrame isCollapsed = false
+]
+
+{
+	#category : #tests,
+	#'squeak_changestamp' : 'Max 6/17/2024 21:07'
+}
+MWFrameTest >> testRegister [
+	
+	| occurrence |
+	
+	occurrence := true.
+	[TheWorldMenu registry find: {'Mensa Widget'. {MWFrame. #new}}] on: Error do:
+		[occurrence := false].
+	self assert: occurrence
+
+ 
+
 ]
 
 {

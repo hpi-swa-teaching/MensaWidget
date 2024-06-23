@@ -65,34 +65,53 @@ MWApiWrapperTest class >> validMensaId [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'NK 6/18/2024 21:44'
+	#'squeak_changestamp' : 'Max 6/19/2024 08:36'
 }
 MWApiWrapperTest >> testApiCallWithInvalidUrl [
 
     | responseWrapper errorOccurred |
 
     errorOccurred := false.
-    [responseWrapper := MWApiWrapper getMealsFrom: self class invalidMensaId on: self class invalidDate.
-    ] on: NetworkError do: [:ex |
-        errorOccurred := true].
-    self assert: (responseWrapper = '' or: errorOccurred).
+    [responseWrapper := MWApiWrapper getMealsFrom: self class invalidMensaId on:
+	self class invalidDate using:
+	WebClient] on:
+	NetworkError do: [:ex | errorOccurred := true].
+    self assert: (responseWrapper = '' or: errorOccurred)
 
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'NK 6/18/2024 21:45'
+	#'squeak_changestamp' : 'Max 6/19/2024 08:38'
 }
 MWApiWrapperTest >> testApiCallWithValidUrl [
 
-    | responseWrapper responseApi errorOccurred |
+    	| responseWrapper responseApi errorOccurred |
 
-    errorOccurred := false.
-    [responseWrapper := MWApiWrapper getMealsFrom: self class validMensaId on: self class validDate.
-    responseApi := WebClient httpGet: self class validApiUrl.
-    ] on: NetworkError do: [:ex |
-        errorOccurred := true ].
-    self assert: (errorOccurred or: [responseApi content = responseWrapper]).
+    	errorOccurred := false.
+    	[responseWrapper := MWApiWrapper getMealsFrom: self class validMensaId on:
+		self class validDate using:
+		WebClient.
+    	responseApi := WebClient httpGet: self class validApiUrl] on:
+	NetworkError do: [:ex | errorOccurred := true].
+   	self assert: (errorOccurred or: [responseApi content = responseWrapper])
+
+	
+	
+]
+
+{
+	#category : #tests,
+	#'squeak_changestamp' : 'Max 6/19/2024 08:38'
+}
+MWApiWrapperTest >> testApiCallWithoutNetwork [
+
+	| result |
+	
+	result := MWApiWrapper getMealsFrom: '62' on: '2024-06-18' using: MWApiTestMockWebClient.
+	self assert: result = MWApiWrapper NetworkErrorResponse
+
+	
 
 	
 	
