@@ -54,12 +54,12 @@ MWFavorites class >> removeMeal: aMeal [
 
 {
 	#category : #liking,
-	#'squeak_changestamp' : 'LC 6/26/2024 15:52'
+	#'squeak_changestamp' : 'LC 6/26/2024 16:01'
 }
 MWFavorites class >> toggleLike: anEvent [
 
 	anEvent handler color = Color transparent ifTrue: 
-		[anEvent handler color: Color fern lighter.
+		[anEvent handler color: MWColorTheme secondaryColor.
 		self insertMeal: anEvent handler owner submorphs first text string] ifFalse: 
 		[anEvent handler color: Color transparent.
 		self removeMeal: anEvent handler owner submorphs first text string]
