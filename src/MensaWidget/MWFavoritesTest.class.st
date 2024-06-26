@@ -20,7 +20,7 @@ Class {
 
 {
 	#category : #helpers,
-	#'squeak_changestamp' : 'Louis Christ 6/22/2024 15:30'
+	#'squeak_changestamp' : 'LC 6/26/2024 15:57'
 }
 MWFavoritesTest >> getAllMeals [
 	
@@ -28,7 +28,7 @@ MWFavoritesTest >> getAllMeals [
 	
 	meals := OrderedCollection new.
 	self mensaWidget contentMorph allMorphsDo: [:each | 
-		each color = MWColorTheme primaryColor ifTrue: 
+		each class = MWMeal ifTrue: 
 			[meals add: each]].
 	^ meals
 ]
@@ -89,12 +89,17 @@ MWFavoritesTest >> setUp [
 
 {
 	#category : #helpers,
-	#'squeak_changestamp' : 'Louis Christ 6/22/2024 16:02'
+	#'squeak_changestamp' : 'LC 6/26/2024 15:57'
 }
 MWFavoritesTest >> simulateButtonClick: aStar [
 
 	aStar handleMouseDown: 
-		((MouseButtonEvent new setType: #mouseDown position: aStar center buttons: 4 hand: World currentHand) handler: aStar)
+		((MouseButtonEvent new 
+			setType: #mouseDown 
+			position: aStar center 
+			buttons: 4 
+			hand: World currentHand) 
+		handler: aStar)
 ]
 
 {

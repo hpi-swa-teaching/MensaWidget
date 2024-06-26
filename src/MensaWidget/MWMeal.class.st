@@ -219,13 +219,13 @@ MWMeal >> getStarMorph [
 
 {
 	#category : #star,
-	#'squeak_changestamp' : 'LC 6/26/2024 15:50'
+	#'squeak_changestamp' : 'LC 6/26/2024 16:00'
 }
 MWMeal >> getStarMorphColor [
 
-	(MWFavorites favouriteMeals includes: self name) 
-		ifTrue: [^ MWColorTheme secondaryColor] 
-		ifFalse:[^ Color transparent]
+	(MWFavorites favouriteMeals includes: self name) ifTrue: 
+		[^ MWColorTheme secondaryColor] ifFalse:
+		[^ Color transparent]
 	
 ]
 
