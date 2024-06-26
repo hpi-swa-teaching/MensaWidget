@@ -8,7 +8,7 @@ Class {
 	#name : #MWFavorites,
 	#superclass : #Object,
 	#classVars : [
-		'FavouriteFoods'
+		'FavouriteMeals'
 	],
 	#category : #MensaWidget,
 	#'squeak_changestamp' : 'Louis Christ 6/22/2024 16:21'
@@ -16,51 +16,51 @@ Class {
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 20:27'
+	#'squeak_changestamp' : 'LC 6/26/2024 15:52'
 }
-MWFavorites class >> favouriteFoods [
+MWFavorites class >> favouriteMeals [
 
-	FavouriteFoods ifNil: 
-		[FavouriteFoods := Set new].
-	^ FavouriteFoods
+	FavouriteMeals ifNil: 
+		[FavouriteMeals := Set new].
+	^ FavouriteMeals
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 20:08'
+	#'squeak_changestamp' : 'LC 6/26/2024 15:52'
 }
-MWFavorites class >> favouriteFoods: anObject [
+MWFavorites class >> favouriteMeals: anObject [
 
-	FavouriteFoods := anObject
+	FavouriteMeals := anObject
 ]
 
 {
 	#category : #liking,
-	#'squeak_changestamp' : 'Louis Christ 6/22/2024 15:54'
+	#'squeak_changestamp' : 'LC 6/26/2024 15:52'
 }
-MWFavorites class >> insertFood: aFood [
+MWFavorites class >> insertMeal: aMeal [
 	
-	self favouriteFoods: (self favouriteFoods add: aFood; yourself)
+	self favouriteMeals: (self favouriteMeals add: aMeal; yourself)
 ]
 
 {
 	#category : #liking,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 20:28'
+	#'squeak_changestamp' : 'LC 6/26/2024 15:51'
 }
-MWFavorites class >> removeFood: aFood [
+MWFavorites class >> removeMeal: aMeal [
 
-	self favouriteFoods remove: aFood ifAbsent: []
+	self favouriteMeals remove: aMeal ifAbsent: []
 ]
 
 {
 	#category : #liking,
-	#'squeak_changestamp' : 'LC 6/23/2024 19:14'
+	#'squeak_changestamp' : 'LC 6/26/2024 15:52'
 }
 MWFavorites class >> toggleLike: anEvent [
 
 	anEvent handler color = Color transparent ifTrue: 
 		[anEvent handler color: Color fern lighter.
-		self insertFood: anEvent handler owner submorphs first text string] ifFalse: 
+		self insertMeal: anEvent handler owner submorphs first text string] ifFalse: 
 		[anEvent handler color: Color transparent.
-		self removeFood: anEvent handler owner submorphs first text string]
+		self removeMeal: anEvent handler owner submorphs first text string]
 ]

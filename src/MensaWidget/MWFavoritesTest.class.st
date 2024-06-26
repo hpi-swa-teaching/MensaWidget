@@ -108,60 +108,60 @@ MWFavoritesTest >> tearDown [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 6/22/2024 15:26'
+	#'squeak_changestamp' : 'LC 6/26/2024 15:50'
 }
 MWFavoritesTest >> testFavouritesIsSet [
 
-	self assert: MWFavorites favouriteFoods class = Set
+	self assert: MWFavorites favouriteMeals class = Set
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 6/22/2024 16:15'
+	#'squeak_changestamp' : 'LC 6/26/2024 15:50'
 }
 MWFavoritesTest >> testFavouritesRenderCorrectly [
 	
 	self tearDown;
 		setUp.
 	self getAllMeals do: [:each |
-		(MWFavorites favouriteFoods includes: (self getNameFor: each))
+		(MWFavorites favouriteMeals includes: (self getNameFor: each))
 			ifTrue: [self assert: ((self getStarColorFor: each) = Color transparent) not]
 			ifFalse: [self assert: (self getStarColorFor: each) = Color transparent]]
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 6/22/2024 15:27'
+	#'squeak_changestamp' : 'LC 6/26/2024 15:50'
 }
 MWFavoritesTest >> testFavouritesSetExists [
 
-	self assert: (MWFavorites respondsTo: #favouriteFoods)
+	self assert: (MWFavorites respondsTo: #favouriteMeals)
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 6/22/2024 16:17'
+	#'squeak_changestamp' : 'LC 6/26/2024 15:50'
 }
 MWFavoritesTest >> testMealIsLikable [
 
 	self getAllMeals do: [:each |
-		(MWFavorites favouriteFoods includes: (self getNameFor: each))
+		(MWFavorites favouriteMeals includes: (self getNameFor: each))
 			ifFalse: [self simulateButtonClick: (self getStarFor: each). 
-				self assert: (MWFavorites favouriteFoods includes: (self getNameFor: each));
+				self assert: (MWFavorites favouriteMeals includes: (self getNameFor: each));
 					assert: ((self getStarColorFor: each) = Color transparent) not.
 				^ nil]]
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 6/22/2024 16:17'
+	#'squeak_changestamp' : 'LC 6/26/2024 15:50'
 }
 MWFavoritesTest >> testMealIsUnlikable [
 
 	self getAllMeals do: [:each |
-		(MWFavorites favouriteFoods includes: (self getNameFor: each))
+		(MWFavorites favouriteMeals includes: (self getNameFor: each))
 			ifTrue: [self simulateButtonClick: (self getStarFor: each). 
-				self assert: (MWFavorites favouriteFoods includes: (self getNameFor: each)) not;
+				self assert: (MWFavorites favouriteMeals includes: (self getNameFor: each)) not;
 					assert: (self getStarColorFor: each) = Color transparent.
 				^ nil]]
 ]
