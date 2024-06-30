@@ -20,12 +20,11 @@ Class {
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'LC 6/26/2024 15:56'
+	#'squeak_changestamp' : 'LC 6/30/2024 23:20'
 }
 MWFavorites class >> favouriteMeals [
 
-	FavouriteMeals ifNil: [FavouriteMeals := Set new].
-	^ FavouriteMeals
+	^ FavouriteMeals ifNil: [FavouriteMeals := Set new]
 ]
 
 {
@@ -39,12 +38,13 @@ MWFavorites class >> favouriteMeals: anObject [
 
 {
 	#category : #liking,
-	#'squeak_changestamp' : 'LC 6/26/2024 15:58'
+	#'squeak_changestamp' : 'LC 6/30/2024 23:21'
 }
 MWFavorites class >> insertMeal: aMeal [
 	
 	self favouriteMeals: 
-		(self favouriteMeals add: aMeal; yourself)
+		(self favouriteMeals add: aMeal; 
+			yourself)
 ]
 
 {

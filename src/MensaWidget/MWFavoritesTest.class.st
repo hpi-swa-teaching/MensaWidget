@@ -122,12 +122,10 @@ MWFavoritesTest >> testFavouritesIsSet [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'LC 6/26/2024 15:50'
+	#'squeak_changestamp' : 'LC 6/30/2024 23:19'
 }
 MWFavoritesTest >> testFavouritesRenderCorrectly [
 	
-	self tearDown;
-		setUp.
 	self getAllMeals do: [:each |
 		(MWFavorites favouriteMeals includes: (self getNameFor: each))
 			ifTrue: [self assert: ((self getStarColorFor: each) = Color transparent) not]
