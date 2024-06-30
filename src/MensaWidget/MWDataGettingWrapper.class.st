@@ -7,32 +7,39 @@ Instance Variables
 Class {
 	#name : #MWDataGettingWrapper,
 	#superclass : #Object,
+	#classInstVars : [
+		'canteenDict'
+	],
 	#category : #MensaWidget,
 	#'squeak_changestamp' : 'Louis Christ 5/27/2024 19:22'
 }
 
 {
-	#category : #constants,
-	#'squeak_changestamp' : 'Oscar 6/8/2024 17:37'
+	#category : #accessing,
+	#'squeak_changestamp' : 'Oscar 6/30/2024 18:23'
 }
 MWDataGettingWrapper class >> canteenDict [
+	^ canteenDict
+]
 
-	^ {'112' -> 'Ulfs Cafe'. 
-		'62' -> 'Mensa Griebnitzsee'.
-		'1222' -> 'Mensa Babelsberg'. 
-		'1717' -> 'Campus Kitchen One'.
-		'1792' -> 'Schraders Bistro'} asDictionary
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Oscar 6/30/2024 18:23'
+}
+MWDataGettingWrapper class >> canteenDict: anObject [
+	canteenDict := anObject
 ]
 
 {
 	#category : #dataPulling,
-	#'squeak_changestamp' : 'Max 6/21/2024 10:57'
+	#'squeak_changestamp' : 'Oscar 6/30/2024 18:13'
 }
 MWDataGettingWrapper class >> getMealsOnDate: aDate [
 
 	| canteens canteenDict json |
 	
 	canteens := OrderedCollection new.
+	
 	canteenDict := self canteenDict.
 	canteenDict keys do: [:id |
 		json := MWApiWrapper getMealsFrom: id on: aDate using: WebClient.

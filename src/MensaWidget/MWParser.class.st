@@ -40,3 +40,19 @@ MWParser class >> set: someInstanceVariable on: aClassInstance from: aDataset [
 	value := aDataset at: someInstanceVariable.
 	 ^ aClassInstance instVarNamed: someInstanceVariable put: value
 ]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Oscar 6/30/2024 18:07'
+}
+MWParser class >> transformJsonToDict: aJson [
+
+	| someDataJson dict |
+	
+	aJson = '' ifTrue: [^ #()]. 
+	someDataJson := Json readFromString: aJson.  
+	dict := Dictionary new.  
+	someDataJson do: [:each | 
+		dict at: (each at: 'id') put: (each at: 'name')].  
+	^ dict  
+]

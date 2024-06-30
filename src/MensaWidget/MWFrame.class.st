@@ -171,11 +171,17 @@ MWFrame >> contentMorph: anObject [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'LC 6/23/2024 18:28'
+	#'squeak_changestamp' : 'Oscar 6/30/2024 18:27'
 }
 MWFrame >> initialize [
 
+	| canteenJson |
+
 	super initialize.
+	
+	canteenJson := MWApiWrapper getOutletDictFrom: 52.393822 and: 13.129558 andRadius: 5.
+	
+	MWDataGettingWrapper canteenDict: (MWParser transformJsonToDict: canteenJson).
 	self listDirection: #topToBottom;
 		buildLayout;
 		addMealsOn: Date today forTime: MWMealCleaner lunchCategory;

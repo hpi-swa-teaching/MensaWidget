@@ -46,6 +46,29 @@ MWApiWrapper class >> getMealsFrom: anOutletId on: aDate using: aWebClient [
 ]
 
 {
+	#category : #call,
+	#'squeak_changestamp' : 'Oscar 6/30/2024 17:57'
+}
+MWApiWrapper class >> getOutletDictFrom: alatitude and: alongitude andRadius: aKM [
+	
+	| url response |
+	
+	url := self baseEndpoint, self locationPostfix.
+	url := url format: {alatitude. alongitude. aKM}.
+	[response := WebClient httpGet: url] on: NetworkError do: [^ self NetworkErrorResponse].
+	^ response content
+]
+
+{
+	#category : #openMensa,
+	#'squeak_changestamp' : 'Oscar 6/30/2024 17:51'
+}
+MWApiWrapper class >> locationPostfix [
+
+	^ '/canteens?near[lat]={1}&near[lng]={2}&near[dist]={3}'
+]
+
+{
 	#category : #openMensa,
 	#'squeak_changestamp' : 'Oscar 5/31/2024 19:55'
 }
