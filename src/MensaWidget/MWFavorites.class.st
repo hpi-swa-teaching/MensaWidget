@@ -1,7 +1,11 @@
 "
-A MWFavorites is a class that stores all liked foods and also handle the liking process.
+A MWFavorites is a class that stores all liked meals and also handle the liking process.
 
-Instance Variables
+Class Variables
+	LikedMeals:		<Set>
+			
+LikedMeals
+	- is a set of meal names as strings which represents the liked meals
 
 "
 Class {
@@ -11,7 +15,7 @@ Class {
 		'FavouriteMeals'
 	],
 	#category : #MensaWidget,
-	#'squeak_changestamp' : 'Louis Christ 6/22/2024 16:21'
+	#'squeak_changestamp' : 'LC 6/30/2024 20:39'
 }
 
 {
