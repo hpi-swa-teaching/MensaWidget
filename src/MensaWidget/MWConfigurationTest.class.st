@@ -23,7 +23,7 @@ MWConfigurationTest >> testInvalidSet [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Max 7/1/2024 20:20'
+	#'squeak_changestamp' : 'LC 7/2/2024 00:55'
 }
 MWConfigurationTest >> testValidSet [
 	
@@ -32,5 +32,5 @@ MWConfigurationTest >> testValidSet [
 	oldPriceGroup := MWMeal priceGroup.
 	MWConfiguration setPriceGroup: 'others'.
 	self assert: MWMeal priceGroup = 'others'.
-	MWMeal priceGroup: oldPriceGroup.
+	MWMeal priceGroup: oldPriceGroup
 ]
