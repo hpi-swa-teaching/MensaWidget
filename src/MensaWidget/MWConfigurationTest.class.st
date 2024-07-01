@@ -12,7 +12,7 @@ Class {
 }
 
 {
-	#category : #'as yet unclassified',
+	#category : #tests,
 	#'squeak_changestamp' : 'Max 7/1/2024 20:21'
 }
 MWConfigurationTest >> testInvalidSet [
@@ -22,7 +22,7 @@ MWConfigurationTest >> testInvalidSet [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #tests,
 	#'squeak_changestamp' : 'Max 7/1/2024 20:20'
 }
 MWConfigurationTest >> testValidSet [

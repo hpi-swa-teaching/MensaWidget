@@ -8,6 +8,9 @@ Instance Variables
 	notes:		<OrderedCollection>
 	prices:		<JSONObject>
 
+Class Variables
+	PriceGroup:		<String>
+
 category
 	- the category of the meal provided by OpenMensa-API
 
@@ -23,6 +26,8 @@ notes
 prices
 	- prices for students, employees, pupils and others
 
+PriceGroup
+	- the configured price group, default is student
 "
 Class {
 	#name : #MWMeal,
@@ -38,7 +43,7 @@ Class {
 		'PriceGroup'
 	],
 	#category : #MensaWidget,
-	#'squeak_changestamp' : 'Max 5/31/2024 21:55'
+	#'squeak_changestamp' : 'Max 7/1/2024 21:44'
 }
 
 {
