@@ -31,7 +31,7 @@ PriceGroup
 "
 Class {
 	#name : #MWMeal,
-	#superclass : #Object,
+	#superclass : #AlignmentMorph,
 	#instVars : [
 		'id',
 		'name',
@@ -42,7 +42,7 @@ Class {
 	#classVars : [
 		'PriceGroup'
 	],
-	#category : #MensaWidget,
+	#category : 'MensaWidget',
 	#'squeak_changestamp' : 'Max 7/1/2024 21:44'
 }
 
@@ -53,6 +53,44 @@ Class {
 MWMeal class >> defaultGroup [
 
 	^ 'others'
+]
+
+{
+	#category : #meals,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:49'
+}
+MWMeal class >> emptyMeal [
+
+	^ self newRow id: nil;
+		name: 'Hier gibt es nichts zu sehen.' translated;
+		category: nil;
+		notes: nil;
+		prices: MWMealCleaner emptyPrice;
+		build
+]
+
+{
+	#category : #constants,
+	#'squeak_changestamp' : 'LC 6/23/2024 19:02'
+}
+MWMeal class >> getStarVertices [
+	
+	^ RealEstateAgent scaleFactor * 
+		{6 @ 0. 7 @ 5. 12 @ 5. 8 @ 8. 10 @ 12. 6 @ 10. 2 @ 12. 3 @ 8. 0 @ 5. 5 @ 5}
+
+]
+
+{
+	#category : #meals,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:07'
+}
+MWMeal class >> hotCounterMeal [
+
+	^ MWMeal newRow id: nil;
+		name: 'Heiße Theke 100 g' translated;
+		category: MWMealCleaner lunchCategory;
+		notes: nil;
+		prices: MWMealCleaner hotCounterPrice
 ]
 
 {
@@ -74,12 +112,60 @@ MWMeal class >> priceGroup: anObject [
 ]
 
 {
+	#category : #meals,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:07'
+}
+MWMeal class >> saladBarMeal [
+
+	^ MWMeal newRow id: nil;
+		name: 'Salatbar 100 g' translated;
+		category: MWMealCleaner lunchCategory;
+		notes: nil;
+		prices: MWMealCleaner saladBarPrice
+]
+
+{
 	#category : #constants,
-	#'squeak_changestamp' : 'Oscar 6/15/2024 13:57'
+	#'squeak_changestamp' : 'LC 6/23/2024 19:12'
 }
 MWMeal class >> spacerMorphWidth [
 
-	^ 50 px 
+	^ 25 px 
+]
+
+{
+	#category : #constants,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 20:58'
+}
+MWMeal class >> starBoarderWidth [
+
+	^ 2 * RealEstateAgent scaleFactor
+]
+
+{
+	#category : #constants,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 20:55'
+}
+MWMeal class >> starInset [
+
+	^ 3 * RealEstateAgent scaleFactor
+]
+
+{
+	#category : #display,
+	#'squeak_changestamp' : 'LC 6/23/2024 19:12'
+}
+MWMeal >> build [
+	
+	^ self color: MWColorTheme primaryColor;
+		vResizing: #shrinkWrap;
+		hResizing: #spaceFill;
+		addMorph: self getPriceMorph;		
+		addMorph: self getSpacerMorph;
+		addMorph: self getStarMorph;
+		addMorph: self getSpacerMorph;
+		addMorph: self getNameMorph;
+		yourself
 ]
 
 {
@@ -102,22 +188,6 @@ MWMeal >> category: anObject [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Oscar 6/16/2024 20:32'
-}
-MWMeal >> getMealMorph [
-
-	^ AlignmentMorph newRow
-		color: MWColorTheme primaryColor;
-		vResizing: #shrinkWrap;
-		hResizing: #spaceFill;
-		addMorph: self getPriceMorph;
-		addMorph: self getSpacerMorph;
-		addMorph: self getNameMorph;
-		yourself
-]
-
-{
-	#category : #display,
 	#'squeak_changestamp' : 'Oscar 6/14/2024 13:17'
 }
 MWMeal >> getNameMorph [
@@ -131,20 +201,16 @@ MWMeal >> getNameMorph [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Oscar 6/16/2024 20:28'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 19:12'
 }
 MWMeal >> getPriceMorph [
 	
-	^ TextMorph new
-		contents: self getPriceStream contents;
-		readOnly: true;
-		textStyle: TextStyle default;
-		yourself
+	^ StringMorph contents: self getPriceStream contents
 ]
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Max 6/19/2024 09:10'
+	#'squeak_changestamp' : 'Max 7/1/2024 22:25'
 }
 MWMeal >> getPriceStream [
 
@@ -152,14 +218,14 @@ MWMeal >> getPriceStream [
 	
 	priceStream := WriteStream on: String new.
     	(self prices at: (self class priceGroup ifNil: [self class defaultGroup])) 
-		ifNil: [' '] 
+		ifNil: [''] 
 		ifNotNil: [:price | price printOn: priceStream showingDecimalPlaces: 2].
 	^ priceStream
 ]
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Oscar 6/14/2024 15:32'
+	#'squeak_changestamp' : 'Louis Christ 6/22/2024 14:57'
 }
 MWMeal >> getSpacerMorph [
 
@@ -169,6 +235,33 @@ MWMeal >> getSpacerMorph [
 		vResizing: #spaceFill;
 		width: self class spacerMorphWidth;
 		yourself
+]
+
+{
+	#category : #star,
+	#'squeak_changestamp' : 'LC 6/23/2024 19:13'
+}
+MWMeal >> getStarMorph [
+	
+	^ PolygonMorph new 
+		color: self getStarMorphColor;
+		borderColor: Color fern lighter;
+		borderWidth: self class starBoarderWidth;
+		setVertices: self class getStarVertices;
+		on: #mouseDown send: #toggleLike: to: MWFavorites;
+		yourself
+]
+
+{
+	#category : #star,
+	#'squeak_changestamp' : 'LC 6/26/2024 16:00'
+}
+MWMeal >> getStarMorphColor [
+
+	(MWFavorites favouriteMeals includes: self name) ifTrue: 
+		[^ MWColorTheme secondaryColor] ifFalse:
+		[^ Color transparent]
+	
 ]
 
 {

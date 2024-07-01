@@ -6,79 +6,99 @@ Instance Variables
 
 widgetFrame
 	- a instance of the MWFrame on which the tests will be done
-
 "
 Class {
 	#name : #MWFrameTest,
 	#superclass : #TestCase,
 	#instVars : [
-		'widgetFrame'
+		'widgetFrame',
+		'widget',
+		'isRegistered'
 	],
-	#category : #'MensaWidget-Tests',
+	#category : 'MensaWidget-Tests',
 	#'squeak_changestamp' : 'Louis Christ 5/27/2024 19:44'
 }
 
 {
-	#category : #environment,
-	#'squeak_changestamp' : 'Oscar 6/15/2024 14:05'
+	#category : #accessing,
+	#'squeak_changestamp' : 'LC 6/23/2024 18:35'
 }
-MWFrameTest >> setUp [
+MWFrameTest >> isRegistered [
 
-	widgetFrame := MWFrame new window
+	^ isRegistered
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'LC 6/23/2024 18:35'
+}
+MWFrameTest >> isRegistered: anObject [
+
+	isRegistered := anObject
 ]
 
 {
 	#category : #environment,
-	#'squeak_changestamp' : 'Louis Christ 5/27/2024 17:10'
+	#'squeak_changestamp' : 'LC 6/23/2024 18:30'
+}
+MWFrameTest >> setUp [
+	
+	self isRegistered: true.
+	[TheWorldMenu registry find: {'Mensa Widget'. {MWFrame. #new}}] on: Error do:
+		[self isRegistered: false].
+	TheWorldMenu unregisterOpenCommand: 'Mensa Widget'.
+	MWFrame register.
+	self widget: MWFrame new;
+		widgetFrame: self widget owner 
+]
+
+{
+	#category : #environment,
+	#'squeak_changestamp' : 'LC 6/23/2024 18:31'
 }
 MWFrameTest >> tearDown [
-
-	widgetFrame abandon
+	
+	self widget: nil.
+	self widgetFrame abandon.
+	self isRegistered ifFalse: [TheWorldMenu unregisterOpenCommand: 'Mensa Widget']
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'tmc 6/6/2024 22:21'
+	#'squeak_changestamp' : 'Louis Christ 6/19/2024 01:10'
 }
 MWFrameTest >> testCantineCount [
 
-	self widgetFrame submorphsDo: [ :each | 
-		each class = ScrollPane ifTrue: 
-			[ each submorphsDo: [ :each2 |
-				each2 class = TransformationMorph ifTrue: 
-					[ each2 submorphsDo: [ :each3 |
-						each3 class = AlignmentMorph ifTrue: [
-							self assert: each3 subclasses size = 
-								MWDataGettingWrapper canteenDict size]]]]]]
+	self assert: self widget contentMorph submorphs size = MWDataGettingWrapper canteenDict size
 				 
 			  
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:42'
+	#'squeak_changestamp' : 'Louis Christ 6/19/2024 01:10'
 }
 MWFrameTest >> testContent [
 	
-	self assert: (self widgetFrame paneMorphs = #()) not
+	self assert: (self widget paneMorphs = #()) not
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Oscar 6/14/2024 15:29'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 16:21'
 }
-MWFrameTest >> testCorrectSuperclass [
+MWFrameTest >> testCorrectClass [
 
-	self assert: self widgetFrame class superclass = MorphicModel
+	self assert: self widgetFrame class = SystemWindow
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:42'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 16:14'
 }
 MWFrameTest >> testCorrectTitle [
 	
-	self assert: self widgetFrame label = 'Mensa Widget'
+	self assert: self widgetFrame label = MWFrame windowName
 ]
 
 {
@@ -93,6 +113,23 @@ MWFrameTest >> testOpened [
 
 {
 	#category : #tests,
+	#'squeak_changestamp' : 'Max 6/17/2024 21:07'
+}
+MWFrameTest >> testRegister [
+	
+	| occurrence |
+	
+	occurrence := true.
+	[TheWorldMenu registry find: {'Mensa Widget'. {MWFrame. #new}}] on: Error do:
+		[occurrence := false].
+	self assert: occurrence
+
+ 
+
+]
+
+{
+	#category : #tests,
 	#'squeak_changestamp' : 'Oscar 6/16/2024 18:37'
 }
 MWFrameTest >> testSize [
@@ -101,6 +138,24 @@ MWFrameTest >> testSize [
 
 
 
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Louis Christ 6/19/2024 01:09'
+}
+MWFrameTest >> widget [
+
+	^ widget
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Louis Christ 6/19/2024 01:09'
+}
+MWFrameTest >> widget: anObject [
+
+	widget := anObject
 ]
 
 {

@@ -13,7 +13,7 @@ Class {
 
 {
 	#category : #meals,
-	#'squeak_changestamp' : 'Max 6/11/2024 18:38'
+	#'squeak_changestamp' : 'NK 6/18/2024 21:47'
 }
 MWMealCleanerTest >> brokenEveningMeal [
 
