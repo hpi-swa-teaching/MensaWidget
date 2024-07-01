@@ -1,7 +1,14 @@
+"
+A MWConfiguration is a class for accessing the different configurations of the MensaWidget.
+
+Instance Variables
+
+"
 Class {
 	#name : #MWConfiguration,
 	#superclass : #Object,
-	#category : #MensaWidget
+	#category : #MensaWidget,
+	#'squeak_changestamp' : 'Max 7/1/2024 20:26'
 }
 
 {
