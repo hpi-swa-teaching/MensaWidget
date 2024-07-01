@@ -7,6 +7,12 @@ Instance Variables
 Class {
 	#name : #MWDataGettingWrapper,
 	#superclass : #Object,
+	#classVars : [
+		'CanteenDict',
+		'InitialLatitude',
+		'InitialLongitude',
+		'InitialRadius'
+	],
 	#classInstVars : [
 		'canteenDict'
 	],
@@ -16,18 +22,20 @@ Class {
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Oscar 6/30/2024 18:23'
+	#'squeak_changestamp' : 'Oscar 7/1/2024 16:20'
 }
 MWDataGettingWrapper class >> canteenDict [
-	^ canteenDict
+
+	^ CanteenDict
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Oscar 6/30/2024 18:23'
+	#'squeak_changestamp' : 'Oscar 7/1/2024 16:20'
 }
 MWDataGettingWrapper class >> canteenDict: anObject [
-	canteenDict := anObject
+
+	CanteenDict := anObject
 ]
 
 {
@@ -57,4 +65,84 @@ MWDataGettingWrapper class >> getTodaysMeals [
 	
 	today := Date today yyyymmdd.
 	^ MWDataGettingWrapper getMealsOnDate: today
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Oscar 7/1/2024 16:32'
+}
+MWDataGettingWrapper class >> initialLatitude [
+
+	^ InitialLatitude ifNil: [52.393822]
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Oscar 7/1/2024 16:21'
+}
+MWDataGettingWrapper class >> initialLatitude: anObject [
+
+	InitialLatitude := anObject
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Oscar 7/1/2024 16:32'
+}
+MWDataGettingWrapper class >> initialLongitude [
+
+	^ InitialLongitude ifNil: [13.129558]
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Oscar 7/1/2024 16:21'
+}
+MWDataGettingWrapper class >> initialLongitude: anObject [
+
+	InitialLongitude := anObject
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Oscar 7/1/2024 16:33'
+}
+MWDataGettingWrapper class >> initialRadius [
+
+	^ InitialRadius ifNil: [5]
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Oscar 7/1/2024 16:21'
+}
+MWDataGettingWrapper class >> initialRadius: anObject [
+
+	InitialRadius := anObject
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Oscar 7/1/2024 16:31'
+}
+MWDataGettingWrapper class >> switchLocation [
+	
+	| longitude latitude radius |
+	
+	longitude := FillInTheBlankMorph request: 'Please enter your Longitude' initialAnswer: self initialLongitude.
+	latitude := FillInTheBlankMorph request: 'Please enter your Latitude' initialAnswer: self initialLatitude.
+	radius := FillInTheBlankMorph request: 'Please enter your Radius' initialAnswer: self initialRadius.
+	self canteenDict: (MWParser transformJsonToDict: (MWApiWrapper getOutletDictFrom: latitude and: longitude andRadius: radius)).
+	self initialLongitude: longitude.
+	self initialLatitude: latitude.
+	self initialRadius: radius.
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Oscar 7/1/2024 16:30'
+}
+MWDataGettingWrapper class >> switchToDefaultLocation [
+	
+	self canteenDict: (MWParser transformJsonToDict: (MWApiWrapper getOutletDictFrom: 52.393822 and: 13.129558 andRadius: 5))
 ]

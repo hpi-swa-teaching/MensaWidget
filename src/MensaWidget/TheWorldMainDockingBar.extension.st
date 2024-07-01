@@ -2,7 +2,7 @@ Extension { #name : #TheWorldMainDockingBar }
 
 {
 	#category : #'*MensaWidget-override',
-	#'squeak_changestamp' : 'Louis Christ 6/10/2024 23:33'
+	#'squeak_changestamp' : 'Oscar 7/1/2024 16:11'
 }
 TheWorldMainDockingBar >> mensaMenuOn: aDockingBar [
 	"Create a menu with the options for MensaWidget"
@@ -19,7 +19,8 @@ TheWorldMainDockingBar >> mensaMenuOn: aDockingBar [
 				menu addItem: [:menuItem |
 					menuItem contents: 'Other citys' translated;
 						help: 'open mensa widget location picker' translated;
-						target: self].
+						target: self;
+						selector: #openMensaWidgetWithLocationChoice].
 				menu addItem: [:menuItem |
 					menuItem contents: 'Settings' translated;
 						help: 'open mensa widget settings' translated;
@@ -63,11 +64,25 @@ TheWorldMainDockingBar >> menusOn: aDockingBar [
 
 {
 	#category : #'*MensaWidget-override',
-	#'squeak_changestamp' : 'Oscar 6/17/2024 00:03'
+	#'squeak_changestamp' : 'Oscar 7/1/2024 16:36'
 }
 TheWorldMainDockingBar >> openMensaWidget [
 	"Open the mensa widget"
+	
+	MWDataGettingWrapper switchToDefaultLocation.
+	^ MWFrame new
 
+]
+
+{
+	#category : #'*MensaWidget-override',
+	#'squeak_changestamp' : 'Oscar 7/1/2024 16:38'
+}
+TheWorldMainDockingBar >> openMensaWidgetWithLocationChoice [
+	"Open the mensa widget"
+	
+	self halt.
+	MWDataGettingWrapper switchLocation.
 	^ MWFrame new
 
 ]

@@ -18,6 +18,12 @@ Class {
 		'menuBar',
 		'scroller'
 	],
+	#classVars : [
+		'CanteenDict',
+		'InitialLatitude',
+		'InitialLongitude',
+		'InitialRadius'
+	],
 	#category : #MensaWidget,
 	#'squeak_changestamp' : 'Oscar 6/17/2024 00:04'
 }
@@ -56,6 +62,16 @@ MWFrame class >> register [
 MWFrame class >> scrollBarThickness [
 
 	^ 14 * RealEstateAgent scaleFactor 
+]
+
+{
+	#category : #constants,
+	#'squeak_changestamp' : 'Oscar 7/1/2024 16:00'
+}
+MWFrame class >> testReguest [
+	
+	
+	^ FillInTheBlankMorph request: 'Long' initialAnswer: '13.42069'
 ]
 
 {
@@ -171,17 +187,11 @@ MWFrame >> contentMorph: anObject [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Oscar 6/30/2024 18:27'
+	#'squeak_changestamp' : 'Oscar 7/1/2024 16:13'
 }
 MWFrame >> initialize [
 
-	| canteenJson |
-
 	super initialize.
-	
-	canteenJson := MWApiWrapper getOutletDictFrom: 52.393822 and: 13.129558 andRadius: 5.
-	
-	MWDataGettingWrapper canteenDict: (MWParser transformJsonToDict: canteenJson).
 	self listDirection: #topToBottom;
 		buildLayout;
 		addMealsOn: Date today forTime: MWMealCleaner lunchCategory;
