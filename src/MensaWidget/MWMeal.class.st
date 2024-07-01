@@ -8,6 +8,9 @@ Instance Variables
 	notes:		<OrderedCollection>
 	prices:		<JSONObject>
 
+Class Variables
+	PriceGroup:		<String>
+
 category
 	- the category of the meal provided by OpenMensa-API
 
@@ -23,6 +26,8 @@ notes
 prices
 	- prices for students, employees, pupils and others
 
+PriceGroup
+	- the configured price group, default is student
 "
 Class {
 	#name : #MWMeal,
@@ -34,9 +39,21 @@ Class {
 		'prices',
 		'notes'
 	],
-	#category : #MensaWidget,
-	#'squeak_changestamp' : 'Max 5/31/2024 21:55'
+	#classVars : [
+		'PriceGroup'
+	],
+	#category : 'MensaWidget',
+	#'squeak_changestamp' : 'Max 7/1/2024 21:44'
 }
+
+{
+	#category : #constants,
+	#'squeak_changestamp' : 'tmc 6/18/2024 22:14'
+}
+MWMeal class >> defaultGroup [
+
+	^ 'others'
+]
 
 {
 	#category : #meals,
@@ -74,6 +91,24 @@ MWMeal class >> hotCounterMeal [
 		category: MWMealCleaner lunchCategory;
 		notes: nil;
 		prices: MWMealCleaner hotCounterPrice
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'tmc 6/18/2024 22:02'
+}
+MWMeal class >> priceGroup [
+	
+	^ PriceGroup
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'tmc 6/18/2024 22:01'
+}
+MWMeal class >> priceGroup: anObject [
+
+	PriceGroup := anObject
 ]
 
 {
@@ -175,14 +210,14 @@ MWMeal >> getPriceMorph [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:02'
+	#'squeak_changestamp' : 'Max 7/1/2024 22:25'
 }
 MWMeal >> getPriceStream [
 
 	| priceStream |
 	
 	priceStream := WriteStream on: String new.
-    	(self prices at: 'students') 
+    	(self prices at: (self class priceGroup ifNil: [self class defaultGroup])) 
 		ifNil: [''] 
 		ifNotNil: [:price | price printOn: priceStream showingDecimalPlaces: 2].
 	^ priceStream
