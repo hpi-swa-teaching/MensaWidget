@@ -15,7 +15,7 @@ Class {
 		'widget',
 		'isRegistered'
 	],
-	#category : 'MensaWidget-Tests',
+	#category : #'MensaWidget-Tests',
 	#'squeak_changestamp' : 'Louis Christ 5/27/2024 19:44'
 }
 

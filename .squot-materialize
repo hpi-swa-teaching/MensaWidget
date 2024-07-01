@@ -1,4 +1,11 @@
 [
+	SquotImageMapper {
+		#path : FSAbsolutePath [
+			'icons',
+			'mensa_icon.png'
+		],
+		#encoding : Class [ #PNGReadWriter ]
+	},
 	SquotTonelMapper {
 		#package : MCPackage {
 			#name : 'MensaWidget'
@@ -6,12 +13,5 @@
 		#path : FSAbsolutePath [
 			'src'
 		]
-	},
-	SquotImageMapper {
-		#path : FSAbsolutePath [
-			'icons',
-			'mensa_icon.png'
-		],
-		#encoding : Class [ #PNGReadWriter ]
 	}
 ]

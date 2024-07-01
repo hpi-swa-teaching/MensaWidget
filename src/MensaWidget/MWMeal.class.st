@@ -53,6 +53,17 @@ MWMeal class >> emptyMeal [
 ]
 
 {
+	#category : #constants,
+	#'squeak_changestamp' : 'LC 6/23/2024 19:02'
+}
+MWMeal class >> getStarVertices [
+	
+	^ RealEstateAgent scaleFactor * 
+		{6 @ 0. 7 @ 5. 12 @ 5. 8 @ 8. 10 @ 12. 6 @ 10. 2 @ 12. 3 @ 8. 0 @ 5. 5 @ 5}
+
+]
+
+{
 	#category : #meals,
 	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:07'
 }
@@ -80,23 +91,43 @@ MWMeal class >> saladBarMeal [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Oscar 6/15/2024 13:57'
+	#'squeak_changestamp' : 'LC 6/23/2024 19:12'
 }
 MWMeal class >> spacerMorphWidth [
 
-	^ 50 px 
+	^ 25 px 
+]
+
+{
+	#category : #constants,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 20:58'
+}
+MWMeal class >> starBoarderWidth [
+
+	^ 2 * RealEstateAgent scaleFactor
+]
+
+{
+	#category : #constants,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 20:55'
+}
+MWMeal class >> starInset [
+
+	^ 3 * RealEstateAgent scaleFactor
 ]
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:04'
+	#'squeak_changestamp' : 'LC 6/23/2024 19:12'
 }
 MWMeal >> build [
 	
 	^ self color: MWColorTheme primaryColor;
 		vResizing: #shrinkWrap;
 		hResizing: #spaceFill;
-		addMorph: self getPriceMorph;
+		addMorph: self getPriceMorph;		
+		addMorph: self getSpacerMorph;
+		addMorph: self getStarMorph;
 		addMorph: self getSpacerMorph;
 		addMorph: self getNameMorph;
 		yourself
@@ -159,7 +190,7 @@ MWMeal >> getPriceStream [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Oscar 6/14/2024 15:32'
+	#'squeak_changestamp' : 'Louis Christ 6/22/2024 14:57'
 }
 MWMeal >> getSpacerMorph [
 
@@ -169,6 +200,33 @@ MWMeal >> getSpacerMorph [
 		vResizing: #spaceFill;
 		width: self class spacerMorphWidth;
 		yourself
+]
+
+{
+	#category : #star,
+	#'squeak_changestamp' : 'LC 6/23/2024 19:13'
+}
+MWMeal >> getStarMorph [
+	
+	^ PolygonMorph new 
+		color: self getStarMorphColor;
+		borderColor: Color fern lighter;
+		borderWidth: self class starBoarderWidth;
+		setVertices: self class getStarVertices;
+		on: #mouseDown send: #toggleLike: to: MWFavorites;
+		yourself
+]
+
+{
+	#category : #star,
+	#'squeak_changestamp' : 'LC 6/26/2024 16:00'
+}
+MWMeal >> getStarMorphColor [
+
+	(MWFavorites favouriteMeals includes: self name) ifTrue: 
+		[^ MWColorTheme secondaryColor] ifFalse:
+		[^ Color transparent]
+	
 ]
 
 {
