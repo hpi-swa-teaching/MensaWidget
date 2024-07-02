@@ -11,7 +11,7 @@ Class {
 		'BackgroundColor',
 		'DefaultColor',
 		'PrimaryColor',
-		'SecondayColor'
+		'SecondaryColor'
 	],
 	#category : #MensaWidget,
 	#'squeak_changestamp' : 'Max 7/1/2024 20:26'
@@ -19,33 +19,37 @@ Class {
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'LC 7/2/2024 01:04'
+	#'squeak_changestamp' : 'LC 7/2/2024 10:23'
 }
 MWConfiguration class >> backgroundColor [
-	^ BackgroundColor
+
+	^ BackgroundColor ifNil: [BackgroundColor := Color r: 0.8 g: 1 b: 0.8]
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'LC 7/2/2024 01:04'
+	#'squeak_changestamp' : 'LC 7/2/2024 10:23'
 }
 MWConfiguration class >> backgroundColor: anObject [
+
 	BackgroundColor := anObject
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'LC 7/2/2024 01:04'
+	#'squeak_changestamp' : 'LC 7/2/2024 10:24'
 }
 MWConfiguration class >> defaultColor [
-	^ DefaultColor
+
+	^ DefaultColor ifNil: [DefaultColor := Color darkGray]
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'LC 7/2/2024 01:04'
+	#'squeak_changestamp' : 'LC 7/2/2024 10:24'
 }
 MWConfiguration class >> defaultColor: anObject [
+
 	DefaultColor := anObject
 ]
 
@@ -62,34 +66,38 @@ MWConfiguration class >> priceGroups [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'LC 7/2/2024 01:04'
+	#'squeak_changestamp' : 'LC 7/2/2024 10:25'
 }
 MWConfiguration class >> primaryColor [
-	^ PrimaryColor
+
+	^ PrimaryColor ifNil: [PrimaryColor := Color paleGreen darker darker]
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'LC 7/2/2024 01:04'
+	#'squeak_changestamp' : 'LC 7/2/2024 10:25'
 }
 MWConfiguration class >> primaryColor: anObject [
+
 	PrimaryColor := anObject
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'LC 7/2/2024 01:04'
+	#'squeak_changestamp' : 'LC 7/2/2024 10:30'
 }
-MWConfiguration class >> secondayColor [
-	^ SecondayColor
+MWConfiguration class >> secondaryColor [
+
+	^ SecondaryColor ifNil: [SecondaryColor := Color fern lighter]
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'LC 7/2/2024 01:04'
+	#'squeak_changestamp' : 'LC 7/2/2024 10:30'
 }
-MWConfiguration class >> secondayColor: anObject [
-	SecondayColor := anObject
+MWConfiguration class >> secondaryColor: anObject [
+
+	SecondaryColor := anObject
 ]
 
 {

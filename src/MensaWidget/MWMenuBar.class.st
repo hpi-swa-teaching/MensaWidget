@@ -49,13 +49,13 @@ MWMenuBar class >> cellGap [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 19:21'
+	#'squeak_changestamp' : 'LC 7/2/2024 10:28'
 }
 MWMenuBar class >> getArrowButton [
 
 	^ PolygonMorph new
 		setVertices: self getArrowVertices;
-		color: MWColorTheme secondaryColor;
+		color: MWConfiguration secondaryColor;
 		addFlexShellIfNecessary; 
 		yourself
 ]
@@ -71,7 +71,7 @@ MWMenuBar class >> getArrowVertices [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:19'
+	#'squeak_changestamp' : 'LC 7/2/2024 10:28'
 }
 MWMenuBar class >> getTimeToggle [
 
@@ -79,7 +79,7 @@ MWMenuBar class >> getTimeToggle [
 		addMorph: (StringMorph contents: 'Lunch'); 
 		vResizing: #shrinkWrap; 
 		hResizing: #shrinkWrap;
-		color: MWColorTheme secondaryColor
+		color: MWConfiguration secondaryColor
 ]
 
 {
@@ -210,14 +210,14 @@ MWMenuBar >> decreaseDate [
 
 {
 	#category : #dateManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 17:48'
+	#'squeak_changestamp' : 'LC 7/2/2024 10:28'
 }
 MWMenuBar >> decreaseDate: aEvent [
 	
-	aEvent handler color: MWColorTheme defaultColor.
+	aEvent handler color: MWConfiguration defaultColor.
 	World doOneCycle.
 	self decreaseDate.
-	aEvent handler color: MWColorTheme secondaryColor
+	aEvent handler color: MWConfiguration secondaryColor
 ]
 
 {
@@ -232,19 +232,19 @@ MWMenuBar >> increaseDate [
 
 {
 	#category : #dateManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 17:48'
+	#'squeak_changestamp' : 'LC 7/2/2024 10:28'
 }
 MWMenuBar >> increaseDate: aEvent [
 	
-	aEvent handler color: MWColorTheme defaultColor.
+	aEvent handler color: MWConfiguration defaultColor.
 	World doOneCycle.
 	self increaseDate.
-	aEvent handler color: MWColorTheme secondaryColor
+	aEvent handler color: MWConfiguration secondaryColor
 ]
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 19:25'
+	#'squeak_changestamp' : 'LC 7/2/2024 10:27'
 }
 MWMenuBar >> initialize [
 	
@@ -254,7 +254,7 @@ MWMenuBar >> initialize [
 		hResizing: #spaceFill;
 		vResizing: #shrinkWrap;
 		cellPositioning: #center;
-		color: MWColorTheme primaryColor;
+		color: MWConfiguration primaryColor;
 		cellGap: self class cellGap;
 		createLayout
 

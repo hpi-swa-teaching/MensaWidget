@@ -153,11 +153,11 @@ MWMeal class >> starInset [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'LC 6/23/2024 19:12'
+	#'squeak_changestamp' : 'LC 7/2/2024 10:27'
 }
 MWMeal >> build [
 	
-	^ self color: MWColorTheme primaryColor;
+	^ self color: MWConfiguration primaryColor;
 		vResizing: #shrinkWrap;
 		hResizing: #spaceFill;
 		addMorph: self getPriceMorph;		
@@ -254,12 +254,12 @@ MWMeal >> getStarMorph [
 
 {
 	#category : #star,
-	#'squeak_changestamp' : 'LC 6/26/2024 16:00'
+	#'squeak_changestamp' : 'LC 7/2/2024 10:28'
 }
 MWMeal >> getStarMorphColor [
 
 	(MWFavorites favouriteMeals includes: self name) ifTrue: 
-		[^ MWColorTheme secondaryColor] ifFalse:
+		[^ MWConfiguration secondaryColor] ifFalse:
 		[^ Color transparent]
 	
 ]
