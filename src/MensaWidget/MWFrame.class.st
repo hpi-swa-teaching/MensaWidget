@@ -18,12 +18,6 @@ Class {
 		'menuBar',
 		'scroller'
 	],
-	#classVars : [
-		'CanteenDict',
-		'InitialLatitude',
-		'InitialLongitude',
-		'InitialRadius'
-	],
 	#category : #MensaWidget,
 	#'squeak_changestamp' : 'Oscar 6/17/2024 00:04'
 }
