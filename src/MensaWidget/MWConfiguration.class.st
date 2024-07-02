@@ -6,7 +6,7 @@ Instance Variables
 "
 Class {
 	#name : #MWConfiguration,
-	#superclass : #Object,
+	#superclass : #AlignmentMorph,
 	#classVars : [
 		'BackgroundColor',
 		'DefaultColor',
@@ -117,4 +117,14 @@ MWConfiguration class >> setPriceGroup: aPriceGroup [
 MWConfiguration class >> showPriceGroup [
 
 	^ MWMeal priceGroup
+]
+
+{
+	#category : #initialization,
+	#'squeak_changestamp' : 'LC 7/2/2024 19:40'
+}
+MWConfiguration >> initialize [
+
+	super initialize.
+	^ self openInWindow
 ]

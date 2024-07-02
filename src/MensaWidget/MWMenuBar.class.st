@@ -277,9 +277,11 @@ MWMenuBar >> initialize [
 
 {
 	#category : #settings,
-	#'squeak_changestamp' : 'LC 7/2/2024 19:05'
+	#'squeak_changestamp' : 'LC 7/2/2024 20:00'
 }
 MWMenuBar >> openSettings [
+
+	MWConfiguration new position: self position
 ]
 
 {
