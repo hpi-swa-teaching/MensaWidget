@@ -171,15 +171,20 @@ MWFrame >> contentMorph: anObject [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'LC 6/23/2024 18:28'
+	#'squeak_changestamp' : 'LC 7/3/2024 00:24'
 }
 MWFrame >> initialize [
-
-	super initialize.
-	self listDirection: #topToBottom;
-		buildLayout;
-		addMealsOn: Date today forTime: MWMealCleaner lunchCategory;
-		openInWindowLabeled: self class windowName
+	
+	MWConfiguration isInitial
+		ifTrue: [(MWConfiguration getPopUp 
+			openInWindowLabeled: 'Mensa Settings') 
+			width: 350;
+			color: Color darkGray]
+		ifFalse: [super initialize.
+			self listDirection: #topToBottom;
+			buildLayout;
+			addMealsOn: Date today forTime: MWMealCleaner lunchCategory;
+			openInWindowLabeled: self class windowName]
 ]
 
 {

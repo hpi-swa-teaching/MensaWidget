@@ -99,18 +99,17 @@ MWMenuBar >> createDateDisplay [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'LC 7/2/2024 19:02'
+	#'squeak_changestamp' : 'LC 7/3/2024 00:10'
 }
 MWMenuBar >> createLayout [
 	
-	self createTimeToggle;
+	self createSettings;
 		createSpacer;
 		createNextButton;
 		createDateDisplay;
 		createPrevButton;
 		createSpacer;
-		createSettings
-	
+		createTimeToggle
 ]
 
 {
@@ -254,7 +253,7 @@ MWMenuBar >> increaseDate: aEvent [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'LC 7/2/2024 10:27'
+	#'squeak_changestamp' : 'LC 7/3/2024 00:11'
 }
 MWMenuBar >> initialize [
 	
@@ -266,6 +265,7 @@ MWMenuBar >> initialize [
 		cellPositioning: #center;
 		color: MWConfiguration primaryColor;
 		cellGap: self class cellGap;
+		cellInset: 5;
 		createLayout
 
 ]

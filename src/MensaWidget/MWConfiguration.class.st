@@ -10,6 +10,7 @@ Class {
 	#classVars : [
 		'BackgroundColor',
 		'DefaultColor',
+		'IsInitial',
 		'PrimaryColor',
 		'SecondaryColor'
 	],
@@ -68,6 +69,24 @@ MWConfiguration class >> getPopUp [
 ]
 
 {
+	#category : #accessing,
+	#'squeak_changestamp' : 'LC 7/3/2024 00:22'
+}
+MWConfiguration class >> isInitial [
+
+	^ IsInitial ifNil: [IsInitial := true]
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'LC 7/3/2024 00:22'
+}
+MWConfiguration class >> isInitial: anObject [
+
+	IsInitial := anObject
+]
+
+{
 	#category : #priceGroup,
 	#'squeak_changestamp' : 'Max 6/19/2024 09:17'
 }
@@ -116,10 +135,11 @@ MWConfiguration class >> secondaryColor: anObject [
 
 {
 	#category : #priceGroup,
-	#'squeak_changestamp' : 'LC 7/3/2024 00:06'
+	#'squeak_changestamp' : 'LC 7/3/2024 00:25'
 }
 MWConfiguration class >> setPriceGroup: aCategory [
-
+	
+	self isInitial: false.
 	MWMeal priceGroup: aCategory;
 		updatePrice
 ]
