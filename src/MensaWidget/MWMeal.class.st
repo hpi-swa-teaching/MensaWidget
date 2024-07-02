@@ -152,6 +152,15 @@ MWMeal class >> starInset [
 ]
 
 {
+	#category : #updating,
+	#'squeak_changestamp' : 'LC 7/3/2024 00:05'
+}
+MWMeal class >> updatePrice [
+
+	self allInstancesDo: [:each | each updatePrice]
+]
+
+{
 	#category : #display,
 	#'squeak_changestamp' : 'LC 7/2/2024 10:27'
 }
@@ -210,7 +219,7 @@ MWMeal >> getPriceMorph [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Max 7/1/2024 22:25'
+	#'squeak_changestamp' : 'LC 7/3/2024 00:01'
 }
 MWMeal >> getPriceStream [
 
@@ -352,4 +361,13 @@ MWMeal >> prices [
 MWMeal >> prices: anObject [
 
 	prices := anObject
+]
+
+{
+	#category : #updating,
+	#'squeak_changestamp' : 'LC 7/3/2024 00:07'
+}
+MWMeal >> updatePrice [
+
+	self submorphs last contents: self getPriceStream contents
 ]

@@ -6,7 +6,7 @@ Instance Variables
 "
 Class {
 	#name : #MWConfiguration,
-	#superclass : #AlignmentMorph,
+	#superclass : #Object,
 	#classVars : [
 		'BackgroundColor',
 		'DefaultColor',
@@ -55,7 +55,7 @@ MWConfiguration class >> defaultColor: anObject [
 
 {
 	#category : #morphs,
-	#'squeak_changestamp' : 'LC 7/2/2024 22:58'
+	#'squeak_changestamp' : 'LC 7/2/2024 23:53'
 }
 MWConfiguration class >> getPopUp [
 
@@ -63,6 +63,7 @@ MWConfiguration class >> getPopUp [
 		target: self;
 		getItemsSelector: #priceGroups;
 		actionSelector: #setPriceGroup:;
+		contents: MWMeal priceGroup
 		yourself
 ]
 
@@ -115,11 +116,12 @@ MWConfiguration class >> secondaryColor: anObject [
 
 {
 	#category : #priceGroup,
-	#'squeak_changestamp' : 'LC 7/2/2024 21:51'
+	#'squeak_changestamp' : 'LC 7/3/2024 00:06'
 }
 MWConfiguration class >> setPriceGroup: aCategory [
 
-	MWMeal priceGroup: aCategory
+	MWMeal priceGroup: aCategory;
+		updatePrice
 ]
 
 {
@@ -129,14 +131,4 @@ MWConfiguration class >> setPriceGroup: aCategory [
 MWConfiguration class >> showPriceGroup [
 
 	^ MWMeal priceGroup
-]
-
-{
-	#category : #initialization,
-	#'squeak_changestamp' : 'LC 7/2/2024 19:40'
-}
-MWConfiguration >> initialize [
-
-	super initialize.
-	^ self openInWindow
 ]
