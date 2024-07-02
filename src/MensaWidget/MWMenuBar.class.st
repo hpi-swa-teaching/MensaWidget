@@ -139,16 +139,11 @@ MWMenuBar >> createPrevButton [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'LC 7/2/2024 19:11'
+	#'squeak_changestamp' : 'LC 7/2/2024 22:58'
 }
 MWMenuBar >> createSettings [
 
-	self addMorph: 
-		(ImageMorph new image: ((GitAssetLoader for: 'MensaWidget') loadForm: '/icons/settings_icon.png');
-			on: #mouseDown send: #openSettings to: self;
-			vResizing: #spaceFill;
-			width: self height;
-			hResizing: #rigid)
+	self addMorph: MWConfiguration getPopUp
 ]
 
 {
@@ -273,15 +268,6 @@ MWMenuBar >> initialize [
 		cellGap: self class cellGap;
 		createLayout
 
-]
-
-{
-	#category : #settings,
-	#'squeak_changestamp' : 'LC 7/2/2024 20:00'
-}
-MWMenuBar >> openSettings [
-
-	MWConfiguration new position: self position
 ]
 
 {
