@@ -99,7 +99,7 @@ MWMenuBar >> createDateDisplay [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/17/2024 22:09'
+	#'squeak_changestamp' : 'LC 7/2/2024 19:02'
 }
 MWMenuBar >> createLayout [
 	
@@ -108,7 +108,8 @@ MWMenuBar >> createLayout [
 		createNextButton;
 		createDateDisplay;
 		createPrevButton;
-		createSpacer
+		createSpacer;
+		createSettings
 	
 ]
 
@@ -134,6 +135,20 @@ MWMenuBar >> createPrevButton [
 			rotationDegrees: 180;
 			on: #mouseDown send: #decreaseDate: to: self)
 	
+]
+
+{
+	#category : #creation,
+	#'squeak_changestamp' : 'LC 7/2/2024 19:11'
+}
+MWMenuBar >> createSettings [
+
+	self addMorph: 
+		(ImageMorph new image: ((GitAssetLoader for: 'MensaWidget') loadForm: '/icons/settings_icon.png');
+			on: #mouseDown send: #openSettings to: self;
+			vResizing: #spaceFill;
+			width: self height;
+			hResizing: #rigid)
 ]
 
 {
@@ -258,6 +273,13 @@ MWMenuBar >> initialize [
 		cellGap: self class cellGap;
 		createLayout
 
+]
+
+{
+	#category : #settings,
+	#'squeak_changestamp' : 'LC 7/2/2024 19:05'
+}
+MWMenuBar >> openSettings [
 ]
 
 {
