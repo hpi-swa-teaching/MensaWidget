@@ -64,12 +64,12 @@ TheWorldMainDockingBar >> menusOn: aDockingBar [
 
 {
 	#category : #'*MensaWidget-override',
-	#'squeak_changestamp' : 'LC 7/2/2024 23:58'
+	#'squeak_changestamp' : 'LC 7/3/2024 16:07'
 }
 TheWorldMainDockingBar >> openMensaSettings [
 	"Open the mensa widget settings"
 	
-	^ (MWConfiguration getPopUp 
+	^ (MWConfiguration getPopUp
 		openInWindowLabeled: 'Mensa Settings') 
 		width: 350;
 		color: Color darkGray

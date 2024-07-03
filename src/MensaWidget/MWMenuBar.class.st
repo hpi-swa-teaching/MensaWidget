@@ -99,17 +99,17 @@ MWMenuBar >> createDateDisplay [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'LC 7/3/2024 00:10'
+	#'squeak_changestamp' : 'LC 7/3/2024 16:04'
 }
 MWMenuBar >> createLayout [
 	
-	self createSettings;
-		createSpacer;
+	self createSpacer;
 		createNextButton;
 		createDateDisplay;
 		createPrevButton;
 		createSpacer;
-		createTimeToggle
+		createTimeToggle;
+		createSettings
 ]
 
 {
@@ -138,16 +138,16 @@ MWMenuBar >> createPrevButton [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'LC 7/2/2024 22:58'
+	#'squeak_changestamp' : 'LC 7/3/2024 16:02'
 }
 MWMenuBar >> createSettings [
 
-	self addMorph: MWConfiguration getPopUp
+	self addMorphBack: MWConfiguration getPopUp
 ]
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/17/2024 21:22'
+	#'squeak_changestamp' : 'LC 7/3/2024 16:21'
 }
 MWMenuBar >> createSpacer [
 	
@@ -253,7 +253,7 @@ MWMenuBar >> increaseDate: aEvent [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'LC 7/3/2024 00:11'
+	#'squeak_changestamp' : 'LC 7/3/2024 16:21'
 }
 MWMenuBar >> initialize [
 	
@@ -264,7 +264,6 @@ MWMenuBar >> initialize [
 		vResizing: #shrinkWrap;
 		cellPositioning: #center;
 		color: MWConfiguration primaryColor;
-		cellGap: self class cellGap;
 		cellInset: 5;
 		createLayout
 

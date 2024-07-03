@@ -55,6 +55,19 @@ MWConfiguration class >> defaultColor: anObject [
 ]
 
 {
+	#category : #priceGroup,
+	#'squeak_changestamp' : 'LC 7/3/2024 16:48'
+}
+MWConfiguration class >> fromPopUp: aPopUp setPriceGroup: aCategory [
+	
+	self isInitial: false.
+	MWMeal priceGroup: aCategory;
+		updatePrice.
+	self halt.
+	aPopUp contentsFitted: aCategory
+]
+
+{
 	#category : #morphs,
 	#'squeak_changestamp' : 'LC 7/2/2024 23:53'
 }
@@ -139,6 +152,18 @@ MWConfiguration class >> secondaryColor: anObject [
 }
 MWConfiguration class >> setPriceGroup: aCategory [
 	
+	self isInitial: false.
+	MWMeal priceGroup: aCategory;
+		updatePrice
+]
+
+{
+	#category : #priceGroup,
+	#'squeak_changestamp' : 'LC 7/3/2024 16:40'
+}
+MWConfiguration class >> setPriceGroup: aPopUp fromPopUp: aCategory [
+	
+	self halt
 	self isInitial: false.
 	MWMeal priceGroup: aCategory;
 		updatePrice

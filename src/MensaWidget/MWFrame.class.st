@@ -138,7 +138,7 @@ MWFrame >> addScrollPane [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'LC 7/2/2024 10:27'
+	#'squeak_changestamp' : 'LC 7/3/2024 16:23'
 }
 MWFrame >> buildLayout [
 
@@ -171,20 +171,15 @@ MWFrame >> contentMorph: anObject [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'LC 7/3/2024 00:24'
+	#'squeak_changestamp' : 'LC 7/3/2024 16:22'
 }
 MWFrame >> initialize [
 	
-	MWConfiguration isInitial
-		ifTrue: [(MWConfiguration getPopUp 
-			openInWindowLabeled: 'Mensa Settings') 
-			width: 350;
-			color: Color darkGray]
-		ifFalse: [super initialize.
-			self listDirection: #topToBottom;
-			buildLayout;
-			addMealsOn: Date today forTime: MWMealCleaner lunchCategory;
-			openInWindowLabeled: self class windowName]
+	super initialize.
+	self listDirection: #topToBottom;
+		buildLayout;
+		addMealsOn: Date today forTime: MWMealCleaner lunchCategory;
+		openInWindowLabeled: self class windowName
 ]
 
 {
