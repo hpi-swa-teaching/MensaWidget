@@ -7,9 +7,62 @@ Instance Variables
 Class {
 	#name : #MWConfigurationTest,
 	#superclass : #TestCase,
+	#instVars : [
+		'mensaWidget'
+	],
 	#category : #'MensaWidget-Tests',
 	#'squeak_changestamp' : 'Max 7/1/2024 20:26'
 }
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'LC 7/3/2024 22:40'
+}
+MWConfigurationTest >> mensaWidget [
+
+	^ mensaWidget
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'LC 7/3/2024 22:40'
+}
+MWConfigurationTest >> mensaWidget: anObject [
+
+	mensaWidget := anObject
+]
+
+{
+	#category : #environment,
+	#'squeak_changestamp' : 'LC 7/3/2024 22:41'
+}
+MWConfigurationTest >> setUp [
+
+	self mensaWidget: MWFrame new
+]
+
+{
+	#category : #environment,
+	#'squeak_changestamp' : 'LC 7/3/2024 22:47'
+}
+MWConfigurationTest >> tearDown [
+
+	self mensaWidget owner abandon.
+	self mensaWidget: nil
+]
+
+{
+	#category : #tests,
+	#'squeak_changestamp' : 'LC 7/3/2024 22:54'
+}
+MWConfigurationTest >> testInitialSetUp [
+
+	self tearDown.
+	MWConfiguration isInitial: true.
+	self setUp;
+		assert: (self mensaWidget class = MWFrame) not.
+	MWConfiguration isInitial: false
+]
 
 {
 	#category : #tests,

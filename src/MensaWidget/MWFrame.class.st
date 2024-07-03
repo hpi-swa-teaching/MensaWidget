@@ -246,15 +246,6 @@ MWFrame >> updateDay: aDate withTime: aTime [
 ]
 
 {
-	#category : #updating,
-	#'squeak_changestamp' : 'LC 7/3/2024 00:04'
-}
-MWFrame >> updateMealPrices [
-
-	self contentMorph submorphs do: [:each | each updateMealPrice]
-]
-
-{
 	#category : #dayManipulation,
 	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:31'
 }

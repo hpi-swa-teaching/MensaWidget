@@ -193,12 +193,3 @@ MWCanteen >> updateForTime: aTime [
 	self deleteMeals;
 		addMealsForTime: aTime
 ]
-
-{
-	#category : #updating,
-	#'squeak_changestamp' : 'LC 7/3/2024 00:02'
-}
-MWCanteen >> updateMealPrice [
-
-	self meals do: [:each | each updatePrice]
-]
