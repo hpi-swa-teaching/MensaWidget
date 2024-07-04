@@ -45,6 +45,22 @@ MWDockingBarTest >> tearDown [
 
 {
 	#category : #tests,
+	#'squeak_changestamp' : 'LC 7/5/2024 00:56'
+}
+MWDockingBarTest >> testOpenSettings [
+
+	| menu submenu widget |
+	
+	TheWorldMainDockingBar showMensaMenuInWorldMainDockingBar: true.
+	self dockingbar allMorphsDo: [:each | (each name asString includesSubstring: 'MensaMenu') ifTrue: [menu := each]].
+	menu subMenu submorphsDo: [:each | each contents = 'Settings' ifTrue: [submenu := each]].
+	widget := submenu target perform: submenu selector.
+	self assert: widget class = PopUpChoiceMorph.
+	widget owner abandon
+]
+
+{
+	#category : #tests,
 	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:58'
 }
 MWDockingBarTest >> testOpenWidget [
