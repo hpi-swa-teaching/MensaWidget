@@ -15,6 +15,15 @@ Class {
 }
 
 {
+	#category : #helpers,
+	#'squeak_changestamp' : 'LC 7/5/2024 00:47'
+}
+MWConfigurationTest >> getPopUp [
+	
+	^ self mensaWidget menuBar submorphs last
+]
+
+{
 	#category : #accessing,
 	#'squeak_changestamp' : 'LC 7/3/2024 22:40'
 }
@@ -42,6 +51,21 @@ MWConfigurationTest >> setUp [
 ]
 
 {
+	#category : #helpers,
+	#'squeak_changestamp' : 'LC 7/5/2024 00:47'
+}
+MWConfigurationTest >> simulatePopUpChoice: anObject [
+	
+	| popUp | 
+	
+	popUp := self getPopUp.
+	popUp contentsClipped: anObject.
+	popUp actionSelector ifNotNil: 
+			[popUp target perform: popUp actionSelector
+				withArguments: (popUp arguments copyWith: anObject)]
+]
+
+{
 	#category : #environment,
 	#'squeak_changestamp' : 'LC 7/3/2024 22:47'
 }
@@ -53,7 +77,20 @@ MWConfigurationTest >> tearDown [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'LC 7/3/2024 22:54'
+	#'squeak_changestamp' : 'LC 7/5/2024 00:52'
+}
+MWConfigurationTest >> testChangingGroups [
+	
+	MWConfiguration priceGroups do: [:each | 
+		self simulatePopUpChoice: each.
+		MWMeal allInstances do: [:meal |
+			self assert: (meal submorphs last contents = '' or: 
+				[meal submorphs last contents asNumber = (meal prices at: each)])]]
+]
+
+{
+	#category : #tests,
+	#'squeak_changestamp' : 'LC 7/5/2024 00:38'
 }
 MWConfigurationTest >> testInitialSetUp [
 
@@ -66,12 +103,12 @@ MWConfigurationTest >> testInitialSetUp [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Max 7/1/2024 20:21'
+	#'squeak_changestamp' : 'LC 7/5/2024 00:30'
 }
 MWConfigurationTest >> testInvalidSet [
 	
 	MWConfiguration setPriceGroup: 'noPriceGroup'.
-	self assert: (MWMeal priceGroup isNil or: MWMeal priceGroup = 'students')
+	self assert: (MWMeal priceGroup isNil or: MWMeal priceGroup = MWMeal defaultGroup)
 ]
 
 {

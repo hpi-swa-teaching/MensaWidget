@@ -104,11 +104,13 @@ MWMeal class >> priceGroup [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'tmc 6/18/2024 22:01'
+	#'squeak_changestamp' : 'LC 7/5/2024 00:27'
 }
 MWMeal class >> priceGroup: anObject [
-
-	PriceGroup := anObject
+	
+	(MWConfiguration priceGroups includes: anObject)
+		ifTrue: [PriceGroup := anObject]
+		ifFalse: [PriceGroup := MWMeal defaultGroup]
 ]
 
 {

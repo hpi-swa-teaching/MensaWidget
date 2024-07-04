@@ -171,17 +171,14 @@ MWFrame >> contentMorph: anObject [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'LC 7/3/2024 22:52'
+	#'squeak_changestamp' : 'LC 7/5/2024 00:37'
 }
 MWFrame >> initialize [
 	
-	super initialize.
 	MWConfiguration isInitial
-		ifTrue: [(MWConfiguration getPopUp
-			openInWindowLabeled: 'Mensa Settings') 
-			width: 350;
-			color: MWConfiguration defaultColor]
-		ifFalse: [self listDirection: #topToBottom;
+		ifTrue: [^ self setUpScreen]
+		ifFalse: [super initialize.
+			self listDirection: #topToBottom;
 			buildLayout;
 			addMealsOn: Date today forTime: MWMealCleaner lunchCategory;
 			openInWindowLabeled: self class windowName]
@@ -222,6 +219,22 @@ MWFrame >> scroller [
 MWFrame >> scroller: anObject [
 
 	scroller := anObject
+]
+
+{
+	#category : #creation,
+	#'squeak_changestamp' : 'LC 7/5/2024 00:38'
+}
+MWFrame >> setUpScreen [
+	
+	| configWindow | 
+	
+	configWindow := MWConfiguration getPopUp.
+	(configWindow openInWindowLabeled: 'Mensa Settings') 
+		width: 350;
+		color: MWConfiguration defaultColor.
+	^ configWindow
+	
 ]
 
 {
