@@ -123,14 +123,14 @@ MWDataGettingWrapper class >> initialRadius: anObject [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Oscar 7/1/2024 16:31'
+	#'squeak_changestamp' : 'Oscar 7/1/2024 16:52'
 }
 MWDataGettingWrapper class >> switchLocation [
 	
 	| longitude latitude radius |
 	
-	longitude := FillInTheBlankMorph request: 'Please enter your Longitude' initialAnswer: self initialLongitude.
 	latitude := FillInTheBlankMorph request: 'Please enter your Latitude' initialAnswer: self initialLatitude.
+	longitude := FillInTheBlankMorph request: 'Please enter your Longitude' initialAnswer: self initialLongitude.
 	radius := FillInTheBlankMorph request: 'Please enter your Radius' initialAnswer: self initialRadius.
 	self canteenDict: (MWParser transformJsonToDict: (MWApiWrapper getOutletDictFrom: latitude and: longitude andRadius: radius)).
 	self initialLongitude: longitude.

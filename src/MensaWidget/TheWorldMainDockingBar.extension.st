@@ -76,12 +76,11 @@ TheWorldMainDockingBar >> openMensaWidget [
 
 {
 	#category : #'*MensaWidget-override',
-	#'squeak_changestamp' : 'Oscar 7/1/2024 16:38'
+	#'squeak_changestamp' : 'Oscar 7/1/2024 16:52'
 }
 TheWorldMainDockingBar >> openMensaWidgetWithLocationChoice [
 	"Open the mensa widget"
 	
-	self halt.
 	MWDataGettingWrapper switchLocation.
 	^ MWFrame new
 

@@ -66,16 +66,6 @@ MWFrame class >> scrollBarThickness [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Oscar 7/1/2024 16:00'
-}
-MWFrame class >> testReguest [
-	
-	
-	^ FillInTheBlankMorph request: 'Long' initialAnswer: '13.42069'
-]
-
-{
-	#category : #constants,
 	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:45'
 }
 MWFrame class >> windowName [
