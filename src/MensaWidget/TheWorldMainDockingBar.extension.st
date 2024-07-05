@@ -64,25 +64,23 @@ TheWorldMainDockingBar >> menusOn: aDockingBar [
 
 {
 	#category : #'*MensaWidget-override',
-	#'squeak_changestamp' : 'Oscar 7/1/2024 16:36'
+	#'squeak_changestamp' : 'Max 7/5/2024 14:57'
 }
 TheWorldMainDockingBar >> openMensaWidget [
 	"Open the mensa widget"
 	
-	MWDataGettingWrapper switchToDefaultLocation.
-	^ MWFrame new
+	^ MWFrame newWithDefaultLocation
 
 ]
 
 {
 	#category : #'*MensaWidget-override',
-	#'squeak_changestamp' : 'Oscar 7/1/2024 16:52'
+	#'squeak_changestamp' : 'Max 7/5/2024 14:57'
 }
 TheWorldMainDockingBar >> openMensaWidgetWithLocationChoice [
 	"Open the mensa widget"
 	
-	MWDataGettingWrapper switchLocation.
-	^ MWFrame new
+	^ MWFrame newWithLocationSwitch
 
 ]
 

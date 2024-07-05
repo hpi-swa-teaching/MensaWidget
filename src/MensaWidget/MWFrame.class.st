@@ -41,6 +41,26 @@ MWFrame class >> contentExtent [
 ]
 
 {
+	#category : #'instance creation',
+	#'squeak_changestamp' : 'Max 7/5/2024 14:56'
+}
+MWFrame class >> newWithDefaultLocation [
+
+	MWDataGettingWrapper switchToDefaultLocation.
+	^ MWFrame new
+]
+
+{
+	#category : #'instance creation',
+	#'squeak_changestamp' : 'Max 7/5/2024 14:56'
+}
+MWFrame class >> newWithLocationSwitch [
+
+	MWDataGettingWrapper switchLocation.
+	^ MWFrame new
+]
+
+{
 	#category : #constants,
 	#'squeak_changestamp' : 'Max 6/17/2024 20:42'
 }
