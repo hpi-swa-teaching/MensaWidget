@@ -32,7 +32,8 @@ Class {
 		'dateDisplay',
 		'target',
 		'time',
-		'timeToggle'
+		'timeToggle',
+		'settings'
 	],
 	#category : #MensaWidget,
 	#'squeak_changestamp' : 'Louis Christ 6/18/2024 11:28'
@@ -138,11 +139,12 @@ MWMenuBar >> createPrevButton [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'LC 7/3/2024 16:02'
+	#'squeak_changestamp' : 'LC 7/5/2024 11:38'
 }
 MWMenuBar >> createSettings [
 
-	self addMorphBack: MWConfiguration getPopUp
+	self settings: MWConfiguration getPopUp;
+		addMorphBack: self settings
 ]
 
 {
@@ -271,6 +273,24 @@ MWMenuBar >> initialize [
 
 {
 	#category : #accessing,
+	#'squeak_changestamp' : 'LC 7/5/2024 11:37'
+}
+MWMenuBar >> settings [
+
+	^ settings
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'LC 7/5/2024 11:37'
+}
+MWMenuBar >> settings: anObject [
+
+	settings := anObject
+]
+
+{
+	#category : #accessing,
 	#'squeak_changestamp' : 'Louis Christ 6/9/2024 15:50'
 }
 MWMenuBar >> target [
@@ -333,6 +353,16 @@ MWMenuBar >> toggleTime [
 		ifTrue: [self time: 'dinner'] 
 		ifFalse: [self time: 'lunch'].
 	self updateTime
+]
+
+{
+	#category : #updating,
+	#'squeak_changestamp' : 'LC 7/5/2024 11:41'
+}
+MWMenuBar >> updateCategory [
+	
+	self settings contents: '';
+		contents: MWMeal priceGroup
 ]
 
 {

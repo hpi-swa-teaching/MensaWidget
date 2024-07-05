@@ -56,13 +56,12 @@ MWConfiguration class >> defaultColor: anObject [
 
 {
 	#category : #priceGroup,
-	#'squeak_changestamp' : 'LC 7/5/2024 00:25'
+	#'squeak_changestamp' : 'LC 7/5/2024 11:39'
 }
 MWConfiguration class >> fromPopUp: aPopUp setPriceGroup: aCategory [
 	
-	aPopUp contents: '';
-		contents: aCategory.
 	self setPriceGroup: aCategory.
+	MWFrame updateCategory.
 	MWMeal updatePrice
 ]
 

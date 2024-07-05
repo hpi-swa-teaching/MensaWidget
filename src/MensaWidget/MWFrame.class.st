@@ -59,6 +59,15 @@ MWFrame class >> scrollBarThickness [
 ]
 
 {
+	#category : #updating,
+	#'squeak_changestamp' : 'LC 7/5/2024 11:41'
+}
+MWFrame class >> updateCategory [
+
+	self allInstances do: [:each | each updateCategory]
+]
+
+{
 	#category : #constants,
 	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:45'
 }
@@ -235,6 +244,16 @@ MWFrame >> setUpScreen [
 		color: MWConfiguration defaultColor.
 	^ configWindow
 	
+]
+
+{
+	#category : #updating,
+	#'squeak_changestamp' : 'LC 7/5/2024 11:35'
+}
+MWFrame >> updateCategory [
+
+	self menuBar ifNotNil: 
+		[self menuBar updateCategory]
 ]
 
 {
