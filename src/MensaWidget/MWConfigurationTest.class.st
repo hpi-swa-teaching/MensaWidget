@@ -52,7 +52,7 @@ MWConfigurationTest >> setUp [
 
 {
 	#category : #helpers,
-	#'squeak_changestamp' : 'LC 7/5/2024 00:47'
+	#'squeak_changestamp' : 'LC 7/5/2024 11:18'
 }
 MWConfigurationTest >> simulatePopUpChoice: anObject [
 	
@@ -61,8 +61,8 @@ MWConfigurationTest >> simulatePopUpChoice: anObject [
 	popUp := self getPopUp.
 	popUp contentsClipped: anObject.
 	popUp actionSelector ifNotNil: 
-			[popUp target perform: popUp actionSelector
-				withArguments: (popUp arguments copyWith: anObject)]
+		[popUp target perform: popUp actionSelector
+			withArguments: (popUp arguments copyWith: anObject)]
 ]
 
 {

@@ -8,6 +8,21 @@ Class {
 }
 
 {
+	#category : #helpers,
+	#'squeak_changestamp' : 'LC 7/5/2024 11:13'
+}
+MWDockingBarTest >> clickMensaSubmenu: anObject [
+
+	| menu submenu |
+	
+	self dockingbar allMorphsDo: [:each | 
+		(each name asString includesSubstring: 'MensaMenu') ifTrue: [menu := each]].
+	menu subMenu submorphsDo: [:each | 
+		each contents = anObject ifTrue: [submenu := each]].
+	^ submenu target perform: submenu selector
+]
+
+{
 	#category : #accessing,
 	#'squeak_changestamp' : 'Louis Christ 6/10/2024 23:04'
 }
@@ -45,33 +60,33 @@ MWDockingBarTest >> tearDown [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'LC 7/5/2024 00:56'
+	#'squeak_changestamp' : 'LC 7/5/2024 11:15'
 }
 MWDockingBarTest >> testOpenSettings [
 
-	| menu submenu widget |
+	| oldState widget |
 	
+	oldState := TheWorldMainDockingBar showMensaMenuInWorldMainDockingBar.
 	TheWorldMainDockingBar showMensaMenuInWorldMainDockingBar: true.
-	self dockingbar allMorphsDo: [:each | (each name asString includesSubstring: 'MensaMenu') ifTrue: [menu := each]].
-	menu subMenu submorphsDo: [:each | each contents = 'Settings' ifTrue: [submenu := each]].
-	widget := submenu target perform: submenu selector.
+	widget := self clickMensaSubmenu: 'Settings'.
 	self assert: widget class = PopUpChoiceMorph.
+	TheWorldMainDockingBar showMensaMenuInWorldMainDockingBar: oldState.
 	widget owner abandon
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:58'
+	#'squeak_changestamp' : 'LC 7/5/2024 11:16'
 }
 MWDockingBarTest >> testOpenWidget [
 	
-	| menu submenu widget |
+	| oldState widget |
 	
+	oldState := TheWorldMainDockingBar showMensaMenuInWorldMainDockingBar.
 	TheWorldMainDockingBar showMensaMenuInWorldMainDockingBar: true.
-	self dockingbar allMorphsDo: [:each | (each name asString includesSubstring: 'MensaMenu') ifTrue: [menu := each]].
-	menu subMenu submorphsDo: [:each | each contents = 'Potsdam' ifTrue: [submenu := each]].
-	widget := submenu target perform: submenu selector.
+	widget := self clickMensaSubmenu: 'Potsdam'.
 	self assert: widget class = MWFrame.
+	TheWorldMainDockingBar showMensaMenuInWorldMainDockingBar: oldState.
 	widget owner abandon
 	
 ]
