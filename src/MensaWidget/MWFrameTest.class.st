@@ -111,9 +111,10 @@ MWFrameTest >> isRegistered: anObject [
 
 {
 	#category : #environment,
-	#'squeak_changestamp' : 'Oscar 7/5/2024 13:20'
+	#'squeak_changestamp' : 'Max 7/5/2024 14:35'
 }
 MWFrameTest >> saveUserLatLongRad [
+
 	self initialLatitude: MWDataGettingWrapper initialLatitude;
 		initialLongitude: MWDataGettingWrapper initialLongitude;
 		initialRadius: MWDataGettingWrapper initialRadius
