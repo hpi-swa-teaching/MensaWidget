@@ -83,11 +83,13 @@ MWDataGettingWrapper class >> getTodaysMeals [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Oscar 7/1/2024 16:32'
+	#'squeak_changestamp' : 'Max 7/5/2024 14:26'
 }
 MWDataGettingWrapper class >> initialLatitude [
 
-	^ InitialLatitude ifNil: [52.393822]
+	^ InitialLatitude isEmptyOrNil 
+		ifTrue: [InitialLatitude := '52.393822']
+		ifFalse: [InitialLatitude]
 ]
 
 {
@@ -101,11 +103,13 @@ MWDataGettingWrapper class >> initialLatitude: anObject [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Oscar 7/1/2024 16:32'
+	#'squeak_changestamp' : 'Max 7/5/2024 14:26'
 }
 MWDataGettingWrapper class >> initialLongitude [
 
-	^ InitialLongitude ifNil: [13.129558]
+	^ InitialLongitude isEmptyOrNil 
+		ifTrue: [InitialLongitude := '13.129558']
+		ifFalse: [InitialLongitude]
 ]
 
 {
@@ -119,11 +123,13 @@ MWDataGettingWrapper class >> initialLongitude: anObject [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Oscar 7/1/2024 16:33'
+	#'squeak_changestamp' : 'Max 7/5/2024 14:25'
 }
 MWDataGettingWrapper class >> initialRadius [
 
-	^ InitialRadius ifNil: [5]
+	^ InitialRadius isEmptyOrNil 
+		ifTrue: [InitialRadius := '5']
+		ifFalse: [InitialRadius]
 ]
 
 {
@@ -136,20 +142,45 @@ MWDataGettingWrapper class >> initialRadius: anObject [
 ]
 
 {
+	#category : #constants,
+	#'squeak_changestamp' : 'Max 7/5/2024 13:55'
+}
+MWDataGettingWrapper class >> latitudeMessage [
+
+	^ 'Please enter your latitude.'
+]
+
+{
+	#category : #constants,
+	#'squeak_changestamp' : 'Max 7/5/2024 13:54'
+}
+MWDataGettingWrapper class >> longitudeMessage [
+
+	^ 'Please enter your longitude.'
+]
+
+{
+	#category : #constants,
+	#'squeak_changestamp' : 'Max 7/5/2024 13:55'
+}
+MWDataGettingWrapper class >> radiusMessage [
+
+	^ 'Please enter your radius.'
+]
+
+{
 	#category : #dataPulling,
-	#'squeak_changestamp' : 'Oscar 7/5/2024 12:59'
+	#'squeak_changestamp' : 'Max 7/5/2024 14:14'
 }
 MWDataGettingWrapper class >> switchLocation [
 	
-	| longitude latitude radius |
+	| outletDict |
 	
-	latitude := FillInTheBlankMorph request: 'Please enter your Latitude' initialAnswer: self initialLatitude.
-	longitude := FillInTheBlankMorph request: 'Please enter your Longitude' initialAnswer: self initialLongitude.
-	radius := FillInTheBlankMorph request: 'Please enter your Radius' initialAnswer: self initialRadius.
-	self canteenDict: (MWParser transformJsonToDict: (MWApiWrapper getOutletDictFrom: latitude and: longitude andRadius: radius));
-		initialLongitude: longitude;
-		initialLatitude: latitude;
-		initialRadius: radius
+	self initialLatitude: (FillInTheBlankMorph request: self latitudeMessage initialAnswer: self initialLatitude).
+	self	initialLongitude: (FillInTheBlankMorph request: self longitudeMessage initialAnswer: self initialLongitude).
+	self	initialRadius: (FillInTheBlankMorph request: self radiusMessage initialAnswer: self initialRadius).
+	outletDict := MWApiWrapper getOutletDictFrom: self initialLatitude and: self initialLongitude andRadius: self initialRadius.
+	self canteenDict: (MWParser transformJsonToDict: outletDict)
 ]
 
 {
