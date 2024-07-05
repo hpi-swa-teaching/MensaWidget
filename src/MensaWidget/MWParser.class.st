@@ -42,7 +42,7 @@ MWParser class >> set: someInstanceVariable on: aClassInstance from: aDataset [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #parsing,
 	#'squeak_changestamp' : 'Oscar 6/30/2024 18:07'
 }
 MWParser class >> transformJsonToDict: aJson [

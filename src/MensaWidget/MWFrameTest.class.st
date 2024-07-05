@@ -1,11 +1,26 @@
 "
-A MWFrameTest is Test Case for the MWFrame.
+A MWFrameTest is a test case for the MWFrame.
 
-Instance Variables
-	widgetFrame:		<MWFrame>
+Instance Variables:
+    widgetFrame:        <SystemWindow>
+    widget:             <MWFrame>
+    isRegistered:       <Boolean>
+    initialLatitude:    <String>
+    initialLongitude:   <String>
+    initialRadius:      <String>
 
 widgetFrame
-	- a instance of the MWFrame on which the tests will be done
+    - The system window in which the widget gets opened.
+widget
+    - An instance of the MWFrame on which the tests will be conducted.
+isRegistered
+    - A boolean which stores if the widget is registered in the app's menu.
+initialLatitude
+    - Saves the initial latitude so it can be restored after the tests are done.
+initialLongitude
+    - Saves the initial longitude so it can be restored after the tests are done.
+initialRadius
+    - Saves the initial radius so it can be restored after the tests are done.
 "
 Class {
 	#name : #MWFrameTest,
@@ -19,54 +34,60 @@ Class {
 		'initialRadius'
 	],
 	#category : #'MensaWidget-Tests',
-	#'squeak_changestamp' : 'Louis Christ 5/27/2024 19:44'
+	#'squeak_changestamp' : 'Oscar 7/5/2024 13:18'
 }
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Oscar 7/4/2024 23:13'
+	#'squeak_changestamp' : 'Oscar 7/5/2024 13:21'
 }
 MWFrameTest >> initialLatitude [
+
 	^ initialLatitude
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Oscar 7/4/2024 23:13'
+	#'squeak_changestamp' : 'Oscar 7/5/2024 13:21'
 }
 MWFrameTest >> initialLatitude: anObject [
+
 	initialLatitude := anObject
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Oscar 7/4/2024 23:13'
+	#'squeak_changestamp' : 'Oscar 7/5/2024 13:21'
 }
 MWFrameTest >> initialLongitude [
+
 	^ initialLongitude
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Oscar 7/4/2024 23:13'
+	#'squeak_changestamp' : 'Oscar 7/5/2024 13:21'
 }
 MWFrameTest >> initialLongitude: anObject [
+
 	initialLongitude := anObject
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Oscar 7/4/2024 23:13'
+	#'squeak_changestamp' : 'Oscar 7/5/2024 13:21'
 }
 MWFrameTest >> initialRadius [
+
 	^ initialRadius
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Oscar 7/4/2024 23:13'
+	#'squeak_changestamp' : 'Oscar 7/5/2024 13:21'
 }
 MWFrameTest >> initialRadius: anObject [
+
 	initialRadius := anObject
 ]
 
@@ -90,17 +111,17 @@ MWFrameTest >> isRegistered: anObject [
 
 {
 	#category : #environment,
-	#'squeak_changestamp' : 'Oscar 7/4/2024 23:18'
+	#'squeak_changestamp' : 'Oscar 7/5/2024 13:20'
 }
-MWFrameTest >> safeUserLatLongRad [
-	self initialLatitude: MWDataGettingWrapper initialLatitude.
-	self initialLongitude: MWDataGettingWrapper initialLongitude.
-	self initialRadius: MWDataGettingWrapper initialRadius
+MWFrameTest >> saveUserLatLongRad [
+	self initialLatitude: MWDataGettingWrapper initialLatitude;
+		initialLongitude: MWDataGettingWrapper initialLongitude;
+		initialRadius: MWDataGettingWrapper initialRadius
 ]
 
 {
 	#category : #environment,
-	#'squeak_changestamp' : 'Oscar 7/4/2024 23:18'
+	#'squeak_changestamp' : 'Oscar 7/5/2024 13:19'
 }
 MWFrameTest >> setUp [
 	
@@ -109,7 +130,7 @@ MWFrameTest >> setUp [
 		[self isRegistered: false].
 	TheWorldMenu unregisterOpenCommand: 'Mensa Widget'.
 	MWFrame register.
-	self safeUserLatLongRad.
+	self saveUserLatLongRad.
 	MWDataGettingWrapper switchToDefaultLocation.
 	self widget: MWFrame new;
 		widgetFrame: self widget owner 
@@ -117,16 +138,16 @@ MWFrameTest >> setUp [
 
 {
 	#category : #environment,
-	#'squeak_changestamp' : 'Oscar 7/4/2024 23:19'
+	#'squeak_changestamp' : 'Oscar 7/5/2024 13:20'
 }
 MWFrameTest >> tearDown [
 	
 	self widget: nil.
 	self widgetFrame abandon.
 	self isRegistered ifFalse: [TheWorldMenu unregisterOpenCommand: 'Mensa Widget'].
-	MWDataGettingWrapper initialLatitude: initialLatitude.
-	MWDataGettingWrapper initialLongitude: initialLongitude.
-	MWDataGettingWrapper initialRadius: initialRadius
+	MWDataGettingWrapper initialLatitude: initialLatitude;
+		initialLongitude: initialLongitude;
+		initialRadius: initialRadius
 ]
 
 {

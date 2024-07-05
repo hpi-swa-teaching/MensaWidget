@@ -1,7 +1,20 @@
 "
 A MWDataGettingWrapper is providing a functionality as a middleman to store all canteens that data will be pulled from and get all canteen objects returned.
 
-Instance Variables
+Class Variables: 
+    CanteenDict:       <Dictionary>
+    InitialLatitude:   <String>
+    InitialLongitude:  <String>
+    InitialRadius:     <String>
+
+CanteenDict
+    - A dictionary which maps canteen IDs to their 
+InitialLatitude
+    - The last used latitude for the other cities 
+InitialLongitude
+    - The last used longitude for the other cities 
+InitialRadius
+    - The last used radius for the other cities feature
 
 "
 Class {
@@ -17,7 +30,7 @@ Class {
 		'canteenDict'
 	],
 	#category : #MensaWidget,
-	#'squeak_changestamp' : 'Louis Christ 5/27/2024 19:22'
+	#'squeak_changestamp' : 'Oscar 7/5/2024 12:47'
 }
 
 {
@@ -123,8 +136,8 @@ MWDataGettingWrapper class >> initialRadius: anObject [
 ]
 
 {
-	#category : #accessing,
-	#'squeak_changestamp' : 'Oscar 7/1/2024 16:52'
+	#category : #dataPulling,
+	#'squeak_changestamp' : 'Oscar 7/5/2024 12:59'
 }
 MWDataGettingWrapper class >> switchLocation [
 	
@@ -133,17 +146,18 @@ MWDataGettingWrapper class >> switchLocation [
 	latitude := FillInTheBlankMorph request: 'Please enter your Latitude' initialAnswer: self initialLatitude.
 	longitude := FillInTheBlankMorph request: 'Please enter your Longitude' initialAnswer: self initialLongitude.
 	radius := FillInTheBlankMorph request: 'Please enter your Radius' initialAnswer: self initialRadius.
-	self canteenDict: (MWParser transformJsonToDict: (MWApiWrapper getOutletDictFrom: latitude and: longitude andRadius: radius)).
-	self initialLongitude: longitude.
-	self initialLatitude: latitude.
-	self initialRadius: radius.
+	self canteenDict: (MWParser transformJsonToDict: (MWApiWrapper getOutletDictFrom: latitude and: longitude andRadius: radius));
+		initialLongitude: longitude;
+		initialLatitude: latitude;
+		initialRadius: radius
 ]
 
 {
-	#category : #accessing,
-	#'squeak_changestamp' : 'Oscar 7/1/2024 16:30'
+	#category : #dataPulling,
+	#'squeak_changestamp' : 'Oscar 7/5/2024 13:00'
 }
 MWDataGettingWrapper class >> switchToDefaultLocation [
 	
-	self canteenDict: (MWParser transformJsonToDict: (MWApiWrapper getOutletDictFrom: 52.393822 and: 13.129558 andRadius: 5))
+	self canteenDict: (MWParser transformJsonToDict: 
+		(MWApiWrapper getOutletDictFrom: 52.393822 and: 13.129558 andRadius: 5))
 ]
