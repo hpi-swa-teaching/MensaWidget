@@ -367,9 +367,10 @@ MWMeal >> prices: anObject [
 
 {
 	#category : #updating,
-	#'squeak_changestamp' : 'LC 7/3/2024 00:07'
+	#'squeak_changestamp' : 'LC 7/5/2024 11:45'
 }
 MWMeal >> updatePrice [
-
-	self submorphs last contents: self getPriceStream contents
+	
+	self submorphs isEmptyOrNil ifFalse: 
+		[self submorphs last contents: self getPriceStream contents]
 ]
