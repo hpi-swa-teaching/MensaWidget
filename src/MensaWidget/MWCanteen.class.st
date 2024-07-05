@@ -54,7 +54,7 @@ MWCanteen class >> emptyCanteen [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Max 7/5/2024 10:04'
+	#'squeak_changestamp' : 'Max 7/5/2024 13:42'
 }
 MWCanteen class >> layoutProperties [
 
@@ -62,7 +62,7 @@ MWCanteen class >> layoutProperties [
 		vResizing: #shrinkWrap; 
 		cellGap: self cellGap; 
 		layoutInset: 2; 
-		rubberBandCells: true; 
+		rubberBandCells: true;
 		yourself
 ]
 
@@ -159,16 +159,13 @@ MWCanteen >> id: anObject [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Max 7/5/2024 10:02'
+	#'squeak_changestamp' : 'Max 7/5/2024 13:41'
 }
 MWCanteen >> initialize [
 	
 	super initialize.
 	^ self color: MWColorTheme secondaryColor;
-		cellGap: self class cellGap;
-		hResizing: #spaceFill;
-		vResizing: #shrinkWrap;
-		layoutProperties: (TableLayoutProperties new hResizing: #spaceFill; vResizing: #shrinkWrap; cellGap: 5; layoutInset: 2; rubberBandCells: true; yourself);
+		layoutProperties: self class layoutProperties;
 		yourself
     
 ]
