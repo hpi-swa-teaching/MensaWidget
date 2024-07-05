@@ -103,28 +103,32 @@ MWDockingBarTest >> testPreferenceExists [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 6/10/2024 23:41'
+	#'squeak_changestamp' : 'LC 7/5/2024 11:48'
 }
 MWDockingBarTest >> testPreferenceOff [
 	
-	| any |
+	| any oldState |
 	
+	oldState := TheWorldMainDockingBar showMensaMenuInWorldMainDockingBar.
 	TheWorldMainDockingBar showMensaMenuInWorldMainDockingBar: false.
 	any := true.
 	self dockingbar allMorphsDo: [:each | (each name asString includesSubstring: 'MensaMenu') ifTrue: [any := false]].
-	self assert: any
+	self assert: any.
+	TheWorldMainDockingBar showMensaMenuInWorldMainDockingBar: oldState
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 6/11/2024 00:03'
+	#'squeak_changestamp' : 'LC 7/5/2024 11:48'
 }
 MWDockingBarTest >> testPreferenceOn [
 
-	| any |
+	| any oldState |
 	
+	oldState := TheWorldMainDockingBar showMensaMenuInWorldMainDockingBar.
 	TheWorldMainDockingBar showMensaMenuInWorldMainDockingBar: true.
 	any := false.
 	self dockingbar allMorphsDo: [:each | (each name asString includesSubstring: 'MensaMenu') ifTrue: [any := true]].
-	self assert: any
+	self assert: any.
+	TheWorldMainDockingBar showMensaMenuInWorldMainDockingBar: oldState
 ]
