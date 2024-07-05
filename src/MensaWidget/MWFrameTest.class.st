@@ -13,11 +13,62 @@ Class {
 	#instVars : [
 		'widgetFrame',
 		'widget',
-		'isRegistered'
+		'isRegistered',
+		'initialLatitude',
+		'initialLongitude',
+		'initialRadius'
 	],
-	#category : 'MensaWidget-Tests',
+	#category : #'MensaWidget-Tests',
 	#'squeak_changestamp' : 'Louis Christ 5/27/2024 19:44'
 }
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Oscar 7/4/2024 23:13'
+}
+MWFrameTest >> initialLatitude [
+	^ initialLatitude
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Oscar 7/4/2024 23:13'
+}
+MWFrameTest >> initialLatitude: anObject [
+	initialLatitude := anObject
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Oscar 7/4/2024 23:13'
+}
+MWFrameTest >> initialLongitude [
+	^ initialLongitude
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Oscar 7/4/2024 23:13'
+}
+MWFrameTest >> initialLongitude: anObject [
+	initialLongitude := anObject
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Oscar 7/4/2024 23:13'
+}
+MWFrameTest >> initialRadius [
+	^ initialRadius
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Oscar 7/4/2024 23:13'
+}
+MWFrameTest >> initialRadius: anObject [
+	initialRadius := anObject
+]
 
 {
 	#category : #accessing,
@@ -39,7 +90,17 @@ MWFrameTest >> isRegistered: anObject [
 
 {
 	#category : #environment,
-	#'squeak_changestamp' : 'LC 6/23/2024 18:30'
+	#'squeak_changestamp' : 'Oscar 7/4/2024 23:18'
+}
+MWFrameTest >> safeUserLatLongRad [
+	self initialLatitude: MWDataGettingWrapper initialLatitude.
+	self initialLongitude: MWDataGettingWrapper initialLongitude.
+	self initialRadius: MWDataGettingWrapper initialRadius
+]
+
+{
+	#category : #environment,
+	#'squeak_changestamp' : 'Oscar 7/4/2024 23:18'
 }
 MWFrameTest >> setUp [
 	
@@ -48,19 +109,24 @@ MWFrameTest >> setUp [
 		[self isRegistered: false].
 	TheWorldMenu unregisterOpenCommand: 'Mensa Widget'.
 	MWFrame register.
+	self safeUserLatLongRad.
+	MWDataGettingWrapper switchToDefaultLocation.
 	self widget: MWFrame new;
 		widgetFrame: self widget owner 
 ]
 
 {
 	#category : #environment,
-	#'squeak_changestamp' : 'LC 6/23/2024 18:31'
+	#'squeak_changestamp' : 'Oscar 7/4/2024 23:19'
 }
 MWFrameTest >> tearDown [
 	
 	self widget: nil.
 	self widgetFrame abandon.
-	self isRegistered ifFalse: [TheWorldMenu unregisterOpenCommand: 'Mensa Widget']
+	self isRegistered ifFalse: [TheWorldMenu unregisterOpenCommand: 'Mensa Widget'].
+	MWDataGettingWrapper initialLatitude: initialLatitude.
+	MWDataGettingWrapper initialLongitude: initialLongitude.
+	MWDataGettingWrapper initialRadius: initialRadius
 ]
 
 {
