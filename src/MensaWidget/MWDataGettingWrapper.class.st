@@ -40,14 +40,15 @@ MWDataGettingWrapper class >> canteenDict: anObject [
 
 {
 	#category : #dataPulling,
-	#'squeak_changestamp' : 'Oscar 6/30/2024 18:13'
+	#'squeak_changestamp' : 'Max 7/5/2024 09:37'
 }
 MWDataGettingWrapper class >> getMealsOnDate: aDate [
 
 	| canteens canteenDict json |
 	
 	canteens := OrderedCollection new.
-	
+	self canteenDict isEmpty ifTrue: [^ canteens add: MWCanteen emptyCanteen;
+		yourself].
 	canteenDict := self canteenDict.
 	canteenDict keys do: [:id |
 		json := MWApiWrapper getMealsFrom: id on: aDate using: WebClient.

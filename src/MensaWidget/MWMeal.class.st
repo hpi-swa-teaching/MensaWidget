@@ -40,6 +40,20 @@ Class {
 
 {
 	#category : #meals,
+	#'squeak_changestamp' : 'Max 7/5/2024 09:40'
+}
+MWMeal class >> contentlessMeal [
+
+	^ self newRow id: nil;
+		name: '' translated;
+		category: nil;
+		notes: nil;
+		prices: MWMealCleaner emptyPrice;
+		build
+]
+
+{
+	#category : #meals,
 	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:49'
 }
 MWMeal class >> emptyMeal [

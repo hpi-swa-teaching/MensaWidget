@@ -94,7 +94,7 @@ MWFrame >> addContentMorph [
 
 {
 	#category : #dayManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/19/2024 01:00'
+	#'squeak_changestamp' : 'Max 7/5/2024 09:43'
 }
 MWFrame >> addMealsOn: aDate forTime: aTime [
 

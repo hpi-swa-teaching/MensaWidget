@@ -38,6 +38,21 @@ MWDataGettingWrapperTest >> testCollectionValues [
 
 {
 	#category : #tests,
+	#'squeak_changestamp' : 'Max 7/5/2024 10:16'
+}
+MWDataGettingWrapperTest >> testEmptyCanteen [
+
+	| canteenDict name |
+	
+	canteenDict := MWDataGettingWrapper canteenDict.
+	MWDataGettingWrapper canteenDict: Dictionary new.
+	name := (MWDataGettingWrapper getMealsOnDate: '2024-07-05') first name.
+	self assert: name = MWCanteen emptyCanteen name.
+	MWDataGettingWrapper canteenDict: canteenDict.
+]
+
+{
+	#category : #tests,
 	#'squeak_changestamp' : 'Max 6/1/2024 10:35'
 }
 MWDataGettingWrapperTest >> testSize [
