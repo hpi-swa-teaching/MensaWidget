@@ -357,12 +357,13 @@ MWMenuBar >> toggleTime [
 
 {
 	#category : #updating,
-	#'squeak_changestamp' : 'LC 7/5/2024 11:41'
+	#'squeak_changestamp' : 'LC 7/6/2024 15:57'
 }
 MWMenuBar >> updateCategory [
 	
-	self settings contents: '';
-		contents: MWMeal priceGroup
+	self settings ifNotNil: 
+		[self settings contents: '';
+			contents: MWMeal priceGroup]
 ]
 
 {
