@@ -89,7 +89,7 @@ MWCanteen >> addMealsForTime: aTime [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:55'
+	#'squeak_changestamp' : 'LC 7/6/2024 15:50'
 }
 MWCanteen >> buildForTime: aTime [
 
@@ -99,11 +99,19 @@ MWCanteen >> buildForTime: aTime [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:21'
+	#'squeak_changestamp' : 'LC 7/6/2024 15:50'
 }
 MWCanteen >> createNameMorph [
 
-	^ StringMorph contents: self name
+	^ AlignmentMorph newRow
+		color: Color transparent;
+		vResizing: #shrinkWrap;
+		hResizing: #spaceFill;
+		addMorph: (StringMorph contents: self class currency);
+		addMorph: self getSpacerMorph;
+		addMorph: (StringMorph contents: self name);
+		addMorph: self getSpacerMorph;
+		yourself
 ]
 
 {

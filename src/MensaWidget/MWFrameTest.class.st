@@ -21,7 +21,7 @@ Class {
 
 {
 	#category : #helper,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 12:22'
+	#'squeak_changestamp' : 'LC 7/6/2024 15:53'
 }
 MWFrameTest >> getAllCurrencies [
 
@@ -29,8 +29,8 @@ MWFrameTest >> getAllCurrencies [
 	
 	currencies := OrderedCollection new.
 	self widgetFrame allMorphsDo: [:each | 
-		(each class = AlignmentMorph and: [each color = MWColorTheme secondaryColor]) ifTrue: 
-		[currencies add: (each submorphs at: 1) submorphs last contents]].
+		(each class = MWCanteen) ifTrue: 
+			[currencies add: each submorphs first submorphs last contents]].
 	^ currencies
 	
 ]
