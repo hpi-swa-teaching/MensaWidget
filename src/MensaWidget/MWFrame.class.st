@@ -12,10 +12,11 @@ contentMorph
 "
 Class {
 	#name : #MWFrame,
-	#superclass : #Object,
+	#superclass : #AlignmentMorph,
 	#instVars : [
-		'window',
-		'contentMorph'
+		'contentMorph',
+		'menuBar',
+		'scroller'
 	],
 	#category : #MensaWidget,
 	#'squeak_changestamp' : 'Oscar 6/17/2024 00:04'
@@ -40,94 +41,114 @@ MWFrame class >> contentExtent [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Oscar 6/16/2024 20:44'
+	#category : #constants,
+	#'squeak_changestamp' : 'Max 6/17/2024 20:42'
 }
-MWFrame class >> contentPosition [
-
-	^ 5 @ 30
+MWFrame class >> register [ 
+	
+	TheWorldMenu registerOpenCommand: {'Mensa Widget'. {MWFrame. #new}}
 ]
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Oscar 6/5/2024 01:01'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 19:24'
 }
 MWFrame class >> scrollBarThickness [
 
-	^ 20
+	^ 14 * RealEstateAgent scaleFactor 
+]
+
+{
+	#category : #constants,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:45'
+}
+MWFrame class >> windowName [
+
+	^ 'Mensa Widget'
 ]
 
 {
 	#category : #dayManipulation,
-	#'squeak_changestamp' : 'Oscar 6/16/2024 23:56'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:34'
 }
-MWFrame >> addMeals: aDate [
-
-	| contentMorph |
+MWFrame >> abandonContent [
 	
-	contentMorph := self buildContentMorph.
+	self contentMorph submorphs do: [:each | each abandon]
+
+	
+]
+
+{
+	#category : #creation,
+	#'squeak_changestamp' : 'Louis Christ 6/19/2024 00:59'
+}
+MWFrame >> addContentMorph [
+
+	self contentMorph: (AlignmentMorph newColumn 
+		cellInset: self class cellSpacing;
+		extent: self class contentExtent;
+		vResizing: #shrinkWrap;
+		yourself).
+	self scroller addMorph: self contentMorph
+]
+
+{
+	#category : #dayManipulation,
+	#'squeak_changestamp' : 'Louis Christ 6/19/2024 01:00'
+}
+MWFrame >> addMealsOn: aDate forTime: aTime [
+
+	| morph |
+	
 	(MWDataGettingWrapper getMealsOnDate: aDate yyyymmdd) do: 
-		[:each | contentMorph addMorph: each getCanteenMorph].
-	self contentMorph scroller 
-		layoutPolicy: TableLayout new;
-		addMorph: contentMorph
+		[:each | morph := each buildForTime: aTime.
+		self contentMorph addMorph: morph.
+		morph vResizing: #shrinkWrap]
 
 	
 ]
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Oscar 6/16/2024 23:52'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:53'
 }
-MWFrame >> buildContentMorph [
-
-	^ AlignmentMorph newColumn 
-		 cellInset: self class cellSpacing;
-		 extent: self class contentExtent;
-		 hResizing: #spaceFill;
-		 vResizing: #spaceFill
+MWFrame >> addMenuBar [
+	
+	self menuBar: (MWMenuBar new target: self);
+		addMorph: self menuBar
 ]
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Oscar 6/16/2024 23:51'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 17:48'
+}
+MWFrame >> addScrollPane [
+
+	self scroller: 
+		(ScrollPane new 
+			scrollBarThickness: self class scrollBarThickness;
+			color: MWColorTheme defaultColor;
+			hResizing: #spaceFill;
+			vResizing: #spaceFill;
+			scroller);
+		addMorph: self scroller owner.
+	self scroller layoutPolicy: TableLayout new.
+	self scroller owner submorphs last color: MWColorTheme backgroundColor
+]
+
+{
+	#category : #creation,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 17:48'
 }
 MWFrame >> buildLayout [
 
-	^ AlignmentMorph newColumn
-		hResizing: #spaceFill;
+	self hResizing: #spaceFill;
 		vResizing: #spaceFill;
 		extent: self class contentExtent;
-		color: MWColorTheme backgroundColor;
-		addMorph: self buildScrollPane;
-		addMorph: self buildMenuBar;
-		yourself
-]
-
-{
-	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:59'
-}
-MWFrame >> buildMenuBar [
-	
-	^ MWMenuBar new target: self
-]
-
-{
-	#category : #creation,
-	#'squeak_changestamp' : 'Oscar 6/16/2024 23:58'
-}
-MWFrame >> buildScrollPane [
-
-	^ self contentMorph: 
-		(ScrollPane new 
-			scrollBarThickness: self class scrollBarThickness;
-			color: MWColorTheme backgroundColor;
-			extent: self class contentExtent;
-			hResizing: #spaceFill;
-			vResizing: #spaceFill;
-			yourself);
-		contentMorph
+		color: MWColorTheme defaultColor;
+		addScrollPane;
+		addContentMorph;
+		addMenuBar
 ]
 
 {
@@ -149,52 +170,80 @@ MWFrame >> contentMorph: anObject [
 ]
 
 {
-	#category : #dayManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/11/2024 11:54'
-}
-MWFrame >> displayDay: aDate [
-
-	self removeMeals;
-		addMeals: aDate
-
-	
-]
-
-{
 	#category : #creation,
-	#'squeak_changestamp' : 'Oscar 6/17/2024 00:00'
+	#'squeak_changestamp' : 'LC 6/23/2024 18:28'
 }
 MWFrame >> initialize [
 
 	super initialize.
-	self window: (self buildLayout openInWindowLabeled: 'Mensa Widget').
-	self addMeals: Date today
+	self listDirection: #topToBottom;
+		buildLayout;
+		addMealsOn: Date today forTime: MWMealCleaner lunchCategory;
+		openInWindowLabeled: self class windowName
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:47'
+}
+MWFrame >> menuBar [
+
+	^ menuBar
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:47'
+}
+MWFrame >> menuBar: anObject [
+
+	menuBar := anObject
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:49'
+}
+MWFrame >> scroller [
+	
+	^ scroller
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:49'
+}
+MWFrame >> scroller: anObject [
+
+	scroller := anObject
 ]
 
 {
 	#category : #dayManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/10/2024 17:57'
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:39'
 }
-MWFrame >> removeMeals [
+MWFrame >> updateContent: aTime [
+	
+	self contentMorph submorphs do: [:each | each updateForTime: aTime]
 
-	self contentMorph scroller submorphsDo: [:each | each abandon]
 	
 ]
 
 {
-	#category : #accessing,
-	#'squeak_changestamp' : 'Oscar 6/15/2024 14:01'
+	#category : #dayManipulation,
+	#'squeak_changestamp' : 'Louis Christ 6/19/2024 01:00'
 }
-MWFrame >> window [
-
-	^ window
+MWFrame >> updateDay: aDate withTime: aTime [
+ 	
+	self abandonContent;
+		addMealsOn: aDate forTime: aTime
 ]
 
 {
-	#category : #accessing,
-	#'squeak_changestamp' : 'Oscar 6/15/2024 14:01'
+	#category : #dayManipulation,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:31'
 }
-MWFrame >> window: anObject [
+MWFrame >> updateTime: aTime [
 
-	window := anObject
+	self updateContent: aTime
 ]
