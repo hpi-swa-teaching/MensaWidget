@@ -32,7 +32,8 @@ Class {
 		'dateDisplay',
 		'target',
 		'time',
-		'timeToggle'
+		'timeToggle',
+		'settings'
 	],
 	#category : #MensaWidget,
 	#'squeak_changestamp' : 'Louis Christ 6/18/2024 11:28'
@@ -49,13 +50,13 @@ MWMenuBar class >> cellGap [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 19:21'
+	#'squeak_changestamp' : 'LC 7/2/2024 10:28'
 }
 MWMenuBar class >> getArrowButton [
 
 	^ PolygonMorph new
 		setVertices: self getArrowVertices;
-		color: MWColorTheme secondaryColor;
+		color: MWConfiguration secondaryColor;
 		addFlexShellIfNecessary; 
 		yourself
 ]
@@ -71,7 +72,7 @@ MWMenuBar class >> getArrowVertices [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:19'
+	#'squeak_changestamp' : 'LC 7/2/2024 10:28'
 }
 MWMenuBar class >> getTimeToggle [
 
@@ -79,7 +80,7 @@ MWMenuBar class >> getTimeToggle [
 		addMorph: (StringMorph contents: 'Lunch'); 
 		vResizing: #shrinkWrap; 
 		hResizing: #shrinkWrap;
-		color: MWColorTheme secondaryColor
+		color: MWConfiguration secondaryColor
 ]
 
 {
@@ -99,17 +100,17 @@ MWMenuBar >> createDateDisplay [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/17/2024 22:09'
+	#'squeak_changestamp' : 'LC 7/3/2024 16:04'
 }
 MWMenuBar >> createLayout [
 	
-	self createTimeToggle;
-		createSpacer;
+	self createSpacer;
 		createNextButton;
 		createDateDisplay;
 		createPrevButton;
-		createSpacer
-	
+		createSpacer;
+		createTimeToggle;
+		createSettings
 ]
 
 {
@@ -138,7 +139,17 @@ MWMenuBar >> createPrevButton [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/17/2024 21:22'
+	#'squeak_changestamp' : 'LC 7/5/2024 11:38'
+}
+MWMenuBar >> createSettings [
+
+	self settings: MWConfiguration getPopUp;
+		addMorphBack: self settings
+]
+
+{
+	#category : #creation,
+	#'squeak_changestamp' : 'LC 7/3/2024 16:21'
 }
 MWMenuBar >> createSpacer [
 	
@@ -210,14 +221,14 @@ MWMenuBar >> decreaseDate [
 
 {
 	#category : #dateManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 17:48'
+	#'squeak_changestamp' : 'LC 7/2/2024 10:28'
 }
 MWMenuBar >> decreaseDate: aEvent [
 	
-	aEvent handler color: MWColorTheme defaultColor.
+	aEvent handler color: MWConfiguration defaultColor.
 	World doOneCycle.
 	self decreaseDate.
-	aEvent handler color: MWColorTheme secondaryColor
+	aEvent handler color: MWConfiguration secondaryColor
 ]
 
 {
@@ -232,19 +243,19 @@ MWMenuBar >> increaseDate [
 
 {
 	#category : #dateManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 17:48'
+	#'squeak_changestamp' : 'LC 7/2/2024 10:28'
 }
 MWMenuBar >> increaseDate: aEvent [
 	
-	aEvent handler color: MWColorTheme defaultColor.
+	aEvent handler color: MWConfiguration defaultColor.
 	World doOneCycle.
 	self increaseDate.
-	aEvent handler color: MWColorTheme secondaryColor
+	aEvent handler color: MWConfiguration secondaryColor
 ]
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 19:25'
+	#'squeak_changestamp' : 'LC 7/3/2024 16:21'
 }
 MWMenuBar >> initialize [
 	
@@ -254,10 +265,28 @@ MWMenuBar >> initialize [
 		hResizing: #spaceFill;
 		vResizing: #shrinkWrap;
 		cellPositioning: #center;
-		color: MWColorTheme primaryColor;
-		cellGap: self class cellGap;
+		color: MWConfiguration primaryColor;
+		cellInset: 5;
 		createLayout
 
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'LC 7/5/2024 11:37'
+}
+MWMenuBar >> settings [
+
+	^ settings
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'LC 7/5/2024 11:37'
+}
+MWMenuBar >> settings: anObject [
+
+	settings := anObject
 ]
 
 {
@@ -324,6 +353,17 @@ MWMenuBar >> toggleTime [
 		ifTrue: [self time: 'dinner'] 
 		ifFalse: [self time: 'lunch'].
 	self updateTime
+]
+
+{
+	#category : #updating,
+	#'squeak_changestamp' : 'LC 7/6/2024 15:57'
+}
+MWMenuBar >> updateCategory [
+	
+	self settings ifNotNil: 
+		[self settings contents: '';
+			contents: MWMeal priceGroup]
 ]
 
 {

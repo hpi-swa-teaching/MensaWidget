@@ -104,11 +104,13 @@ MWMeal class >> priceGroup [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'tmc 6/18/2024 22:01'
+	#'squeak_changestamp' : 'LC 7/5/2024 00:27'
 }
 MWMeal class >> priceGroup: anObject [
-
-	PriceGroup := anObject
+	
+	(MWConfiguration priceGroups includes: anObject)
+		ifTrue: [PriceGroup := anObject]
+		ifFalse: [PriceGroup := MWMeal defaultGroup]
 ]
 
 {
@@ -152,12 +154,21 @@ MWMeal class >> starInset [
 ]
 
 {
+	#category : #updating,
+	#'squeak_changestamp' : 'LC 7/3/2024 00:05'
+}
+MWMeal class >> updatePrice [
+
+	self allInstancesDo: [:each | each updatePrice]
+]
+
+{
 	#category : #display,
-	#'squeak_changestamp' : 'LC 6/23/2024 19:12'
+	#'squeak_changestamp' : 'LC 7/2/2024 10:27'
 }
 MWMeal >> build [
 	
-	^ self color: MWColorTheme primaryColor;
+	^ self color: MWConfiguration primaryColor;
 		vResizing: #shrinkWrap;
 		hResizing: #spaceFill;
 		addMorph: self getPriceMorph;		
@@ -210,7 +221,7 @@ MWMeal >> getPriceMorph [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Max 7/1/2024 22:25'
+	#'squeak_changestamp' : 'LC 7/3/2024 00:01'
 }
 MWMeal >> getPriceStream [
 
@@ -254,12 +265,12 @@ MWMeal >> getStarMorph [
 
 {
 	#category : #star,
-	#'squeak_changestamp' : 'LC 6/26/2024 16:00'
+	#'squeak_changestamp' : 'LC 7/2/2024 10:28'
 }
 MWMeal >> getStarMorphColor [
 
 	(MWFavorites favouriteMeals includes: self name) ifTrue: 
-		[^ MWColorTheme secondaryColor] ifFalse:
+		[^ MWConfiguration secondaryColor] ifFalse:
 		[^ Color transparent]
 	
 ]
@@ -352,4 +363,14 @@ MWMeal >> prices [
 MWMeal >> prices: anObject [
 
 	prices := anObject
+]
+
+{
+	#category : #updating,
+	#'squeak_changestamp' : 'LC 7/5/2024 11:45'
+}
+MWMeal >> updatePrice [
+	
+	self submorphs isEmptyOrNil ifFalse: 
+		[self submorphs last contents: self getPriceStream contents]
 ]

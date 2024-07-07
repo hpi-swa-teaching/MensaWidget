@@ -135,12 +135,12 @@ MWCanteen >> id: anObject [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:27'
+	#'squeak_changestamp' : 'LC 7/2/2024 10:28'
 }
 MWCanteen >> initialize [
 	
 	super initialize.
-	^ self color: MWColorTheme secondaryColor;
+	^ self color: MWConfiguration secondaryColor;
 		cellGap: self class cellGap;
 		hResizing: #spaceFill;
 		vResizing: #shrinkWrap;
