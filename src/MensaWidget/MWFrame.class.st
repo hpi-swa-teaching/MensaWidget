@@ -79,6 +79,15 @@ MWFrame class >> scrollBarThickness [
 ]
 
 {
+	#category : #updating,
+	#'squeak_changestamp' : 'LC 7/5/2024 11:41'
+}
+MWFrame class >> updateCategory [
+
+	self allInstances do: [:each | each updateCategory]
+]
+
+{
 	#category : #constants,
 	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:45'
 }
@@ -140,32 +149,32 @@ MWFrame >> addMenuBar [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 17:48'
+	#'squeak_changestamp' : 'LC 7/2/2024 10:27'
 }
 MWFrame >> addScrollPane [
 
 	self scroller: 
 		(ScrollPane new 
 			scrollBarThickness: self class scrollBarThickness;
-			color: MWColorTheme defaultColor;
+			color: MWConfiguration defaultColor;
 			hResizing: #spaceFill;
 			vResizing: #spaceFill;
 			scroller);
 		addMorph: self scroller owner.
 	self scroller layoutPolicy: TableLayout new.
-	self scroller owner submorphs last color: MWColorTheme backgroundColor
+	self scroller owner submorphs last color: MWConfiguration backgroundColor
 ]
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 17:48'
+	#'squeak_changestamp' : 'LC 7/3/2024 16:23'
 }
 MWFrame >> buildLayout [
 
 	self hResizing: #spaceFill;
 		vResizing: #spaceFill;
 		extent: self class contentExtent;
-		color: MWColorTheme defaultColor;
+		color: MWConfiguration defaultColor;
 		addScrollPane;
 		addContentMorph;
 		addMenuBar
@@ -191,15 +200,18 @@ MWFrame >> contentMorph: anObject [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Oscar 7/1/2024 16:13'
+	#'squeak_changestamp' : 'LC 7/7/2024 17:26'
 }
 MWFrame >> initialize [
-
-	super initialize.
-	self listDirection: #topToBottom;
-		buildLayout;
-		addMealsOn: Date today forTime: MWMealCleaner lunchCategory;
-		openInWindowLabeled: self class windowName
+	
+	MWConfiguration isInitial
+		ifTrue: [^ self setUpScreen]
+		ifFalse: [super initialize.
+			self listDirection: #topToBottom;
+			buildLayout;
+			addMealsOn: Date today forTime: MWMealCleaner lunchCategory;
+			openInWindowLabeled: self class windowName]
+	
 ]
 
 {
@@ -236,6 +248,32 @@ MWFrame >> scroller [
 MWFrame >> scroller: anObject [
 
 	scroller := anObject
+]
+
+{
+	#category : #creation,
+	#'squeak_changestamp' : 'LC 7/5/2024 00:38'
+}
+MWFrame >> setUpScreen [
+	
+	| configWindow | 
+	
+	configWindow := MWConfiguration getPopUp.
+	(configWindow openInWindowLabeled: 'Mensa Settings') 
+		width: 350;
+		color: MWConfiguration defaultColor.
+	^ configWindow
+	
+]
+
+{
+	#category : #updating,
+	#'squeak_changestamp' : 'LC 7/5/2024 11:35'
+}
+MWFrame >> updateCategory [
+
+	self menuBar ifNotNil: 
+		[self menuBar updateCategory]
 ]
 
 {

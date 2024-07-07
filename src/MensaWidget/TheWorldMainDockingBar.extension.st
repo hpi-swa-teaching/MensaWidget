@@ -2,7 +2,7 @@ Extension { #name : #TheWorldMainDockingBar }
 
 {
 	#category : #'*MensaWidget-override',
-	#'squeak_changestamp' : 'Oscar 7/1/2024 16:11'
+	#'squeak_changestamp' : 'LC 7/7/2024 17:26'
 }
 TheWorldMainDockingBar >> mensaMenuOn: aDockingBar [
 	"Create a menu with the options for MensaWidget"
@@ -24,8 +24,8 @@ TheWorldMainDockingBar >> mensaMenuOn: aDockingBar [
 				menu addItem: [:menuItem |
 					menuItem contents: 'Settings' translated;
 						help: 'open mensa widget settings' translated;
-						target: self]]]
-
+						target: self;
+						selector: #openMensaSettings]]]
 ]
 
 {
@@ -60,6 +60,23 @@ TheWorldMainDockingBar >> menusOn: aDockingBar [
 	
 	self class showMensaMenuInWorldMainDockingBar ifTrue: [
 		self mensaMenuOn: aDockingBar].
+]
+
+{
+	#category : #'*MensaWidget-override',
+	#'squeak_changestamp' : 'LC 7/5/2024 00:58'
+}
+TheWorldMainDockingBar >> openMensaSettings [
+	"Open the mensa widget settings"
+	
+	| popUp |
+	
+	popUp := MWConfiguration getPopUp.
+	(popUp openInWindowLabeled: 'Mensa Settings') 
+		width: 350;
+		color: Color darkGray.
+	^ popUp
+
 ]
 
 {
