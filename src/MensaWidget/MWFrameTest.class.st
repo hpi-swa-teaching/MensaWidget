@@ -20,6 +20,22 @@ Class {
 }
 
 {
+	#category : #helper,
+	#'squeak_changestamp' : 'LC 7/6/2024 15:53'
+}
+MWFrameTest >> getAllCurrencies [
+
+	| currencies |
+	
+	currencies := OrderedCollection new.
+	self widgetFrame allMorphsDo: [:each | 
+		(each class = MWCanteen) ifTrue: 
+			[currencies add: each submorphs first submorphs last contents]].
+	^ currencies
+	
+]
+
+{
 	#category : #accessing,
 	#'squeak_changestamp' : 'LC 6/23/2024 18:35'
 }
@@ -90,6 +106,26 @@ MWFrameTest >> testContent [
 MWFrameTest >> testCorrectClass [
 
 	self assert: self widgetFrame class = SystemWindow
+]
+
+{
+	#category : #tests,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 12:07'
+}
+MWFrameTest >> testCorrectCurrency [
+
+	self getAllCurrencies do: [:each | self assert: each = MWCanteen currency]
+		
+]
+
+{
+	#category : #tests,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 12:08'
+}
+MWFrameTest >> testCorrectCurrencyAmount [
+
+	self assert: self getAllCurrencies size = MWDataGettingWrapper canteenDict size
+		
 ]
 
 {

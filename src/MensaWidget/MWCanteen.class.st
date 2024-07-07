@@ -44,6 +44,15 @@ MWCanteen class >> cellGap [
 
 {
 	#category : #'constructor ',
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 12:00'
+}
+MWCanteen class >> currency [ 
+	
+	^ 'EUR'
+]
+
+{
+	#category : #'constructor ',
 	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:30'
 }
 MWCanteen class >> newWithId: anId Name: aName Date: aDate Meals: aMealList [
@@ -55,6 +64,15 @@ MWCanteen class >> newWithId: anId Name: aName Date: aDate Meals: aMealList [
 		meals: aMealList;
 		yourself
 	
+]
+
+{
+	#category : #constants,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 11:49'
+}
+MWCanteen class >> spacerMorphWidth [
+
+	^ 50 px 
 ]
 
 {
@@ -71,7 +89,7 @@ MWCanteen >> addMealsForTime: aTime [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:55'
+	#'squeak_changestamp' : 'LC 7/6/2024 15:50'
 }
 MWCanteen >> buildForTime: aTime [
 
@@ -81,11 +99,19 @@ MWCanteen >> buildForTime: aTime [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:21'
+	#'squeak_changestamp' : 'LC 7/6/2024 15:50'
 }
 MWCanteen >> createNameMorph [
 
-	^ StringMorph contents: self name
+	^ AlignmentMorph newRow
+		color: Color transparent;
+		vResizing: #shrinkWrap;
+		hResizing: #spaceFill;
+		addMorph: (StringMorph contents: self class currency);
+		addMorph: self getSpacerMorph;
+		addMorph: (StringMorph contents: self name);
+		addMorph: self getSpacerMorph;
+		yourself
 ]
 
 {
@@ -113,6 +139,20 @@ MWCanteen >> date: anObject [
 MWCanteen >> deleteMeals [
 
 	self submorphs from: 2 to: self submorphs size do: [:each | each abandon]
+]
+
+{
+	#category : #display,
+	#'squeak_changestamp' : 'Louis Christ 6/18/2024 11:52'
+}
+MWCanteen >> getSpacerMorph [
+
+	^ Morph new 
+		color: Color transparent;
+		hResizing: #spaceFill;
+		vResizing: #spaceFill;
+		width: self class spacerMorphWidth;
+		yourself
 ]
 
 {
