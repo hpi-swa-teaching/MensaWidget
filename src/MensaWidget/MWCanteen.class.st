@@ -199,12 +199,12 @@ MWCanteen >> id: anObject [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Max 7/5/2024 13:41'
+	#'squeak_changestamp' : 'LC 7/7/2024 17:29'
 }
 MWCanteen >> initialize [
 	
 	super initialize.
-	^ self color: MWColorTheme secondaryColor;
+	^ self color: MWConfiguration secondaryColor;
 		layoutProperties: self class layoutProperties;
 		yourself
     
