@@ -41,6 +41,26 @@ MWFrame class >> contentExtent [
 ]
 
 {
+	#category : #'instance creation',
+	#'squeak_changestamp' : 'Max 7/5/2024 14:56'
+}
+MWFrame class >> newWithDefaultLocation [
+
+	MWDataGettingWrapper switchToDefaultLocation.
+	^ MWFrame new
+]
+
+{
+	#category : #'instance creation',
+	#'squeak_changestamp' : 'Max 7/5/2024 14:56'
+}
+MWFrame class >> newWithLocationSwitch [
+
+	MWDataGettingWrapper switchLocation.
+	^ MWFrame new
+]
+
+{
 	#category : #constants,
 	#'squeak_changestamp' : 'Max 6/17/2024 20:42'
 }
@@ -103,7 +123,7 @@ MWFrame >> addContentMorph [
 
 {
 	#category : #dayManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/19/2024 01:00'
+	#'squeak_changestamp' : 'Max 7/5/2024 09:43'
 }
 MWFrame >> addMealsOn: aDate forTime: aTime [
 
@@ -180,7 +200,7 @@ MWFrame >> contentMorph: anObject [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'LC 7/5/2024 00:37'
+	#'squeak_changestamp' : 'LC 7/7/2024 17:26'
 }
 MWFrame >> initialize [
 	

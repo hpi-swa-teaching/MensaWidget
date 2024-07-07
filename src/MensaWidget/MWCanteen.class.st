@@ -52,6 +52,30 @@ MWCanteen class >> currency [
 ]
 
 {
+	#category : #constants,
+	#'squeak_changestamp' : 'Max 7/5/2024 10:03'
+}
+MWCanteen class >> emptyCanteen [
+
+	^ self new name: 'Hier gibt es keine Mensen.';
+		meals: OrderedCollection new
+]
+
+{
+	#category : #constants,
+	#'squeak_changestamp' : 'Max 7/5/2024 13:42'
+}
+MWCanteen class >> layoutProperties [
+
+	^ TableLayoutProperties new hResizing: #spaceFill; 
+		vResizing: #shrinkWrap; 
+		cellGap: self cellGap; 
+		layoutInset: 2; 
+		rubberBandCells: true;
+		yourself
+]
+
+{
 	#category : #'constructor ',
 	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:30'
 }
@@ -77,12 +101,12 @@ MWCanteen class >> spacerMorphWidth [
 
 {
 	#category : #updating,
-	#'squeak_changestamp' : 'Louis Christ 6/19/2024 00:57'
+	#'squeak_changestamp' : 'Max 7/5/2024 09:35'
 }
 MWCanteen >> addMealsForTime: aTime [
 
 	self meals do: [:each | 
-		(each category = aTime or: [each category = nil]) ifTrue: 
+		(each category = aTime or: [each category isNil]) ifTrue: 
 		[self addMorphBack: each]].
 	self submorphs size = 1 ifTrue: [self addMorphBack: MWMeal emptyMeal]
 ]
@@ -175,15 +199,13 @@ MWCanteen >> id: anObject [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'LC 7/2/2024 10:28'
+	#'squeak_changestamp' : 'LC 7/7/2024 17:29'
 }
 MWCanteen >> initialize [
 	
 	super initialize.
 	^ self color: MWConfiguration secondaryColor;
-		cellGap: self class cellGap;
-		hResizing: #spaceFill;
-		vResizing: #shrinkWrap;
+		layoutProperties: self class layoutProperties;
 		yourself
     
 ]

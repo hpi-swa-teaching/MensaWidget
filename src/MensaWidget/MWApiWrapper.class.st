@@ -1,5 +1,5 @@
 "
-A MWApiWrapper is a wrapper around the api call which stores the endpoint end call url. 
+A MWApiWrapper is a wrapper around the API call for the Open Mensa API. It stores the base endpoint and two different postfixes for getting meals from a canteen and getting available canteens in a radius from coordinates.
 
 Instance Variables
 
@@ -8,7 +8,7 @@ Class {
 	#name : #MWApiWrapper,
 	#superclass : #Object,
 	#category : #MensaWidget,
-	#'squeak_changestamp' : 'Oscar 6/2/2024 12:56'
+	#'squeak_changestamp' : 'Oscar 7/5/2024 12:35'
 }
 
 {
@@ -43,6 +43,29 @@ MWApiWrapper class >> getMealsFrom: anOutletId on: aDate using: aWebClient [
 	[response := aWebClient httpGet: url] on: NetworkError do: [^ self NetworkErrorResponse].
 	^ response content
 	
+]
+
+{
+	#category : #call,
+	#'squeak_changestamp' : 'Oscar 7/5/2024 12:30'
+}
+MWApiWrapper class >> getOutletDictFrom: aLatitude and: aLongitude andRadius: aDistance [
+	
+	| url response |
+	
+	url := self baseEndpoint, self locationPostfix.
+	url := url format: {aLatitude. aLongitude. aDistance}.
+	[response := WebClient httpGet: url] on: NetworkError do: [^ self NetworkErrorResponse].
+	^ response content
+]
+
+{
+	#category : #openMensa,
+	#'squeak_changestamp' : 'Oscar 6/30/2024 17:51'
+}
+MWApiWrapper class >> locationPostfix [
+
+	^ '/canteens?near[lat]={1}&near[lng]={2}&near[dist]={3}'
 ]
 
 {
