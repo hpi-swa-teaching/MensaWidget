@@ -80,11 +80,11 @@ MWFavoritesTest >> mensaWidget: anObject [
 
 {
 	#category : #environment,
-	#'squeak_changestamp' : 'Oscar 6/17/2024 00:14'
+	#'squeak_changestamp' : 'LC 7/8/2024 00:21'
 }
 MWFavoritesTest >> setUp [
 
-	self mensaWidget: MWFrame new
+	self mensaWidget: MWFrame newForTests
 ]
 
 {

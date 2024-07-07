@@ -76,17 +76,20 @@ MWDockingBarTest >> testOpenSettings [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'LC 7/5/2024 11:16'
+	#'squeak_changestamp' : 'LC 7/8/2024 00:24'
 }
 MWDockingBarTest >> testOpenWidget [
 	
-	| oldState widget |
+	| oldState initialState widget |
 	
 	oldState := TheWorldMainDockingBar showMensaMenuInWorldMainDockingBar.
+	initialState := MWConfiguration isInitial.
+	MWConfiguration isInitial: false.
 	TheWorldMainDockingBar showMensaMenuInWorldMainDockingBar: true.
 	widget := self clickMensaSubmenu: 'Potsdam'.
 	self assert: widget class = MWFrame.
 	TheWorldMainDockingBar showMensaMenuInWorldMainDockingBar: oldState.
+	MWConfiguration isInitial: initialState.
 	widget owner abandon
 	
 ]

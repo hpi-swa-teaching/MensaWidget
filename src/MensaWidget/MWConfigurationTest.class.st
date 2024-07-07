@@ -43,11 +43,11 @@ MWConfigurationTest >> mensaWidget: anObject [
 
 {
 	#category : #environment,
-	#'squeak_changestamp' : 'LC 7/3/2024 22:41'
+	#'squeak_changestamp' : 'LC 7/8/2024 00:21'
 }
 MWConfigurationTest >> setUp [
 
-	self mensaWidget: MWFrame new
+	self mensaWidget: MWFrame newForTests
 ]
 
 {
@@ -77,7 +77,7 @@ MWConfigurationTest >> tearDown [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'LC 7/5/2024 00:52'
+	#'squeak_changestamp' : 'LC 7/8/2024 00:31'
 }
 MWConfigurationTest >> testChangingGroups [
 	
@@ -90,13 +90,13 @@ MWConfigurationTest >> testChangingGroups [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'LC 7/5/2024 00:38'
+	#'squeak_changestamp' : 'LC 7/8/2024 00:25'
 }
 MWConfigurationTest >> testInitialSetUp [
 
 	self tearDown.
 	MWConfiguration isInitial: true.
-	self setUp;
+	self mensaWidget: MWFrame new;
 		assert: (self mensaWidget class = MWFrame) not.
 	MWConfiguration isInitial: false
 ]

@@ -138,7 +138,7 @@ MWFrameTest >> saveUserLatLongRad [
 
 {
 	#category : #environment,
-	#'squeak_changestamp' : 'Oscar 7/5/2024 13:19'
+	#'squeak_changestamp' : 'LC 7/8/2024 00:21'
 }
 MWFrameTest >> setUp [
 	
@@ -149,7 +149,7 @@ MWFrameTest >> setUp [
 	MWFrame register.
 	self saveUserLatLongRad.
 	MWDataGettingWrapper switchToDefaultLocation.
-	self widget: MWFrame new;
+	self widget: MWFrame newForTests;
 		widgetFrame: self widget owner 
 ]
 

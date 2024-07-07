@@ -103,11 +103,11 @@ MWMenuBarTest >> menuBar: anObject [
 
 {
 	#category : #environment,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 16:16'
+	#'squeak_changestamp' : 'LC 7/8/2024 00:21'
 }
 MWMenuBarTest >> setUp [
 
-	self mensaWidget: MWFrame new;
+	self mensaWidget: MWFrame newForTests;
 		menuBar: self mensaWidget menuBar
 	
 ]
