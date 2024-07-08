@@ -2,6 +2,14 @@
 A MWConfigurationTest is Test Case for the MWConfiguration.
 
 Instance Variables
+	mensaWidget:		<MWFrame>
+	oldPriceGroup:		<String>
+
+mensaWidget:
+	- an instance of the MensaWidget to run the tests on
+	
+oldPriceGroup:
+	- the old priceGroup based on the preferences by the user
 
 "
 Class {
@@ -12,7 +20,7 @@ Class {
 		'oldPriceGroup'
 	],
 	#category : #'MensaWidget-Tests',
-	#'squeak_changestamp' : 'Max 7/1/2024 20:26'
+	#'squeak_changestamp' : 'Max 7/8/2024 10:00'
 }
 
 {
