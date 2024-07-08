@@ -42,6 +42,21 @@ MWFrame class >> contentExtent [
 
 {
 	#category : #'instance creation',
+	#'squeak_changestamp' : 'LC 7/8/2024 00:20'
+}
+MWFrame class >> newForTests [
+	
+	| oldStatus frame |
+	
+	oldStatus := MWConfiguration isInitial.
+	MWConfiguration isInitial: false.
+	frame := MWFrame new.
+	MWConfiguration isInitial: oldStatus.
+	^ frame
+]
+
+{
+	#category : #'instance creation',
 	#'squeak_changestamp' : 'Max 7/5/2024 14:56'
 }
 MWFrame class >> newWithDefaultLocation [

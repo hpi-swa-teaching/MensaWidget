@@ -2,16 +2,25 @@
 A MWConfigurationTest is Test Case for the MWConfiguration.
 
 Instance Variables
+	mensaWidget:		<MWFrame>
+	oldPriceGroup:		<String>
+
+mensaWidget:
+	- an instance of the MensaWidget to run the tests on
+	
+oldPriceGroup:
+	- the old priceGroup based on the preferences by the user
 
 "
 Class {
 	#name : #MWConfigurationTest,
 	#superclass : #TestCase,
 	#instVars : [
-		'mensaWidget'
+		'mensaWidget',
+		'oldPriceGroup'
 	],
 	#category : #'MensaWidget-Tests',
-	#'squeak_changestamp' : 'Max 7/1/2024 20:26'
+	#'squeak_changestamp' : 'Max 7/8/2024 10:00'
 }
 
 {
@@ -42,12 +51,29 @@ MWConfigurationTest >> mensaWidget: anObject [
 ]
 
 {
+	#category : #accessing,
+	#'squeak_changestamp' : 'Max 7/8/2024 09:55'
+}
+MWConfigurationTest >> oldPriceGroup [
+	^ oldPriceGroup
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Max 7/8/2024 09:55'
+}
+MWConfigurationTest >> oldPriceGroup: anObject [
+	oldPriceGroup := anObject
+]
+
+{
 	#category : #environment,
-	#'squeak_changestamp' : 'LC 7/3/2024 22:41'
+	#'squeak_changestamp' : 'Max 7/8/2024 09:55'
 }
 MWConfigurationTest >> setUp [
 
-	self mensaWidget: MWFrame new
+	self mensaWidget: MWFrame newForTests.
+	self oldPriceGroup: MWMeal priceGroup
 ]
 
 {
@@ -67,17 +93,18 @@ MWConfigurationTest >> simulatePopUpChoice: anObject [
 
 {
 	#category : #environment,
-	#'squeak_changestamp' : 'LC 7/3/2024 22:47'
+	#'squeak_changestamp' : 'Max 7/8/2024 09:56'
 }
 MWConfigurationTest >> tearDown [
 
 	self mensaWidget owner abandon.
-	self mensaWidget: nil
+	self mensaWidget: nil.
+	MWMeal priceGroup: self oldPriceGroup
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'LC 7/5/2024 00:52'
+	#'squeak_changestamp' : 'LC 7/8/2024 00:31'
 }
 MWConfigurationTest >> testChangingGroups [
 	
@@ -90,20 +117,20 @@ MWConfigurationTest >> testChangingGroups [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'LC 7/5/2024 00:38'
+	#'squeak_changestamp' : 'LC 7/8/2024 00:25'
 }
 MWConfigurationTest >> testInitialSetUp [
 
 	self tearDown.
 	MWConfiguration isInitial: true.
-	self setUp;
+	self mensaWidget: MWFrame new;
 		assert: (self mensaWidget class = MWFrame) not.
 	MWConfiguration isInitial: false
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'LC 7/5/2024 00:30'
+	#'squeak_changestamp' : 'Max 7/8/2024 09:56'
 }
 MWConfigurationTest >> testInvalidSet [
 	
@@ -113,14 +140,10 @@ MWConfigurationTest >> testInvalidSet [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'LC 7/2/2024 00:55'
+	#'squeak_changestamp' : 'Max 7/8/2024 09:56'
 }
 MWConfigurationTest >> testValidSet [
 	
-	| oldPriceGroup |
-	
-	oldPriceGroup := MWMeal priceGroup.
 	MWConfiguration setPriceGroup: 'others'.
-	self assert: MWMeal priceGroup = 'others'.
-	MWMeal priceGroup: oldPriceGroup
+	self assert: MWMeal priceGroup = 'others'
 ]
