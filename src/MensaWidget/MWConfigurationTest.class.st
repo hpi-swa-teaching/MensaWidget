@@ -117,7 +117,7 @@ MWConfigurationTest >> testChangingGroups [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'LC 7/8/2024 00:25'
+	#'squeak_changestamp' : 'LC 7/8/2024 22:54'
 }
 MWConfigurationTest >> testInitialSetUp [
 

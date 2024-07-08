@@ -233,12 +233,12 @@ MWFrame >> getTime [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'LC 7/8/2024 21:00'
+	#'squeak_changestamp' : 'LC 7/8/2024 22:51'
 }
 MWFrame >> initialize [
 	
 	MWConfiguration isInitial
-		ifTrue: [self setUpScreen]
+		ifTrue: [^ self setUpScreen]
 		ifFalse: [self initializeFrame]
 	
 ]
@@ -295,14 +295,17 @@ MWFrame >> scroller: anObject [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'LC 7/8/2024 21:01'
+	#'squeak_changestamp' : 'LC 7/8/2024 22:57'
 }
 MWFrame >> setUpScreen [
 	
-	(MWConfiguration getPopUp
-		openInWindowLabeled: 'Mensa Settings')
+	| popUp |
+	
+	popUp := MWConfiguration getPopUp.
+	(popUp openInWindowLabeled: 'Mensa Settings') 
 		width: 350;
-		color: MWConfiguration defaultColor
+		color: MWConfiguration defaultColor.
+	^ popUp
 	
 ]
 
