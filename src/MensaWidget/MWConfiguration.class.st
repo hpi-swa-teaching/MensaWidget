@@ -1,7 +1,28 @@
 "
 A MWConfiguration is a class for accessing the different configurations of the MensaWidget.
 
-Instance Variables
+Class Variables
+	
+	BackgroundColor:		<Color>
+	DefaultColor:		<Color>
+	IsInitial:			<Boolean>
+	PrimaryColor:		<Color>
+	SecondaryColor:		<Color>
+	
+BackgroundColor
+	- the Background Color of the Configuration
+	
+DefaultColor
+	- the default Color of the Configuration
+	
+IsInitial
+	- checks whether the widget is being opened for the first time
+	
+PrimaryColor
+	- the Primary Color of the Configuration 
+	
+SecondaryColor
+	- the Secondary Color of the Configuration
 
 "
 Class {
@@ -15,7 +36,7 @@ Class {
 		'SecondaryColor'
 	],
 	#category : #MensaWidget,
-	#'squeak_changestamp' : 'Max 7/1/2024 20:26'
+	#'squeak_changestamp' : 'tmc 7/10/2024 23:20'
 }
 
 {
