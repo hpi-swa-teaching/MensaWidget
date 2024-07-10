@@ -170,7 +170,7 @@ MWDataGettingWrapper class >> radiusMessage [
 
 {
 	#category : #dataPulling,
-	#'squeak_changestamp' : 'Max 7/5/2024 14:32'
+	#'squeak_changestamp' : 'Max 7/10/2024 20:28'
 }
 MWDataGettingWrapper class >> switchLocation [
 	
@@ -180,17 +180,17 @@ MWDataGettingWrapper class >> switchLocation [
 		initialLongitude: (FillInTheBlankMorph request: self longitudeMessage initialAnswer: self initialLongitude);
 		initialRadius: (FillInTheBlankMorph request: self radiusMessage initialAnswer: self initialRadius).
 	outletDict := MWApiWrapper getOutletDictFrom: self initialLatitude and: self initialLongitude andRadius: self initialRadius.
-	self canteenDict: (MWParser transformJsonToDict: outletDict)
+	self canteenDict: (MWParser transformToDict: outletDict)
 ]
 
 {
 	#category : #dataPulling,
-	#'squeak_changestamp' : 'Max 7/5/2024 14:35'
+	#'squeak_changestamp' : 'Max 7/10/2024 20:28'
 }
 MWDataGettingWrapper class >> switchToDefaultLocation [
 	
 	| outletDict |
 	
 	outletDict := MWApiWrapper getOutletDictFrom: 52.393822 and: 13.129558 andRadius: 5.
-	self canteenDict: (MWParser transformJsonToDict: outletDict)
+	self canteenDict: (MWParser transformToDict: outletDict)
 ]
