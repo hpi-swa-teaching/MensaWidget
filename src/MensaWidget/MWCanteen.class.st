@@ -22,10 +22,10 @@ name
 	- name of the canteen
 	
 nameMorph
-	- morpic representation for the name of the canteen
+	- morphic representation for the name of the canteen
 	
 currencyMorph
-	- morpic representation for the currency the prices will be displayed in
+	- morphic representation for the currency the prices will be displayed in
 
 "
 Class {
@@ -40,7 +40,7 @@ Class {
 		'currencyMorph'
 	],
 	#category : #MensaWidget,
-	#'squeak_changestamp' : 'NK 7/9/2024 11:55'
+	#'squeak_changestamp' : 'LC 7/11/2024 21:06'
 }
 
 {

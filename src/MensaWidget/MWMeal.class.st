@@ -31,10 +31,10 @@ prices
 	
 
 starMorph
-	- morpic representation for the like button
+	- morphic representation for the like button
 	
 nameMorph
-	- morpic representation for the name of the meal
+	- morphic representation for the name of the meal
 
 priceMorph
 	- morpic representation for the price of the meal of the given price category
@@ -59,7 +59,7 @@ Class {
 		'PriceGroup'
 	],
 	#category : #MensaWidget,
-	#'squeak_changestamp' : 'NK 7/9/2024 11:53'
+	#'squeak_changestamp' : 'LC 7/11/2024 21:06'
 }
 
 {
