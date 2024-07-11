@@ -76,32 +76,19 @@ MWConfiguration class >> defaultColor: anObject [
 ]
 
 {
-	#category : #priceGroup,
-	#'squeak_changestamp' : 'LC 7/5/2024 11:39'
-}
-MWConfiguration class >> fromPopUp: aPopUp setPriceGroup: aCategory [
-	
-	self setPriceGroup: aCategory.
-	MWFrame updateCategory.
-	MWMeal updatePrice
-]
-
-{
 	#category : #morphs,
-	#'squeak_changestamp' : 'LC 7/3/2024 22:30'
+	#'squeak_changestamp' : 'tmc 7/11/2024 22:39'
 }
 MWConfiguration class >> getPopUp [
-
-	| popUp |
 	
-	popUp := PopUpChoiceMorph new
+	^ PopUpChoiceMorph new
 		target: self;
 		getItemsSelector: #priceGroups;
-		actionSelector: #fromPopUp:setPriceGroup:;
+		actionSelector: #setPriceGroup:;
 		contents: MWMeal priceGroup;
 		yourself.
-	popUp arguments: (popUp arguments copyWith: popUp).
-	^ popUp
+
+	
 ]
 
 {

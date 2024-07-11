@@ -52,17 +52,19 @@ MWConfigurationTest >> mensaWidget: anObject [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Max 7/8/2024 09:55'
+	#'squeak_changestamp' : 'tmc 7/11/2024 22:12'
 }
 MWConfigurationTest >> oldPriceGroup [
+	
 	^ oldPriceGroup
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Max 7/8/2024 09:55'
+	#'squeak_changestamp' : 'tmc 7/11/2024 22:12'
 }
 MWConfigurationTest >> oldPriceGroup: anObject [
+	
 	oldPriceGroup := anObject
 ]
 
@@ -78,7 +80,7 @@ MWConfigurationTest >> setUp [
 
 {
 	#category : #helpers,
-	#'squeak_changestamp' : 'LC 7/5/2024 11:18'
+	#'squeak_changestamp' : 'tmc 7/11/2024 22:17'
 }
 MWConfigurationTest >> simulatePopUpChoice: anObject [
 	
