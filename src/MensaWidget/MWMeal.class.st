@@ -37,7 +37,7 @@ nameMorph
 	- morphic representation for the name of the meal
 
 priceMorph
-	- morpic representation for the price of the meal of the given price category
+	- morphic representation for the price of the meal of the given price category
 
 PriceGroup
 	- the configured price group, default is student
@@ -59,7 +59,7 @@ Class {
 		'PriceGroup'
 	],
 	#category : #MensaWidget,
-	#'squeak_changestamp' : 'LC 7/11/2024 21:06'
+	#'squeak_changestamp' : 'LC 7/11/2024 21:26'
 }
 
 {
