@@ -31,10 +31,9 @@ MWApiWrapper class >> baseEndpoint [
 
 {
 	#category : #call,
-	#'squeak_changestamp' : 'Max 6/18/2024 22:08'
+	#'squeak_changestamp' : 'Oscar 7/11/2024 12:24'
 }
 MWApiWrapper class >> getMealsFrom: anOutletId on: aDate using: aWebClient [
-	"The two attributes need to be a string"
 	
 	| url response |
 	
