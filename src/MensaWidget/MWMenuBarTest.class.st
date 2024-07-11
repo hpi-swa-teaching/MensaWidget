@@ -168,14 +168,14 @@ MWMenuBarTest >> testCanteensChange [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 6/19/2024 01:06'
+	#'squeak_changestamp' : 'LC 7/11/2024 18:52'
 }
 MWMenuBarTest >> testLunchMealCategory [
 
 	| oldTime |
 	
 	oldTime := self menuBar time.
-	self getAllCategories do: [:each | self assert: (each = oldTime or: [each = nil])].
+	self getAllCategories do: [:each | self assert: (each = oldTime or: [each isNil])].
 	self menuBar toggleTime.
 	self assert: (oldTime = self menuBar time) not.
 	self getAllCategories do: [:each | self assert: (each = oldTime) not].
@@ -240,9 +240,9 @@ MWMenuBarTest >> testNavigatePreviousDay [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'LC 7/8/2024 22:34'
+	#'squeak_changestamp' : 'LC 7/11/2024 18:50'
 }
 MWMenuBarTest >> testOneMenuBarExists [
 
-	self assert: self menuBar isNil not
+	self assert: self menuBar notNil
 ]

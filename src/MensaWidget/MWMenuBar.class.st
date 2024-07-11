@@ -41,20 +41,6 @@ Class {
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'LC 7/8/2024 21:28'
-}
-MWMenuBar class >> getArrowButton [
-
-	^ PolygonMorph new
-		setVertices: self getArrowVertices;
-		color: MWConfiguration secondaryColor;
-		on: #mouseDown send: #increaseDate: to: self;
-		addFlexShellIfNecessary;
-		yourself
-]
-
-{
-	#category : #constants,
 	#'squeak_changestamp' : 'Louis Christ 6/18/2024 19:22'
 }
 MWMenuBar class >> getArrowVertices [
@@ -239,11 +225,11 @@ MWMenuBar >> getSpacer [
 
 {
 	#category : #morphicRepresentation,
-	#'squeak_changestamp' : 'LC 7/8/2024 21:59'
+	#'squeak_changestamp' : 'LC 7/11/2024 18:50'
 }
 MWMenuBar >> getTimeToggle [
 
-	^AlignmentMorph new 
+	^ AlignmentMorph new 
 		addMorph: (StringMorph contents: MWMealCleaner lunchCategory); 
 		vResizing: #shrinkWrap; 
 		hResizing: #shrinkWrap;
