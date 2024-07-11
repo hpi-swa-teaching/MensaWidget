@@ -26,9 +26,6 @@ Class {
 		'InitialLongitude',
 		'InitialRadius'
 	],
-	#classInstVars : [
-		'canteenDict'
-	],
 	#category : #MensaWidget,
 	#'squeak_changestamp' : 'Oscar 7/5/2024 12:47'
 }
