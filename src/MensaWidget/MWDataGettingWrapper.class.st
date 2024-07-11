@@ -53,7 +53,7 @@ MWDataGettingWrapper class >> canteenDict: anObject [
 
 {
 	#category : #dataPulling,
-	#'squeak_changestamp' : 'Oscar 7/11/2024 14:02'
+	#'squeak_changestamp' : 'Oscar 7/11/2024 14:41'
 }
 MWDataGettingWrapper class >> getMealsOnDate: aDate [
 
@@ -61,8 +61,7 @@ MWDataGettingWrapper class >> getMealsOnDate: aDate [
 	
 	canteens := OrderedCollection new.
 	self canteenDict isEmpty 
-		ifTrue: [^ canteens add: MWCanteen emptyCanteen;
-			yourself].
+		ifTrue: [^ canteens add: MWCanteen emptyCanteen; yourself].
 	canteenDict := self canteenDict.
 	canteens := canteenDict keys collect: [:id |
 		json := MWApiWrapper getMealsFrom: id on: aDate using: WebClient.
@@ -115,7 +114,7 @@ MWDataGettingWrapper class >> hpiRadius [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Oscar 7/11/2024 12:53'
+	#'squeak_changestamp' : 'Oscar 7/11/2024 14:37'
 }
 MWDataGettingWrapper class >> initialLatitude [
 
@@ -202,7 +201,7 @@ MWDataGettingWrapper class >> radiusMessage [
 
 {
 	#category : #dataPulling,
-	#'squeak_changestamp' : 'Oscar 7/11/2024 12:47'
+	#'squeak_changestamp' : 'Oscar 7/11/2024 14:37'
 }
 MWDataGettingWrapper class >> requestUserInput [
 
@@ -219,7 +218,7 @@ MWDataGettingWrapper class >> requestUserInput [
 
 {
 	#category : #dataPulling,
-	#'squeak_changestamp' : 'Oscar 7/11/2024 12:45'
+	#'squeak_changestamp' : 'Oscar 7/11/2024 14:37'
 }
 MWDataGettingWrapper class >> switchLocation [
 	
