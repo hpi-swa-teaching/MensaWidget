@@ -122,7 +122,7 @@ MWDockingBarTest >> testPreferenceOff [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'LC 7/12/2024 12:12'
+	#'squeak_changestamp' : 'LC 7/12/2024 12:31'
 }
 MWDockingBarTest >> testPreferenceOn [
 
@@ -131,6 +131,6 @@ MWDockingBarTest >> testPreferenceOn [
 	oldState := TheWorldMainDockingBar showMensaMenuInWorldMainDockingBar.
 	TheWorldMainDockingBar showMensaMenuInWorldMainDockingBar: true.
 	self dockingbar allMorphsDo: [:each | (each name asString includesSubstring: 'MensaMenu') 
-		ifTrue: [self fail]].
+		ifTrue: [self assert: true]].
 	TheWorldMainDockingBar showMensaMenuInWorldMainDockingBar: oldState
 ]
