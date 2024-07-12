@@ -79,13 +79,14 @@ MWMealCleanerTest >> check: aMealList [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Max 7/10/2024 20:58'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:23'
 }
 MWMealCleanerTest >> testClean [
 
 	| mealList |
 	
-	mealList := OrderedCollection new add: self brokenSaladBar;
+	mealList := OrderedCollection new 
+		add: self brokenSaladBar;
 		add: self brokenEveningMeal;
 		add: self brokenPriceMeal;
 		yourself.

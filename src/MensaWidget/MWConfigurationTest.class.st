@@ -118,15 +118,15 @@ MWConfigurationTest >> tearDown [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Oscar 7/12/2024 10:55'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:10'
 }
 MWConfigurationTest >> testChangingGroups [
 	
 	MWConfiguration priceGroups do: [:each | 
 		self simulatePopUpChoice: each.
 		self getAllMeals do: [:meal |
-			self assert: (meal submorphs last contents = '' or: 
-				[meal submorphs last contents asNumber = (meal prices at: each)])]]
+			self assert: (meal priceMorph contents isEmpty or: 
+				[meal priceMorph contents asNumber = (meal prices at: each)])]]
 ]
 
 {

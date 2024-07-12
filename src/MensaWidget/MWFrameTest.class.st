@@ -35,37 +35,34 @@ Class {
 
 {
 	#category : #helper,
-	#'squeak_changestamp' : 'LC 7/8/2024 22:04'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:18'
 }
 MWFrameTest >> getAllCurrencies [
 
-	| currencies |
-	
-	currencies := OrderedCollection new.
-	self widgetFrame allMorphsDo: [:each | 
-		(each class = MWCanteen) ifTrue: 
-			[currencies add: (self getCurrency: each)]].
-	^ currencies
+	^ (self widgetFrame allMorphs 
+		select: [:each | each class = MWCanteen])
+		collect: [:each | each currencyMorph contents]
 	
 ]
 
 {
 	#category : #helper,
-	#'squeak_changestamp' : 'LC 7/8/2024 22:22'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:26'
 }
-MWFrameTest >> getCanteenAmount: aCanteen [
+MWFrameTest >> getCanteenCount [
 
-	^ aCanteen submorphs first submorphs last contents
+	^ (self widgetFrame allMorphs 
+		select: [:each | each class = MWCanteen]) size
 	
 ]
 
 {
 	#category : #helper,
-	#'squeak_changestamp' : 'LC 7/8/2024 22:04'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:19'
 }
 MWFrameTest >> getCurrency: aCanteen [
 
-	^ aCanteen submorphs first submorphs last contents
+	^ aCanteen currencyMorph contents
 	
 ]
 
@@ -177,22 +174,22 @@ MWFrameTest >> tearDown [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 6/19/2024 01:10'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:22'
 }
 MWFrameTest >> testCantineCount [
 
-	self assert: self widget contentMorph submorphs size = MWDataGettingWrapper canteenDict size
+	self assert: self getCanteenCount = MWDataGettingWrapper canteenDict size
 				 
 			  
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 6/19/2024 01:10'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:14'
 }
 MWFrameTest >> testContent [
 	
-	self assert: (self widget paneMorphs = #()) not
+	self deny: self widget paneMorphs = #()
 ]
 
 {
@@ -235,12 +232,12 @@ MWFrameTest >> testCorrectTitle [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:42'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:15'
 }
 MWFrameTest >> testOpened [
 
 	self assert: self widgetFrame isInWorld; 
-		assert: self widgetFrame isCollapsed = false
+		deny: self widgetFrame isCollapsed
 ]
 
 {
