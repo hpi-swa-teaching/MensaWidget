@@ -55,7 +55,7 @@ MWFrameTest >> getAllCurrencies [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Oscar 7/5/2024 13:21'
+	#'squeak_changestamp' : 'Oscar 7/11/2024 14:37'
 }
 MWFrameTest >> initialLatitude [
 
@@ -127,7 +127,7 @@ MWFrameTest >> isRegistered: anObject [
 
 {
 	#category : #environment,
-	#'squeak_changestamp' : 'Max 7/5/2024 14:35'
+	#'squeak_changestamp' : 'Oscar 7/11/2024 14:37'
 }
 MWFrameTest >> saveUserLatLongRad [
 

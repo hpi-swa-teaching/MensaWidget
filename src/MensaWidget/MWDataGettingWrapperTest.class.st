@@ -1,18 +1,12 @@
 "
 A MWDataGettingWrapperTest is a Test Case for the MWDataGettingWrapper.
 
-Instance Variables
-	dataGettingWrapper:		<MWDataGettingWrapper>
-
-dataGettingWrapper
-	- a DataGettingWrapper instance on which the tests will be performed
-
 "
 Class {
 	#name : #MWDataGettingWrapperTest,
 	#superclass : #TestCase,
 	#category : #'MensaWidget-Tests',
-	#'squeak_changestamp' : 'Louis Christ 5/27/2024 19:35'
+	#'squeak_changestamp' : 'Oscar 7/11/2024 17:57'
 }
 
 {
@@ -27,13 +21,13 @@ MWDataGettingWrapperTest >> testCollectionClasses [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'NK 6/18/2024 21:45'
+	#'squeak_changestamp' : 'Oscar 7/11/2024 19:08'
 }
 MWDataGettingWrapperTest >> testCollectionValues [
 	
 	MWDataGettingWrapper getTodaysMeals do: [:each |
 		each instanceVariableValues do: [:value | 
-			self assert: (value = nil) not]]
+			self assert: value notNil]]
 ]
 
 {
@@ -53,9 +47,9 @@ MWDataGettingWrapperTest >> testEmptyCanteen [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Max 6/1/2024 10:35'
+	#'squeak_changestamp' : 'Oscar 7/11/2024 18:02'
 }
 MWDataGettingWrapperTest >> testSize [
 
-	self assert: MWDataGettingWrapper getTodaysMeals size = MWDataGettingWrapper new class canteenDict size
+	self assert: MWDataGettingWrapper getTodaysMeals size = MWDataGettingWrapper canteenDict size
 ]
