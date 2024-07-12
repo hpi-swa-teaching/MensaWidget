@@ -1,14 +1,12 @@
 "
 A MWApiWrapper is a wrapper around the API call for the Open Mensa API. It stores the base endpoint and two different postfixes for getting meals from a canteen and getting available canteens in a radius from coordinates.
 
-Instance Variables
-
 "
 Class {
 	#name : #MWApiWrapper,
 	#superclass : #Object,
 	#category : #MensaWidget,
-	#'squeak_changestamp' : 'Oscar 7/5/2024 12:35'
+	#'squeak_changestamp' : 'Oscar 7/11/2024 17:52'
 }
 
 {
@@ -31,10 +29,9 @@ MWApiWrapper class >> baseEndpoint [
 
 {
 	#category : #call,
-	#'squeak_changestamp' : 'Max 6/18/2024 22:08'
+	#'squeak_changestamp' : 'Oscar 7/11/2024 12:24'
 }
 MWApiWrapper class >> getMealsFrom: anOutletId on: aDate using: aWebClient [
-	"The two attributes need to be a string"
 	
 	| url response |
 	

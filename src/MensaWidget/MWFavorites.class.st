@@ -2,9 +2,9 @@
 A MWFavorites is a class that stores all liked meals and also handle the liking process.
 
 Class Variables
-	LikedMeals:		<Set>
+	FavouriteMeals:		<Set>
 			
-LikedMeals
+FavouriteMeals
 	- is a set of meal names as strings which represents the liked meals
 
 "
@@ -15,7 +15,7 @@ Class {
 		'FavouriteMeals'
 	],
 	#category : #MensaWidget,
-	#'squeak_changestamp' : 'LC 6/30/2024 20:39'
+	#'squeak_changestamp' : 'tmc 7/10/2024 18:32'
 }
 
 {
@@ -38,13 +38,11 @@ MWFavorites class >> favouriteMeals: anObject [
 
 {
 	#category : #liking,
-	#'squeak_changestamp' : 'LC 6/30/2024 23:21'
+	#'squeak_changestamp' : 'tmc 7/11/2024 22:31'
 }
 MWFavorites class >> insertMeal: aMeal [
 	
-	self favouriteMeals: 
-		(self favouriteMeals add: aMeal; 
-			yourself)
+	self favouriteMeals add: aMeal
 ]
 
 {
@@ -58,13 +56,13 @@ MWFavorites class >> removeMeal: aMeal [
 
 {
 	#category : #liking,
-	#'squeak_changestamp' : 'LC 7/2/2024 10:28'
+	#'squeak_changestamp' : 'tmc 7/11/2024 23:10'
 }
 MWFavorites class >> toggleLike: anEvent [
 
-	anEvent handler color = Color transparent ifTrue: 
-		[anEvent handler color: MWConfiguration secondaryColor.
-		self insertMeal: anEvent handler owner submorphs first text string] ifFalse: 
-		[anEvent handler color: Color transparent.
-		self removeMeal: anEvent handler owner submorphs first text string]
+	anEvent handler color = Color transparent 
+		ifTrue:[anEvent handler color: MWConfiguration secondaryColor.
+			self insertMeal: anEvent handler owner submorphs first text string] 
+		ifFalse: [anEvent handler color: Color transparent.
+			self removeMeal: anEvent handler owner submorphs first text string]
 ]
