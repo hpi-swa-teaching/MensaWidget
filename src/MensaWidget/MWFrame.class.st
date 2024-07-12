@@ -302,7 +302,7 @@ MWFrame >> scroller: anObject [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'LC 7/12/2024 13:24'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:56'
 }
 MWFrame >> setUpScreen [
 	
@@ -310,7 +310,7 @@ MWFrame >> setUpScreen [
 	
 	popUp := MWConfiguration getPopUp.
 	(popUp openInWindowLabeled: self class settingsName) 
-		width: self class contentExtent width;
+		width: self class contentExtent x;
 		color: MWConfiguration defaultColor.
 	^ popUp
 	

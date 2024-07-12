@@ -13,11 +13,11 @@ Class {
 
 {
 	#category : #cleaning,
-	#'squeak_changestamp' : 'LC 7/12/2024 13:34'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:56'
 }
 MWMealCleaner class >> clean: aMealList [
 	
-	aMealList isEmpty ifTrue: [MWMeal emptyMeal asOrderedCollection].
+	aMealList ifEmpty: [^ MWMeal emptyMeal asOrderedCollection].
 	^ aMealList collect: [:each | self fixMeal: each]
 		
 ]

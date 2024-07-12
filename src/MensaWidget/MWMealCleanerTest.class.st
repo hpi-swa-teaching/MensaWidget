@@ -95,7 +95,7 @@ MWMealCleanerTest >> testClean [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Max 7/10/2024 20:41'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:56'
 }
 MWMealCleanerTest >> testEmptyMealList [
 	
