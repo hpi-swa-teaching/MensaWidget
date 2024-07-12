@@ -247,7 +247,7 @@ MWFrameTest >> testOpened [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'LC 7/8/2024 22:28'
+	#'squeak_changestamp' : 'LC 7/12/2024 14:18'
 }
 MWFrameTest >> testRegister [
 	
@@ -259,7 +259,8 @@ MWFrameTest >> testRegister [
 		on: Error
 		do: [occurrence := false].
 	self assert: occurrence.
-	wasRegistered ifFalse: [TheWorldMenu unregisterOpenCommand: 'Mensa Widget']
+	wasRegistered 
+		ifFalse: [TheWorldMenu unregisterOpenCommand: 'Mensa Widget']
 
  
 

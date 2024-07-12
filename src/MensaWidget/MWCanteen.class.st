@@ -123,7 +123,7 @@ MWCanteen >> addMealsForTime: aTime [
 ]
 
 {
-	#category : #display,
+	#category : #creation,
 	#'squeak_changestamp' : 'Oscar 7/12/2024 10:00'
 }
 MWCanteen >> build [
@@ -132,7 +132,7 @@ MWCanteen >> build [
 ]
 
 {
-	#category : #display,
+	#category : #creation,
 	#'squeak_changestamp' : 'NK 7/9/2024 11:41'
 }
 MWCanteen >> createNameMorph [
@@ -194,7 +194,7 @@ MWCanteen >> deleteMeals [
 ]
 
 {
-	#category : #display,
+	#category : #creation,
 	#'squeak_changestamp' : 'NK 7/9/2024 11:37'
 }
 MWCanteen >> getCurrencyMorph [
@@ -204,7 +204,7 @@ MWCanteen >> getCurrencyMorph [
 ]
 
 {
-	#category : #display,
+	#category : #creation,
 	#'squeak_changestamp' : 'NK 7/9/2024 11:38'
 }
 MWCanteen >> getNameMorph [
@@ -214,7 +214,7 @@ MWCanteen >> getNameMorph [
 ]
 
 {
-	#category : #display,
+	#category : #creation,
 	#'squeak_changestamp' : 'NK 7/9/2024 11:41'
 }
 MWCanteen >> getSpacerMorph [
@@ -245,7 +245,7 @@ MWCanteen >> id: anObject [
 ]
 
 {
-	#category : #display,
+	#category : #creation,
 	#'squeak_changestamp' : 'NK 7/9/2024 11:41'
 }
 MWCanteen >> initialize [

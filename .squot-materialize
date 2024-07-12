@@ -13,12 +13,5 @@
 			'mensa_icon.png'
 		],
 		#encoding : Class [ #PNGReadWriter ]
-	},
-	SquotImageMapper {
-		#path : FSAbsolutePath [
-			'icons',
-			'settings_icon.png'
-		],
-		#encoding : @7
 	}
 ]
