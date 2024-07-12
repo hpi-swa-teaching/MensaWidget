@@ -229,16 +229,16 @@ MWMeal >> addSpacerMorph [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'NK 7/9/2024 11:47'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:52'
 }
 MWMeal >> addStarMorph [
 	
-	self starMorph: (PolygonMorph new 
-		color: self getStarMorphColor;
-		borderColor: Color fern lighter;
-		borderWidth: self class starBoarderWidth;
-		setVertices: self class getStarVertices;
-		on: #mouseDown send: #toggleLike: to: MWFavorites);
+	self starMorph: (StarMorph new 
+			borderWidth: self class starBoarderWidth;
+			color: self getStarMorphColor;
+			borderColor: MWConfiguration secondaryColor;
+			rotationDegrees: 9;
+			on: #mouseDown send: #toggleLike: to: MWFavorites);
 		addMorph: self starMorph
 ]
 
