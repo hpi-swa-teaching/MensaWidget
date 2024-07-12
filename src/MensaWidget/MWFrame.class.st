@@ -24,20 +24,20 @@ Class {
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'tmc 6/6/2024 21:40'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:27'
 }
 MWFrame class >> cellSpacing [
 
-	^ 10
+	^ 10 px
 ]
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'LC 7/8/2024 20:45'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:27'
 }
 MWFrame class >> contentExtent [
 
-	^ 350 @ 550 
+	^ 350 px@ 550 px
 ]
 
 {
@@ -86,11 +86,11 @@ MWFrame class >> register [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 19:24'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:27'
 }
 MWFrame class >> scrollBarThickness [
 
-	^ 14 * RealEstateAgent scaleFactor 
+	^ 14 px
 ]
 
 {

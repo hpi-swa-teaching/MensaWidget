@@ -158,29 +158,29 @@ MWMeal class >> saladBarMeal [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'NK 7/9/2024 11:49'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:28'
 }
 MWMeal class >> spacerMorphWidth [
 
-	^ 25 
+	^ 25 px
 ]
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 20:58'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:28'
 }
 MWMeal class >> starBoarderWidth [
 
-	^ 2 * RealEstateAgent scaleFactor
+	^ 2 px
 ]
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 20:55'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:28'
 }
 MWMeal class >> starInset [
 
-	^ 3 * RealEstateAgent scaleFactor
+	^ 3 px
 ]
 
 {

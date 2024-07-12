@@ -45,11 +45,11 @@ Class {
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:14'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:29'
 }
 MWCanteen class >> cellGap [
 
-	^ 5
+	^ 5 px
 ]
 
 {
@@ -73,7 +73,7 @@ MWCanteen class >> emptyCanteen [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'NK 7/9/2024 11:43'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:30'
 }
 MWCanteen class >> layoutProperties [
 
