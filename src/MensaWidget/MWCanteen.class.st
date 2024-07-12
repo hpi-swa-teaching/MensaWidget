@@ -86,7 +86,7 @@ MWCanteen class >> layoutProperties [
 
 {
 	#category : #'constructor ',
-	#'squeak_changestamp' : 'NK 7/9/2024 11:43'
+	#'squeak_changestamp' : 'Oscar 7/12/2024 10:01'
 }
 MWCanteen class >> newWithId: anId Name: aName Date: aDate Meals: aMealList [
 
@@ -94,7 +94,8 @@ MWCanteen class >> newWithId: anId Name: aName Date: aDate Meals: aMealList [
 		id: anId;
 		name: aName;
 		date: aDate;
-		meals: aMealList
+		meals: aMealList;
+		build
 	
 ]
 
@@ -122,12 +123,11 @@ MWCanteen >> addMealsForTime: aTime [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'LC 7/6/2024 15:50'
+	#'squeak_changestamp' : 'Oscar 7/12/2024 10:00'
 }
-MWCanteen >> buildForTime: aTime [
+MWCanteen >> build [
 
-	self addMorph: self createNameMorph;
-		addMealsForTime: aTime
+	self addMorph: self createNameMorph
 ]
 
 {

@@ -206,27 +206,12 @@ MWMeal >> addNameMorph [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'NK 7/9/2024 11:47'
+	#'squeak_changestamp' : 'Oscar 7/12/2024 09:51'
 }
 MWMeal >> addPriceMorph [
 	
-	self priceMorph: (StringMorph contents: self getPriceStream contents);
+	self priceMorph: (StringMorph contents: self getPrice);
 		addMorph: self priceMorph
-]
-
-{
-	#category : #display,
-	#'squeak_changestamp' : 'NK 7/9/2024 11:47'
-}
-MWMeal >> addPriceStream [
-
-	| priceStream |
-	
-	priceStream := WriteStream on: String new.
-    	(self prices at: (self class priceGroup ifNil: [self class defaultGroup])) 
-		ifNil: [''] 
-		ifNotNil: [:price | price printOn: priceStream showingDecimalPlaces: 2].
-	^ priceStream
 ]
 
 {
@@ -289,6 +274,21 @@ MWMeal >> category [
 MWMeal >> category: anObject [
 
 	category := anObject
+]
+
+{
+	#category : #display,
+	#'squeak_changestamp' : 'Oscar 7/12/2024 09:51'
+}
+MWMeal >> getPrice [
+
+	| priceStream |
+	
+	priceStream := WriteStream on: String new.
+    	(self prices at: (self class priceGroup ifNil: [self class defaultGroup])) 
+		ifNil: [''] 
+		ifNotNil: [:price | price printOn: priceStream showingDecimalPlaces: 2].
+	^ priceStream contents
 ]
 
 {
@@ -449,10 +449,10 @@ MWMeal >> starMorph: anObject [
 
 {
 	#category : #updating,
-	#'squeak_changestamp' : 'NK 7/9/2024 11:49'
+	#'squeak_changestamp' : 'Oscar 7/12/2024 09:51'
 }
 MWMeal >> updatePrice [
 	
 	self submorphs isEmptyOrNil 
-		ifFalse: [self priceMorph contents: self getPriceStream contents]
+		ifFalse: [self priceMorph contents: self getPrice contents]
 ]
