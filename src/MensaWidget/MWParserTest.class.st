@@ -1,14 +1,12 @@
 "
 A MWParserTest is a testcase for the functionality of the MWParser.
 
-Instance Variables
-
 "
 Class {
 	#name : #MWParserTest,
 	#superclass : #TestCase,
 	#category : #'MensaWidget-Tests',
-	#'squeak_changestamp' : 'Max 5/31/2024 21:55'
+	#'squeak_changestamp' : 'LC 7/12/2024 14:07'
 }
 
 {

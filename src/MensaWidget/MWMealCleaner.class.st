@@ -1,14 +1,12 @@
 "
 A MWMealCleaner is a FIlter for Meal lists provided by the parsing after processing the JSON String based on the specifics of the outlets based in Potsdam.
 
-Instance Variables
-
 "
 Class {
 	#name : #MWMealCleaner,
 	#superclass : #Object,
 	#category : #MensaWidget,
-	#'squeak_changestamp' : 'Max 7/10/2024 20:32'
+	#'squeak_changestamp' : 'LC 7/12/2024 14:02'
 }
 
 {

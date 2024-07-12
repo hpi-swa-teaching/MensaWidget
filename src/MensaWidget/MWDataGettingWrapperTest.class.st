@@ -1,13 +1,11 @@
 "
 A MWDataGettingWrapperTest is a Test Case for the MWDataGettingWrapper.
-
-Instance Variables
 "
 Class {
 	#name : #MWDataGettingWrapperTest,
 	#superclass : #TestCase,
 	#category : #'MensaWidget-Tests',
-	#'squeak_changestamp' : 'LC 7/12/2024 12:28'
+	#'squeak_changestamp' : 'LC 7/12/2024 14:05'
 }
 
 {

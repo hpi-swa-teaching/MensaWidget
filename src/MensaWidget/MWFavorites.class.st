@@ -2,7 +2,7 @@
 A MWFavorites is a class that stores all liked meals and also handle the liking process.
 
 Class Variables
-	FavouriteMeals:		<Set>
+	FavouriteMeals:	<Set>
 			
 FavouriteMeals
 	- is a set of meal names as strings which represents the liked meals
@@ -15,7 +15,7 @@ Class {
 		'FavouriteMeals'
 	],
 	#category : #MensaWidget,
-	#'squeak_changestamp' : 'tmc 7/10/2024 18:32'
+	#'squeak_changestamp' : 'LC 7/12/2024 14:01'
 }
 
 {

@@ -1,12 +1,6 @@
 "
 A MWApiWrapperTest is class that is used to test the functionality of the MWApiWrapper.
 
-Instance Variables
-	apiWrapper:		<MWApiWrapper>
-
-apiWrapper
-	- A MWApiWrapper intances that is used for testing purposes
-
 "
 Class {
 	#name : #MWApiWrapperTest,
@@ -15,7 +9,7 @@ Class {
 		'apiWrapper'
 	],
 	#category : #'MensaWidget-Tests',
-	#'squeak_changestamp' : 'Louis Christ 6/3/2024 09:06'
+	#'squeak_changestamp' : 'LC 7/12/2024 14:05'
 }
 
 {

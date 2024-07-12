@@ -10,12 +10,16 @@ Instance Variables:
 
 widgetFrame
     - The system window in which the widget gets opened.
+
 widget
     - An instance of the MWFrame on which the tests will be conducted.
+
 initialLatitude
     - Saves the initial latitude so it can be restored after the tests are done.
+
 initialLongitude
     - Saves the initial longitude so it can be restored after the tests are done.
+
 initialRadius
     - Saves the initial radius so it can be restored after the tests are done.
 "
@@ -30,7 +34,7 @@ Class {
 		'initialRadius'
 	],
 	#category : #'MensaWidget-Tests',
-	#'squeak_changestamp' : 'LC 7/8/2024 22:29'
+	#'squeak_changestamp' : 'LC 7/12/2024 14:06'
 }
 
 {

@@ -1,10 +1,21 @@
+"
+A MWDockingBarTest is a test that checks preferences and the mensa widget icon functionality.
+
+Instance Variables
+	dockingbar:		<TheWorldMainDockingbar>
+
+dockingbar
+	- refernce to dockingbar that sits on top of the screen
+
+"
 Class {
 	#name : #MWDockingBarTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'dockingbar'
 	],
-	#category : #'MensaWidget-Tests'
+	#category : #'MensaWidget-Tests',
+	#'squeak_changestamp' : 'LC 7/12/2024 14:06'
 }
 
 {

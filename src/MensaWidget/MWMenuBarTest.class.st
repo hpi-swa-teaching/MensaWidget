@@ -9,7 +9,7 @@ mensaWidget
 	- a Mensa widget instance on which the testing will be done
 	
 menuBar
-	- xxxxxxxxxxxxxxx
+	- is the menu bar that sits on top of the stored mensa widget
 
 "
 Class {
@@ -20,7 +20,7 @@ Class {
 		'menuBar'
 	],
 	#category : #'MensaWidget-Tests',
-	#'squeak_changestamp' : 'LC 7/12/2024 12:28'
+	#'squeak_changestamp' : 'LC 7/12/2024 14:07'
 }
 
 {

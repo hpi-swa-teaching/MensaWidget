@@ -2,13 +2,18 @@
 A MWFrame is the base block for the useer interface of the widget.
 
 Instance Variables
-	window:		<SystemWindow>
 	contentMorph:		<AlignmentMorph>
+	menuBar:		<AlignmentMorph>
+	scroller: 		<TransformMorph>
 			
 window
 	- The window in which the content morphs is opened
-contentMorph
-	- Morph that has all meals als submorphs
+	
+menuBar
+	- The menu bar morph allowing interactions for the user
+
+scroller
+	- scroller in the scroll pane containing the content
 "
 Class {
 	#name : #MWFrame,
@@ -19,7 +24,7 @@ Class {
 		'scroller'
 	],
 	#category : #MensaWidget,
-	#'squeak_changestamp' : 'Oscar 6/17/2024 00:04'
+	#'squeak_changestamp' : 'LC 7/12/2024 14:01'
 }
 
 {

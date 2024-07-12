@@ -29,7 +29,6 @@ notes
 prices
 	- prices for students, employees, pupils and others
 	
-
 starMorph
 	- morphic representation for the like button
 	
@@ -59,7 +58,7 @@ Class {
 		'PriceGroup'
 	],
 	#category : #MensaWidget,
-	#'squeak_changestamp' : 'LC 7/11/2024 21:26'
+	#'squeak_changestamp' : 'LC 7/12/2024 14:02'
 }
 
 {

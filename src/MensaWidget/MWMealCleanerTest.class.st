@@ -1,14 +1,12 @@
 "
 A MWMealCleanerTest is a test for the MWMealCleaner.
 
-Instance Variables
-
 "
 Class {
 	#name : #MWMealCleanerTest,
 	#superclass : #TestCase,
 	#category : #'MensaWidget-Tests',
-	#'squeak_changestamp' : 'Max 6/11/2024 18:06'
+	#'squeak_changestamp' : 'LC 7/12/2024 14:06'
 }
 
 {

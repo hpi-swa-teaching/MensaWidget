@@ -3,10 +3,11 @@ A MWMenuBar is a Menubar for navigation though the days and opening settings and
 
 Instance Variables
 	date:		<Date>
-	dateDisplay:		<Morph>
+	dateDisplay:		<StringMorph>
 	target:		<MWFrame>
 	time:		<String>
-	timeToggle:		<SugarRoundedField>
+	timeToggle:		<AlignmentMorph>
+	settings: 		<PopUpChoiceMorph>
 
 date
 	- a Date variable that stores the date for the meals that are shown
@@ -22,6 +23,9 @@ time
 
 timeToggle
 	- a variable that refers to the Morph that displays the Time and acts as a button to toggle it
+	
+settings
+	- PopUp Morph that allows the user to choose the price category
 
 "
 Class {
@@ -36,7 +40,7 @@ Class {
 		'settings'
 	],
 	#category : #MensaWidget,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 11:28'
+	#'squeak_changestamp' : 'LC 7/12/2024 14:04'
 }
 
 {

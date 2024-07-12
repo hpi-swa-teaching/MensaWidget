@@ -2,17 +2,20 @@
 A MWDataGettingWrapper is providing a functionality as a middleman to store all canteens that data will be pulled from and get all canteen objects returned.
 
 Class Variables: 
-    CanteenDict:       <Dictionary>
+    CanteenDict:	<Dictionary>
     InitialLatitude:   <String>
     InitialLongitude:  <String>
     InitialRadius:     <String>
 
 CanteenDict
     - A dictionary which maps canteen IDs to their 
+
 InitialLatitude
     - The last used latitude for the other cities 
+
 InitialLongitude
     - The last used longitude for the other cities 
+
 InitialRadius
     - The last used radius for the other cities feature
 
@@ -27,7 +30,7 @@ Class {
 		'InitialRadius'
 	],
 	#category : #MensaWidget,
-	#'squeak_changestamp' : 'Oscar 7/5/2024 12:47'
+	#'squeak_changestamp' : 'LC 7/12/2024 14:01'
 }
 
 {

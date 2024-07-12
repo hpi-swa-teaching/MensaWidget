@@ -1,13 +1,11 @@
 "
 A MWParser is a Parser for JSON data as Strings to a class instance with the same attributes.
-
-Instance Variables
 "
 Class {
 	#name : #MWParser,
 	#superclass : #Object,
 	#category : #MensaWidget,
-	#'squeak_changestamp' : 'Max 5/31/2024 21:55'
+	#'squeak_changestamp' : 'LC 7/12/2024 14:04'
 }
 
 {
