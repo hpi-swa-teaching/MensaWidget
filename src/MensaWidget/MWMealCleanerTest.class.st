@@ -64,7 +64,7 @@ MWMealCleanerTest >> brokenSaladBar [
 ]
 
 {
-	#category : #tests,
+	#category : #helper,
 	#'squeak_changestamp' : 'Max 7/10/2024 20:59'
 }
 MWMealCleanerTest >> check: aMealList [
@@ -79,7 +79,7 @@ MWMealCleanerTest >> check: aMealList [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'LC 7/12/2024 11:23'
+	#'squeak_changestamp' : 'LC 7/12/2024 12:20'
 }
 MWMealCleanerTest >> testClean [
 
@@ -90,8 +90,7 @@ MWMealCleanerTest >> testClean [
 		add: self brokenEveningMeal;
 		add: self brokenPriceMeal;
 		yourself.
-	mealList := MWMealCleaner clean: mealList.
-	self check: mealList
+	self check: (MWMealCleaner clean: mealList)
 ]
 
 {

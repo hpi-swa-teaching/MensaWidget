@@ -37,11 +37,11 @@ MWConfigurationTest >> getAllMeals [
 
 {
 	#category : #helpers,
-	#'squeak_changestamp' : 'LC 7/5/2024 00:47'
+	#'squeak_changestamp' : 'LC 7/12/2024 12:00'
 }
 MWConfigurationTest >> getPopUp [
 	
-	^ self mensaWidget menuBar submorphs last
+	^ self mensaWidget menuBar settings
 ]
 
 {
@@ -82,12 +82,12 @@ MWConfigurationTest >> oldPriceGroup: anObject [
 
 {
 	#category : #environment,
-	#'squeak_changestamp' : 'Max 7/8/2024 09:55'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:59'
 }
 MWConfigurationTest >> setUp [
 
-	self mensaWidget: MWFrame newForTests.
-	self oldPriceGroup: MWMeal priceGroup
+	self mensaWidget: MWFrame newForTests;
+		oldPriceGroup: MWMeal priceGroup
 ]
 
 {
@@ -131,25 +131,25 @@ MWConfigurationTest >> testChangingGroups [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'LC 7/8/2024 22:54'
+	#'squeak_changestamp' : 'LC 7/12/2024 12:04'
 }
 MWConfigurationTest >> testInitialSetUp [
 
 	self tearDown.
 	MWConfiguration isInitial: true.
 	self mensaWidget: MWFrame new;
-		assert: (self mensaWidget class = MWFrame) not.
+		deny: self mensaWidget class = MWFrame.
 	MWConfiguration isInitial: false
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Max 7/8/2024 09:56'
+	#'squeak_changestamp' : 'LC 7/12/2024 12:05'
 }
 MWConfigurationTest >> testInvalidSet [
 	
 	MWConfiguration setPriceGroup: 'noPriceGroup'.
-	self assert: (MWMeal priceGroup isNil or: MWMeal priceGroup = MWMeal defaultGroup)
+	self assert: MWMeal priceGroup = MWMeal defaultGroup
 ]
 
 {

@@ -9,14 +9,15 @@ Class {
 
 {
 	#category : #helpers,
-	#'squeak_changestamp' : 'LC 7/5/2024 11:13'
+	#'squeak_changestamp' : 'LC 7/12/2024 12:06'
 }
 MWDockingBarTest >> clickMensaSubmenu: anObject [
 
 	| menu submenu |
 	
 	self dockingbar allMorphsDo: [:each | 
-		(each name asString includesSubstring: 'MensaMenu') ifTrue: [menu := each]].
+		(each name asString includesSubstring: 'MensaMenu') 
+			ifTrue: [menu := each]].
 	menu subMenu submorphsDo: [:each | 
 		each contents = anObject ifTrue: [submenu := each]].
 	^ submenu target perform: submenu selector
@@ -42,11 +43,11 @@ MWDockingBarTest >> dockingbar: anObject [
 
 {
 	#category : #environment,
-	#'squeak_changestamp' : 'Louis Christ 6/10/2024 23:24'
+	#'squeak_changestamp' : 'LC 7/12/2024 12:06'
 }
 MWDockingBarTest >> setUp [
 
-	self dockingbar: (World mainDockingBars at: 1)
+	self dockingbar: World mainDockingBars first
 ]
 
 {
@@ -106,32 +107,30 @@ MWDockingBarTest >> testPreferenceExists [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'LC 7/5/2024 11:48'
+	#'squeak_changestamp' : 'LC 7/12/2024 12:11'
 }
 MWDockingBarTest >> testPreferenceOff [
 	
-	| any oldState |
+	| oldState |
 	
 	oldState := TheWorldMainDockingBar showMensaMenuInWorldMainDockingBar.
 	TheWorldMainDockingBar showMensaMenuInWorldMainDockingBar: false.
-	any := true.
-	self dockingbar allMorphsDo: [:each | (each name asString includesSubstring: 'MensaMenu') ifTrue: [any := false]].
-	self assert: any.
+	self dockingbar allMorphsDo: [:each | (each name asString includesSubstring: 'MensaMenu') 
+		ifTrue: [self fail]].
 	TheWorldMainDockingBar showMensaMenuInWorldMainDockingBar: oldState
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'LC 7/5/2024 11:48'
+	#'squeak_changestamp' : 'LC 7/12/2024 12:12'
 }
 MWDockingBarTest >> testPreferenceOn [
 
-	| any oldState |
+	| oldState |
 	
 	oldState := TheWorldMainDockingBar showMensaMenuInWorldMainDockingBar.
 	TheWorldMainDockingBar showMensaMenuInWorldMainDockingBar: true.
-	any := false.
-	self dockingbar allMorphsDo: [:each | (each name asString includesSubstring: 'MensaMenu') ifTrue: [any := true]].
-	self assert: any.
+	self dockingbar allMorphsDo: [:each | (each name asString includesSubstring: 'MensaMenu') 
+		ifTrue: [self fail]].
 	TheWorldMainDockingBar showMensaMenuInWorldMainDockingBar: oldState
 ]

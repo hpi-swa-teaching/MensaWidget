@@ -34,7 +34,7 @@ Class {
 }
 
 {
-	#category : #helper,
+	#category : #helpers,
 	#'squeak_changestamp' : 'LC 7/12/2024 11:18'
 }
 MWFrameTest >> getAllCurrencies [
@@ -46,7 +46,7 @@ MWFrameTest >> getAllCurrencies [
 ]
 
 {
-	#category : #helper,
+	#category : #helpers,
 	#'squeak_changestamp' : 'LC 7/12/2024 11:26'
 }
 MWFrameTest >> getCanteenCount [
@@ -57,7 +57,7 @@ MWFrameTest >> getCanteenCount [
 ]
 
 {
-	#category : #helper,
+	#category : #helpers,
 	#'squeak_changestamp' : 'LC 7/12/2024 11:19'
 }
 MWFrameTest >> getCurrency: aCanteen [
@@ -121,16 +121,17 @@ MWFrameTest >> initialRadius: anObject [
 ]
 
 {
-	#category : #helper,
-	#'squeak_changestamp' : 'LC 7/8/2024 22:27'
+	#category : #helpers,
+	#'squeak_changestamp' : 'LC 7/12/2024 12:16'
 }
 MWFrameTest >> register [
 
 	| wasRegistered | 
 	
 	wasRegistered := true.
-	[TheWorldMenu registry find: {'Mensa Widget'. {MWFrame. #new}}] on: Error do:
-		[wasRegistered := false].
+	[TheWorldMenu registry find: {'Mensa Widget'. {MWFrame. #new}}] 
+		on: Error 
+		do: [wasRegistered := false].
 	TheWorldMenu unregisterOpenCommand: 'Mensa Widget'.
 	MWFrame register.
 	^ wasRegistered

@@ -7,6 +7,9 @@ Instance Variables
 
 mensaWidget
 	- a Mensa widget instance on which the testing will be done
+	
+menuBar
+	- xxxxxxxxxxxxxxx
 
 "
 Class {
@@ -17,81 +20,69 @@ Class {
 		'menuBar'
 	],
 	#category : #'MensaWidget-Tests',
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 11:29'
+	#'squeak_changestamp' : 'LC 7/12/2024 12:28'
 }
 
 {
 	#category : #helpers,
-	#'squeak_changestamp' : 'LC 7/8/2024 22:33'
+	#'squeak_changestamp' : 'LC 7/12/2024 12:21'
 }
 MWMenuBarTest >> adjustForWeekend [
 
-	({#Saturday. #Sunday} includes: self menuBar date weekday) ifTrue:
-		[self menuBar decreaseDate;
+	({#Saturday. #Sunday} includes: self menuBar date weekday) 
+		ifTrue: [self menuBar decreaseDate;
 			decreaseDate].
 ]
 
 {
 	#category : #helpers,
-	#'squeak_changestamp' : 'LC 7/8/2024 22:31'
+	#'squeak_changestamp' : 'LC 7/12/2024 12:23'
 }
 MWMenuBarTest >> getAllCanteens [
 	
-	| canteens |
-	
-	canteens := OrderedCollection new.
-	self mensaWidget contentMorph allMorphsDo: [:each | 
-		each class = MWCanteen ifTrue: 
-			[canteens add: (self getCanteenName: each)]].
-	^ canteens
+	^ (self mensaWidget contentMorph allMorphs 
+		select: [:each | each class = MWCanteen]) 
+		collect: [:each | self getCanteenName: each]
 ]
 
 {
 	#category : #helpers,
-	#'squeak_changestamp' : 'LC 6/23/2024 18:44'
+	#'squeak_changestamp' : 'LC 7/12/2024 12:24'
 }
 MWMenuBarTest >> getAllCategories [
 	
-	| categories |
-	
-	categories := OrderedCollection new.
-	self mensaWidget contentMorph allMorphsDo: [:each | 
-		each class = MWMeal ifTrue: 
-			[categories add: each category]].
-	^ categories
+	^ (self mensaWidget contentMorph allMorphs 
+		select: [:each | each class = MWMeal]) 
+		collect: [:each | each category]
 ]
 
 {
 	#category : #helpers,
-	#'squeak_changestamp' : 'LC 7/8/2024 22:31'
+	#'squeak_changestamp' : 'LC 7/12/2024 12:24'
 }
 MWMenuBarTest >> getAllMeals [
 	
-	| meals |
-	
-	meals := OrderedCollection new.
-	self mensaWidget contentMorph allMorphsDo: [:each | 
-		each class = MWMeal ifTrue: 
-			[meals add: (self getMeal: each)]].
-	^ meals
+	^ (self mensaWidget contentMorph allMorphs 
+		select: [:each | each class = MWMeal]) 
+		collect: [:each | self getMeal: each]
 ]
 
 {
 	#category : #helpers,
-	#'squeak_changestamp' : 'LC 7/8/2024 22:30'
+	#'squeak_changestamp' : 'LC 7/12/2024 12:24'
 }
 MWMenuBarTest >> getCanteenName: aMorph [
 	
-	^ aMorph submorphs first submorphs second contents string
+	^ aMorph nameMorph contents
 ]
 
 {
 	#category : #helpers,
-	#'squeak_changestamp' : 'LC 7/8/2024 22:30'
+	#'squeak_changestamp' : 'LC 7/12/2024 12:24'
 }
 MWMenuBarTest >> getMeal: aMorph [
 	
-	^ (aMorph submorphs at: 1) contents string
+	^ aMorph nameMorph contents string
 ]
 
 {
@@ -168,7 +159,7 @@ MWMenuBarTest >> testCanteensChange [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'LC 7/11/2024 18:52'
+	#'squeak_changestamp' : 'LC 7/12/2024 12:25'
 }
 MWMenuBarTest >> testLunchMealCategory [
 
@@ -177,15 +168,15 @@ MWMenuBarTest >> testLunchMealCategory [
 	oldTime := self menuBar time.
 	self getAllCategories do: [:each | self assert: (each = oldTime or: [each isNil])].
 	self menuBar toggleTime.
-	self assert: (oldTime = self menuBar time) not.
-	self getAllCategories do: [:each | self assert: (each = oldTime) not].
+	self deny: oldTime = self menuBar time.
+	self getAllCategories do: [:each | self deny: each = oldTime].
 	self menuBar toggleTime.
 	self assert: oldTime = self menuBar time
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'LC 7/8/2024 22:33'
+	#'squeak_changestamp' : 'LC 7/12/2024 12:25'
 }
 MWMenuBarTest >> testMealsChange [
 
@@ -194,7 +185,7 @@ MWMenuBarTest >> testMealsChange [
 	self adjustForWeekend.
 	oldMeals := self getAllMeals.
 	self menuBar increaseDate.
-	self assert: (oldMeals = self getAllMeals) not.
+	self deny: oldMeals = self getAllMeals.
 	self menuBar decreaseDate.
 	self assert: oldMeals = self getAllMeals
 ]

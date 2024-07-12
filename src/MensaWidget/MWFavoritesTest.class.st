@@ -20,17 +20,12 @@ Class {
 
 {
 	#category : #helpers,
-	#'squeak_changestamp' : 'LC 6/26/2024 15:57'
+	#'squeak_changestamp' : 'LC 7/12/2024 12:13'
 }
 MWFavoritesTest >> getAllMeals [
 	
-	| meals |
-	
-	meals := OrderedCollection new.
-	self mensaWidget contentMorph allMorphsDo: [:each | 
-		each class = MWMeal ifTrue: 
-			[meals add: each]].
-	^ meals
+	^ self mensaWidget contentMorph allMorphs 
+		select: [:each | each class = MWMeal]
 ]
 
 {
@@ -143,7 +138,7 @@ MWFavoritesTest >> testFavouritesSetExists [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'LC 7/12/2024 11:14'
+	#'squeak_changestamp' : 'LC 7/12/2024 12:15'
 }
 MWFavoritesTest >> testMealIsLikable [
 
@@ -151,13 +146,12 @@ MWFavoritesTest >> testMealIsLikable [
 		(MWFavorites favouriteMeals includes: (self getNameFor: each))
 			ifFalse: [self simulateButtonClick: (self getStarFor: each). 
 				self assert: (MWFavorites favouriteMeals includes: (self getNameFor: each));
-					deny: (self getStarColorFor: each) = Color transparent.
-				^ nil]]
+					deny: (self getStarColorFor: each) = Color transparent]]
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'LC 7/12/2024 11:14'
+	#'squeak_changestamp' : 'LC 7/12/2024 12:15'
 }
 MWFavoritesTest >> testMealIsUnlikable [
 
@@ -165,6 +159,5 @@ MWFavoritesTest >> testMealIsUnlikable [
 		(MWFavorites favouriteMeals includes: (self getNameFor: each))
 			ifTrue: [self simulateButtonClick: (self getStarFor: each). 
 				self deny: (MWFavorites favouriteMeals includes: (self getNameFor: each));
-					assert: (self getStarColorFor: each) = Color transparent.
-				^ nil]]
+					assert: (self getStarColorFor: each) = Color transparent]]
 ]

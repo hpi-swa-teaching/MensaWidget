@@ -40,11 +40,11 @@ MWParserTest >> singleData [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Max 7/10/2024 21:32'
+	#'squeak_changestamp' : 'LC 7/12/2024 12:26'
 }
 MWParserTest >> testMWParserSetOnFromInvalidData [
 
-	| data  mockInstance |
+	| data mockInstance |
 	
 	data := Json readFromString: self invalidData.
 	mockInstance := MWParserTestMockObject new.
@@ -56,11 +56,11 @@ MWParserTest >> testMWParserSetOnFromInvalidData [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Max 7/10/2024 21:32'
+	#'squeak_changestamp' : 'LC 7/12/2024 12:26'
 }
 MWParserTest >> testMWParserSetOnFromValidData [
 
-	| data  mockInstance |
+	| data mockInstance |
 	
 	data := Json readFromString: self validData.
 	mockInstance := MWParserTestMockObject new.
@@ -72,11 +72,11 @@ MWParserTest >> testMWParserSetOnFromValidData [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Max 7/10/2024 21:33'
+	#'squeak_changestamp' : 'LC 7/12/2024 12:26'
 }
 MWParserTest >> testMWParserSetOnFromValidExtensiveData [
 
-	| data  mockInstance |
+	| data mockInstance |
 	
 	data := Json readFromString: self validExtensiveData.
 	mockInstance := MWParserTestMockObject new.
@@ -88,7 +88,7 @@ MWParserTest >> testMWParserSetOnFromValidExtensiveData [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Max 7/10/2024 21:33'
+	#'squeak_changestamp' : 'LC 7/12/2024 12:27'
 }
 MWParserTest >> testMWParserWithMultipleJSONObjects [
 
@@ -97,8 +97,8 @@ MWParserTest >> testMWParserWithMultipleJSONObjects [
 	instanceList := MWParser put: self multipleData in: MWParserTestMockObject.
 	self assert: instanceList first id = 19500904;
 		assert: instanceList first name = 'testName';
-		assert: (instanceList at: 2) id = 25;
-		assert: (instanceList at: 2) name = 'anotherName'
+		assert: instanceList second id = 25;
+		assert: instanceList second name = 'anotherName'
 ]
 
 {
