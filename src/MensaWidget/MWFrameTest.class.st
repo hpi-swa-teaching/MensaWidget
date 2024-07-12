@@ -4,7 +4,6 @@ A MWFrameTest is a test case for the MWFrame.
 Instance Variables:
     widgetFrame:        <SystemWindow>
     widget:             <MWFrame>
-    isRegistered:       <Boolean>
     initialLatitude:    <String>
     initialLongitude:   <String>
     initialRadius:      <String>
@@ -13,8 +12,6 @@ widgetFrame
     - The system window in which the widget gets opened.
 widget
     - An instance of the MWFrame on which the tests will be conducted.
-isRegistered
-    - A boolean which stores if the widget is registered in the app's menu.
 initialLatitude
     - Saves the initial latitude so it can be restored after the tests are done.
 initialLongitude
@@ -28,18 +25,17 @@ Class {
 	#instVars : [
 		'widgetFrame',
 		'widget',
-		'isRegistered',
 		'initialLatitude',
 		'initialLongitude',
 		'initialRadius'
 	],
 	#category : #'MensaWidget-Tests',
-	#'squeak_changestamp' : 'Oscar 7/5/2024 13:18'
+	#'squeak_changestamp' : 'LC 7/8/2024 22:29'
 }
 
 {
 	#category : #helper,
-	#'squeak_changestamp' : 'LC 7/6/2024 15:53'
+	#'squeak_changestamp' : 'LC 7/8/2024 22:04'
 }
 MWFrameTest >> getAllCurrencies [
 
@@ -48,8 +44,28 @@ MWFrameTest >> getAllCurrencies [
 	currencies := OrderedCollection new.
 	self widgetFrame allMorphsDo: [:each | 
 		(each class = MWCanteen) ifTrue: 
-			[currencies add: each submorphs first submorphs last contents]].
+			[currencies add: (self getCurrency: each)]].
 	^ currencies
+	
+]
+
+{
+	#category : #helper,
+	#'squeak_changestamp' : 'LC 7/8/2024 22:22'
+}
+MWFrameTest >> getCanteenAmount: aCanteen [
+
+	^ aCanteen submorphs first submorphs last contents
+	
+]
+
+{
+	#category : #helper,
+	#'squeak_changestamp' : 'LC 7/8/2024 22:04'
+}
+MWFrameTest >> getCurrency: aCanteen [
+
+	^ aCanteen submorphs first submorphs last contents
 	
 ]
 
@@ -108,21 +124,19 @@ MWFrameTest >> initialRadius: anObject [
 ]
 
 {
-	#category : #accessing,
-	#'squeak_changestamp' : 'LC 6/23/2024 18:35'
+	#category : #helper,
+	#'squeak_changestamp' : 'LC 7/8/2024 22:27'
 }
-MWFrameTest >> isRegistered [
+MWFrameTest >> register [
 
-	^ isRegistered
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'LC 6/23/2024 18:35'
-}
-MWFrameTest >> isRegistered: anObject [
-
-	isRegistered := anObject
+	| wasRegistered | 
+	
+	wasRegistered := true.
+	[TheWorldMenu registry find: {'Mensa Widget'. {MWFrame. #new}}] on: Error do:
+		[wasRegistered := false].
+	TheWorldMenu unregisterOpenCommand: 'Mensa Widget'.
+	MWFrame register.
+	^ wasRegistered
 ]
 
 {
@@ -138,15 +152,10 @@ MWFrameTest >> saveUserLatLongRad [
 
 {
 	#category : #environment,
-	#'squeak_changestamp' : 'LC 7/8/2024 00:21'
+	#'squeak_changestamp' : 'LC 7/8/2024 22:24'
 }
 MWFrameTest >> setUp [
 	
-	self isRegistered: true.
-	[TheWorldMenu registry find: {'Mensa Widget'. {MWFrame. #new}}] on: Error do:
-		[self isRegistered: false].
-	TheWorldMenu unregisterOpenCommand: 'Mensa Widget'.
-	MWFrame register.
 	self saveUserLatLongRad.
 	MWDataGettingWrapper switchToDefaultLocation.
 	self widget: MWFrame newForTests;
@@ -155,16 +164,15 @@ MWFrameTest >> setUp [
 
 {
 	#category : #environment,
-	#'squeak_changestamp' : 'Oscar 7/5/2024 13:20'
+	#'squeak_changestamp' : 'LC 7/8/2024 22:26'
 }
 MWFrameTest >> tearDown [
 	
 	self widget: nil.
 	self widgetFrame abandon.
-	self isRegistered ifFalse: [TheWorldMenu unregisterOpenCommand: 'Mensa Widget'].
-	MWDataGettingWrapper initialLatitude: initialLatitude;
-		initialLongitude: initialLongitude;
-		initialRadius: initialRadius
+	MWDataGettingWrapper initialLatitude: self initialLatitude;
+		initialLongitude: self initialLongitude;
+		initialRadius: self initialRadius
 ]
 
 {
@@ -237,16 +245,19 @@ MWFrameTest >> testOpened [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Max 6/17/2024 21:07'
+	#'squeak_changestamp' : 'LC 7/8/2024 22:28'
 }
 MWFrameTest >> testRegister [
 	
-	| occurrence |
+	| occurrence wasRegistered |
 	
+	wasRegistered := self register.
 	occurrence := true.
-	[TheWorldMenu registry find: {'Mensa Widget'. {MWFrame. #new}}] on: Error do:
-		[occurrence := false].
-	self assert: occurrence
+	[TheWorldMenu registry find: {'Mensa Widget'. {MWFrame. #new}}] 
+		on: Error
+		do: [occurrence := false].
+	self assert: occurrence.
+	wasRegistered ifFalse: [TheWorldMenu unregisterOpenCommand: 'Mensa Widget']
 
  
 
