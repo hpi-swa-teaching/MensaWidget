@@ -138,14 +138,14 @@ MWFrame >> addContentMorph [
 
 {
 	#category : #dayManipulation,
-	#'squeak_changestamp' : 'Max 7/5/2024 09:43'
+	#'squeak_changestamp' : 'Oscar 7/12/2024 10:03'
 }
 MWFrame >> addMealsOn: aDate forTime: aTime [
 
 	| morph |
 	
 	(MWDataGettingWrapper getMealsOnDate: aDate yyyymmdd) do: 
-		[:each | morph := each buildForTime: aTime.
+		[:each | morph := each addMealsForTime: aTime.
 		self contentMorph addMorph: morph.
 		morph vResizing: #shrinkWrap]
 

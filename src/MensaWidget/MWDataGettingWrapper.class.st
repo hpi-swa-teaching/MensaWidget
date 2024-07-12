@@ -26,9 +26,6 @@ Class {
 		'InitialLongitude',
 		'InitialRadius'
 	],
-	#classInstVars : [
-		'canteenDict'
-	],
 	#category : #MensaWidget,
 	#'squeak_changestamp' : 'Oscar 7/5/2024 12:47'
 }
@@ -53,19 +50,23 @@ MWDataGettingWrapper class >> canteenDict: anObject [
 
 {
 	#category : #dataPulling,
-	#'squeak_changestamp' : 'Max 7/5/2024 09:37'
+	#'squeak_changestamp' : 'Oscar 7/11/2024 18:03'
 }
 MWDataGettingWrapper class >> getMealsOnDate: aDate [
 
 	| canteens canteenDict json |
 	
 	canteens := OrderedCollection new.
-	self canteenDict isEmpty ifTrue: [^ canteens add: MWCanteen emptyCanteen;
-		yourself].
+	self canteenDict isEmpty 
+		ifTrue: [^ canteens add: MWCanteen emptyCanteen; yourself].
 	canteenDict := self canteenDict.
-	canteenDict keys do: [:id |
+	canteens := canteenDict keys collect: [:id |
 		json := MWApiWrapper getMealsFrom: id on: aDate using: WebClient.
-		canteens add: (MWCanteen newWithId: id  Name: (canteenDict at: id) Date: aDate Meals: (MWMealCleaner clean: (MWParser put: json in: MWMeal)))].
+		canteens add: (MWCanteen 
+			newWithId: id  
+			Name: (canteenDict at: id) 
+			Date: aDate 
+			Meals: (MWMealCleaner clean: (MWParser put: json in: MWMeal)))].
 	^ canteens
 ]
 
@@ -83,12 +84,39 @@ MWDataGettingWrapper class >> getTodaysMeals [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Max 7/5/2024 14:26'
+	#'squeak_changestamp' : 'Oscar 7/11/2024 12:53'
+}
+MWDataGettingWrapper class >> hpiLatitude [
+	
+	^ '52.393822'
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Oscar 7/11/2024 12:54'
+}
+MWDataGettingWrapper class >> hpiLongitude [
+
+	^ '13.129558'
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Oscar 7/11/2024 12:53'
+}
+MWDataGettingWrapper class >> hpiRadius [
+
+	^ '1.3'
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Oscar 7/11/2024 14:37'
 }
 MWDataGettingWrapper class >> initialLatitude [
 
 	^ InitialLatitude isEmptyOrNil 
-		ifTrue: [InitialLatitude := '52.393822']
+		ifTrue: [InitialLatitude := self hpiLatitude]
 		ifFalse: [InitialLatitude]
 ]
 
@@ -103,12 +131,12 @@ MWDataGettingWrapper class >> initialLatitude: anObject [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Max 7/5/2024 14:26'
+	#'squeak_changestamp' : 'Oscar 7/11/2024 12:54'
 }
 MWDataGettingWrapper class >> initialLongitude [
 
 	^ InitialLongitude isEmptyOrNil 
-		ifTrue: [InitialLongitude := '13.129558']
+		ifTrue: [InitialLongitude := self hpiLongitude]
 		ifFalse: [InitialLongitude]
 ]
 
@@ -123,12 +151,12 @@ MWDataGettingWrapper class >> initialLongitude: anObject [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Max 7/5/2024 14:25'
+	#'squeak_changestamp' : 'Oscar 7/11/2024 12:53'
 }
 MWDataGettingWrapper class >> initialRadius [
 
 	^ InitialRadius isEmptyOrNil 
-		ifTrue: [InitialRadius := '5']
+		ifTrue: [InitialRadius := self hpiRadius]
 		ifFalse: [InitialRadius]
 ]
 
@@ -161,36 +189,56 @@ MWDataGettingWrapper class >> longitudeMessage [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Max 7/5/2024 13:55'
+	#'squeak_changestamp' : 'Oscar 7/11/2024 12:37'
 }
 MWDataGettingWrapper class >> radiusMessage [
 
-	^ 'Please enter your radius.'
+	^ 'Please enter your radius (in Km)'
 ]
 
 {
 	#category : #dataPulling,
-	#'squeak_changestamp' : 'Max 7/10/2024 20:28'
+	#'squeak_changestamp' : 'Oscar 7/11/2024 18:04'
+}
+MWDataGettingWrapper class >> requestUserInput [
+
+	self initialLatitude: (FillInTheBlankMorph 
+			request: self latitudeMessage 
+			initialAnswer: self initialLatitude);
+		initialLongitude: (FillInTheBlankMorph 
+			request: self longitudeMessage 
+			initialAnswer: self initialLongitude);
+		initialRadius: (FillInTheBlankMorph 
+			request: self radiusMessage 
+			initialAnswer: self initialRadius)
+]
+
+{
+	#category : #dataPulling,
+	#'squeak_changestamp' : 'Oscar 7/11/2024 17:56'
 }
 MWDataGettingWrapper class >> switchLocation [
 	
 	| outletDict |
 	
-	self initialLatitude: (FillInTheBlankMorph request: self latitudeMessage initialAnswer: self initialLatitude);
-		initialLongitude: (FillInTheBlankMorph request: self longitudeMessage initialAnswer: self initialLongitude);
-		initialRadius: (FillInTheBlankMorph request: self radiusMessage initialAnswer: self initialRadius).
-	outletDict := MWApiWrapper getOutletDictFrom: self initialLatitude and: self initialLongitude andRadius: self initialRadius.
-	self canteenDict: (MWParser transformToDict: outletDict)
+	self requestUserInput.
+	outletDict := MWApiWrapper 
+		getOutletDictFrom: self initialLatitude 
+		and: self initialLongitude 
+		andRadius: self initialRadius.
+	self canteenDict: (MWParser transformJsonToDict: outletDict)
 ]
 
 {
 	#category : #dataPulling,
-	#'squeak_changestamp' : 'Max 7/10/2024 20:28'
+	#'squeak_changestamp' : 'Oscar 7/11/2024 18:04'
 }
 MWDataGettingWrapper class >> switchToDefaultLocation [
 	
 	| outletDict |
 	
-	outletDict := MWApiWrapper getOutletDictFrom: 52.393822 and: 13.129558 andRadius: 5.
-	self canteenDict: (MWParser transformToDict: outletDict)
+	outletDict := MWApiWrapper getOutletDictFrom: self hpiLatitude 
+		and: self hpiLongitude 
+		andRadius: self hpiRadius.
+	self canteenDict: (MWParser transformJsonToDict: outletDict)
 ]
