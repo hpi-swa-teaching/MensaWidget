@@ -13,16 +13,12 @@ Class {
 
 {
 	#category : #cleaning,
-	#'squeak_changestamp' : 'Max 7/10/2024 20:14'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:34'
 }
 MWMealCleaner class >> clean: aMealList [
 	
-	| newMealList |
-	
-	newMealList := OrderedCollection new.
-	aMealList isEmpty ifTrue: [newMealList add: MWMeal emptyMeal].
-	aMealList do: [:each | newMealList add: (self fixMeal: each)].
-	^ newMealList
+	aMealList isEmpty ifTrue: [MWMeal emptyMeal asOrderedCollection].
+	^ aMealList collect: [:each | self fixMeal: each]
 		
 ]
 
@@ -37,7 +33,7 @@ MWMealCleaner class >> dinnerCategory [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Max 6/12/2024 13:42'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:42'
 }
 MWMealCleaner class >> emptyPrice [
 
@@ -88,7 +84,7 @@ MWMealCleaner class >> fixMeal: aMeal [
 
 {
 	#category : #cleaning,
-	#'squeak_changestamp' : 'Max 7/10/2024 20:06'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:41'
 }
 MWMealCleaner class >> fixPrices: aMeal [
 	

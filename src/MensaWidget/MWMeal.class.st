@@ -64,11 +64,12 @@ Class {
 
 {
 	#category : #meals,
-	#'squeak_changestamp' : 'NK 7/9/2024 11:50'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:29'
 }
 MWMeal class >> contentlessMeal [
 
-	^ self newRow id: nil;
+	^ self newRow 
+		id: nil;
 		name: '';
 		category: nil;
 		notes: nil;
@@ -87,11 +88,12 @@ MWMeal class >> defaultGroup [
 
 {
 	#category : #meals,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:49'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:29'
 }
 MWMeal class >> emptyMeal [
 
-	^ self newRow id: nil;
+	^ self newRow 
+		id: nil;
 		name: 'Hier gibt es nichts zu sehen.' translated;
 		category: nil;
 		notes: nil;
@@ -100,23 +102,13 @@ MWMeal class >> emptyMeal [
 ]
 
 {
-	#category : #constants,
-	#'squeak_changestamp' : 'LC 6/23/2024 19:02'
-}
-MWMeal class >> getStarVertices [
-	
-	^ RealEstateAgent scaleFactor * 
-		{6 @ 0. 7 @ 5. 12 @ 5. 8 @ 8. 10 @ 12. 6 @ 10. 2 @ 12. 3 @ 8. 0 @ 5. 5 @ 5}
-
-]
-
-{
 	#category : #meals,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:07'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:29'
 }
 MWMeal class >> hotCounterMeal [
 
-	^ MWMeal newRow id: nil;
+	^ MWMeal newRow 
+		id: nil;
 		name: 'Heiße Theke 100 g' translated;
 		category: MWMealCleaner lunchCategory;
 		notes: nil;
@@ -145,11 +137,12 @@ MWMeal class >> priceGroup: anObject [
 
 {
 	#category : #meals,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:07'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:29'
 }
 MWMeal class >> saladBarMeal [
 
-	^ MWMeal newRow id: nil;
+	^ MWMeal newRow 
+		id: nil;
 		name: 'Salatbar 100 g' translated;
 		category: MWMealCleaner lunchCategory;
 		notes: nil;
@@ -175,15 +168,6 @@ MWMeal class >> starBoarderWidth [
 ]
 
 {
-	#category : #constants,
-	#'squeak_changestamp' : 'LC 7/12/2024 11:28'
-}
-MWMeal class >> starInset [
-
-	^ 3 px
-]
-
-{
 	#category : #updating,
 	#'squeak_changestamp' : 'LC 7/3/2024 00:05'
 }
@@ -194,13 +178,14 @@ MWMeal class >> updatePrice [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'NK 7/9/2024 11:47'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:27'
 }
 MWMeal >> addNameMorph [
 
-	self nameMorph: (TextMorph new contents: self name;
-		hResizing: #spaceFill;
-		lock);
+	self nameMorph: (TextMorph new 
+			contents: self name;
+			hResizing: #spaceFill;
+			lock);
 		addMorph: self nameMorph
 ]
 
@@ -278,14 +263,14 @@ MWMeal >> category: anObject [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'LC 7/12/2024 11:39'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:28'
 }
 MWMeal >> getPrice [
 
 	| priceStream |
 	
 	priceStream := WriteStream on: String new.
-    	(self prices at: (self class priceGroup)) 
+    	(self prices at: self class priceGroup) 
 		ifNil: [''] 
 		ifNotNil: [:price | price printOn: priceStream showingDecimalPlaces: 2].
 	^ priceStream contents

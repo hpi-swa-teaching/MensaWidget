@@ -25,31 +25,27 @@ MWParser class >> put: aDataset in: aClass [
 
 {
 	#category : #parsing,
-	#'squeak_changestamp' : 'Max 7/10/2024 20:21'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:49'
 }
 MWParser class >> putJSON: aDataset in: aClass [
 
-	| instanceList instance |
+	| instance |
 	
-	instanceList := OrderedCollection new.
-	aDataset collect: [:each | 
+	^ aDataset collect: [:each | 
 		instance := aClass new.
-		aClass instVarNames collect: [:varName |
+		aClass instVarNames do: [:varName |
 			self set: varName on: instance from: each].
-		instanceList add: instance].
-	 ^ instanceList
+		instance]
 ]
 
 {
 	#category : #parsing,
-	#'squeak_changestamp' : 'Max 7/10/2024 20:22'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:51'
 }
 MWParser class >> set: instanceVariable on: anInstance from: aDataset [
 
-	| value |
-	
-	value := aDataset at: instanceVariable.
-	 ^ anInstance instVarNamed: instanceVariable put: value
+	 anInstance instVarNamed: instanceVariable 
+		put: (aDataset at: instanceVariable)
 ]
 
 {

@@ -45,7 +45,7 @@ Class {
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'LC 7/12/2024 11:29'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:14'
 }
 MWCanteen class >> cellGap [
 
@@ -53,7 +53,7 @@ MWCanteen class >> cellGap [
 ]
 
 {
-	#category : #'constructor ',
+	#category : #constants,
 	#'squeak_changestamp' : 'Louis Christ 6/18/2024 12:00'
 }
 MWCanteen class >> currency [ 
@@ -73,14 +73,15 @@ MWCanteen class >> emptyCanteen [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'LC 7/12/2024 11:30'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:06'
 }
 MWCanteen class >> layoutProperties [
 
-	^ TableLayoutProperties new hResizing: #spaceFill; 
+	^ TableLayoutProperties new 
+		hResizing: #spaceFill; 
 		vResizing: #shrinkWrap; 
 		cellGap: self cellGap; 
-		layoutInset: 2; 
+		layoutInset: 2 px; 
 		rubberBandCells: true
 ]
 
@@ -184,11 +185,12 @@ MWCanteen >> date: anObject [
 
 {
 	#category : #updating,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:27'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:07'
 }
 MWCanteen >> deleteMeals [
 
-	self submorphs from: 2 to: self submorphs size do: [:each | each abandon]
+	self submorphs from: 2 to: self submorphs size 
+		do: [:each | each abandon]
 ]
 
 {

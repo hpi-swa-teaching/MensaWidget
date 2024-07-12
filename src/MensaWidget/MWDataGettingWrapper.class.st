@@ -50,24 +50,22 @@ MWDataGettingWrapper class >> canteenDict: anObject [
 
 {
 	#category : #dataPulling,
-	#'squeak_changestamp' : 'Oscar 7/11/2024 18:03'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:13'
 }
 MWDataGettingWrapper class >> getMealsOnDate: aDate [
 
-	| canteens canteenDict json |
+	| json |
 	
-	canteens := OrderedCollection new.
 	self canteenDict isEmpty 
-		ifTrue: [^ canteens add: MWCanteen emptyCanteen; yourself].
-	canteenDict := self canteenDict.
-	canteens := canteenDict keys collect: [:id |
+		ifTrue: [^ MWCanteen emptyCanteen asOrderedCollection].
+	^ (self canteenDict keys collect: [:id |
 		json := MWApiWrapper getMealsFrom: id on: aDate using: WebClient.
-		canteens add: (MWCanteen 
+		MWCanteen 
 			newWithId: id  
-			Name: (canteenDict at: id) 
+			Name: (self canteenDict at: id) 
 			Date: aDate 
-			Meals: (MWMealCleaner clean: (MWParser put: json in: MWMeal)))].
-	^ canteens
+			Meals: (MWMealCleaner clean: (MWParser put: json in: MWMeal))]) 
+		asOrderedCollection
 ]
 
 {
@@ -231,13 +229,14 @@ MWDataGettingWrapper class >> switchLocation [
 
 {
 	#category : #dataPulling,
-	#'squeak_changestamp' : 'Oscar 7/12/2024 10:36'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:15'
 }
 MWDataGettingWrapper class >> switchToDefaultLocation [
 	
 	| outletDict |
 	
-	outletDict := MWApiWrapper getOutletDictFrom: self hpiLatitude 
+	outletDict := MWApiWrapper 
+		getOutletDictFrom: self hpiLatitude 
 		and: self hpiLongitude 
 		andRadius: self hpiRadius.
 	self canteenDict: (MWParser transformToDict: outletDict)

@@ -24,20 +24,20 @@ Class {
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'LC 7/12/2024 11:27'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:18'
 }
 MWFrame class >> cellSpacing [
 
-	^ 10 px
+	^ 5 px
 ]
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'LC 7/12/2024 11:27'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:19'
 }
 MWFrame class >> contentExtent [
 
-	^ 350 px@ 550 px
+	^ 350 px @ 550 px
 ]
 
 {
@@ -94,6 +94,15 @@ MWFrame class >> scrollBarThickness [
 ]
 
 {
+	#category : #constants,
+	#'squeak_changestamp' : 'LC 7/12/2024 13:25'
+}
+MWFrame class >> settingsName [
+
+	^ 'Mensa Settings'
+]
+
+{
 	#category : #updating,
 	#'squeak_changestamp' : 'LC 7/5/2024 11:41'
 }
@@ -124,28 +133,27 @@ MWFrame >> abandonContent [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'LC 7/8/2024 21:56'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:19'
 }
 MWFrame >> addContentMorph [
 
 	self contentMorph: (AlignmentMorph newColumn 
 		cellInset: self class cellSpacing;
 		extent: self class contentExtent;
-		vResizing: #shrinkWrap;
-		yourself).
+		vResizing: #shrinkWrap).
 	self scroller addMorph: self contentMorph
 ]
 
 {
 	#category : #dayManipulation,
-	#'squeak_changestamp' : 'LC 7/12/2024 10:19'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:25'
 }
 MWFrame >> addMeals [
 
 	| morph |
 	
-	(MWDataGettingWrapper getMealsOnDate: self getDate) do: 
-		[:each | morph := each addMealsForTime: self getTime.
+	(MWDataGettingWrapper getMealsOnDate: self getDate) do: [:each | 
+		morph := each addMealsForTime: self getTime.
 		self contentMorph addMorph: morph.
 		morph vResizing: #shrinkWrap]
 
@@ -164,19 +172,18 @@ MWFrame >> addMenuBar [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'LC 7/2/2024 10:27'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:36'
 }
 MWFrame >> addScrollPane [
 
-	self scroller: 
-		(ScrollPane new 
+	self scroller: ((ScrollPane new 
 			scrollBarThickness: self class scrollBarThickness;
 			color: MWConfiguration defaultColor;
 			hResizing: #spaceFill;
 			vResizing: #spaceFill;
-			scroller);
+			scroller)
+			layoutPolicy: TableLayout new);
 		addMorph: self scroller owner.
-	self scroller layoutPolicy: TableLayout new.
 	self scroller owner submorphs last color: MWConfiguration backgroundColor
 ]
 
@@ -233,13 +240,13 @@ MWFrame >> getTime [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'LC 7/8/2024 22:51'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:22'
 }
 MWFrame >> initialize [
 	
 	MWConfiguration isInitial
 		ifTrue: [^ self setUpScreen]
-		ifFalse: [self initializeFrame]
+		ifFalse: [^ self initializeFrame]
 	
 ]
 
@@ -295,15 +302,15 @@ MWFrame >> scroller: anObject [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'LC 7/8/2024 22:57'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:24'
 }
 MWFrame >> setUpScreen [
 	
 	| popUp |
 	
 	popUp := MWConfiguration getPopUp.
-	(popUp openInWindowLabeled: 'Mensa Settings') 
-		width: 350;
+	(popUp openInWindowLabeled: self class settingsName) 
+		width: self class contentExtent width;
 		color: MWConfiguration defaultColor.
 	^ popUp
 	
@@ -311,7 +318,7 @@ MWFrame >> setUpScreen [
 
 {
 	#category : #updating,
-	#'squeak_changestamp' : 'LC 7/8/2024 20:50'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:26'
 }
 MWFrame >> updateCategory [
 
@@ -330,11 +337,12 @@ MWFrame >> updateDate [
 
 {
 	#category : #dayManipulation,
-	#'squeak_changestamp' : 'LC 7/8/2024 20:51'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:26'
 }
 MWFrame >> updateTime [
 	
-	self contentMorph submorphs do: [:each | each updateForTime: self getTime]
+	self contentMorph submorphs do: [:each |
+		each updateForTime: self getTime]
 
 	
 ]
