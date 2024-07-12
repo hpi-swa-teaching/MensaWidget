@@ -12,47 +12,71 @@ Class {
 
 {
 	#category : #parsing,
-	#'squeak_changestamp' : 'NK 6/18/2024 21:35'
+	#'squeak_changestamp' : 'Max 7/10/2024 20:21'
 }
 MWParser class >> put: aDataset in: aClass [
 
-	| someDataJson classInstanceList classInstance |
+	| datasetJson |
 	
-	aDataset = '' ifTrue: [^ #()].
-	someDataJson := Json readFromString: aDataset.
-	classInstanceList := OrderedCollection new.
-	someDataJson collect: [:each | 
-		classInstance := aClass new.
-		aClass instVarNames collect: [:varName |
-			self set: varName on: classInstance from: each].
-		classInstanceList add: classInstance].
-	 ^ classInstanceList
+	aDataset isEmpty ifTrue: [^ #()].
+	datasetJson := Json readFromString: aDataset.
+	^ self putJSON: datasetJson in: aClass
 ]
 
 {
 	#category : #parsing,
-	#'squeak_changestamp' : 'Max 5/29/2024 17:18'
+	#'squeak_changestamp' : 'Max 7/10/2024 20:21'
 }
-MWParser class >> set: someInstanceVariable on: aClassInstance from: aDataset [
+MWParser class >> putJSON: aDataset in: aClass [
+
+	| instanceList instance |
+	
+	instanceList := OrderedCollection new.
+	aDataset collect: [:each | 
+		instance := aClass new.
+		aClass instVarNames collect: [:varName |
+			self set: varName on: instance from: each].
+		instanceList add: instance].
+	 ^ instanceList
+]
+
+{
+	#category : #parsing,
+	#'squeak_changestamp' : 'Max 7/10/2024 20:22'
+}
+MWParser class >> set: instanceVariable on: anInstance from: aDataset [
 
 	| value |
 	
-	value := aDataset at: someInstanceVariable.
-	 ^ aClassInstance instVarNamed: someInstanceVariable put: value
+	value := aDataset at: instanceVariable.
+	 ^ anInstance instVarNamed: instanceVariable put: value
 ]
 
 {
 	#category : #parsing,
-	#'squeak_changestamp' : 'Oscar 6/30/2024 18:07'
+	#'squeak_changestamp' : 'Max 7/10/2024 20:29'
 }
-MWParser class >> transformJsonToDict: aJson [
+MWParser class >> transformJsonToDict: aDataset [
 
-	| someDataJson dict |
+	| dict |
 	
-	aJson = '' ifTrue: [^ #()]. 
-	someDataJson := Json readFromString: aJson.  
 	dict := Dictionary new.  
-	someDataJson do: [:each | 
+	aDataset do: [:each | 
 		dict at: (each at: 'id') put: (each at: 'name')].  
 	^ dict  
+]
+
+{
+	#category : #parsing,
+	#'squeak_changestamp' : 'Max 7/10/2024 20:26'
+}
+MWParser class >> transformToDict: aDataset [
+
+	| datasetJson |
+
+	aDataset isEmpty ifTrue: [^ #()].
+	datasetJson := Json readFromString: aDataset.
+	^ self transformJsonToDict: datasetJson
+	
+	
 ]

@@ -25,6 +25,18 @@ Class {
 
 {
 	#category : #helpers,
+	#'squeak_changestamp' : 'Oscar 7/12/2024 10:54'
+}
+MWConfigurationTest >> getAllMeals [
+	
+	^ (self mensaWidget allMorphs 
+		collect: [:each | each class = MWMeal 
+			ifTrue: [each]]) 
+		select: [:each | each notNil]
+]
+
+{
+	#category : #helpers,
 	#'squeak_changestamp' : 'LC 7/5/2024 00:47'
 }
 MWConfigurationTest >> getPopUp [
@@ -106,13 +118,13 @@ MWConfigurationTest >> tearDown [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'LC 7/8/2024 00:31'
+	#'squeak_changestamp' : 'Oscar 7/12/2024 10:55'
 }
 MWConfigurationTest >> testChangingGroups [
 	
 	MWConfiguration priceGroups do: [:each | 
 		self simulatePopUpChoice: each.
-		MWMeal allInstances do: [:meal |
+		self getAllMeals do: [:meal |
 			self assert: (meal submorphs last contents = '' or: 
 				[meal submorphs last contents asNumber = (meal prices at: each)])]]
 ]
