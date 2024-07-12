@@ -125,11 +125,11 @@ MWMeal class >> hotCounterMeal [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'tmc 6/18/2024 22:02'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:40'
 }
 MWMeal class >> priceGroup [
 	
-	^ PriceGroup
+	^ PriceGroup ifNil: [PriceGroup := self defaultGroup]
 ]
 
 {
@@ -278,14 +278,14 @@ MWMeal >> category: anObject [
 
 {
 	#category : #display,
-	#'squeak_changestamp' : 'Oscar 7/12/2024 09:51'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:39'
 }
 MWMeal >> getPrice [
 
 	| priceStream |
 	
 	priceStream := WriteStream on: String new.
-    	(self prices at: (self class priceGroup ifNil: [self class defaultGroup])) 
+    	(self prices at: (self class priceGroup)) 
 		ifNil: [''] 
 		ifNotNil: [:price | price printOn: priceStream showingDecimalPlaces: 2].
 	^ priceStream contents

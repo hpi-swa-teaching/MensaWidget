@@ -90,21 +90,24 @@ MWMenuBar >> createLayout [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'LC 7/8/2024 21:29'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:36'
 }
 MWMenuBar >> createNextButton [
 
-	self addMorph: self getArrowButton
+	self addMorph: 
+		(self getArrowButton 
+			on: #mouseDown send: #increaseDate: to: self)
 ]
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'LC 7/8/2024 21:29'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:36'
 }
 MWMenuBar >> createPrevButton [
 	
 	self addMorph: 
-		(self getArrowButton rotationDegrees: 180)
+		(self getArrowButton rotationDegrees: 180;
+		on: #mouseDown send: #decreaseDate: to: self)
 	
 ]
 
@@ -198,44 +201,40 @@ MWMenuBar >> decreaseDate: aEvent [
 
 {
 	#category : #morphicRepresentation,
-	#'squeak_changestamp' : 'LC 7/8/2024 21:29'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:35'
 }
 MWMenuBar >> getArrowButton [
 
 	^ PolygonMorph new
 		setVertices: self class getArrowVertices;
 		color: MWConfiguration secondaryColor;
-		on: #mouseDown send: #increaseDate: to: self;
-		addFlexShellIfNecessary;
-		yourself
+		addFlexShellIfNecessary
 ]
 
 {
 	#category : #morphicRepresentation,
-	#'squeak_changestamp' : 'LC 7/8/2024 21:37'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:38'
 }
 MWMenuBar >> getSpacer [
 
 	^ AlignmentMorph new 
 		hResizing: #spaceFill; 
 		vResizing: #spaceFill; 
-		color: Color transparent;
-		yourself
+		color: Color transparent
 ]
 
 {
 	#category : #morphicRepresentation,
-	#'squeak_changestamp' : 'LC 7/11/2024 18:50'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:38'
 }
 MWMenuBar >> getTimeToggle [
 
 	^ AlignmentMorph new 
-		addMorph: (StringMorph contents: MWMealCleaner lunchCategory); 
+		addMorph: (StringMorph contents: MWMealCleaner lunchCategory capitalized); 
 		vResizing: #shrinkWrap; 
 		hResizing: #shrinkWrap;
 		color: MWConfiguration secondaryColor ;
-		on: #mouseDown send: #toggleTime to: self;
-		yourself
+		on: #mouseDown send: #toggleTime to: self
 ]
 
 {
