@@ -10,12 +10,16 @@ Instance Variables:
 
 widgetFrame
     - The system window in which the widget gets opened.
+
 widget
     - An instance of the MWFrame on which the tests will be conducted.
+
 initialLatitude
     - Saves the initial latitude so it can be restored after the tests are done.
+
 initialLongitude
     - Saves the initial longitude so it can be restored after the tests are done.
+
 initialRadius
     - Saves the initial radius so it can be restored after the tests are done.
 "
@@ -30,42 +34,39 @@ Class {
 		'initialRadius'
 	],
 	#category : #'MensaWidget-Tests',
-	#'squeak_changestamp' : 'LC 7/8/2024 22:29'
+	#'squeak_changestamp' : 'LC 7/12/2024 14:06'
 }
 
 {
-	#category : #helper,
-	#'squeak_changestamp' : 'LC 7/8/2024 22:04'
+	#category : #helpers,
+	#'squeak_changestamp' : 'LC 7/12/2024 11:18'
 }
 MWFrameTest >> getAllCurrencies [
 
-	| currencies |
-	
-	currencies := OrderedCollection new.
-	self widgetFrame allMorphsDo: [:each | 
-		(each class = MWCanteen) ifTrue: 
-			[currencies add: (self getCurrency: each)]].
-	^ currencies
+	^ (self widgetFrame allMorphs 
+		select: [:each | each class = MWCanteen])
+		collect: [:each | each currencyMorph contents]
 	
 ]
 
 {
-	#category : #helper,
-	#'squeak_changestamp' : 'LC 7/8/2024 22:22'
+	#category : #helpers,
+	#'squeak_changestamp' : 'LC 7/12/2024 11:26'
 }
-MWFrameTest >> getCanteenAmount: aCanteen [
+MWFrameTest >> getCanteenCount [
 
-	^ aCanteen submorphs first submorphs last contents
+	^ (self widgetFrame allMorphs 
+		select: [:each | each class = MWCanteen]) size
 	
 ]
 
 {
-	#category : #helper,
-	#'squeak_changestamp' : 'LC 7/8/2024 22:04'
+	#category : #helpers,
+	#'squeak_changestamp' : 'LC 7/12/2024 11:19'
 }
 MWFrameTest >> getCurrency: aCanteen [
 
-	^ aCanteen submorphs first submorphs last contents
+	^ aCanteen currencyMorph contents
 	
 ]
 
@@ -124,16 +125,17 @@ MWFrameTest >> initialRadius: anObject [
 ]
 
 {
-	#category : #helper,
-	#'squeak_changestamp' : 'LC 7/8/2024 22:27'
+	#category : #helpers,
+	#'squeak_changestamp' : 'LC 7/12/2024 12:16'
 }
 MWFrameTest >> register [
 
 	| wasRegistered | 
 	
 	wasRegistered := true.
-	[TheWorldMenu registry find: {'Mensa Widget'. {MWFrame. #new}}] on: Error do:
-		[wasRegistered := false].
+	[TheWorldMenu registry find: {'Mensa Widget'. {MWFrame. #new}}] 
+		on: Error 
+		do: [wasRegistered := false].
 	TheWorldMenu unregisterOpenCommand: 'Mensa Widget'.
 	MWFrame register.
 	^ wasRegistered
@@ -177,22 +179,22 @@ MWFrameTest >> tearDown [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 6/19/2024 01:10'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:22'
 }
 MWFrameTest >> testCantineCount [
 
-	self assert: self widget contentMorph submorphs size = MWDataGettingWrapper canteenDict size
+	self assert: self getCanteenCount = MWDataGettingWrapper canteenDict size
 				 
 			  
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 6/19/2024 01:10'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:14'
 }
 MWFrameTest >> testContent [
 	
-	self assert: (self widget paneMorphs = #()) not
+	self deny: self widget paneMorphs = #()
 ]
 
 {
@@ -235,17 +237,17 @@ MWFrameTest >> testCorrectTitle [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 5/29/2024 18:42'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:15'
 }
 MWFrameTest >> testOpened [
 
 	self assert: self widgetFrame isInWorld; 
-		assert: self widgetFrame isCollapsed = false
+		deny: self widgetFrame isCollapsed
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'LC 7/8/2024 22:28'
+	#'squeak_changestamp' : 'LC 7/12/2024 14:18'
 }
 MWFrameTest >> testRegister [
 	
@@ -257,7 +259,8 @@ MWFrameTest >> testRegister [
 		on: Error
 		do: [occurrence := false].
 	self assert: occurrence.
-	wasRegistered ifFalse: [TheWorldMenu unregisterOpenCommand: 'Mensa Widget']
+	wasRegistered 
+		ifFalse: [TheWorldMenu unregisterOpenCommand: 'Mensa Widget']
 
  
 

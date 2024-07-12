@@ -45,15 +45,15 @@ Class {
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:14'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:14'
 }
 MWCanteen class >> cellGap [
 
-	^ 5
+	^ 5 px
 ]
 
 {
-	#category : #'constructor ',
+	#category : #constants,
 	#'squeak_changestamp' : 'Louis Christ 6/18/2024 12:00'
 }
 MWCanteen class >> currency [ 
@@ -73,14 +73,15 @@ MWCanteen class >> emptyCanteen [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'NK 7/9/2024 11:43'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:06'
 }
 MWCanteen class >> layoutProperties [
 
-	^ TableLayoutProperties new hResizing: #spaceFill; 
+	^ TableLayoutProperties new 
+		hResizing: #spaceFill; 
 		vResizing: #shrinkWrap; 
 		cellGap: self cellGap; 
-		layoutInset: 2; 
+		layoutInset: 2 px; 
 		rubberBandCells: true
 ]
 
@@ -122,7 +123,7 @@ MWCanteen >> addMealsForTime: aTime [
 ]
 
 {
-	#category : #display,
+	#category : #creation,
 	#'squeak_changestamp' : 'Oscar 7/12/2024 10:00'
 }
 MWCanteen >> build [
@@ -131,7 +132,7 @@ MWCanteen >> build [
 ]
 
 {
-	#category : #display,
+	#category : #creation,
 	#'squeak_changestamp' : 'NK 7/9/2024 11:41'
 }
 MWCanteen >> createNameMorph [
@@ -184,15 +185,16 @@ MWCanteen >> date: anObject [
 
 {
 	#category : #updating,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:27'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:07'
 }
 MWCanteen >> deleteMeals [
 
-	self submorphs from: 2 to: self submorphs size do: [:each | each abandon]
+	self submorphs from: 2 to: self submorphs size 
+		do: [:each | each abandon]
 ]
 
 {
-	#category : #display,
+	#category : #creation,
 	#'squeak_changestamp' : 'NK 7/9/2024 11:37'
 }
 MWCanteen >> getCurrencyMorph [
@@ -202,7 +204,7 @@ MWCanteen >> getCurrencyMorph [
 ]
 
 {
-	#category : #display,
+	#category : #creation,
 	#'squeak_changestamp' : 'NK 7/9/2024 11:38'
 }
 MWCanteen >> getNameMorph [
@@ -212,7 +214,7 @@ MWCanteen >> getNameMorph [
 ]
 
 {
-	#category : #display,
+	#category : #creation,
 	#'squeak_changestamp' : 'NK 7/9/2024 11:41'
 }
 MWCanteen >> getSpacerMorph [
@@ -243,7 +245,7 @@ MWCanteen >> id: anObject [
 ]
 
 {
-	#category : #display,
+	#category : #creation,
 	#'squeak_changestamp' : 'NK 7/9/2024 11:41'
 }
 MWCanteen >> initialize [

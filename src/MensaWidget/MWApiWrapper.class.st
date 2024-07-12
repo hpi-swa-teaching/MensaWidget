@@ -29,7 +29,7 @@ MWApiWrapper class >> baseEndpoint [
 
 {
 	#category : #call,
-	#'squeak_changestamp' : 'Oscar 7/11/2024 12:24'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:05'
 }
 MWApiWrapper class >> getMealsFrom: anOutletId on: aDate using: aWebClient [
 	
@@ -37,14 +37,16 @@ MWApiWrapper class >> getMealsFrom: anOutletId on: aDate using: aWebClient [
 	
 	url := self baseEndpoint, self mealsPostfix.
 	url := url format: {anOutletId. aDate}.
-	[response := aWebClient httpGet: url] on: NetworkError do: [^ self NetworkErrorResponse].
+	[response := aWebClient httpGet: url] 
+		on: NetworkError 
+		do: [^ self NetworkErrorResponse].
 	^ response content
 	
 ]
 
 {
 	#category : #call,
-	#'squeak_changestamp' : 'Oscar 7/5/2024 12:30'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:05'
 }
 MWApiWrapper class >> getOutletDictFrom: aLatitude and: aLongitude andRadius: aDistance [
 	
@@ -52,7 +54,9 @@ MWApiWrapper class >> getOutletDictFrom: aLatitude and: aLongitude andRadius: aD
 	
 	url := self baseEndpoint, self locationPostfix.
 	url := url format: {aLatitude. aLongitude. aDistance}.
-	[response := WebClient httpGet: url] on: NetworkError do: [^ self NetworkErrorResponse].
+	[response := WebClient httpGet: url] 
+		on: NetworkError 
+		do: [^ self NetworkErrorResponse].
 	^ response content
 ]
 

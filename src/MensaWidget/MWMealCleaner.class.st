@@ -1,28 +1,22 @@
 "
 A MWMealCleaner is a FIlter for Meal lists provided by the parsing after processing the JSON String based on the specifics of the outlets based in Potsdam.
 
-Instance Variables
-
 "
 Class {
 	#name : #MWMealCleaner,
 	#superclass : #Object,
 	#category : #MensaWidget,
-	#'squeak_changestamp' : 'Max 7/10/2024 20:32'
+	#'squeak_changestamp' : 'LC 7/12/2024 14:02'
 }
 
 {
 	#category : #cleaning,
-	#'squeak_changestamp' : 'Max 7/10/2024 20:14'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:56'
 }
 MWMealCleaner class >> clean: aMealList [
 	
-	| newMealList |
-	
-	newMealList := OrderedCollection new.
-	aMealList isEmpty ifTrue: [newMealList add: MWMeal emptyMeal].
-	aMealList do: [:each | newMealList add: (self fixMeal: each)].
-	^ newMealList
+	aMealList ifEmpty: [^ MWMeal emptyMeal asOrderedCollection].
+	^ aMealList collect: [:each | self fixMeal: each]
 		
 ]
 
@@ -37,7 +31,7 @@ MWMealCleaner class >> dinnerCategory [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Max 6/12/2024 13:42'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:42'
 }
 MWMealCleaner class >> emptyPrice [
 
@@ -88,7 +82,7 @@ MWMealCleaner class >> fixMeal: aMeal [
 
 {
 	#category : #cleaning,
-	#'squeak_changestamp' : 'Max 7/10/2024 20:06'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:41'
 }
 MWMealCleaner class >> fixPrices: aMeal [
 	

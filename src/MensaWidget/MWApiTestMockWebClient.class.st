@@ -1,14 +1,13 @@
 "
 A MWApiTestMockWebClient is a Mock object that returns a Netowrk Error on every http request.
 
-Instance Variables
 
 "
 Class {
 	#name : #MWApiTestMockWebClient,
 	#superclass : #Object,
 	#category : #'MensaWidget-Tests',
-	#'squeak_changestamp' : 'Max 6/19/2024 08:40'
+	#'squeak_changestamp' : 'LC 7/12/2024 14:05'
 }
 
 {

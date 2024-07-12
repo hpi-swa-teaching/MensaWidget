@@ -1,12 +1,11 @@
 "
 A MWDataGettingWrapperTest is a Test Case for the MWDataGettingWrapper.
-
 "
 Class {
 	#name : #MWDataGettingWrapperTest,
 	#superclass : #TestCase,
 	#category : #'MensaWidget-Tests',
-	#'squeak_changestamp' : 'Oscar 7/11/2024 17:57'
+	#'squeak_changestamp' : 'LC 7/12/2024 14:05'
 }
 
 {
@@ -21,13 +20,13 @@ MWDataGettingWrapperTest >> testCollectionClasses [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Oscar 7/11/2024 19:08'
+	#'squeak_changestamp' : 'LC 7/12/2024 12:05'
 }
 MWDataGettingWrapperTest >> testCollectionValues [
 	
 	MWDataGettingWrapper getTodaysMeals do: [:each |
 		each instanceVariableValues do: [:value | 
-			self assert: value notNil]]
+			self deny: value isNil]]
 ]
 
 {

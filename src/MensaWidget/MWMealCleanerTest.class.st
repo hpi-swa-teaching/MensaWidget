@@ -1,14 +1,12 @@
 "
 A MWMealCleanerTest is a test for the MWMealCleaner.
 
-Instance Variables
-
 "
 Class {
 	#name : #MWMealCleanerTest,
 	#superclass : #TestCase,
 	#category : #'MensaWidget-Tests',
-	#'squeak_changestamp' : 'Max 6/11/2024 18:06'
+	#'squeak_changestamp' : 'LC 7/12/2024 14:06'
 }
 
 {
@@ -64,7 +62,7 @@ MWMealCleanerTest >> brokenSaladBar [
 ]
 
 {
-	#category : #tests,
+	#category : #helper,
 	#'squeak_changestamp' : 'Max 7/10/2024 20:59'
 }
 MWMealCleanerTest >> check: aMealList [
@@ -79,23 +77,23 @@ MWMealCleanerTest >> check: aMealList [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Max 7/10/2024 20:58'
+	#'squeak_changestamp' : 'LC 7/12/2024 12:20'
 }
 MWMealCleanerTest >> testClean [
 
 	| mealList |
 	
-	mealList := OrderedCollection new add: self brokenSaladBar;
+	mealList := OrderedCollection new 
+		add: self brokenSaladBar;
 		add: self brokenEveningMeal;
 		add: self brokenPriceMeal;
 		yourself.
-	mealList := MWMealCleaner clean: mealList.
-	self check: mealList
+	self check: (MWMealCleaner clean: mealList)
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Max 7/10/2024 20:41'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:56'
 }
 MWMealCleanerTest >> testEmptyMealList [
 	
