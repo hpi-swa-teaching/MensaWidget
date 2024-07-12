@@ -215,7 +215,7 @@ MWDataGettingWrapper class >> requestUserInput [
 
 {
 	#category : #dataPulling,
-	#'squeak_changestamp' : 'Oscar 7/11/2024 17:56'
+	#'squeak_changestamp' : 'Oscar 7/12/2024 10:36'
 }
 MWDataGettingWrapper class >> switchLocation [
 	
@@ -226,12 +226,12 @@ MWDataGettingWrapper class >> switchLocation [
 		getOutletDictFrom: self initialLatitude 
 		and: self initialLongitude 
 		andRadius: self initialRadius.
-	self canteenDict: (MWParser transformJsonToDict: outletDict)
+	self canteenDict: (MWParser transformToDict: outletDict)
 ]
 
 {
 	#category : #dataPulling,
-	#'squeak_changestamp' : 'Oscar 7/11/2024 18:04'
+	#'squeak_changestamp' : 'Oscar 7/12/2024 10:36'
 }
 MWDataGettingWrapper class >> switchToDefaultLocation [
 	
@@ -240,5 +240,5 @@ MWDataGettingWrapper class >> switchToDefaultLocation [
 	outletDict := MWApiWrapper getOutletDictFrom: self hpiLatitude 
 		and: self hpiLongitude 
 		andRadius: self hpiRadius.
-	self canteenDict: (MWParser transformJsonToDict: outletDict)
+	self canteenDict: (MWParser transformToDict: outletDict)
 ]

@@ -449,10 +449,9 @@ MWMeal >> starMorph: anObject [
 
 {
 	#category : #updating,
-	#'squeak_changestamp' : 'Oscar 7/12/2024 09:51'
+	#'squeak_changestamp' : 'Oscar 7/12/2024 10:42'
 }
 MWMeal >> updatePrice [
 	
-	self submorphs isEmptyOrNil 
-		ifFalse: [self priceMorph contents: self getPrice contents]
+	self priceMorph ifNotNil: [self priceMorph contents: self getPrice]
 ]
