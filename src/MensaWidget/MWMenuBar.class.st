@@ -3,10 +3,11 @@ A MWMenuBar is a Menubar for navigation though the days and opening settings and
 
 Instance Variables
 	date:		<Date>
-	dateDisplay:		<Morph>
+	dateDisplay:		<StringMorph>
 	target:		<MWFrame>
 	time:		<String>
-	timeToggle:		<SugarRoundedField>
+	timeToggle:		<AlignmentMorph>
+	settings: 		<PopUpChoiceMorph>
 
 date
 	- a Date variable that stores the date for the meals that are shown
@@ -22,6 +23,9 @@ time
 
 timeToggle
 	- a variable that refers to the Morph that displays the Time and acts as a button to toggle it
+	
+settings
+	- PopUp Morph that allows the user to choose the price category
 
 "
 Class {
@@ -36,38 +40,16 @@ Class {
 		'settings'
 	],
 	#category : #MensaWidget,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 11:28'
+	#'squeak_changestamp' : 'LC 7/12/2024 14:04'
 }
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 19:24'
-}
-MWMenuBar class >> cellGap [
-
-	^ 20 * RealEstateAgent scaleFactor
-]
-
-{
-	#category : #constants,
-	#'squeak_changestamp' : 'LC 7/2/2024 10:28'
-}
-MWMenuBar class >> getArrowButton [
-
-	^ PolygonMorph new
-		setVertices: self getArrowVertices;
-		color: MWConfiguration secondaryColor;
-		addFlexShellIfNecessary; 
-		yourself
-]
-
-{
-	#category : #constants,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 19:22'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:43'
 }
 MWMenuBar class >> getArrowVertices [
 
-	^ RealEstateAgent scaleFactor  * {0 @ 0. 0 @ 14. 14 @ 7}
+	^ {0 px @ 0 px. 0 px @ 14 px. 14 px @ 7 px}
 ]
 
 {
@@ -85,15 +67,12 @@ MWMenuBar class >> getTimeToggle [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Oscar 6/16/2024 23:48'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:43'
 }
 MWMenuBar >> createDateDisplay [
 	
-	self dateDisplay: 
-		(TextMorph new 
-			contents: self date asString;
-			textStyle: TextStyle default;
-			lock).	
+	self dateDisplay: (StringMorph new 
+		contents: self date asString).	
 	self addMorph: self dateDisplay
 	
 ]
@@ -115,25 +94,28 @@ MWMenuBar >> createLayout [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 16:06'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:43'
 }
 MWMenuBar >> createNextButton [
 
 	self addMorph: 
-		(self class getArrowButton
-			on: #mouseDown send: #increaseDate: to: self)
+		(self getArrowButton 
+			on: #mouseDown 
+			send: #increaseDate: 
+			to: self)
 ]
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/9/2024 16:13'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:44'
 }
 MWMenuBar >> createPrevButton [
 	
 	self addMorph: 
-		(self class getArrowButton
-			rotationDegrees: 180;
-			on: #mouseDown send: #decreaseDate: to: self)
+		(self getArrowButton rotationDegrees: 180;
+			on: #mouseDown 
+			send: #decreaseDate: 
+			to: self)
 	
 ]
 
@@ -149,27 +131,21 @@ MWMenuBar >> createSettings [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'LC 7/3/2024 16:21'
+	#'squeak_changestamp' : 'LC 7/8/2024 21:35'
 }
 MWMenuBar >> createSpacer [
 	
-	self addMorph: 
-		(AlignmentMorph new 
-			hResizing: #spaceFill; 
-			vResizing: #spaceFill; 
-			color: Color transparent)
+	self addMorph: self getSpacer
 	
 ]
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'Louis Christ 6/17/2024 22:12'
+	#'squeak_changestamp' : 'LC 7/8/2024 21:38'
 }
 MWMenuBar >> createTimeToggle [
 
-	self timeToggle: (self class getTimeToggle 
-		on: #mouseDown send: #toggleTime to: self;
-		yourself);
+	self timeToggle: self getTimeToggle;
 		addMorph: self timeToggle
 ]
 
@@ -232,6 +208,45 @@ MWMenuBar >> decreaseDate: aEvent [
 ]
 
 {
+	#category : #morphicRepresentation,
+	#'squeak_changestamp' : 'LC 7/12/2024 11:35'
+}
+MWMenuBar >> getArrowButton [
+
+	^ PolygonMorph new
+		setVertices: self class getArrowVertices;
+		color: MWConfiguration secondaryColor;
+		addFlexShellIfNecessary
+]
+
+{
+	#category : #morphicRepresentation,
+	#'squeak_changestamp' : 'LC 7/12/2024 11:38'
+}
+MWMenuBar >> getSpacer [
+
+	^ AlignmentMorph new 
+		hResizing: #spaceFill; 
+		vResizing: #spaceFill; 
+		color: Color transparent
+]
+
+{
+	#category : #morphicRepresentation,
+	#'squeak_changestamp' : 'LC 7/12/2024 13:46'
+}
+MWMenuBar >> getTimeToggle [
+
+	^ AlignmentMorph new 
+		addMorph: (StringMorph contents: 
+			MWMealCleaner lunchCategory capitalized); 
+		vResizing: #shrinkWrap; 
+		hResizing: #shrinkWrap;
+		color: MWConfiguration secondaryColor;
+		on: #mouseDown send: #toggleTime to: self
+]
+
+{
 	#category : #dateManipulation,
 	#'squeak_changestamp' : 'Louis Christ 6/17/2024 18:23'
 }
@@ -255,7 +270,7 @@ MWMenuBar >> increaseDate: aEvent [
 
 {
 	#category : #creation,
-	#'squeak_changestamp' : 'LC 7/3/2024 16:21'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:45'
 }
 MWMenuBar >> initialize [
 	
@@ -266,7 +281,7 @@ MWMenuBar >> initialize [
 		vResizing: #shrinkWrap;
 		cellPositioning: #center;
 		color: MWConfiguration primaryColor;
-		cellInset: 5;
+		cellInset: 4 px;
 		createLayout
 
 ]
@@ -345,44 +360,43 @@ MWMenuBar >> timeToggle: anObject [
 
 {
 	#category : #timeManipulation,
-	#'squeak_changestamp' : 'Louis Christ 6/19/2024 01:05'
+	#'squeak_changestamp' : 'LC 7/8/2024 21:43'
 }
 MWMenuBar >> toggleTime [
 
-	self time = 'lunch' 
-		ifTrue: [self time: 'dinner'] 
-		ifFalse: [self time: 'lunch'].
+	self time = MWMealCleaner lunchCategory
+		ifTrue: [self time: MWMealCleaner dinnerCategory] 
+		ifFalse: [self time: MWMealCleaner lunchCategory].
 	self updateTime
 ]
 
 {
 	#category : #updating,
-	#'squeak_changestamp' : 'LC 7/6/2024 15:57'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:47'
 }
 MWMenuBar >> updateCategory [
 	
-	self settings ifNotNil: 
-		[self settings contents: '';
-			contents: MWMeal priceGroup]
+	self settings contents: '';
+		contents: MWMeal priceGroup
 ]
 
 {
 	#category : #updating,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 16:05'
+	#'squeak_changestamp' : 'LC 7/8/2024 21:07'
 }
 MWMenuBar >> updateDate [
 
 	self dateDisplay contents: self date asString.
-	self target ifNotNil: [self target updateDay: self date withTime: self time]
+	self target ifNotNil: [self target updateDate]
 	
 ]
 
 {
 	#category : #updating,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:37'
+	#'squeak_changestamp' : 'LC 7/8/2024 21:07'
 }
 MWMenuBar >> updateTime [
 	
 	self timeToggle submorphs first contents: self time capitalized.
-	self target ifNotNil: [self target updateTime: self time]
+	self target ifNotNil: [self target updateTime]
 ]

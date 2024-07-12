@@ -7,6 +7,9 @@ Instance Variables
 
 mensaWidget
 	- a Mensa widget instance on which the testing will be done
+	
+menuBar
+	- is the menu bar that sits on top of the stored mensa widget
 
 "
 Class {
@@ -17,52 +20,69 @@ Class {
 		'menuBar'
 	],
 	#category : #'MensaWidget-Tests',
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 11:29'
+	#'squeak_changestamp' : 'LC 7/12/2024 14:07'
 }
 
 {
 	#category : #helpers,
-	#'squeak_changestamp' : 'LC 7/6/2024 15:54'
+	#'squeak_changestamp' : 'LC 7/12/2024 12:21'
+}
+MWMenuBarTest >> adjustForWeekend [
+
+	({#Saturday. #Sunday} includes: self menuBar date weekday) 
+		ifTrue: [self menuBar decreaseDate;
+			decreaseDate].
+]
+
+{
+	#category : #helpers,
+	#'squeak_changestamp' : 'LC 7/12/2024 12:23'
 }
 MWMenuBarTest >> getAllCanteens [
 	
-	| canteens |
-	
-	canteens := OrderedCollection new.
-	self mensaWidget contentMorph allMorphsDo: [:each | 
-		each class = MWCanteen ifTrue: 
-			[canteens add: each submorphs first submorphs second contents string]].
-	^ canteens
+	^ (self mensaWidget contentMorph allMorphs 
+		select: [:each | each class = MWCanteen]) 
+		collect: [:each | self getCanteenName: each]
 ]
 
 {
 	#category : #helpers,
-	#'squeak_changestamp' : 'LC 6/23/2024 18:44'
+	#'squeak_changestamp' : 'LC 7/12/2024 12:24'
 }
 MWMenuBarTest >> getAllCategories [
 	
-	| categories |
-	
-	categories := OrderedCollection new.
-	self mensaWidget contentMorph allMorphsDo: [:each | 
-		each class = MWMeal ifTrue: 
-			[categories add: each category]].
-	^ categories
+	^ (self mensaWidget contentMorph allMorphs 
+		select: [:each | each class = MWMeal]) 
+		collect: [:each | each category]
 ]
 
 {
 	#category : #helpers,
-	#'squeak_changestamp' : 'LC 6/23/2024 18:44'
+	#'squeak_changestamp' : 'LC 7/12/2024 12:24'
 }
 MWMenuBarTest >> getAllMeals [
 	
-	| meals |
+	^ (self mensaWidget contentMorph allMorphs 
+		select: [:each | each class = MWMeal]) 
+		collect: [:each | self getMeal: each]
+]
+
+{
+	#category : #helpers,
+	#'squeak_changestamp' : 'LC 7/12/2024 12:24'
+}
+MWMenuBarTest >> getCanteenName: aMorph [
 	
-	meals := OrderedCollection new.
-	self mensaWidget contentMorph allMorphsDo: [:each | 
-		each class = MWMeal ifTrue: 
-			[meals add: (each submorphs at: 1) contents string]].
-	^ meals
+	^ aMorph nameMorph contents
+]
+
+{
+	#category : #helpers,
+	#'squeak_changestamp' : 'LC 7/12/2024 12:24'
+}
+MWMenuBarTest >> getMeal: aMorph [
+	
+	^ aMorph nameMorph contents string
 ]
 
 {
@@ -139,37 +159,34 @@ MWMenuBarTest >> testCanteensChange [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 6/19/2024 01:06'
+	#'squeak_changestamp' : 'LC 7/12/2024 12:25'
 }
 MWMenuBarTest >> testLunchMealCategory [
 
 	| oldTime |
 	
 	oldTime := self menuBar time.
-	self getAllCategories do: [:each | self assert: (each = oldTime or: [each = nil])].
+	self getAllCategories do: [:each | self assert: (each = oldTime or: [each isNil])].
 	self menuBar toggleTime.
-	self assert: (oldTime = self menuBar time) not.
-	self getAllCategories do: [:each | self assert: (each = oldTime) not].
+	self deny: oldTime = self menuBar time.
+	self getAllCategories do: [:each | self deny: each = oldTime].
 	self menuBar toggleTime.
 	self assert: oldTime = self menuBar time
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'LC 7/7/2024 19:02'
+	#'squeak_changestamp' : 'LC 7/12/2024 12:25'
 }
 MWMenuBarTest >> testMealsChange [
 
-	| menuBar oldMeals |
-	
-	self mensaWidget owner allMorphsDo: [:each | each class = MWMenuBar ifTrue: [menuBar :=each]].
-	({#Saturday. #Sunday} includes: menuBar date weekday) ifTrue:
-		[menuBar decreaseDate;
-			decreaseDate].
+	|  oldMeals |
+
+	self adjustForWeekend.
 	oldMeals := self getAllMeals.
-	menuBar increaseDate.
-	self assert: (oldMeals = self getAllMeals) not.
-	menuBar decreaseDate.
+	self menuBar increaseDate.
+	self deny: oldMeals = self getAllMeals.
+	self menuBar decreaseDate.
 	self assert: oldMeals = self getAllMeals
 ]
 
@@ -214,13 +231,9 @@ MWMenuBarTest >> testNavigatePreviousDay [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:59'
+	#'squeak_changestamp' : 'LC 7/11/2024 18:50'
 }
 MWMenuBarTest >> testOneMenuBarExists [
 
-	| menuBars |
-	
-	menuBars := OrderedCollection new.
-	self mensaWidget owner allMorphsDo: [:each | each class = MWMenuBar ifTrue: [menuBars add: each]].
-	self assert: menuBars size = 1
+	self assert: self menuBar notNil
 ]

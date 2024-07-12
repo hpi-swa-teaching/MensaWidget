@@ -6,6 +6,8 @@ Instance Variables
 	id:		<String>
 	meals:		<String>
 	name:		<OrderedCollection>
+	nameMorph:	<StringMorph>
+	currencyMorph:	<StringMorph>
 
 date
 	- the date the meals are available
@@ -18,6 +20,12 @@ meals
 
 name
 	- name of the canteen
+	
+nameMorph
+	- morphic representation for the name of the canteen
+	
+currencyMorph
+	- morphic representation for the currency the prices will be displayed in
 
 "
 Class {
@@ -27,23 +35,25 @@ Class {
 		'id',
 		'name',
 		'date',
-		'meals'
+		'meals',
+		'nameMorph',
+		'currencyMorph'
 	],
 	#category : #MensaWidget,
-	#'squeak_changestamp' : 'Louis Christ 5/31/2024 14:42'
+	#'squeak_changestamp' : 'LC 7/11/2024 21:06'
 }
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:14'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:14'
 }
 MWCanteen class >> cellGap [
 
-	^ 5
+	^ 5 px
 ]
 
 {
-	#category : #'constructor ',
+	#category : #constants,
 	#'squeak_changestamp' : 'Louis Christ 6/18/2024 12:00'
 }
 MWCanteen class >> currency [ 
@@ -63,21 +73,21 @@ MWCanteen class >> emptyCanteen [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Max 7/5/2024 13:42'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:06'
 }
 MWCanteen class >> layoutProperties [
 
-	^ TableLayoutProperties new hResizing: #spaceFill; 
+	^ TableLayoutProperties new 
+		hResizing: #spaceFill; 
 		vResizing: #shrinkWrap; 
 		cellGap: self cellGap; 
-		layoutInset: 2; 
-		rubberBandCells: true;
-		yourself
+		layoutInset: 2 px; 
+		rubberBandCells: true
 ]
 
 {
 	#category : #'constructor ',
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:30'
+	#'squeak_changestamp' : 'Oscar 7/12/2024 10:01'
 }
 MWCanteen class >> newWithId: anId Name: aName Date: aDate Meals: aMealList [
 
@@ -86,7 +96,7 @@ MWCanteen class >> newWithId: anId Name: aName Date: aDate Meals: aMealList [
 		name: aName;
 		date: aDate;
 		meals: aMealList;
-		yourself
+		build
 	
 ]
 
@@ -101,29 +111,29 @@ MWCanteen class >> spacerMorphWidth [
 
 {
 	#category : #updating,
-	#'squeak_changestamp' : 'Max 7/5/2024 09:35'
+	#'squeak_changestamp' : 'NK 7/9/2024 11:42'
 }
 MWCanteen >> addMealsForTime: aTime [
 
 	self meals do: [:each | 
-		(each category = aTime or: [each category isNil]) ifTrue: 
-		[self addMorphBack: each]].
-	self submorphs size = 1 ifTrue: [self addMorphBack: MWMeal emptyMeal]
+		(each category = aTime or: [each category isNil]) 
+			ifTrue: [self addMorphBack: each]].
+	self submorphs size = 1 
+		ifTrue: [self addMorphBack: MWMeal emptyMeal]
 ]
 
 {
-	#category : #display,
-	#'squeak_changestamp' : 'LC 7/6/2024 15:50'
+	#category : #creation,
+	#'squeak_changestamp' : 'Oscar 7/12/2024 10:00'
 }
-MWCanteen >> buildForTime: aTime [
+MWCanteen >> build [
 
-	self addMorph: self createNameMorph;
-		addMealsForTime: aTime
+	self addMorph: self createNameMorph
 ]
 
 {
-	#category : #display,
-	#'squeak_changestamp' : 'LC 7/6/2024 15:50'
+	#category : #creation,
+	#'squeak_changestamp' : 'NK 7/9/2024 11:41'
 }
 MWCanteen >> createNameMorph [
 
@@ -131,11 +141,28 @@ MWCanteen >> createNameMorph [
 		color: Color transparent;
 		vResizing: #shrinkWrap;
 		hResizing: #spaceFill;
-		addMorph: (StringMorph contents: self class currency);
+		addMorph: self getCurrencyMorph;
 		addMorph: self getSpacerMorph;
-		addMorph: (StringMorph contents: self name);
-		addMorph: self getSpacerMorph;
-		yourself
+		addMorph: self getNameMorph;
+		addMorph: self getSpacerMorph
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'NK 7/9/2024 11:33'
+}
+MWCanteen >> currencyMorph [
+
+	^ currencyMorph
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'NK 7/9/2024 11:33'
+}
+MWCanteen >> currencyMorph: anObject [
+
+	currencyMorph := anObject
 ]
 
 {
@@ -158,16 +185,37 @@ MWCanteen >> date: anObject [
 
 {
 	#category : #updating,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:27'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:07'
 }
 MWCanteen >> deleteMeals [
 
-	self submorphs from: 2 to: self submorphs size do: [:each | each abandon]
+	self submorphs from: 2 to: self submorphs size 
+		do: [:each | each abandon]
 ]
 
 {
-	#category : #display,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 11:52'
+	#category : #creation,
+	#'squeak_changestamp' : 'NK 7/9/2024 11:37'
+}
+MWCanteen >> getCurrencyMorph [
+
+	^ self currencyMorph: (StringMorph contents: self class currency);
+		currencyMorph
+]
+
+{
+	#category : #creation,
+	#'squeak_changestamp' : 'NK 7/9/2024 11:38'
+}
+MWCanteen >> getNameMorph [
+
+	^ self nameMorph: (StringMorph contents: self name);
+		nameMorph
+]
+
+{
+	#category : #creation,
+	#'squeak_changestamp' : 'NK 7/9/2024 11:41'
 }
 MWCanteen >> getSpacerMorph [
 
@@ -175,8 +223,7 @@ MWCanteen >> getSpacerMorph [
 		color: Color transparent;
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
-		width: self class spacerMorphWidth;
-		yourself
+		width: self class spacerMorphWidth
 ]
 
 {
@@ -198,15 +245,14 @@ MWCanteen >> id: anObject [
 ]
 
 {
-	#category : #display,
-	#'squeak_changestamp' : 'LC 7/7/2024 17:29'
+	#category : #creation,
+	#'squeak_changestamp' : 'NK 7/9/2024 11:41'
 }
 MWCanteen >> initialize [
 	
 	super initialize.
 	^ self color: MWConfiguration secondaryColor;
-		layoutProperties: self class layoutProperties;
-		yourself
+		layoutProperties: self class layoutProperties
     
 ]
 
@@ -244,6 +290,24 @@ MWCanteen >> name [
 MWCanteen >> name: anObject [
 
 	name := anObject
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'NK 7/9/2024 11:33'
+}
+MWCanteen >> nameMorph [
+
+	^ nameMorph
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'NK 7/9/2024 11:33'
+}
+MWCanteen >> nameMorph: anObject [
+
+	nameMorph := anObject
 ]
 
 {

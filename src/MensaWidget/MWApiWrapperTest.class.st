@@ -1,12 +1,6 @@
 "
 A MWApiWrapperTest is class that is used to test the functionality of the MWApiWrapper.
 
-Instance Variables
-	apiWrapper:		<MWApiWrapper>
-
-apiWrapper
-	- A MWApiWrapper intances that is used for testing purposes
-
 "
 Class {
 	#name : #MWApiWrapperTest,
@@ -15,11 +9,11 @@ Class {
 		'apiWrapper'
 	],
 	#category : #'MensaWidget-Tests',
-	#'squeak_changestamp' : 'Louis Christ 6/3/2024 09:06'
+	#'squeak_changestamp' : 'LC 7/12/2024 14:05'
 }
 
 {
-	#category : #'as yet unclassified',
+	#category : #constants,
 	#'squeak_changestamp' : 'Oscar 6/2/2024 15:37'
 }
 MWApiWrapperTest class >> invalidDate [
@@ -28,7 +22,7 @@ MWApiWrapperTest class >> invalidDate [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #constants,
 	#'squeak_changestamp' : 'Oscar 6/2/2024 15:36'
 }
 MWApiWrapperTest class >> invalidMensaId [
@@ -37,7 +31,7 @@ MWApiWrapperTest class >> invalidMensaId [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #constants,
 	#'squeak_changestamp' : 'Oscar 6/2/2024 15:38'
 }
 MWApiWrapperTest class >> validApiUrl [
@@ -46,7 +40,7 @@ MWApiWrapperTest class >> validApiUrl [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #constants,
 	#'squeak_changestamp' : 'Oscar 6/2/2024 15:37'
 }
 MWApiWrapperTest class >> validDate [
@@ -55,7 +49,7 @@ MWApiWrapperTest class >> validDate [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #constants,
 	#'squeak_changestamp' : 'Oscar 6/2/2024 15:36'
 }
 MWApiWrapperTest class >> validMensaId [
@@ -65,35 +59,37 @@ MWApiWrapperTest class >> validMensaId [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Max 6/19/2024 08:36'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:59'
 }
 MWApiWrapperTest >> testApiCallWithInvalidUrl [
 
-    | responseWrapper errorOccurred |
+    	| responseWrapper errorOccurred |
 
-    errorOccurred := false.
-    [responseWrapper := MWApiWrapper getMealsFrom: self class invalidMensaId on:
-	self class invalidDate using:
-	WebClient] on:
-	NetworkError do: [:ex | errorOccurred := true].
-    self assert: (responseWrapper = '' or: errorOccurred)
+    	errorOccurred := false.
+	[responseWrapper := MWApiWrapper getMealsFrom: self class invalidMensaId 
+		on:self class invalidDate 
+		using: WebClient] 
+		on: NetworkError 
+		do: [:ex | errorOccurred := true].
+	self assert: (responseWrapper isEmpty or: errorOccurred)
 
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Max 6/19/2024 08:38'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:57'
 }
 MWApiWrapperTest >> testApiCallWithValidUrl [
 
     	| responseWrapper responseApi errorOccurred |
 
     	errorOccurred := false.
-    	[responseWrapper := MWApiWrapper getMealsFrom: self class validMensaId on:
-		self class validDate using:
-		WebClient.
-    	responseApi := WebClient httpGet: self class validApiUrl] on:
-	NetworkError do: [:ex | errorOccurred := true].
+    	[responseWrapper := MWApiWrapper getMealsFrom: self class validMensaId 
+		on: self class validDate 
+		using: WebClient.
+    	responseApi := WebClient httpGet: self class validApiUrl] 
+		on: NetworkError 
+		do: [:ex | errorOccurred := true].
    	self assert: (errorOccurred or: [responseApi content = responseWrapper])
 
 	
@@ -102,13 +98,14 @@ MWApiWrapperTest >> testApiCallWithValidUrl [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Max 6/19/2024 08:38'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:59'
 }
 MWApiWrapperTest >> testApiCallWithoutNetwork [
 
 	| result |
 	
-	result := MWApiWrapper getMealsFrom: '62' on: '2024-06-18' using: MWApiTestMockWebClient.
+	result := MWApiWrapper getMealsFrom: '62' on: '2024-06-18' 
+		using: MWApiTestMockWebClient.
 	self assert: result = MWApiWrapper NetworkErrorResponse
 
 	

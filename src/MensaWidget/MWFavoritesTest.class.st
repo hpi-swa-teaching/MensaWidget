@@ -20,44 +20,39 @@ Class {
 
 {
 	#category : #helpers,
-	#'squeak_changestamp' : 'LC 6/26/2024 15:57'
+	#'squeak_changestamp' : 'LC 7/12/2024 12:13'
 }
 MWFavoritesTest >> getAllMeals [
 	
-	| meals |
-	
-	meals := OrderedCollection new.
-	self mensaWidget contentMorph allMorphsDo: [:each | 
-		each class = MWMeal ifTrue: 
-			[meals add: each]].
-	^ meals
+	^ self mensaWidget contentMorph allMorphs 
+		select: [:each | each class = MWMeal]
 ]
 
 {
 	#category : #helpers,
-	#'squeak_changestamp' : 'Louis Christ 6/22/2024 15:37'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:11'
 }
 MWFavoritesTest >> getNameFor: aMeal [
 	
-	^ (aMeal submorphs at: 1) contents string
+	^ aMeal nameMorph contents string
 ]
 
 {
 	#category : #helpers,
-	#'squeak_changestamp' : 'LC 6/23/2024 19:18'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:11'
 }
 MWFavoritesTest >> getStarColorFor: aMeal [
 	
-	^ (self getStarFor: aMeal)  color
+	^ (self getStarFor: aMeal) color
 ]
 
 {
 	#category : #helpers,
-	#'squeak_changestamp' : 'Louis Christ 6/22/2024 16:09'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:11'
 }
 MWFavoritesTest >> getStarFor: aMeal [
 	
-	^ aMeal submorphs at: 3
+	^ aMeal starMorph
 ]
 
 {
@@ -122,13 +117,13 @@ MWFavoritesTest >> testFavouritesIsSet [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'LC 6/30/2024 23:19'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:13'
 }
 MWFavoritesTest >> testFavouritesRenderCorrectly [
 	
 	self getAllMeals do: [:each |
 		(MWFavorites favouriteMeals includes: (self getNameFor: each))
-			ifTrue: [self assert: ((self getStarColorFor: each) = Color transparent) not]
+			ifTrue: [self deny: (self getStarColorFor: each) = Color transparent]
 			ifFalse: [self assert: (self getStarColorFor: each) = Color transparent]]
 ]
 
@@ -143,7 +138,7 @@ MWFavoritesTest >> testFavouritesSetExists [
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'LC 6/26/2024 15:50'
+	#'squeak_changestamp' : 'LC 7/12/2024 12:15'
 }
 MWFavoritesTest >> testMealIsLikable [
 
@@ -151,20 +146,18 @@ MWFavoritesTest >> testMealIsLikable [
 		(MWFavorites favouriteMeals includes: (self getNameFor: each))
 			ifFalse: [self simulateButtonClick: (self getStarFor: each). 
 				self assert: (MWFavorites favouriteMeals includes: (self getNameFor: each));
-					assert: ((self getStarColorFor: each) = Color transparent) not.
-				^ nil]]
+					deny: (self getStarColorFor: each) = Color transparent]]
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'LC 6/26/2024 15:50'
+	#'squeak_changestamp' : 'LC 7/12/2024 12:15'
 }
 MWFavoritesTest >> testMealIsUnlikable [
 
 	self getAllMeals do: [:each |
 		(MWFavorites favouriteMeals includes: (self getNameFor: each))
 			ifTrue: [self simulateButtonClick: (self getStarFor: each). 
-				self assert: (MWFavorites favouriteMeals includes: (self getNameFor: each)) not;
-					assert: (self getStarColorFor: each) = Color transparent.
-				^ nil]]
+				self deny: (MWFavorites favouriteMeals includes: (self getNameFor: each));
+					assert: (self getStarColorFor: each) = Color transparent]]
 ]

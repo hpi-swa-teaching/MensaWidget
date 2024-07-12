@@ -1,14 +1,12 @@
 "
 A MWMealCleanerTest is a test for the MWMealCleaner.
 
-Instance Variables
-
 "
 Class {
 	#name : #MWMealCleanerTest,
 	#superclass : #TestCase,
 	#category : #'MensaWidget-Tests',
-	#'squeak_changestamp' : 'Max 6/11/2024 18:06'
+	#'squeak_changestamp' : 'LC 7/12/2024 14:06'
 }
 
 {
@@ -64,75 +62,118 @@ MWMealCleanerTest >> brokenSaladBar [
 ]
 
 {
+	#category : #helper,
+	#'squeak_changestamp' : 'Max 7/10/2024 20:59'
+}
+MWMealCleanerTest >> check: aMealList [
+
+	self assert: aMealList first name = 'Salatbar 100 g';
+		assert: aMealList first category = 'lunch';
+		assert: aMealList second category = MWMealCleaner dinnerCategory;
+		assert: (aMealList third prices at: 'students') = 7.5;
+		assert: (aMealList third prices at: 'employees') = 7.5;
+		assert: (aMealList third prices at: 'pupils') = 7.5
+]
+
+{
 	#category : #tests,
-	#'squeak_changestamp' : 'Max 6/12/2024 13:52'
+	#'squeak_changestamp' : 'LC 7/12/2024 12:20'
+}
+MWMealCleanerTest >> testClean [
+
+	| mealList |
+	
+	mealList := OrderedCollection new 
+		add: self brokenSaladBar;
+		add: self brokenEveningMeal;
+		add: self brokenPriceMeal;
+		yourself.
+	self check: (MWMealCleaner clean: mealList)
+]
+
+{
+	#category : #tests,
+	#'squeak_changestamp' : 'LC 7/12/2024 13:56'
 }
 MWMealCleanerTest >> testEmptyMealList [
 	
 	| mealList |
+	
 	mealList := MWMealCleaner clean: #().
 	self assert: mealList size = 1;
 		assert: mealList first name = 'Hier gibt es nichts zu sehen.';
 		assert: mealList first category isNil;
+		assert: mealList first prices = MWMealCleaner emptyPrice;
 		assert: mealList first notes isNil
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Max 6/12/2024 13:55'
+	#'squeak_changestamp' : 'Max 7/10/2024 20:38'
 }
 MWMealCleanerTest >> testFixPrice [
 
-	| mealList |
+	| meal |
 	
-	mealList := MWMealCleaner clean: (OrderedCollection new add: self brokenPriceMeal;
-		yourself).
-	self assert: (mealList first prices at: 'students') = 7.5;
-		assert: (mealList first prices at: 'employees') = 7.5;
-		assert: (mealList first prices at: 'pupils') = 7.5
+	meal := self brokenPriceMeal.
+	MWMealCleaner fixPrices: meal.
+	self assert: (meal prices at: 'students') = 7.5;
+		assert: (meal prices at: 'employees') = 7.5;
+		assert: (meal prices at: 'pupils') = 7.5
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Max 6/12/2024 13:53'
+	#'squeak_changestamp' : 'Max 7/10/2024 20:46'
 }
-MWMealCleanerTest >> testHotCounterList [
+MWMealCleanerTest >> testHotCounter [
 
- 	| mealList |
+ 	| meal |
 	
-	mealList := MWMealCleaner clean: (OrderedCollection new add: self brokenHotCounter; 
-		yourself).
-	self assert: mealList first name = 'Heiße Theke 100 g';
-		assert: mealList first category = 'lunch';
-		assert: mealList first notes isNil
+	meal := self brokenHotCounter.
+	meal := MWMealCleaner fixMeal: meal.
+	self assert: meal name = 'Heiße Theke 100 g';
+		assert: meal category = 'lunch';
+		assert: meal notes isNil
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Max 6/12/2024 13:53'
+	#'squeak_changestamp' : 'Max 7/10/2024 20:47'
 }
-MWMealCleanerTest >> testSaladBarList [
+MWMealCleanerTest >> testSaladBar [
 
-	| mealList |
+ 	| meal |
 	
-	mealList := MWMealCleaner clean: (OrderedCollection new add: self brokenSaladBar;
-		yourself).
-	self assert: mealList first name = 'Salatbar 100 g';
-		assert: mealList first category = 'lunch';
-		assert: mealList first notes isNil
+	meal := self brokenSaladBar.
+	meal := MWMealCleaner fixMeal: meal.
+	self assert: meal name = 'Salatbar 100 g';
+		assert: meal category = 'lunch';
+		assert: meal notes isNil
 ]
 
 {
 	#category : #tests,
-	#'squeak_changestamp' : 'Max 6/11/2024 18:41'
+	#'squeak_changestamp' : 'Max 7/10/2024 20:41'
 }
-MWMealCleanerTest >> testSetCategory [
+MWMealCleanerTest >> testSetDinnerCategory [
 
-	| mealList |
+	| meal |
 	
-	mealList := MWMealCleaner clean: (OrderedCollection new add: self brokenEveningMeal;
-		add: self brokenLunchMeal;
-		yourself).
-	self assert: mealList first category = 'dinner';
-		assert: mealList second category = 'lunch'
+	meal := self brokenEveningMeal.
+	MWMealCleaner fixCategories: meal.
+	self assert: meal category = MWMealCleaner dinnerCategory
+]
+
+{
+	#category : #tests,
+	#'squeak_changestamp' : 'Max 7/10/2024 20:41'
+}
+MWMealCleanerTest >> testSetLunchCategory [
+
+	| meal |
+	
+	meal := self brokenLunchMeal.
+	MWMealCleaner fixCategories: meal.
+	self assert: meal category = MWMealCleaner lunchCategory
 ]

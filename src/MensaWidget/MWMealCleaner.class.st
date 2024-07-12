@@ -1,29 +1,22 @@
 "
-A MWMealCleaner is a FIlter for Meal lists provided by the parsing after processing the JSON String.
-
-Instance Variables
+A MWMealCleaner is a FIlter for Meal lists provided by the parsing after processing the JSON String based on the specifics of the outlets based in Potsdam.
 
 "
 Class {
 	#name : #MWMealCleaner,
 	#superclass : #Object,
 	#category : #MensaWidget,
-	#'squeak_changestamp' : 'Max 6/11/2024 20:46'
+	#'squeak_changestamp' : 'LC 7/12/2024 14:02'
 }
 
 {
 	#category : #cleaning,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 13:54'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:56'
 }
 MWMealCleaner class >> clean: aMealList [
 	
-	| newMealList |
-	
-	newMealList := OrderedCollection new.
-	aMealList isEmpty ifTrue: [^ newMealList add: MWMeal emptyMeal; 
-		yourself].
-	aMealList do: [:each | newMealList add: (self fixMeal: each)].
-	^ newMealList
+	aMealList ifEmpty: [^ MWMeal emptyMeal asOrderedCollection].
+	^ aMealList collect: [:each | self fixMeal: each]
 		
 ]
 
@@ -38,7 +31,7 @@ MWMealCleaner class >> dinnerCategory [
 
 {
 	#category : #constants,
-	#'squeak_changestamp' : 'Max 6/12/2024 13:42'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:42'
 }
 MWMealCleaner class >> emptyPrice [
 
@@ -46,14 +39,24 @@ MWMealCleaner class >> emptyPrice [
 ]
 
 {
+	#category : #constants,
+	#'squeak_changestamp' : 'Max 7/10/2024 20:12'
+}
+MWMealCleaner class >> eveningPrefix [
+	
+	^ 'Abend'
+]
+
+{
 	#category : #cleaning,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 14:01'
+	#'squeak_changestamp' : 'Max 7/10/2024 20:12'
 }
 MWMealCleaner class >> fixCategories: aMeal [
 
 	aMeal category ifNil: [^ nil].
-	(aMeal category beginsWith: 'Abend') ifTrue: [aMeal category: self dinnerCategory].
-	aMeal category = self dinnerCategory ifFalse: [aMeal category: self lunchCategory]
+	(aMeal category beginsWith: self eveningPrefix) 
+		ifTrue: [aMeal category: self dinnerCategory]
+		ifFalse: [aMeal category: self lunchCategory]
 	
 	
 	
@@ -62,7 +65,7 @@ MWMealCleaner class >> fixCategories: aMeal [
 
 {
 	#category : #cleaning,
-	#'squeak_changestamp' : 'Louis Christ 6/18/2024 15:44'
+	#'squeak_changestamp' : 'Max 7/10/2024 19:58'
 }
 MWMealCleaner class >> fixMeal: aMeal [
 
@@ -79,15 +82,13 @@ MWMealCleaner class >> fixMeal: aMeal [
 
 {
 	#category : #cleaning,
-	#'squeak_changestamp' : 'Max 6/12/2024 15:29'
+	#'squeak_changestamp' : 'LC 7/12/2024 13:41'
 }
 MWMealCleaner class >> fixPrices: aMeal [
 	
 	| price |
 	
-	aMeal prices ifNil: [aMeal prices: self emptyPrice. 
-		^ nil].
-	price := aMeal prices.
+	price := aMeal prices ifNil: [self emptyPrice].
 	(price at: 'students') ifNil: [price at: 'students' put: (price at: 'others')].
 	(price at: 'employees') ifNil: [price at: 'employees' put: (price at: 'others')].
 	(price at: 'pupils') ifNil: [price at: 'pupils' put: (price at: 'students')].

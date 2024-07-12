@@ -1,7 +1,28 @@
 "
 A MWConfiguration is a class for accessing the different configurations of the MensaWidget.
 
-Instance Variables
+Class Variables
+	
+	BackgroundColor:		<Color>
+	DefaultColor:		<Color>
+	IsInitial:			<Boolean>
+	PrimaryColor:		<Color>
+	SecondaryColor:		<Color>
+	
+BackgroundColor
+	- the Background Color of the Configuration
+	
+DefaultColor
+	- the default Color of the Configuration
+	
+IsInitial
+	- checks whether the widget is being opened for the first time
+	
+PrimaryColor
+	- the Primary Color of the Configuration 
+	
+SecondaryColor
+	- the Secondary Color of the Configuration
 
 "
 Class {
@@ -15,7 +36,7 @@ Class {
 		'SecondaryColor'
 	],
 	#category : #MensaWidget,
-	#'squeak_changestamp' : 'Max 7/1/2024 20:26'
+	#'squeak_changestamp' : 'tmc 7/10/2024 23:20'
 }
 
 {
@@ -55,32 +76,18 @@ MWConfiguration class >> defaultColor: anObject [
 ]
 
 {
-	#category : #priceGroup,
-	#'squeak_changestamp' : 'LC 7/5/2024 11:39'
-}
-MWConfiguration class >> fromPopUp: aPopUp setPriceGroup: aCategory [
-	
-	self setPriceGroup: aCategory.
-	MWFrame updateCategory.
-	MWMeal updatePrice
-]
-
-{
 	#category : #morphs,
-	#'squeak_changestamp' : 'LC 7/3/2024 22:30'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:38'
 }
 MWConfiguration class >> getPopUp [
-
-	| popUp |
 	
-	popUp := PopUpChoiceMorph new
+	^ PopUpChoiceMorph new
 		target: self;
 		getItemsSelector: #priceGroups;
-		actionSelector: #fromPopUp:setPriceGroup:;
-		contents: MWMeal priceGroup;
-		yourself.
-	popUp arguments: (popUp arguments copyWith: popUp).
-	^ popUp
+		actionSelector: #setPriceGroup:;
+		contents: MWMeal priceGroup
+
+	
 ]
 
 {
@@ -150,11 +157,12 @@ MWConfiguration class >> secondaryColor: anObject [
 
 {
 	#category : #priceGroup,
-	#'squeak_changestamp' : 'LC 7/3/2024 00:25'
+	#'squeak_changestamp' : 'LC 7/12/2024 11:42'
 }
 MWConfiguration class >> setPriceGroup: aCategory [
 	
 	self isInitial: false.
 	MWMeal priceGroup: aCategory;
-		updatePrice
+		updatePrice.
+	MWFrame updateCategory
 ]
